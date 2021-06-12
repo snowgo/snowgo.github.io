@@ -257,7 +257,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   }
 }
 .header-bg-color {
-  background: #42b983;
+  background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
 }
 .header {
   position: relative;
@@ -353,7 +353,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   opacity: 0;
 }
 .header .header-content .navbar .menu .menu-item .sub-menu li {
-  background: #42b983;
+  background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
   width: 140px;
   text-align: center;
   line-height: 45px;
@@ -1084,6 +1084,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -1162,10 +1163,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .tags-video {
-    display: none;
+    display: block;
   }
   .tags-header {
-    display: flex;
+    display: none;
   }
 }
 @media (max-width: 992px) {
@@ -1227,6 +1228,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -1829,10 +1831,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .archive-video {
-    display: none;
+    display: block;
   }
   .archive-header {
-    display: flex;
+    display: none;
   }
 }
 @media (max-width: 992px) {
@@ -1918,6 +1920,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -1996,10 +1999,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .tag-video {
-    display: none;
+    display: block;
   }
   .tag-header {
-    display: flex;
+    display: none;
   }
 }
 @media (max-width: 992px) {
@@ -2034,6 +2037,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -2112,10 +2116,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .category-video {
-    display: none;
+    display: block;
   }
   .category-header {
-    display: flex;
+    display: none;
   }
 }
 @media (max-width: 992px) {
@@ -2235,10 +2239,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .friends-video {
-    display: none;
+    display: block;
   }
   .friends-header {
-    display: flex;
+    display: none;
   }
 }
 @media (max-width: 992px) {
@@ -2307,6 +2311,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   width: 100%;
   height: 50vh;
   height: 60vh;
+  height: 100vh;
   overflow: hidden;
   background-size: cover;
   background-position: center center;
@@ -2385,10 +2390,10 @@ pre:hover::-webkit-scrollbar-thumb:hover,
 }
 @media (min-width: 992px) {
   .about-video {
-    display: none;
+    display: block;
   }
   .about-header {
-    display: flex;
+    display: none;
   }
 }
 @media (max-width: 992px) {
