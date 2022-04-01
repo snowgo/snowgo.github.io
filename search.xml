@@ -483,33 +483,6 @@
     
     
     <entry>
-      <title>ssh文件夹存放位置</title>
-      <link href="/2022/01/28/ssh%E6%96%87%E4%BB%B6%E5%A4%B9%E5%AD%98%E6%94%BE%E4%BD%8D%E7%BD%AE/"/>
-      <url>/2022/01/28/ssh%E6%96%87%E4%BB%B6%E5%A4%B9%E5%AD%98%E6%94%BE%E4%BD%8D%E7%BD%AE/</url>
-      
-        <content type="html"><![CDATA[<p>一般在</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/ssh</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术栈 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> git </tag>
-            
-            <tag> ssh </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>pip安装requirements.txt</title>
       <link href="/2022/01/28/pip%E5%AE%89%E8%A3%85requirements.txt/"/>
       <url>/2022/01/28/pip%E5%AE%89%E8%A3%85requirements.txt/</url>
@@ -529,6 +502,33 @@
             <tag> pip </tag>
             
             <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ssh文件夹存放位置</title>
+      <link href="/2022/01/28/ssh%E6%96%87%E4%BB%B6%E5%A4%B9%E5%AD%98%E6%94%BE%E4%BD%8D%E7%BD%AE/"/>
+      <url>/2022/01/28/ssh%E6%96%87%E4%BB%B6%E5%A4%B9%E5%AD%98%E6%94%BE%E4%BD%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<p>一般在</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/ssh</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+            <tag> ssh </tag>
             
         </tags>
       
