@@ -1,0 +1,11 @@
+---
+title: 计算机基础
+date: 2022-01-22
+swiper: false
+swiperImg: 'https://images4.alphacoders.com/206/thumb-1920-206524.jpg'
+img: 'https://images4.alphacoders.com/206/thumb-1920-206524.jpg'
+categories: 面试题
+tags: [操作系统,计算机网络,数据库,数据结构]
+top: false
+---
+

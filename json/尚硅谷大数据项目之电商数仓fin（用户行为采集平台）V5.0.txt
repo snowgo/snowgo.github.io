@@ -1,0 +1,11 @@
+---
+title: 尚硅谷大数据项目之电商数仓fin（用户行为采集平台）V5.0
+date: 2022-01-28
+swiper: false
+swiperImg: 'https://img.paulzzh.com/touhou/random'
+img: 'https://img.paulzzh.com/touhou/random'
+categories: 小数据
+tags: [小小数据,哈哈,哈哈哈]
+top: false
+---
+

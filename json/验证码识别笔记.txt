@@ -1,0 +1,11 @@
+---
+title: 验证码识别笔记
+date: 2021-10-03
+swiper: false
+swiperImg: 'https://img11.360buyimg.com/ddimg/jfs/t1/215486/33/64/892565/61657df4Ea1b7c735/10607cd8451f5710.jpg'
+img: 'https://img11.360buyimg.com/ddimg/jfs/t1/215486/33/64/892565/61657df4Ea1b7c735/10607cd8451f5710.jpg'
+categories: DL
+tags: [dl]
+top: false
+---
+
