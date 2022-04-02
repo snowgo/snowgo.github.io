@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>nginx与lvs的区别</title>
+      <link href="/2022/04/02/nginx%E4%B8%8Elvs%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+      <url>/2022/04/02/nginx%E4%B8%8Elvs%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p> lvs和nginx都可以用作多机负载方案，他们各有优缺点，在生产环境中需要好好分析实际情况并加以利用。</p></blockquote><ol><li>nginx工作在网络的第7层，所以它可以针对http应用本身来做分流策略，比如针对域名、目录结构等，相比之下lvs并不具备这样的功能，因为lvs工作在第4层，但是他工作的范围更广一些。</li><li>nginx可以检测到服务器内部的故障，比如根据服务器处理网页返回的状态码、超时等等，并且会把返回错误的请求重新提交到另一个节点。目前lvs中ldirectd也能支持针对服务器内部的情况来监控，但lvs的原理使其不能重发请求。<strong>重发请求</strong>这点，比如用户正在上传一个文件，而处理该上传的节点刚好在上传过程中出现故障，nginx会把上传切到另一台服务器重新处理，而lvs就直接断掉了，如果是上传一个很大的文件或者很重要的文件的话，用户可能会因此而恼火。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nginx </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>UUID：如何高效生成全局的唯一ID？</title>
       <link href="/2022/03/29/UUID%EF%BC%9A%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E7%94%9F%E6%88%90%E5%85%A8%E5%B1%80%E7%9A%84%E5%94%AF%E4%B8%80ID%EF%BC%9F/"/>
       <url>/2022/03/29/UUID%EF%BC%9A%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E7%94%9F%E6%88%90%E5%85%A8%E5%B1%80%E7%9A%84%E5%94%AF%E4%B8%80ID%EF%BC%9F/</url>
