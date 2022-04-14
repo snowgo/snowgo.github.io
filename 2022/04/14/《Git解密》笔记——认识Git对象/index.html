@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>archives: 2022 | mangojuice</title>
+  <title>《Git解密》笔记——认识Git对象 | mangojuice</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -652,275 +652,403 @@
     
 </header>
         <!-- 内容区域 -->
-        <div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-archive" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
-<div class="archive-header" style="background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pre-medias/8.jpg')">
-  <div class="archive-header-title">
-    archive
-  </div>
-  <div class="archive-header-desc">
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/108.jpg')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
-  <span class="title" id="archive-header-desc"></span>
-  <script>
-  function typedFn() {
-    const el = '#archive-header-desc';
-    const type = 'archive';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-  
-  </div>
-  <div class="mask-box"></div>
-</div>
-
-<div class="archive-video">
-  <video class="full-video" autoplay loop muted>
-      <source style="width: 100%;height: 100vh;" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/none">
-  </video>
-  <div class="video-header-title">
-    archive
-  </div>
-  <div class="video-header-desc">
-  
-      <span class="title" id="archive-video-header-desc"></span>
-      <script>
-  function typedFn() {
-    const el = '#archive-video-header-desc';
-    const type = 'archive';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-      
-  </div>
-  <div class="mask-box"></div>
-</div>
-
-<!-- hash算法 -->
-
-
-<div class="archive-main">
-  <section class="archive">
-    <div class="archive-content">
-      <ul class="post-archive">
-        
-        
-          
-            
-            <div class="year" data-aos="zoom-in-up">
-                <div class="bullet"></div>
-                <a href="/archives/2022">2022</a>
-            </div>
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/14/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%AC%AC%E4%BA%8C%E5%88%97%E6%98%AF%E5%90%A6%E6%9C%89%E9%87%8D%E5%A4%8D/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/48.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/48.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-14</span>
-              </div>
-              <a class="post-title" href="/2022/04/14/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%AC%AC%E4%BA%8C%E5%88%97%E6%98%AF%E5%90%A6%E6%9C%89%E9%87%8D%E5%A4%8D/">shell系列题之第二列是否有重复</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/14/%E3%80%8AGit%E8%A7%A3%E5%AF%86%E3%80%8B%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86Git%E5%AF%B9%E8%B1%A1/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/108.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/108.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-14</span>
-              </div>
-              <a class="post-title" href="/2022/04/14/%E3%80%8AGit%E8%A7%A3%E5%AF%86%E3%80%8B%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86Git%E5%AF%B9%E8%B1%A1/">《Git解密》笔记——认识Git对象</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/11/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%BB%9F%E8%AE%A1%E6%89%80%E6%9C%89%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%92%8C/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/65.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/65.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-11</span>
-              </div>
-              <a class="post-title" href="/2022/04/11/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%BB%9F%E8%AE%A1%E6%89%80%E6%9C%89%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%92%8C/">shell系列题之统计所有进程占用内存大小的和</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/11/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%BB%9F%E8%AE%A1%E6%AF%8F%E4%B8%AA%E5%8D%95%E8%AF%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E4%B8%AA%E6%95%B0/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/213.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/213.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-11</span>
-              </div>
-              <a class="post-title" href="/2022/04/11/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%BB%9F%E8%AE%A1%E6%AF%8F%E4%B8%AA%E5%8D%95%E8%AF%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E4%B8%AA%E6%95%B0/">shell系列题之统计每个单词出现的个数</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/09/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E6%89%93%E5%8D%B0%E5%AD%97%E6%AF%8D%E6%95%B0%E5%B0%8F%E4%BA%8E8%E7%9A%84%E5%8D%95%E8%AF%8D/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/63.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/63.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-09</span>
-              </div>
-              <a class="post-title" href="/2022/04/09/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E6%89%93%E5%8D%B0%E5%AD%97%E6%AF%8D%E6%95%B0%E5%B0%8F%E4%BA%8E8%E7%9A%84%E5%8D%95%E8%AF%8D/">shell系列题之打印字母数小于8的单词</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/07/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E5%8E%BB%E6%8E%89%E7%A9%BA%E8%A1%8C/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/8.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/8.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-07</span>
-              </div>
-              <a class="post-title" href="/2022/04/07/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E5%8E%BB%E6%8E%89%E7%A9%BA%E8%A1%8C/">shell系列题之去掉空行</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/06/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E6%89%93%E5%8D%B0%E7%A9%BA%E8%A1%8C%E7%9A%84%E8%A1%8C%E5%8F%B7/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/42.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/42.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-06</span>
-              </div>
-              <a class="post-title" href="/2022/04/06/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E6%89%93%E5%8D%B0%E7%A9%BA%E8%A1%8C%E7%9A%84%E8%A1%8C%E5%8F%B7/">shell系列题之打印空行的行号</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/05/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E8%BE%93%E5%87%BA%E7%AC%AC5%E8%A1%8C%E7%9A%84%E5%86%85%E5%AE%B9/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/128.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/128.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-05</span>
-              </div>
-              <a class="post-title" href="/2022/04/05/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E8%BE%93%E5%87%BA%E7%AC%AC5%E8%A1%8C%E7%9A%84%E5%86%85%E5%AE%B9/">shell系列题之输出第5行的内容</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/04/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E8%BE%93%E5%87%BA7%E7%9A%84%E5%80%8D%E6%95%B0/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/180.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/180.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-04</span>
-              </div>
-              <a class="post-title" href="/2022/04/04/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E8%BE%93%E5%87%BA7%E7%9A%84%E5%80%8D%E6%95%B0/">shell系列题之输出7的倍数</a>
-            </div>
-          </li>
-        
-          
-          <li class="post-item" data-aos="fade-left">
-            
-            <div class="post-img-box">
-              <a href="/2022/04/04/%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C/" class="post-img " style="background-size: cover; 
-                background-position: center center;">
-                <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/33.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/33.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-              </a>
-            </div>
-            <div class="post-date-title">
-              <div>
-                <span class="post-date">04-04</span>
-              </div>
-              <a class="post-title" href="/2022/04/04/%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C/">什么是一致性哈希</a>
-            </div>
-          </li>
-        
-      </ul>
-    </div>
-  </section>
-  <div class="w-70">
-    
-  <!-- <nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2022/page/2/">2</a><a class="page-number" href="/archives/2022/page/3/">3</a><a class="page-number" href="/archives/2022/page/4/">4</a><a class="extend next" rel="next" href="/archives/2022/page/2/">Next</a>
-  </nav> -->
-  <div class="page-nav">
-    
-    <div class="page-info">
-        <div class="page-info-text">1 / 4</div>
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        《Git解密》笔记——认识Git对象
+      </span>
     </div>
     
-      <a href="/archives/2022/page/2/"
-         class="page-nav-next">
-          <span class="mr-5">Next</span><i class="fas fa-angle-right"></i>
-      </a>
+    
       
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2022-04-14 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> category：
+          
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%A0%88/" class="post-detail-header_category">
+              技术栈
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 568 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 2min |
+          </span>
+  
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h2 id="认识Git对象"><a href="#认识Git对象" class="headerlink" title="认识Git对象"></a>认识Git对象</h2><p>在Git的世界里，Git把它所管理的一切内容都当作了一个个的Git对象（Git object），这些对象就被保存在.git目录下。<strong>Git在保存这些对象时，还会为它们生成一个基于SHA-1算法的全局唯一的hash值，以便后面利用这个hash值对Git对象进行存取和引用。</strong><br>所以，Git的核心，其实就是一个基于文件系统的，存储“键值对”的数据库。<br>基于这一认识，我们再回过头来看.git目录下的这两个目录和一个文件：</p>
+<ul>
+<li>objects: 顾名思义，这个目录里存的都是Git对象。它以Git对象的形式保存了该Git库所包含和管理的全部内容；</li>
+<li>refs: 保存了指向Git对象的引用。准确地说，这个引用所指向的，是与分支，标签，远程库等相关联的commit对象。Git把它所管理的对象分成了几种类型，commit对象就是其中之一。关于commit对象，引用，以及refs目录，后面我们还会详细介绍；</li>
+<li>HEAD: 这个很容易理解，它保存了当前分支的head指针，实际上就是指向当前分支最新提交（也是一个commit对象）的引用。<h2 id="Blob对象"><a href="#Blob对象" class="headerlink" title="Blob对象"></a>Blob对象</h2>首先手工创建一个Git对象，现在就让我们利用git hash-object，手工把一个新建的文件存入Git库：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ echo &#x27;Inside Git&#x27; &gt; README</span><br><span class="line">$ git hash-object -w README</span><br><span class="line">968b2bf72e28d8c6756054730880cf9f9ab06062</span><br></pre></td></tr></table></figure>
+此时，我们会发现在.git目录的objects子目录下多了一个新文件。文件名和上级目录名称的组合刚好构成了git hash-object返回的唯一键：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ find .git/objects -type f</span><br><span class="line">.git/objects/96/8b2bf72e28d8c6756054730880cf9f9ab06062</span><br></pre></td></tr></table></figure>
+如果在执行git cat-file命令时使用-t参数，我们还能看到Git对象的所属类型：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -t 8b2bf72e28d8c6756054730880cf9f9ab06062</span><br><span class="line">blob</span><br></pre></td></tr></table></figure>
+可以看到，<strong>与文件相对应的Git对象都是blob类型的</strong>。很快我们就会看到，除了blob对象，Git还支持很多其他类型的对象。<br>好了，今天就先到这里啦。在下篇文章里，我们将讨论Git中的另外两种重要的对象，它们分别是：Tree和Commit！</li>
+</ul>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://morningspace.github.io/tech/inside-git-1/">https://morningspace.github.io/tech/inside-git-1/</a></p>
+</blockquote>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/git/" class="">
+              git
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>author:  </strong>snowgo</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>link:  </strong>
+    <a href="/2022/04/14/《Git解密》笔记——认识Git对象/" target="_blank" title="《Git解密》笔记——认识Git对象">https://snowgo.live/2022/04/14/《Git解密》笔记——认识Git对象/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/48.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/48.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+    </div>
+    <a href="/2022/04/14/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%AC%AC%E4%BA%8C%E5%88%97%E6%98%AF%E5%90%A6%E6%9C%89%E9%87%8D%E5%A4%8D/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">shell系列题之第二列是否有重复</div>
+      </div>
+      
+      <!-- <div class="content">
+        描述给定一个 nowcoder.txt文件，其中有3列信息，如下实例，编写一个shell脚本来检查文件第二列是否有重复，
+      </div> -->
+    </a>
   </div>
 
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/65.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/65.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+    </div>
+    <a href="/2022/04/11/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%BB%9F%E8%AE%A1%E6%89%80%E6%9C%89%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%92%8C/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">shell系列题之统计所有进程占用内存大小的和</div>
+      </div>
+      <!-- <div class="content">
+        描述假设 nowcoder.txt 内容如下：
+12345root         2  0.0  0.0      0
+      </div> -->
+    </a>
   </div>
+
 </div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>catalog</span>
+        
+          <div class="toc-open-close">catalog</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '10000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://s4.ax1x.com/2022/02/23/bCcWmF.png';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
 
       </main>
     </div>

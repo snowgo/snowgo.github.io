@@ -29,6 +29,31 @@
     
     
     <entry>
+      <title>《Git解密》笔记——认识Git对象</title>
+      <link href="/2022/04/14/%E3%80%8AGit%E8%A7%A3%E5%AF%86%E3%80%8B%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86Git%E5%AF%B9%E8%B1%A1/"/>
+      <url>/2022/04/14/%E3%80%8AGit%E8%A7%A3%E5%AF%86%E3%80%8B%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86Git%E5%AF%B9%E8%B1%A1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="认识Git对象"><a href="#认识Git对象" class="headerlink" title="认识Git对象"></a>认识Git对象</h2><p>在Git的世界里，Git把它所管理的一切内容都当作了一个个的Git对象（Git object），这些对象就被保存在.git目录下。<strong>Git在保存这些对象时，还会为它们生成一个基于SHA-1算法的全局唯一的hash值，以便后面利用这个hash值对Git对象进行存取和引用。</strong><br>所以，Git的核心，其实就是一个基于文件系统的，存储“键值对”的数据库。<br>基于这一认识，我们再回过头来看.git目录下的这两个目录和一个文件：</p><ul><li>objects: 顾名思义，这个目录里存的都是Git对象。它以Git对象的形式保存了该Git库所包含和管理的全部内容；</li><li>refs: 保存了指向Git对象的引用。准确地说，这个引用所指向的，是与分支，标签，远程库等相关联的commit对象。Git把它所管理的对象分成了几种类型，commit对象就是其中之一。关于commit对象，引用，以及refs目录，后面我们还会详细介绍；</li><li>HEAD: 这个很容易理解，它保存了当前分支的head指针，实际上就是指向当前分支最新提交（也是一个commit对象）的引用。<h2 id="Blob对象"><a href="#Blob对象" class="headerlink" title="Blob对象"></a>Blob对象</h2>首先手工创建一个Git对象，现在就让我们利用git hash-object，手工把一个新建的文件存入Git库：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ echo &#x27;Inside Git&#x27; &gt; README</span><br><span class="line">$ git hash-object -w README</span><br><span class="line">968b2bf72e28d8c6756054730880cf9f9ab06062</span><br></pre></td></tr></table></figure>此时，我们会发现在.git目录的objects子目录下多了一个新文件。文件名和上级目录名称的组合刚好构成了git hash-object返回的唯一键：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ find .git/objects -type f</span><br><span class="line">.git/objects/96/8b2bf72e28d8c6756054730880cf9f9ab06062</span><br></pre></td></tr></table></figure>如果在执行git cat-file命令时使用-t参数，我们还能看到Git对象的所属类型：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -t 8b2bf72e28d8c6756054730880cf9f9ab06062</span><br><span class="line">blob</span><br></pre></td></tr></table></figure>可以看到，<strong>与文件相对应的Git对象都是blob类型的</strong>。很快我们就会看到，除了blob对象，Git还支持很多其他类型的对象。<br>好了，今天就先到这里啦。在下篇文章里，我们将讨论Git中的另外两种重要的对象，它们分别是：Tree和Commit！</li></ul><blockquote><p><a href="https://morningspace.github.io/tech/inside-git-1/">https://morningspace.github.io/tech/inside-git-1/</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>shell系列题之统计所有进程占用内存大小的和</title>
       <link href="/2022/04/11/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%BB%9F%E8%AE%A1%E6%89%80%E6%9C%89%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%92%8C/"/>
       <url>/2022/04/11/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%BB%9F%E8%AE%A1%E6%89%80%E6%9C%89%E8%BF%9B%E7%A8%8B%E5%8D%A0%E7%94%A8%E5%86%85%E5%AD%98%E5%A4%A7%E5%B0%8F%E7%9A%84%E5%92%8C/</url>
