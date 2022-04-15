@@ -300,16 +300,27 @@
           
             <li class="drawer-box-content_item" style="position: relative;">
               
-                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(6)">
+                <a href="/bangumis" class="drawer-menu-item-link">
+                  
+                    <i class="iconfont icon-bilibili" aria-hidden="true"></i>
+                  
+                  <span class="name">追番</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(7)">
                   <span>
                     
                       <i class="fas fa-link"></i>
                     
                     <span class="name">更多</span>
                   </span>
-                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(6)}" aria-hidden="true"></i>
+                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(7)}" aria-hidden="true"></i>
                 </a>
-                <ul class="drawer-sub-menu" v-if="isOpen(6)">
+                <ul class="drawer-sub-menu" v-if="isOpen(7)">
                   
                   <li>
                     <a href="/gallery">
@@ -483,6 +494,17 @@
                 <a href="/friends" class="menu-item-link" title="Friends">
                   
                   <span class="name">Friends</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/bangumis" class="menu-item-link" title="追番">
+                  
+                    <i class="iconfont icon-bilibili" aria-hidden="true"></i>
+                  
+                  <span class="name">追番</span>
                 </a>
               
             </li>
@@ -734,12 +756,12 @@
         
         <div class="tags">
           
-            <a href="/tags/dl/" class="">
-              dl
-            </a>
-          
             <a href="/tags/math/" class="">
               math
+            </a>
+          
+            <a href="/tags/dl/" class="">
+              dl
             </a>
           
         </div>

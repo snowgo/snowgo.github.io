@@ -300,16 +300,27 @@
           
             <li class="drawer-box-content_item" style="position: relative;">
               
-                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(6)">
+                <a href="/bangumis" class="drawer-menu-item-link">
+                  
+                    <i class="iconfont icon-bilibili" aria-hidden="true"></i>
+                  
+                  <span class="name">追番</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(7)">
                   <span>
                     
                       <i class="fas fa-link"></i>
                     
                     <span class="name">更多</span>
                   </span>
-                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(6)}" aria-hidden="true"></i>
+                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(7)}" aria-hidden="true"></i>
                 </a>
-                <ul class="drawer-sub-menu" v-if="isOpen(6)">
+                <ul class="drawer-sub-menu" v-if="isOpen(7)">
                   
                   <li>
                     <a href="/gallery">
@@ -483,6 +494,17 @@
                 <a href="/friends" class="menu-item-link" title="Friends">
                   
                   <span class="name">Friends</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/bangumis" class="menu-item-link" title="追番">
+                  
+                    <i class="iconfont icon-bilibili" aria-hidden="true"></i>
+                  
+                  <span class="name">追番</span>
                 </a>
               
             </li>
@@ -725,6 +747,14 @@
             <div class="tag-chips">
                 
                 
+                <a href="/tags/math/" title="math: 3">
+                    <span class="tag-content"
+                        title="math" style="background-color: #E8F8F5;">math
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/tags/dl/" title="dl: 20">
                     <span class="tag-content"
                         title="dl" style="background-color: #F8C471;">dl
@@ -737,14 +767,6 @@
                     <span class="tag-content"
                         title="tools" style="background-color: #F5EEF8;">tools
                         <span class="tag-length">6</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/math/" title="math: 3">
-                    <span class="tag-content"
-                        title="math" style="background-color: #E8F8F5;">math
-                        <span class="tag-length">3</span>
                     </span>
                 </a>
                 
@@ -949,17 +971,17 @@
                 </a>
                 
                 
-                <a href="/tags/spark/" title="spark: 2">
+                <a href="/tags/%E6%97%A5%E6%8A%A5/" title="日报: 2">
                     <span class="tag-content"
-                        title="spark" style="background-color: #F8F9F9;">spark
+                        title="日报" style="background-color: #E8F8F5;">日报
                         <span class="tag-length">2</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/%E6%97%A5%E6%8A%A5/" title="日报: 2">
+                <a href="/tags/spark/" title="spark: 2">
                     <span class="tag-content"
-                        title="日报" style="background-color: #E8F8F5;">日报
+                        title="spark" style="background-color: #F8F9F9;">spark
                         <span class="tag-length">2</span>
                     </span>
                 </a>
