@@ -865,13 +865,6 @@
   </url>
   
   <url>
-    <loc>https://snowgo.live/tags/numpy/</loc>
-    <lastmod>2022-04-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://snowgo.live/tags/nginx/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>daily</changefreq>
@@ -879,7 +872,7 @@
   </url>
   
   <url>
-    <loc>https://snowgo.live/tags/shell/</loc>
+    <loc>https://snowgo.live/tags/numpy/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -900,6 +893,13 @@
   </url>
   
   <url>
+    <loc>https://snowgo.live/tags/shell/</loc>
+    <lastmod>2022-04-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://snowgo.live/tags/ssh/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>daily</changefreq>
@@ -907,14 +907,14 @@
   </url>
   
   <url>
-    <loc>https://snowgo.live/tags/%E6%94%B6%E7%9B%8A%E6%8C%87%E6%A0%87/</loc>
+    <loc>https://snowgo.live/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snowgo.live/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</loc>
+    <loc>https://snowgo.live/tags/%E6%94%B6%E7%9B%8A%E6%8C%87%E6%A0%87/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -963,13 +963,6 @@
   </url>
   
   <url>
-    <loc>https://snowgo.live/tags/scala/</loc>
-    <lastmod>2022-04-23</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://snowgo.live/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>daily</changefreq>
@@ -985,6 +978,13 @@
   
   <url>
     <loc>https://snowgo.live/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
+    <lastmod>2022-04-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snowgo.live/tags/scala/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
