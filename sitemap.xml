@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://snowgo.live/2022/04/23/IELTS%E5%90%AC%E5%8A%9B%E7%AC%94%E8%AE%B0-1/</loc>
+    <loc>https://snowgo.live/2022/04/21/IELTS%E5%90%AC%E5%8A%9B%E7%AC%94%E8%AE%B0-1/</loc>
     
     <lastmod>2022-04-23</lastmod>
     
@@ -709,14 +709,14 @@
   </url>
   
   <url>
-    <loc>https://snowgo.live/gallery/index.html</loc>
+    <loc>https://snowgo.live/tags/index.html</loc>
     
     <lastmod>2021-07-07</lastmod>
     
   </url>
   
   <url>
-    <loc>https://snowgo.live/tags/index.html</loc>
+    <loc>https://snowgo.live/gallery/index.html</loc>
     
     <lastmod>2021-07-07</lastmod>
     
@@ -781,6 +781,13 @@
   </url>
   
   <url>
+    <loc>https://snowgo.live/tags/IELTS/</loc>
+    <lastmod>2022-04-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://snowgo.live/tags/java/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>daily</changefreq>
@@ -802,14 +809,14 @@
   </url>
   
   <url>
-    <loc>https://snowgo.live/tags/linux/</loc>
+    <loc>https://snowgo.live/tags/interesting/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snowgo.live/tags/interesting/</loc>
+    <loc>https://snowgo.live/tags/linux/</loc>
     <lastmod>2022-04-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
