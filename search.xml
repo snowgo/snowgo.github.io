@@ -54,6 +54,31 @@
     
     
     <entry>
+      <title>进程间通信方式</title>
+      <link href="/2022/04/24/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/"/>
+      <url>/2022/04/24/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><strong>同一个进程中的线程共享数据空间可以直接通信，但是进程间是无法直接进行通信的。</strong><br>进程间通信：</p><ol><li>管道模型：比如cat xx.txt | grep -n ‘xxx’ 这个’|’可以看作一个单向的匿名管道，使得前后两个进程之间进行通信，前一个命名的输出作为后一个命令的输入，该管道使用结束则立即销毁。命名管道在linux中以文件的形式存在，只要访问该文件就可以实现任意两个进程间的通信，命名管道可以看作是是硬盘上存在的设备文件，所以打开需要使用open。</li><li>消息队列模型：比如生产者消费者模式，一端生产一端消费数据。遵循严格的先进先出。</li><li>共享内存：多用于传输一些大文件，如果采用管道或者消息队列传输大文件，涉及到重复拷贝，比较消耗性能，因此模拟多线程，在内存中开辟一块特殊的内存用于多个进程共享访问。<strong>也是进程间最高效的通信方式</strong>。一般要搭配信号量机制。</li><li>信号量机制：信号量可以看作一种数据操作锁，通过对临界资源的控制访问以管理进程之间的通信，PV原语操作。</li><li>socket：用于多个进程之间的网络传输。可以是单机多进程也可以是不同机器上的多进程通信。打开的socket在linux下也是以文件描述符fd存在。服务端创建套接字，绑定ip端口，监听端口号，等待客户端调用，客户端创建之后与服务端TCP三次握手建立连接完成，双方就可以发送和接收数据，使用频率少。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 操作系统 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>IELTS听力笔记-1</title>
       <link href="/2022/04/21/IELTS%E5%90%AC%E5%8A%9B%E7%AC%94%E8%AE%B0-1/"/>
       <url>/2022/04/21/IELTS%E5%90%AC%E5%8A%9B%E7%AC%94%E8%AE%B0-1/</url>
@@ -987,6 +1012,33 @@
     
     
     <entry>
+      <title>语言基础</title>
+      <link href="/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"/>
+      <url>/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="row">    <embed src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pdf/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>计算机基础</title>
       <link href="/2022/01/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
       <url>/2022/01/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</url>
@@ -1010,33 +1062,6 @@
             <tag> 数据库 </tag>
             
             <tag> 数据结构 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>语言基础</title>
-      <link href="/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"/>
-      <url>/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="row">    <embed src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pdf/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
-      
-      
-      <categories>
-          
-          <category> 面试题 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-            <tag> scala </tag>
             
         </tags>
       
@@ -1975,8 +2000,8 @@
     
     <entry>
       <title>第14章 反射</title>
-      <link href="/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84(1)/"/>
-      <url>/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84(1)/</url>
+      <link href="/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84/"/>
+      <url>/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84/</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="什么是反射？"><a href="#什么是反射？" class="headerlink" title="什么是反射？"></a>什么是反射？</h2><p><strong>反射是在运行时动态访问类和对象的技术</strong></p><h2 id="为什么要用反射？"><a href="#为什么要用反射？" class="headerlink" title="为什么要用反射？"></a>为什么要用反射？</h2><blockquote><ul><li><strong>实例化对象用new关键字，但是这样就把实例化的工作固定在程序中，不灵活会出现各种问题。</strong></li><li><strong>反射可以将创建对象的时机从编译时延迟到程序运行时</strong></li><li><strong>当添加新的功能时，如果不用反射将需要修改代码，修改完需要重新上线非常麻烦，而用反射则没有这个问题</strong></li></ul></blockquote><h2 id="14-2-Class对象"><a href="#14-2-Class对象" class="headerlink" title="14.2 Class对象"></a>14.2 Class对象</h2><blockquote><p><strong>在程序运行时，Class对象保存了类和对象的具体信息。</strong><br><strong>每个类都有一个Class对象，每当编译一个类，即.java编译成.class文件，就会产生一个Class对象保存在.class文件中</strong></p></blockquote><h2 id="类加载器："><a href="#类加载器：" class="headerlink" title="类加载器："></a>类加载器：</h2><blockquote><p><strong>java程序在运行之前并非完全加载：</strong></p><ul><li><strong>第一次使用这个类，就动态加载到JVM中。当创建第一个对类的静态成员的引用或者构造器时就会加载这个类</strong></li></ul></blockquote><blockquote><p><strong>类加载器工作步骤：</strong></p><ol><li><strong>首先检查一个类的Class对象（或理解.class文件）是否已被加载</strong></li><li><strong>如果尚未加载，默认的类加载器就会根据类名查找.class文件</strong></li><li><strong>一旦Class对象（.class文件）被加载了（载入jvm），它就被用来创建这个类的所有对象</strong></li></ol></blockquote><h3 id="获取Class对象的引用"><a href="#获取Class对象的引用" class="headerlink" title="获取Class对象的引用"></a>获取Class对象的引用</h3><blockquote><p><code>**Class对象 = Class.forName(&quot;...&quot; )**</code><strong>可以返回指定Class对象的引用，并且若指定的类没有被加载，就加载它</strong><br><strong>如果没有Class对象，可以用forName获取。如果已经有一个Class对象，则可以用<code>getClass（)</code> 方法获取Class引用</strong></p></blockquote><hr><h2 id="Class常用方法"><a href="#Class常用方法" class="headerlink" title="Class常用方法"></a>Class常用方法</h2><blockquote><ul><li><strong>Class.forName(“Class path”)           获取指定Class对象</strong></li><li>**Class对象.newInstance()                  使用默认构造器构造对象 **</li><li><strong>Class对象.getConstructor()              获取指定的 public修饰构造方法 Constructor对象</strong></li><li><strong>Class对象.getMethod()                    获取指定的 public修饰方法 Method对象</strong></li><li><strong>Class对象.getField()                        获取指定的 public修饰成员变量 Field对象</strong></li></ul></blockquote><h2 id="使用带参构造方法创建对象（反射）"><a href="#使用带参构造方法创建对象（反射）" class="headerlink" title="使用带参构造方法创建对象（反射）"></a>使用带参构造方法创建对象（反射）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Constructor constructor = <span class="class"><span class="keyword">class</span>对象.<span class="title">getConstructor</span>(<span class="title">new</span> <span class="title">Class</span>[]</span>&#123; <span class="comment">//通过构造器的参数获取构造器对象</span></span><br><span class="line"><span class="comment">//带参构造器的参数</span></span><br><span class="line">    String.class , Float.class,...</span><br><span class="line">&#125;);</span><br><span class="line">E 类的对象 = (E) constructor.newInstance(<span class="keyword">new</span> Object[]&#123; <span class="comment">//通过构造器对象</span></span><br><span class="line">    <span class="comment">//传递参数给带参构造器</span></span><br><span class="line">    <span class="string">&quot;...&quot;</span>,...,<span class="string">&quot;...&quot;</span>,...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="使用反射调用方法"><a href="#使用反射调用方法" class="headerlink" title="使用反射调用方法"></a>使用反射调用方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Method method = <span class="class"><span class="keyword">class</span>对象.<span class="title">getMethod</span>(&quot;方法名&quot;,<span class="title">new</span> <span class="title">Class</span>[]</span>&#123;</span><br><span class="line"><span class="comment">//构造器的参数</span></span><br><span class="line">    String.class , Float.class,...</span><br><span class="line">&#125;); <span class="comment">//通过方法名和方法的参数获取方法并返回方法对象</span></span><br><span class="line">method.invoke(类的对象,参数...);<span class="comment">//通过哪个类的对象调用这个方法以及方法参数来执行方法</span></span><br></pre></td></tr></table></figure><h2 id="使用反射获取成员对象"><a href="#使用反射获取成员对象" class="headerlink" title="使用反射获取成员对象"></a>使用反射获取成员对象</h2><p><strong>获取到成员对象后可以通过get或者set获取数据或修改数据</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Field field = <span class="class"><span class="keyword">class</span>对象.<span class="title">getField</span>(&quot;成员对象名&quot;)</span>; <span class="comment">// 通过变量名获取成员对象</span></span><br><span class="line">print(field.get(类的对象)); <span class="comment">// 通过哪个类的对象获取变量</span></span><br><span class="line">field.set(类的对象,需要修改的值); <span class="comment">//修改变量</span></span><br></pre></td></tr></table></figure><p><strong>如果要获取非public则都采用getDeclaredXXX</strong></p>]]></content>
       
@@ -2000,8 +2025,8 @@
     
     <entry>
       <title>第14章 反射</title>
-      <link href="/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84/"/>
-      <url>/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84/</url>
+      <link href="/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84(1)/"/>
+      <url>/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84(1)/</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="什么是反射？"><a href="#什么是反射？" class="headerlink" title="什么是反射？"></a>什么是反射？</h2><p><strong>反射是在运行时动态访问类和对象的技术</strong></p><h2 id="为什么要用反射？"><a href="#为什么要用反射？" class="headerlink" title="为什么要用反射？"></a>为什么要用反射？</h2><blockquote><ul><li><strong>实例化对象用new关键字，但是这样就把实例化的工作固定在程序中，不灵活会出现各种问题。</strong></li><li><strong>反射可以将创建对象的时机从编译时延迟到程序运行时</strong></li><li><strong>当添加新的功能时，如果不用反射将需要修改代码，修改完需要重新上线非常麻烦，而用反射则没有这个问题</strong></li></ul></blockquote><h2 id="14-2-Class对象"><a href="#14-2-Class对象" class="headerlink" title="14.2 Class对象"></a>14.2 Class对象</h2><blockquote><p><strong>在程序运行时，Class对象保存了类和对象的具体信息。</strong><br><strong>每个类都有一个Class对象，每当编译一个类，即.java编译成.class文件，就会产生一个Class对象保存在.class文件中</strong></p></blockquote><h2 id="类加载器："><a href="#类加载器：" class="headerlink" title="类加载器："></a>类加载器：</h2><blockquote><p><strong>java程序在运行之前并非完全加载：</strong></p><ul><li><strong>第一次使用这个类，就动态加载到JVM中。当创建第一个对类的静态成员的引用或者构造器时就会加载这个类</strong></li></ul></blockquote><blockquote><p><strong>类加载器工作步骤：</strong></p><ol><li><strong>首先检查一个类的Class对象（或理解.class文件）是否已被加载</strong></li><li><strong>如果尚未加载，默认的类加载器就会根据类名查找.class文件</strong></li><li><strong>一旦Class对象（.class文件）被加载了（载入jvm），它就被用来创建这个类的所有对象</strong></li></ol></blockquote><h3 id="获取Class对象的引用"><a href="#获取Class对象的引用" class="headerlink" title="获取Class对象的引用"></a>获取Class对象的引用</h3><blockquote><p><code>**Class对象 = Class.forName(&quot;...&quot; )**</code><strong>可以返回指定Class对象的引用，并且若指定的类没有被加载，就加载它</strong><br><strong>如果没有Class对象，可以用forName获取。如果已经有一个Class对象，则可以用<code>getClass（)</code> 方法获取Class引用</strong></p></blockquote><hr><h2 id="Class常用方法"><a href="#Class常用方法" class="headerlink" title="Class常用方法"></a>Class常用方法</h2><blockquote><ul><li><strong>Class.forName(“Class path”)           获取指定Class对象</strong></li><li>**Class对象.newInstance()                  使用默认构造器构造对象 **</li><li><strong>Class对象.getConstructor()              获取指定的 public修饰构造方法 Constructor对象</strong></li><li><strong>Class对象.getMethod()                    获取指定的 public修饰方法 Method对象</strong></li><li><strong>Class对象.getField()                        获取指定的 public修饰成员变量 Field对象</strong></li></ul></blockquote><h2 id="使用带参构造方法创建对象（反射）"><a href="#使用带参构造方法创建对象（反射）" class="headerlink" title="使用带参构造方法创建对象（反射）"></a>使用带参构造方法创建对象（反射）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Constructor constructor = <span class="class"><span class="keyword">class</span>对象.<span class="title">getConstructor</span>(<span class="title">new</span> <span class="title">Class</span>[]</span>&#123; <span class="comment">//通过构造器的参数获取构造器对象</span></span><br><span class="line"><span class="comment">//带参构造器的参数</span></span><br><span class="line">    String.class , Float.class,...</span><br><span class="line">&#125;);</span><br><span class="line">E 类的对象 = (E) constructor.newInstance(<span class="keyword">new</span> Object[]&#123; <span class="comment">//通过构造器对象</span></span><br><span class="line">    <span class="comment">//传递参数给带参构造器</span></span><br><span class="line">    <span class="string">&quot;...&quot;</span>,...,<span class="string">&quot;...&quot;</span>,...</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h2 id="使用反射调用方法"><a href="#使用反射调用方法" class="headerlink" title="使用反射调用方法"></a>使用反射调用方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Method method = <span class="class"><span class="keyword">class</span>对象.<span class="title">getMethod</span>(&quot;方法名&quot;,<span class="title">new</span> <span class="title">Class</span>[]</span>&#123;</span><br><span class="line"><span class="comment">//构造器的参数</span></span><br><span class="line">    String.class , Float.class,...</span><br><span class="line">&#125;); <span class="comment">//通过方法名和方法的参数获取方法并返回方法对象</span></span><br><span class="line">method.invoke(类的对象,参数...);<span class="comment">//通过哪个类的对象调用这个方法以及方法参数来执行方法</span></span><br></pre></td></tr></table></figure><h2 id="使用反射获取成员对象"><a href="#使用反射获取成员对象" class="headerlink" title="使用反射获取成员对象"></a>使用反射获取成员对象</h2><p><strong>获取到成员对象后可以通过get或者set获取数据或修改数据</strong></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Class <span class="class"><span class="keyword">class</span>对象 </span>= Class.forName(<span class="string">&quot; Class路径 &quot;</span>);</span><br><span class="line">Field field = <span class="class"><span class="keyword">class</span>对象.<span class="title">getField</span>(&quot;成员对象名&quot;)</span>; <span class="comment">// 通过变量名获取成员对象</span></span><br><span class="line">print(field.get(类的对象)); <span class="comment">// 通过哪个类的对象获取变量</span></span><br><span class="line">field.set(类的对象,需要修改的值); <span class="comment">//修改变量</span></span><br></pre></td></tr></table></figure><p><strong>如果要获取非public则都采用getDeclaredXXX</strong></p>]]></content>
       
@@ -2382,11 +2407,11 @@
     
     
     <entry>
-      <title>第1章 导论</title>
-      <link href="/2021/06/05/%E7%AC%AC1%E7%AB%A0%20%E5%AF%BC%E8%AE%BA/"/>
-      <url>/2021/06/05/%E7%AC%AC1%E7%AB%A0%20%E5%AF%BC%E8%AE%BA/</url>
+      <title>第2章 对象</title>
+      <link href="/2021/06/05/%E7%AC%AC2%E7%AB%A0%20%E5%AF%B9%E8%B1%A1/"/>
+      <url>/2021/06/05/%E7%AC%AC2%E7%AB%A0%20%E5%AF%B9%E8%B1%A1/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h2><p><strong>每一个对象在内存中都有一个唯一的地址，new的对象在堆中。</strong></p><h2 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h2><p><strong>高内聚、低耦合：模块之间紧密联系，并且保持独立性。</strong></p><h2 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h2><ul><li><strong>public、private、protected</strong><ul><li><strong>private: 除类型创建者和类型的内部方法之外的任何人都不能访问。</strong></li><li><strong>protected：与 private作用相当，差别仅在于继承的类可以访问 protected成员，但是不能访问private成员。</strong></li></ul></li></ul><h2 id="1-5-组合"><a href="#1-5-组合" class="headerlink" title="1.5 组合"></a>1.5 组合</h2><ul><li><strong>组合：由类的对象组合成新类</strong>。<ul><li><strong>has-a（拥有）关系的时候用组合</strong> <strong>。</strong></li><li><strong>新类的成员对象通常都被声明为 private，使得可以在不干扰现有客户端代码的情况下，修改这些成员，也可以在运行时修改这些成员对象，以实现动态修改程序的行为。</strong></li><li><strong>通常用于在新类中使用现有类的功能而非接口的情况，即在新类中嵌入现有类的private对象</strong> <strong>。</strong></li></ul></li></ul><h2 id="1-6-继承"><a href="#1-6-继承" class="headerlink" title="1.6 继承"></a>1.6 继承</h2><p><strong>is-a（是一个）或者like-a（像是一个）的时候用继承</strong> <strong>。</strong><br><strong>有两种方法可以使基类与导出类产生差异：extends关键字、覆盖基类的方法。</strong><br><strong>判断用组合还是继承，先看看要不要向上转型</strong> 。</p><h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2><p><strong>所有类继承于Object。</strong><br><strong>所有对象都在堆上创建（new）。</strong></p><h2 id="1-10-生命周期"><a href="#1-10-生命周期" class="headerlink" title="1.10 生命周期"></a>1.10 生命周期</h2><ul><li><strong>java完全采用动态内存分配方式。</strong><ul><li><strong>在堆栈上创建对象，编译器可以确定对象存活时间，自动销毁。但是在堆上创建对象，编译器对其生命周期一无所知</strong>。</li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="2-2-基本数据类型"><a href="#2-2-基本数据类型" class="headerlink" title="2.2 基本数据类型"></a>2.2 基本数据类型</h2><p><strong>string不是基本数据类型。</strong><img src="https://img13.360buyimg.com/ddimg/jfs/t1/195661/8/8079/206780/60c755f6E54758dcd/ffdb69980ac7b6c1.jpg" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/195661/8/8079/206780/60c755f6E54758dcd/ffdb69980ac7b6c1.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><h3 id="2-2-2-高精度数字"><a href="#2-2-2-高精度数字" class="headerlink" title="2.2.2 高精度数字"></a>2.2.2 高精度数字</h3><ul><li><strong>高精度数字：BigInteger、BigDecimal</strong><ul><li><strong>BigInteger：支持任意精度的整数。</strong></li><li><strong>BigDecimal：支持任意精度的定点数。</strong></li></ul></li></ul><h3 id="2-2-3-创建数组对象就是创建一个引用数组。"><a href="#2-2-3-创建数组对象就是创建一个引用数组。" class="headerlink" title="2.2.3 创建数组对象就是创建一个引用数组。"></a>2.2.3 创建数组对象就是创建一个引用数组。</h3><h2 id="2-3-生命周期"><a href="#2-3-生命周期" class="headerlink" title="2.3 生命周期"></a>2.3 生命周期</h2><p><strong>java对象生命周期和基本类型不一样。用new创建的对象可以存活于作用域之外。</strong><br><strong>java垃圾回收器会监视new的对象，辨别不会再被引用的对象并释放内存空间。</strong></p><h2 id="2-4-初始值"><a href="#2-4-初始值" class="headerlink" title="2.4 初始值"></a>2.4 初始值</h2><p><strong>变量作为类的成员或全局变量会有初始默认值，局部变量没有初始值。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/182601/20/9214/90450/60c756c2E31138148/e3d464be6e09303d.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/182601/20/9214/90450/60c756c2E31138148/e3d464be6e09303d.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></strong></p><h2 id="2-5-java函数可以返回数组，c-c-不能"><a href="#2-5-java函数可以返回数组，c-c-不能" class="headerlink" title="2.5 java函数可以返回数组，c/c++不能"></a>2.5 java函数可以返回数组，c/c++不能</h2><h2 id="2-6-java库函数-java-util"><a href="#2-6-java库函数-java-util" class="headerlink" title="2.6 java库函数 java.util.*"></a>2.6 java库函数 <code>java.util.*</code></h2><h3 id="2-6-3-static-关键字"><a href="#2-6-3-static-关键字" class="headerlink" title="2.6.3 static 关键字"></a>2.6.3 static 关键字</h3><ul><li><strong>static适用于两种情况</strong><ul><li><strong>分配单一存储空间，不考虑创建多少对象或者不创建对象。</strong></li><li><strong>创建的方法不与包含它的类的对象关联起来</strong></li></ul></li><li><strong>创建static事物后，即使没有创建对象也可以调用static方法或static域。</strong></li></ul><p><strong><img src="https://img14.360buyimg.com/ddimg/jfs/t1/185967/29/9177/76016/60c756eeE4ec4eae5/e3b719fb7e5add2e.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/185967/29/9177/76016/60c756eeE4ec4eae5/e3b719fb7e5add2e.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></strong></p><ul><li><strong>static变量或static方法可以通过类名直接引用，而且是首选方式</strong> <strong>。</strong></li><li><strong>static方法内部不能调用非static方法，非static方法可以调用static方法</strong> 。</li></ul>]]></content>
       
       
       <categories>
@@ -2407,11 +2432,11 @@
     
     
     <entry>
-      <title>第2章 对象</title>
-      <link href="/2021/06/05/%E7%AC%AC2%E7%AB%A0%20%E5%AF%B9%E8%B1%A1/"/>
-      <url>/2021/06/05/%E7%AC%AC2%E7%AB%A0%20%E5%AF%B9%E8%B1%A1/</url>
+      <title>第1章 导论</title>
+      <link href="/2021/06/05/%E7%AC%AC1%E7%AB%A0%20%E5%AF%BC%E8%AE%BA/"/>
+      <url>/2021/06/05/%E7%AC%AC1%E7%AB%A0%20%E5%AF%BC%E8%AE%BA/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="2-2-基本数据类型"><a href="#2-2-基本数据类型" class="headerlink" title="2.2 基本数据类型"></a>2.2 基本数据类型</h2><p><strong>string不是基本数据类型。</strong><img src="https://img13.360buyimg.com/ddimg/jfs/t1/195661/8/8079/206780/60c755f6E54758dcd/ffdb69980ac7b6c1.jpg" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/195661/8/8079/206780/60c755f6E54758dcd/ffdb69980ac7b6c1.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><h3 id="2-2-2-高精度数字"><a href="#2-2-2-高精度数字" class="headerlink" title="2.2.2 高精度数字"></a>2.2.2 高精度数字</h3><ul><li><strong>高精度数字：BigInteger、BigDecimal</strong><ul><li><strong>BigInteger：支持任意精度的整数。</strong></li><li><strong>BigDecimal：支持任意精度的定点数。</strong></li></ul></li></ul><h3 id="2-2-3-创建数组对象就是创建一个引用数组。"><a href="#2-2-3-创建数组对象就是创建一个引用数组。" class="headerlink" title="2.2.3 创建数组对象就是创建一个引用数组。"></a>2.2.3 创建数组对象就是创建一个引用数组。</h3><h2 id="2-3-生命周期"><a href="#2-3-生命周期" class="headerlink" title="2.3 生命周期"></a>2.3 生命周期</h2><p><strong>java对象生命周期和基本类型不一样。用new创建的对象可以存活于作用域之外。</strong><br><strong>java垃圾回收器会监视new的对象，辨别不会再被引用的对象并释放内存空间。</strong></p><h2 id="2-4-初始值"><a href="#2-4-初始值" class="headerlink" title="2.4 初始值"></a>2.4 初始值</h2><p><strong>变量作为类的成员或全局变量会有初始默认值，局部变量没有初始值。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/182601/20/9214/90450/60c756c2E31138148/e3d464be6e09303d.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/182601/20/9214/90450/60c756c2E31138148/e3d464be6e09303d.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></strong></p><h2 id="2-5-java函数可以返回数组，c-c-不能"><a href="#2-5-java函数可以返回数组，c-c-不能" class="headerlink" title="2.5 java函数可以返回数组，c/c++不能"></a>2.5 java函数可以返回数组，c/c++不能</h2><h2 id="2-6-java库函数-java-util"><a href="#2-6-java库函数-java-util" class="headerlink" title="2.6 java库函数 java.util.*"></a>2.6 java库函数 <code>java.util.*</code></h2><h3 id="2-6-3-static-关键字"><a href="#2-6-3-static-关键字" class="headerlink" title="2.6.3 static 关键字"></a>2.6.3 static 关键字</h3><ul><li><strong>static适用于两种情况</strong><ul><li><strong>分配单一存储空间，不考虑创建多少对象或者不创建对象。</strong></li><li><strong>创建的方法不与包含它的类的对象关联起来</strong></li></ul></li><li><strong>创建static事物后，即使没有创建对象也可以调用static方法或static域。</strong></li></ul><p><strong><img src="https://img14.360buyimg.com/ddimg/jfs/t1/185967/29/9177/76016/60c756eeE4ec4eae5/e3b719fb7e5add2e.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/185967/29/9177/76016/60c756eeE4ec4eae5/e3b719fb7e5add2e.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></strong></p><ul><li><strong>static变量或static方法可以通过类名直接引用，而且是首选方式</strong> <strong>。</strong></li><li><strong>static方法内部不能调用非static方法，非static方法可以调用static方法</strong> 。</li></ul>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h2><p><strong>每一个对象在内存中都有一个唯一的地址，new的对象在堆中。</strong></p><h2 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h2><p><strong>高内聚、低耦合：模块之间紧密联系，并且保持独立性。</strong></p><h2 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h2><ul><li><strong>public、private、protected</strong><ul><li><strong>private: 除类型创建者和类型的内部方法之外的任何人都不能访问。</strong></li><li><strong>protected：与 private作用相当，差别仅在于继承的类可以访问 protected成员，但是不能访问private成员。</strong></li></ul></li></ul><h2 id="1-5-组合"><a href="#1-5-组合" class="headerlink" title="1.5 组合"></a>1.5 组合</h2><ul><li><strong>组合：由类的对象组合成新类</strong>。<ul><li><strong>has-a（拥有）关系的时候用组合</strong> <strong>。</strong></li><li><strong>新类的成员对象通常都被声明为 private，使得可以在不干扰现有客户端代码的情况下，修改这些成员，也可以在运行时修改这些成员对象，以实现动态修改程序的行为。</strong></li><li><strong>通常用于在新类中使用现有类的功能而非接口的情况，即在新类中嵌入现有类的private对象</strong> <strong>。</strong></li></ul></li></ul><h2 id="1-6-继承"><a href="#1-6-继承" class="headerlink" title="1.6 继承"></a>1.6 继承</h2><p><strong>is-a（是一个）或者like-a（像是一个）的时候用继承</strong> <strong>。</strong><br><strong>有两种方法可以使基类与导出类产生差异：extends关键字、覆盖基类的方法。</strong><br><strong>判断用组合还是继承，先看看要不要向上转型</strong> 。</p><h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2><p><strong>所有类继承于Object。</strong><br><strong>所有对象都在堆上创建（new）。</strong></p><h2 id="1-10-生命周期"><a href="#1-10-生命周期" class="headerlink" title="1.10 生命周期"></a>1.10 生命周期</h2><ul><li><strong>java完全采用动态内存分配方式。</strong><ul><li><strong>在堆栈上创建对象，编译器可以确定对象存活时间，自动销毁。但是在堆上创建对象，编译器对其生命周期一无所知</strong>。</li></ul></li></ul>]]></content>
       
       
       <categories>
