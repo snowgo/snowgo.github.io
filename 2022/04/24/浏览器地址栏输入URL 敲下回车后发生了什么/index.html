@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>浏览器地址栏输入 URL 敲下回车后发生了什么 | snowgo</title>
+  <title>浏览器地址栏输入URL 敲下回车后发生了什么 | snowgo</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -656,14 +656,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/158.jpg')">
+  background-position: center center;position: relative;background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/179.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        浏览器地址栏输入 URL 敲下回车后发生了什么
+        浏览器地址栏输入URL 敲下回车后发生了什么
       </span>
     </div>
     
@@ -715,7 +715,7 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入</a> URL 敲下回车后发生了什么/0.png)</p>
+        <p>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入URL</a> 敲下回车后发生了什么/0.png)</p>
 <h2 id="一、简单分析"><a href="#一、简单分析" class="headerlink" title="一、简单分析"></a>一、简单分析</h2><p>简单的分析，从输入 URL到回车后发生的行为如下：</p>
 <ol>
 <li>URL解析</li>
@@ -723,7 +723,7 @@
 <li>TCP 连接</li>
 <li>HTTP 请求</li>
 <li>响应请求</li>
-<li>页面渲染<h2 id="二、详细分析"><a href="#二、详细分析" class="headerlink" title="二、详细分析"></a>二、详细分析</h2><h3 id="URL解析"><a href="#URL解析" class="headerlink" title="URL解析"></a>URL解析</h3>首先判断你输入的是一个合法的URL 还是一个待搜索的关键词，并且根据你输入的内容进行对应操作<br>一个url的结构解析如下：<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入</a> URL 敲下回车后发生了什么/1.png)<h3 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h3>在DNS协议中讲过DNS的查询，这里就不再讲述了<br>整个查询过程如下图所示：<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入</a> URL 敲下回车后发生了什么/2.png)<br>最终，获取到了域名对应的目标服务器IP地址<h3 id="TCP连接"><a href="#TCP连接" class="headerlink" title="TCP连接"></a>TCP连接</h3>在理解TCP中，了解到tcp是一种面向有连接的传输层协议<br>在确定目标服务器服务器的IP地址后，则经历三次握手建立TCP连接，流程如下：<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入</a> URL 敲下回车后发生了什么/3.png)<h3 id="发送-http-请求"><a href="#发送-http-请求" class="headerlink" title="发送 http 请求"></a>发送 http 请求</h3>当建立tcp连接之后，就可以在这基础上进行通信，浏览器发送 http 请求到目标服务器<br>请求的内容包括：<br>请求行请求头请求主体<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入</a> URL 敲下回车后发生了什么/4.png)<h3 id="响应请求"><a href="#响应请求" class="headerlink" title="响应请求"></a>响应请求</h3>当服务器接收到浏览器的请求之后，就会进行逻辑操作，处理完成之后返回一个HTTP响应消息，包括：<br>状态行响应头响应正文<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入</a> URL 敲下回车后发生了什么/5.png)<br>在服务器响应之后，由于现在http默认开始长连接keep-alive，当页面关闭之后，tcp链接则会经过四次挥手完成断开<h3 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h3>当浏览器接收到服务器响应的资源后，首先会对资源进行解析：<br>查看响应头的信息，根据不同的指示做对应处理，比如重定向，存储cookie，解压gzip，缓存资源等等查看响应头的 Content-Type的值，根据不同的资源类型采用不同的解析方式关于页面的渲染过程如下：<br>解析HTML，构建 DOM 树解析 CSS ，生成 CSS 规则树合并 DOM 树和 CSS 规则，生成 render 树布局 render 树（ Layout / reflow ），负责各元素尺寸、位置的计算绘制 render 树（ paint ），绘制页面像素信息浏览器会将各层的信息发送给 GPU，GPU 会将各层合成（ composite ），显示在屏幕上<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入</a> URL 敲下回车后发生了什么/6.png)<blockquote>
+<li>页面渲染<h2 id="二、详细分析"><a href="#二、详细分析" class="headerlink" title="二、详细分析"></a>二、详细分析</h2><h3 id="URL解析"><a href="#URL解析" class="headerlink" title="URL解析"></a>URL解析</h3>首先判断你输入的是一个合法的URL 还是一个待搜索的关键词，并且根据你输入的内容进行对应操作<br>一个url的结构解析如下：<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入URL</a> 敲下回车后发生了什么/1.png)<h3 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h3>在DNS协议中讲过DNS的查询，这里就不再讲述了<br>整个查询过程如下图所示：<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入URL</a> 敲下回车后发生了什么/2.png)<br>最终，获取到了域名对应的目标服务器IP地址<h3 id="TCP连接"><a href="#TCP连接" class="headerlink" title="TCP连接"></a>TCP连接</h3>在理解TCP中，了解到tcp是一种面向有连接的传输层协议<br>在确定目标服务器服务器的IP地址后，则经历三次握手建立TCP连接，流程如下：<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入URL</a> 敲下回车后发生了什么/3.png)<h3 id="发送-http-请求"><a href="#发送-http-请求" class="headerlink" title="发送 http 请求"></a>发送 http 请求</h3>当建立tcp连接之后，就可以在这基础上进行通信，浏览器发送 http 请求到目标服务器<br>请求的内容包括：<br>请求行请求头请求主体<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入URL</a> 敲下回车后发生了什么/4.png)<h3 id="响应请求"><a href="#响应请求" class="headerlink" title="响应请求"></a>响应请求</h3>当服务器接收到浏览器的请求之后，就会进行逻辑操作，处理完成之后返回一个HTTP响应消息，包括：<br>状态行响应头响应正文<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入URL</a> 敲下回车后发生了什么/5.png)<br>在服务器响应之后，由于现在http默认开始长连接keep-alive，当页面关闭之后，tcp链接则会经过四次挥手完成断开<h3 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h3>当浏览器接收到服务器响应的资源后，首先会对资源进行解析：<br>查看响应头的信息，根据不同的指示做对应处理，比如重定向，存储cookie，解压gzip，缓存资源等等查看响应头的 Content-Type的值，根据不同的资源类型采用不同的解析方式关于页面的渲染过程如下：<br>解析HTML，构建 DOM 树解析 CSS ，生成 CSS 规则树合并 DOM 树和 CSS 规则，生成 render 树布局 render 树（ Layout / reflow ），负责各元素尺寸、位置的计算绘制 render 树（ paint ），绘制页面像素信息浏览器会将各层的信息发送给 GPU，GPU 会将各层合成（ composite ），显示在屏幕上<br>![](<a target="_blank" rel="noopener" href="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL">https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/浏览器地址栏输入URL</a> 敲下回车后发生了什么/6.png)<blockquote>
 <p>参考文献<br><a target="_blank" rel="noopener" href="https://github.com/febobo/web-interview/issues/141https://zhuanlan.zhihu.com/p/80551769">https://github.com/febobo/web-interview/issues/141https://zhuanlan.zhihu.com/p/80551769</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1707485335576146048&wfr=spider&for=pc">https://baijiahao.baidu.com/s?id=1707485335576146048&amp;wfr=spider&amp;for=pc</a></p>
 </blockquote>
 </li>
@@ -749,7 +749,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2022/04/24/浏览器地址栏输入 URL 敲下回车后发生了什么/" target="_blank" title="浏览器地址栏输入 URL 敲下回车后发生了什么">https://snowgo.live/2022/04/24/浏览器地址栏输入 URL 敲下回车后发生了什么/</a>
+    <a href="/2022/04/24/浏览器地址栏输入URL 敲下回车后发生了什么/" target="_blank" title="浏览器地址栏输入URL 敲下回车后发生了什么">https://snowgo.live/2022/04/24/浏览器地址栏输入URL 敲下回车后发生了什么/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
