@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>go语言slice优化</title>
+      <link href="/2022/04/24/go%E8%AF%AD%E8%A8%80slice%E4%BC%98%E5%8C%96/"/>
+      <url>/2022/04/24/go%E8%AF%AD%E8%A8%80slice%E4%BC%98%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="对以下代码进行优化"><a href="#对以下代码进行优化" class="headerlink" title="对以下代码进行优化"></a>对以下代码进行优化</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E8%AF%AD%E8%A8%80slice%E4%BC%98%E5%8C%96/0.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E8%AF%AD%E8%A8%80slice%E4%BC%98%E5%8C%96/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><h2 id="答案"><a href="#答案" class="headerlink" title="答案"></a>答案</h2><p>首先既然已经知道有多少个元素了那初始化的时候就把cap给出<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E8%AF%AD%E8%A8%80slice%E4%BC%98%E5%8C%96/1.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E8%AF%AD%E8%A8%80slice%E4%BC%98%E5%8C%96/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>进一步优化：<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E8%AF%AD%E8%A8%80slice%E4%BC%98%E5%8C%96/2.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E8%AF%AD%E8%A8%80slice%E4%BC%98%E5%8C%96/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>直接分配一块连续的内存，而不是初始化指针，毕竟它指向的都是相邻的内存位置，性能会好一些</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>IELTS听力笔记-1</title>
       <link href="/2022/04/21/IELTS%E5%90%AC%E5%8A%9B%E7%AC%94%E8%AE%B0-1/"/>
       <url>/2022/04/21/IELTS%E5%90%AC%E5%8A%9B%E7%AC%94%E8%AE%B0-1/</url>
