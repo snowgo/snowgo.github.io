@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>第7章 复用类 | snowgo</title>
+  <title>进程，线程和协程的区别 | snowgo</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -656,21 +656,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://img14.360buyimg.com/ddimg/jfs/t1/181023/9/9207/1790482/60c7fad4E392d993e/1bdf437b87215452.jpg')">
+  background-position: center center;position: relative;background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/199.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        第7章 复用类
+        进程，线程和协程的区别
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2021-06-11 |
+          <i class="fas fa-calendar"></i> Published in：2022-05-06 |
         </span>
       
 
@@ -678,8 +678,8 @@
         <span class="post-detail-header_categories">
           <i class="iconfont iconbookmark1"></i> category：
           
-            <a href="/categories/java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/" class="post-detail-header_category">
-              java编程思想
+            <a href="/categories/%E9%97%AE%E9%A2%98%E5%92%8C%E6%8A%80%E5%B7%A7/" class="post-detail-header_category">
+              问题和技巧
             </a>
           
         </span>
@@ -688,7 +688,7 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 406 |
+            <i class="fas fa-file-text-o"></i> Words: 230 |
           </span>
   
           <span class="min2read">
@@ -715,45 +715,19 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h2 id="7-1-当需要String时，编译器会自动调用toString"><a href="#7-1-当需要String时，编译器会自动调用toString" class="headerlink" title="7.1 当需要String时，编译器会自动调用toString()"></a>7.1 <strong>当需要String时，编译器会自动调用toString()</strong></h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h2 id="7-2-导出类构造器和基类构造器"><a href="#7-2-导出类构造器和基类构造器" class="headerlink" title="7.2 导出类构造器和基类构造器"></a>7.2 导出类构造器和基类构造器</h2><p><strong>所有的类都可以含有main方法，无需删除，方便单元测试。</strong></p>
-<ul>
-<li><strong>创建从基类继承的类的对象会先执行基类构造器，然后再执行继承类的构造器<strong><strong>，所以导出类构造器中必须带有基类构造器</strong></strong>。</strong><ul>
-<li><strong>若想要在继承类中调用基类的带参数的构造器，需要使用super关键字****。</strong></li>
-<li><img src="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><img src="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2></li>
-</ul>
-</li>
-</ul>
-<p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></strong><br>**</p>
-<h3 id="7-7-2-再论继承与组合"><a href="#7-7-2-再论继承与组合" class="headerlink" title="7.7.2 再论继承与组合"></a>7.7.2 再论继承与组合</h3><p><strong>使用继承还是组合最清晰的办法就是要不要向上转型。如果要向上转型，那继承是必要的。如果不需要，再好好考虑</strong> <strong>。</strong></p>
-<h2 id="7-8-final关键字"><a href="#7-8-final关键字" class="headerlink" title="7.8 final关键字"></a>7.8 final关键字</h2><h3 id="7-8-1-final-数据"><a href="#7-8-1-final-数据" class="headerlink" title="7.8.1 final 数据"></a>7.8.1 final 数据</h3><ul>
-<li><p><strong>若是基本数据类型则值不变</strong> 。</p>
-</li>
-<li><p><strong>若是对象引用则引用不变，一旦被初始化，则无法再指向另一个对象，对象自身可以修改</strong> <strong>。</strong></p>
-</li>
-<li><p><strong>既是static又是final的变量用大写表示。</strong></p>
-<h3 id="final-参数"><a href="#final-参数" class="headerlink" title="final 参数"></a>final 参数</h3></li>
-<li><p><strong>方法的参数列表指定为final。基本数据类型值不能修改，引用对象不能更换指向。</strong></p>
-<h3 id="7-8-2-final-方法"><a href="#7-8-2-final-方法" class="headerlink" title="7.8.2 final 方法"></a>7.8.2 final 方法</h3></li>
-<li><p><strong>final方法不能重写</strong> <strong>。</strong></p>
-</li>
-<li><p><strong>private方法已经隐式的指定为final，不能重写。</strong></p>
-</li>
-<li><p>final方法可以关闭动态绑定 。</p>
-<h3 id="7-8-3-final-类"><a href="#7-8-3-final-类" class="headerlink" title="7.8.3 final 类"></a>7.8.3 final 类</h3></li>
-<li><p><strong>final类不能继承</strong> <strong>。</strong></p>
-</li>
-<li><p>final类中的变量可以选择final或者不final，但是方法不能重写 。</p>
-</li>
-</ul>
+        <ol>
+<li>进程是应用程序的执行副本，是应用程序向操作系统申请资源的最小单位。</li>
+<li>线程是操作系统分配执行程序的最小单位，而这个执行程序指的是kernel thread，它才能真的去执行程序，对于应用程序创建的thread它和kernel thread 之间存在着映射关系，如1对1，1对多，n对m，但是线程之间切换开销非常大。</li>
+<li>所以我们为了进一步提高线程利用率，在一个高io，任务很小的情况下我们会创建很多routine，这些routine去share少量的线程，这些线程再去对应kernel thread，也就是线程的切换是kernel的行为，而routine的切换是一个runtime的行为，开销很小，所以说当task很小的时候程序语言就需要支持routine，go语言的协程就是routine的一种实现。</li>
+</ol>
 
       </div>
       <div class="post-tags-categories">
         
         <div class="tags">
           
-            <a href="/tags/java/" class="">
-              java
+            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="">
+              操作系统
             </a>
           
         </div>
@@ -767,7 +741,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2021/06/11/第7章 复用类/" target="_blank" title="第7章 复用类">https://snowgo.live/2021/06/11/第7章 复用类/</a>
+    <a href="/2022/05/06/进程，线程和协程的区别/" target="_blank" title="进程，线程和协程的区别">https://snowgo.live/2022/05/06/进程，线程和协程的区别/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -785,42 +759,23 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
-    </div>
-    <a href="/2021/06/12/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">第9章 接口</div>
-      </div>
-      
-      <!-- <div class="content">
-        9.1 抽象类和抽象方法含有抽象方法的类叫做抽象类 。abstract class name&#123;...``&#1
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img10.360buyimg.com/ddimg/jfs/t1/193253/38/8203/4625208/60c7faefEf9ca76d7/d88aedc7544425a2.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/193253/38/8203/4625208/60c7faefEf9ca76d7/d88aedc7544425a2.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/129.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/129.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
     </div>
-    <a href="/2021/06/11/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/" class="post-nav-link">
+    <a href="/2022/04/24/IELTS%E5%86%99%E4%BD%9C%E7%AC%94%E8%AE%B0-1/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">第8章 多态</div>
+        <div class="title-text">IELTS写作笔记-1</div>
       </div>
       <!-- <div class="content">
-        8.2 绑定静态绑定和动态绑定
-
-绑定：一个方法的调用与方法所在的类关联起来。
-静态绑定：在编译过程中就已经知道这个方法
+        得分点1：清晰的文章分段辩论文体立场不重要，选正反都可以，但是别中立。
+例
+Scientists believe com
       </div> -->
     </a>
   </div>
