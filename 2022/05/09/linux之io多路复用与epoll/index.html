@@ -748,17 +748,18 @@
 <li>select 在内核层仍然是通过遍历的方式检查文件描述符的就绪状态，是个同步过程，只不过无系统调用切换上下文的开销。（内核层可优化为异步事件通知）</li>
 <li>select 仅仅返回可读文件描述符的个数，具体哪个可读还是要用户自己遍历。（可优化为只返回给用户就绪的文件描述符，无需用户做无效的遍历）<h3 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h3>poll 也是操作系统提供的系统调用函数。</li>
 </ol>
-<p><strong>它和 select 的主要区别就是，去掉了 select 只能监听 1024 个文件描述符的限制。</strong><br>epoll 是最终的大 boss，它解决了 select 和 poll 的一些问题。<br>还记得上面说的 select 的三个细节么？</p>
+<p><strong>它和 select 的主要区别就是，去掉了 select 只能监听 1024 个文件描述符的限制。</strong></p>
+<h3 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h3><p>epoll 是最终的大 boss，它解决了 select 和 poll 的一些问题。<br>还记得上面说的 select 的三个细节么？</p>
 <ol>
-<li>** select 调用需要传入 fd 数组，需要拷贝一份到内核，高并发场景下这样的拷贝消耗的资源是惊人的。（可优化为不复制） **</li>
-<li>** select 在内核层仍然是通过遍历的方式检查文件描述符的就绪状态，是个同步过程，只不过无系统调用切换上下文的开销。（内核层可优化为异步事件通知） **</li>
-<li>** select 仅仅返回可读文件描述符的个数，具体哪个可读还是要用户自己遍历。（可优化为只返回给用户就绪的文件描述符，无需用户做无效的遍历）**</li>
+<li> select 调用需要传入 fd 数组，需要拷贝一份到内核，高并发场景下这样的拷贝消耗的资源是惊人的。（可优化为不复制） </li>
+<li> select 在内核层仍然是通过遍历的方式检查文件描述符的就绪状态，是个同步过程，只不过无系统调用切换上下文的开销。（内核层可优化为异步事件通知） </li>
+<li> select 仅仅返回可读文件描述符的个数，具体哪个可读还是要用户自己遍历。（可优化为只返回给用户就绪的文件描述符，无需用户做无效的遍历）</li>
 </ol>
 <p>所以 epoll 主要就是针对这三点进行了改进。 </p>
 <ol>
-<li> **内核中保存一份文件描述符集合，无需用户每次都重新传入，只需告诉内核修改的部分即可。 **</li>
-<li>** 内核不再通过轮询的方式找到就绪的文件描述符，而是通过异步 IO 事件唤醒。 **</li>
-<li>** 内核仅会将有 IO 事件的文件描述符返回给用户，用户也无需遍历整个文件描述符集合。<br>具体，操作系统提供了这三个函数。 **</li>
+<li> 内核中保存一份文件描述符集合，无需用户每次都重新传入，只需告诉内核修改的部分即可。 </li>
+<li> 内核不再通过轮询的方式找到就绪的文件描述符，而是通过异步 IO 事件唤醒。 </li>
+<li> 内核仅会将有 IO 事件的文件描述符返回给用户，用户也无需遍历整个文件描述符集合。<br>具体，操作系统提供了这三个函数。 </li>
 </ol>
 <p>第一步，创建一个 epoll 句柄</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> epoll_create(<span class="keyword">int</span> size);</span><br></pre></td></tr></table></figure>
