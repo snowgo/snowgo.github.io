@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Tags | snowgo</title>
+  <title>Go语言中的内存逃逸现象 | snowgo</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -643,409 +643,385 @@
 </header>
         <!-- 内容区域 -->
         
-<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"></div>
-<div class="bg-light-floor-tags" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -3;"></div>
+ <!-- prismjs 代码高亮 -->
+ 
 
-<div class="tags-header" style="background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pre-medias/9.jpg')">
-    <div class="tags-header-title">
-        tags
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/26.jpg')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Go语言中的内存逃逸现象
+      </span>
     </div>
-    <div class="tags-header-desc">
     
-        <span class="title" id="tags-header-desc"></span>
-        <script>
-  function typedFn() {
-    const el = '#tags-header-desc';
-    const type = 'tag';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
     
-    </div>
-    <div class="mask-box"></div>
-</div>
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2022-05-10 |
+        </span>
+      
 
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> category：
+          
+            <a href="/categories/%E9%97%AE%E9%A2%98%E5%92%8C%E6%8A%80%E5%B7%A7/" class="post-detail-header_category">
+              问题和技巧
+            </a>
+          
+        </span>
+      
 
-<div class="tags-video">
-    <video class="full-video" autoplay loop muted>
-        <source style="width: 100%;height: 100vh;" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/none">
-    </video>
-    <div class="video-header-title">
-        tags
-    </div>
-    <div class="video-header-desc">
-    
-        <span class="title" id="tag-video-header-desc"></span>
-        <script>
-  function typedFn() {
-    const el = '#tag-video-header-desc';
-    const type = 'tag';
-    let desc = '愿你如风，被人温柔以待'
-    var typed = new Typed(el, {
-      strings: [desc],
-      startDelay: 100,
-      typeSpeed: 100,
-      loop: true,
-      backSpeed: 50,
-      showCursor: true
-    });
-  }
-  typedFn();
-</script>
-        
-    </div>
-    <div class="mask-box"></div>
-</div>
-
-<div id="tags" class="container">
-    <div class="card">
-        <div class="card-content">
-            <div class="tag-title center-align">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;Article Tags
-            </div>
-            <div class="tag-chips">
-                
-                
-                <a href="/tags/dl/" title="dl: 20">
-                    <span class="tag-content"
-                        title="dl" style="background-color: #F8C471;">dl
-                        <span class="tag-length">20</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/tools/" title="tools: 6">
-                    <span class="tag-content"
-                        title="tools" style="background-color: #F5EEF8;">tools
-                        <span class="tag-length">6</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/math/" title="math: 3">
-                    <span class="tag-content"
-                        title="math" style="background-color: #E8F8F5;">math
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/docker/" title="docker: 1">
-                    <span class="tag-content"
-                        title="docker" style="background-color: #F8F9F9;">docker
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/gpu/" title="gpu: 1">
-                    <span class="tag-content"
-                        title="gpu" style="background-color: #D5F5E3;">gpu
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/git/" title="git: 5">
-                    <span class="tag-content"
-                        title="git" style="background-color: #F8F9F9;">git
-                        <span class="tag-length">5</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/go/" title="go: 7">
-                    <span class="tag-content"
-                        title="go" style="background-color: #D5F5E3;">go
-                        <span class="tag-length">7</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/IELTS/" title="IELTS: 2">
-                    <span class="tag-content"
-                        title="IELTS" style="background-color: #FFF;">IELTS
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/java/" title="java: 19">
-                    <span class="tag-content"
-                        title="java" style="background-color: #A3E4D7;">java
-                        <span class="tag-length">19</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E5%8F%8D%E5%B0%84/" title="反射: 1">
-                    <span class="tag-content"
-                        title="反射" style="background-color: #D5F5E3;">反射
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Linux/" title="Linux: 3">
-                    <span class="tag-content"
-                        title="Linux" style="background-color: #E8F8F5;">Linux
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/linux/" title="linux: 2">
-                    <span class="tag-content"
-                        title="linux" style="background-color: #85C1E9;">linux
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/interesting/" title="interesting: 2">
-                    <span class="tag-content"
-                        title="interesting" style="background-color: #E8F8F5;">interesting
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/MySQL/" title="MySQL: 2">
-                    <span class="tag-content"
-                        title="MySQL" style="background-color: #F9EBEA;">MySQL
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/tool/" title="tool: 1">
-                    <span class="tag-content"
-                        title="tool" style="background-color: #F9E79F;">tool
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/UUID/" title="UUID: 1">
-                    <span class="tag-content"
-                        title="UUID" style="background-color: #F5EEF8;">UUID
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/devops/" title="devops: 1">
-                    <span class="tag-content"
-                        title="devops" style="background-color: #82E0AA;">devops
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/sre/" title="sre: 1">
-                    <span class="tag-content"
-                        title="sre" style="background-color: #F8C471;">sre
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/paper/" title="paper: 1">
-                    <span class="tag-content"
-                        title="paper" style="background-color: #FEF9E7;">paper
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/numpy/" title="numpy: 1">
-                    <span class="tag-content"
-                        title="numpy" style="background-color: #82E0AA;">numpy
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/nginx/" title="nginx: 1">
-                    <span class="tag-content"
-                        title="nginx" style="background-color: #FEF9E7;">nginx
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/pip/" title="pip: 1">
-                    <span class="tag-content"
-                        title="pip" style="background-color: #F8F9F9;">pip
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/python/" title="python: 1">
-                    <span class="tag-content"
-                        title="python" style="background-color: #F8C471;">python
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/shell/" title="shell: 10">
-                    <span class="tag-content"
-                        title="shell" style="background-color: #FFF;">shell
-                        <span class="tag-length">10</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/ssh/" title="ssh: 1">
-                    <span class="tag-content"
-                        title="ssh" style="background-color: #F8F9F9;">ssh
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/" title="负载均衡: 1">
-                    <span class="tag-content"
-                        title="负载均衡" style="background-color: #82E0AA;">负载均衡
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%94%B6%E7%9B%8A%E6%8C%87%E6%A0%87/" title="收益指标: 1">
-                    <span class="tag-content"
-                        title="收益指标" style="background-color: #FEF9E7;">收益指标
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/ml/" title="ml: 1">
-                    <span class="tag-content"
-                        title="ml" style="background-color: #E8F8F5;">ml
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/Pyecharts/" title="Pyecharts: 1">
-                    <span class="tag-content"
-                        title="Pyecharts" style="background-color: #82E0AA;">Pyecharts
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/spark/" title="spark: 2">
-                    <span class="tag-content"
-                        title="spark" style="background-color: #F8F9F9;">spark
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%97%A5%E6%8A%A5/" title="日报: 2">
-                    <span class="tag-content"
-                        title="日报" style="background-color: #E8F8F5;">日报
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%99%BA%E5%8A%9B%E9%A2%98/" title="智力题: 1">
-                    <span class="tag-content"
-                        title="智力题" style="background-color: #F8F9F9;">智力题
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络: 3">
-                    <span class="tag-content"
-                        title="计算机网络" style="background-color: #A3E4D7;">计算机网络
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统: 3">
-                    <span class="tag-content"
-                        title="操作系统" style="background-color: #F8F9F9;">操作系统
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="数据库: 1">
-                    <span class="tag-content"
-                        title="数据库" style="background-color: #F9E79F;">数据库
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构: 1">
-                    <span class="tag-content"
-                        title="数据结构" style="background-color: #F5EEF8;">数据结构
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/scala/" title="scala: 1">
-                    <span class="tag-content"
-                        title="scala" style="background-color: #FEF9E7;">scala
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E4%B8%AD%E5%9B%BD%E6%96%99%E7%90%86/" title="中国料理: 1">
-                    <span class="tag-content"
-                        title="中国料理" style="background-color: #FFF;">中国料理
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/bigdata/" title="bigdata: 1">
-                    <span class="tag-content"
-                        title="bigdata" style="background-color: #A3E4D7;">bigdata
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/" title="数据仓库: 3">
-                    <span class="tag-content"
-                        title="数据仓库" style="background-color: #F9E79F;">数据仓库
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/flink/" title="flink: 1">
-                    <span class="tag-content"
-                        title="flink" style="background-color: #F8C471;">flink
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-            </div>
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 437 |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 1min |
+          </span>
+  
+          
         </div>
-    </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
 </div>
+
+
+
+
+
+<div class="row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h2 id="内存逃逸是干什么的"><a href="#内存逃逸是干什么的" class="headerlink" title="内存逃逸是干什么的"></a>内存逃逸是干什么的</h2><p>内存逃逸分析指的是编译器在编译优化时来决定变量应该分配在堆上还是栈上。</p>
+<h2 id="为什么要尽量避免内存逃逸"><a href="#为什么要尽量避免内存逃逸" class="headerlink" title="为什么要尽量避免内存逃逸"></a>为什么要尽量避免内存逃逸</h2><p>因为如果变量的内存发生逃逸，它的生命周期就是不可知的，其会被分配到堆上，而堆上分配内存不能像栈一样会自动释放，为了解放程序员双手，专注于业务的实现，go实现了gc垃圾回收机制，但gc会影响程序运行性能，所以要尽量减少程序的gc操作。</p>
+<h2 id="引发内存逃逸的常见情况"><a href="#引发内存逃逸的常见情况" class="headerlink" title="引发内存逃逸的常见情况"></a>引发内存逃逸的常见情况</h2><ol>
+<li>在方法内把局部变量指针返回，被外部引用，其生命周期大于栈，则溢出。</li>
+<li>发送指针或带有指针的值到channel，因为编译时候无法知道哪个goroutine会在channel接收数据，编译器无法知道什么时候释放。</li>
+<li>在一个切片上存储指针或带指针的值。比如[]*string，导致切片内容逃逸，其引用值一直在堆上。</li>
+<li>因为切片的append导致超出容量，切片重新分配地址，切片背后的存储基于运行时的数据进行扩充，就会在堆上分配。</li>
+<li>在interface类型上调用方法，在Interface调用方法是动态调度的，只有在运行时才知道。</li>
+</ol>
+<h2 id="如何避免内存逃逸"><a href="#如何避免内存逃逸" class="headerlink" title="如何避免内存逃逸"></a>如何避免内存逃逸</h2><ol>
+<li>不要盲目使用变量指针作为参数，虽然减少了复制，但变量逃逸的开销更大。</li>
+<li>预先设定好slice长度，避免频繁超出容量，重新分配。</li>
+<li>一个经验是，指针指向的数据大部分在堆上分配的，请注意。</li>
+</ol>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/go/" class="">
+              go
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>author:  </strong>snowgo</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>link:  </strong>
+    <a href="/2022/05/10/Go语言中的内存逃逸现象/" target="_blank" title="Go语言中的内存逃逸现象">https://snowgo.live/2022/05/10/Go语言中的内存逃逸现象/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/52.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/52.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+    </div>
+    <a href="/2022/05/09/linux%E4%B9%8Bio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E4%B8%8Eepoll/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">linux之io多路复用与epoll</div>
+      </div>
+      <!-- <div class="content">
+        IO 多路复用概述I/O 多路复用技术是为了解决进程或线程阻塞到某个 I/O 系统调用而出现的技术，使进程不阻塞于某个特
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>catalog</span>
+        
+          <div class="toc-open-close">catalog</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '10000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/air%E5%A3%81%E7%BA%B82.png';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
 
       </main>
     </div>

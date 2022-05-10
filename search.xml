@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Go语言中的内存逃逸现象</title>
+      <link href="/2022/05/10/Go%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8%E7%8E%B0%E8%B1%A1/"/>
+      <url>/2022/05/10/Go%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8%E7%8E%B0%E8%B1%A1/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="内存逃逸是干什么的"><a href="#内存逃逸是干什么的" class="headerlink" title="内存逃逸是干什么的"></a>内存逃逸是干什么的</h2><p>内存逃逸分析指的是编译器在编译优化时来决定变量应该分配在堆上还是栈上。</p><h2 id="为什么要尽量避免内存逃逸"><a href="#为什么要尽量避免内存逃逸" class="headerlink" title="为什么要尽量避免内存逃逸"></a>为什么要尽量避免内存逃逸</h2><p>因为如果变量的内存发生逃逸，它的生命周期就是不可知的，其会被分配到堆上，而堆上分配内存不能像栈一样会自动释放，为了解放程序员双手，专注于业务的实现，go实现了gc垃圾回收机制，但gc会影响程序运行性能，所以要尽量减少程序的gc操作。</p><h2 id="引发内存逃逸的常见情况"><a href="#引发内存逃逸的常见情况" class="headerlink" title="引发内存逃逸的常见情况"></a>引发内存逃逸的常见情况</h2><ol><li>在方法内把局部变量指针返回，被外部引用，其生命周期大于栈，则溢出。</li><li>发送指针或带有指针的值到channel，因为编译时候无法知道哪个goroutine会在channel接收数据，编译器无法知道什么时候释放。</li><li>在一个切片上存储指针或带指针的值。比如[]*string，导致切片内容逃逸，其引用值一直在堆上。</li><li>因为切片的append导致超出容量，切片重新分配地址，切片背后的存储基于运行时的数据进行扩充，就会在堆上分配。</li><li>在interface类型上调用方法，在Interface调用方法是动态调度的，只有在运行时才知道。</li></ol><h2 id="如何避免内存逃逸"><a href="#如何避免内存逃逸" class="headerlink" title="如何避免内存逃逸"></a>如何避免内存逃逸</h2><ol><li>不要盲目使用变量指针作为参数，虽然减少了复制，但变量逃逸的开销更大。</li><li>预先设定好slice长度，避免频繁超出容量，重新分配。</li><li>一个经验是，指针指向的数据大部分在堆上分配的，请注意。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>linux之io多路复用与epoll</title>
       <link href="/2022/05/09/linux%E4%B9%8Bio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E4%B8%8Eepoll/"/>
       <url>/2022/05/09/linux%E4%B9%8Bio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E4%B8%8Eepoll/</url>
