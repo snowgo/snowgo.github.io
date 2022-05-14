@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>git-Merge和Rebase的总结</title>
+      <link href="/2022/05/14/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/"/>
+      <url>/2022/05/14/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a><strong>介绍</strong></h2><p>Merge和Rebase是合并两个分支的操作。<strong>都是checkout到某个分支上，然后把别的分支合并的该分支。</strong><br>其中，Merge在没有分叉的情况下，会自动使用fast-forward的方式，<strong>快速移动</strong>：<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/0.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>Merge在有分叉的情况下，<strong>会产生一个新的提交点</strong>，（–no-ff）他就是别的分支多次commit的合并：<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/1.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>Rebase叫做变基。也是把别的分支合到自己身上，但是<strong>效果就好像在基的基础上重新提交自己的多次commit。</strong>看起来就好像重新从基抽出来一次：<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/2.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>“把自己的提交（2-3）顶到最后面”</p><h2 id="异同"><a href="#异同" class="headerlink" title="异同"></a><strong>异同</strong></h2><h3 id="作用大体相同"><a href="#作用大体相同" class="headerlink" title="作用大体相同"></a>作用大体相同</h3><p>都是把别的分支合到自己身上。别的分支不会改变，变的只是自己。</p><h3 id="效果有些不同"><a href="#效果有些不同" class="headerlink" title="效果有些不同"></a>效果有些不同</h3><p>对于merge branch，它是把branch的多次提交合成一个commit，然后加在自己分支的后面。（2-3-6）6就是4和5合成的一个新的提交点。自己的提交（45）在前面，别人的合并在后面。<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/3.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>对于Rebase branch，它就好像在branch（基）的基础上，重新提交自己的多次commit。（4-5-2-3）看起来就好像重新从基抽出来一次。<br>自己的提交总是在最后面。而且不会多出一个提交点。<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/4.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><h3 id="使用场景不同"><a href="#使用场景不同" class="headerlink" title="使用场景不同"></a>使用场景不同</h3><ol><li>当我们在分支future上添加了新功能时，我们直接在主分支master上，Merge一下future，就把新功能加上了。（future你是否继续开发无所谓）。这就是我们的<strong>FristProject和SecondProject：在公共分支master上Merge别的功能分支</strong>。</li><li>当我们在功能分支future上开发开发开发，提交提交提交，这个过程中，有人动了主分支master，你想要把这个更改同步到你的future分支上，你选择Rebase master。这样的话你的几个commits就一直处于你分支的最后面。<strong>这就是我们的ThirdProject：在开发分支上Rebase主分支，主要是为了和上游分支同步</strong>。</li><li>当然你也可以选择在你的功能分支future上，Merge别的分支。这时候别的分支的commits就作为一个新的提交点跑到你的多次commits的后面了。<strong>如果你无所谓顺序，那么可以选择Merge。这对应我们的FourthProject：在开发分支上Merge别的分支</strong>。</li><li>切记：不要再公共分支master上Rebase！！！因为Rebase之后，master上的多次提交会被顶到别的分支的后面，这就相当于篡改了历史！别人从3这个地方拉出去的，结果你一下子把3给顶到最后面了，那就乱套了。</li></ol><h3 id="总结一下："><a href="#总结一下：" class="headerlink" title="总结一下："></a>总结一下：</h3><ol><li><strong>公共分支上选择Merge（将新功能整合到master上）</strong></li><li><strong>功能分支上选择Rebase主分支（和公共分支同步，把自己的提交顶到最后）</strong></li><li><strong>功能分支上选择Merge（把别的分支的功能加到自己身上，如果你不介意顺序的话）</strong></li><li><strong>切记不要再公共分支上Rebase任何分支！</strong></li></ol><h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>也谈不上什么优缺点。在适合的场景使用适合的方式。（1、2）<br>对于3这种情况，比如你要把future开发分支上的新功能导到test测试分支里面去，你可以切到test，然后Merge一下future。因为是测试分支，你没有必要把非要把test的提交顶到最后，于是你就可以选择Merge，而且多出一个节点，用于记录。这是Merge的小优点。<br>当然你也可以选择Rebase一下future，这样的话，你test分支上的多次commit就还是在最后，便于你回退。这是Rebase的优点。（如果使用Merge的话，由于尾巴是future的合并，你再想回退到你test上的某次提交，那就有点麻烦了）。</p><h2 id="特别说明"><a href="#特别说明" class="headerlink" title="特别说明"></a><strong>特别说明</strong></h2><p><strong>切记不要再公共分支上Rebase任何分支！</strong><br>（这我们已经解释过）<br><strong>本地和远端对应同一条分支，优先使用Rebase而不是Merge</strong><br>什么意思呢？<br>我们刚刚演示所用到的分支都是本地上的两个分支。<br>当我们从远端orgin/master 拉取（pull）的时候，或者在pycharm、IDEA里面选择Update Project的时候，它总是提示你选择Merge还是Rebase：<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/5.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/git-Merge%E5%92%8CRebase%E7%9A%84%E6%80%BB%E7%BB%93/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>可是你想，我就一个master分支啊，远程也是master分支呀，怎么就怎么就设计到了合并分支的操作了？<br>其实是这样的：<br>git有本地仓库的概念，本地的master是一个仓库，远程的master也是一个仓库，git pull == git fetch + git merge，也就是说，这里让你选择的是，将远程的master拉取下来之后，如何和你的本地master合并？<br>我们推荐使用Rebase：站在你本地master分支上，Rebase一下远程master。这样的话你刚刚在本地master所做的多个提交，依然会被顶在你本地master分支的最后面。便于你回退。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>go[]byte和string的高性能转换</title>
       <link href="/2022/05/14/go%5B%5Dbyte%E5%92%8Cstring%E7%9A%84%E9%AB%98%E6%80%A7%E8%83%BD%E8%BD%AC%E6%8D%A2/"/>
       <url>/2022/05/14/go%5B%5Dbyte%E5%92%8Cstring%E7%9A%84%E9%AB%98%E6%80%A7%E8%83%BD%E8%BD%AC%E6%8D%A2/</url>
@@ -79,11 +104,11 @@
     
     
     <entry>
-      <title>go有哪些关键字</title>
-      <link href="/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/"/>
-      <url>/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+      <title>go函数返回局部变量的指针是否安全</title>
+      <link href="/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/"/>
+      <url>/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>go中有25个关键字<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/0.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>注：fallthrough是用于打破switch中默认break的限制</p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一般来说，局部变量会在函数返回后被销毁，因此被返回的引用就成为了”无所指”的引用，程序会进入未知状态。<br><strong>但这在 Go 中是安全的，Go 编译器将会对每个局部变量进行逃逸分析。如果发现局部变量的作用域超出该函数，则不会将内存分配在栈上，而是分配在堆上，因为他们不在栈区，即使释放函数，其内容也不会受影响。</strong><br>编译时可以借助选项 -gcflags=-m，查看变量逃逸的情况。<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/0.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>]]></content>
       
       
       <categories>
@@ -104,11 +129,11 @@
     
     
     <entry>
-      <title>go函数返回局部变量的指针是否安全</title>
-      <link href="/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/"/>
-      <url>/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/</url>
+      <title>go有哪些关键字</title>
+      <link href="/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+      <url>/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一般来说，局部变量会在函数返回后被销毁，因此被返回的引用就成为了”无所指”的引用，程序会进入未知状态。<br><strong>但这在 Go 中是安全的，Go 编译器将会对每个局部变量进行逃逸分析。如果发现局部变量的作用域超出该函数，则不会将内存分配在栈上，而是分配在堆上，因为他们不在栈区，即使释放函数，其内容也不会受影响。</strong><br>编译时可以借助选项 -gcflags=-m，查看变量逃逸的情况。<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/0.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>go中有25个关键字<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/0.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>注：fallthrough是用于打破switch中默认break的限制</p>]]></content>
       
       
       <categories>
@@ -2465,9 +2490,9 @@
       
         <tags>
             
-            <tag> math </tag>
-            
             <tag> dl </tag>
+            
+            <tag> math </tag>
             
         </tags>
       
@@ -2519,9 +2544,9 @@
       
         <tags>
             
-            <tag> math </tag>
-            
             <tag> dl </tag>
+            
+            <tag> math </tag>
             
         </tags>
       
@@ -2546,9 +2571,9 @@
       
         <tags>
             
-            <tag> math </tag>
-            
             <tag> dl </tag>
+            
+            <tag> math </tag>
             
         </tags>
       
@@ -2607,11 +2632,11 @@
     
     
     <entry>
-      <title>第8章 多态</title>
-      <link href="/2021/06/11/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/"/>
-      <url>/2021/06/11/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/</url>
+      <title>第7章 复用类</title>
+      <link href="/2021/06/11/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/"/>
+      <url>/2021/06/11/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="8-2-绑定"><a href="#8-2-绑定" class="headerlink" title="8.2 绑定"></a>8.2 绑定</h2><p><strong>静态绑定和动态绑定</strong></p><ul><li><strong>绑定：一个方法的调用与方法所在的类关联起来。</strong></li><li><strong>静态绑定：在编译过程中就已经知道这个方法到底是哪个类中的方法。</strong></li><li><strong>动态绑定：运行时根据对象的类进行绑定。</strong></li></ul><p><strong>java中除了static和final方法（包括private），其他方法都是动态绑定</strong> <strong>。</strong></p><h3 id="8-2-1-向上转型"><a href="#8-2-1-向上转型" class="headerlink" title="8.2.1 向上转型"></a>8.2.1 向上转型</h3><p><img src="https://img11.360buyimg.com/ddimg/jfs/t1/185948/12/9082/119939/60c7597dE1e65c954/7e73954f040131b6.jpg" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/185948/12/9082/119939/60c7597dE1e65c954/7e73954f040131b6.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"> <br>  <strong>s.draw()调用的是circle的draw()</strong></p><ul><li><strong>多态 = 向上转型 = 动态绑定 。</strong><ul><li><strong>静态方法不具有多态性</strong> 。<img src="https://img14.360buyimg.com/ddimg/jfs/t1/137541/24/19032/220254/60c759bbE03940af0/571a93e46206a98c.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/137541/24/19032/220254/60c759bbE03940af0/571a93e46206a98c.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></li></ul></li></ul><h2 id="8-3-带main方法的类构造器继承调用顺序"><a href="#8-3-带main方法的类构造器继承调用顺序" class="headerlink" title="8.3 带main方法的类构造器继承调用顺序"></a>8.3 带main方法的类构造器继承调用顺序</h2><p><img src="https://img13.360buyimg.com/ddimg/jfs/t1/189817/35/8121/74886/60c75a10E93f2cc8c/dc80047544e3a2fb.jpg" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/189817/35/8121/74886/60c75a10E93f2cc8c/dc80047544e3a2fb.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/180763/28/9192/151689/60c75a29E195d704b/2c878cc1a1720461.jpg" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/180763/28/9192/151689/60c75a29E195d704b/2c878cc1a1720461.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="7-1-当需要String时，编译器会自动调用toString"><a href="#7-1-当需要String时，编译器会自动调用toString" class="headerlink" title="7.1 当需要String时，编译器会自动调用toString()"></a>7.1 <strong>当需要String时，编译器会自动调用toString()</strong></h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><h2 id="7-2-导出类构造器和基类构造器"><a href="#7-2-导出类构造器和基类构造器" class="headerlink" title="7.2 导出类构造器和基类构造器"></a>7.2 导出类构造器和基类构造器</h2><p><strong>所有的类都可以含有main方法，无需删除，方便单元测试。</strong></p><ul><li><strong>创建从基类继承的类的对象会先执行基类构造器，然后再执行继承类的构造器<strong><strong>，所以导出类构造器中必须带有基类构造器</strong></strong>。</strong><ul><li><strong>若想要在继承类中调用基类的带参数的构造器，需要使用super关键字****。</strong></li><li><img src="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><img src="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2></li></ul></li></ul><p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></strong><br>**</p><h3 id="7-7-2-再论继承与组合"><a href="#7-7-2-再论继承与组合" class="headerlink" title="7.7.2 再论继承与组合"></a>7.7.2 再论继承与组合</h3><p><strong>使用继承还是组合最清晰的办法就是要不要向上转型。如果要向上转型，那继承是必要的。如果不需要，再好好考虑</strong> <strong>。</strong></p><h2 id="7-8-final关键字"><a href="#7-8-final关键字" class="headerlink" title="7.8 final关键字"></a>7.8 final关键字</h2><h3 id="7-8-1-final-数据"><a href="#7-8-1-final-数据" class="headerlink" title="7.8.1 final 数据"></a>7.8.1 final 数据</h3><ul><li><p><strong>若是基本数据类型则值不变</strong> 。</p></li><li><p><strong>若是对象引用则引用不变，一旦被初始化，则无法再指向另一个对象，对象自身可以修改</strong> <strong>。</strong></p></li><li><p><strong>既是static又是final的变量用大写表示。</strong></p><h3 id="final-参数"><a href="#final-参数" class="headerlink" title="final 参数"></a>final 参数</h3></li><li><p><strong>方法的参数列表指定为final。基本数据类型值不能修改，引用对象不能更换指向。</strong></p><h3 id="7-8-2-final-方法"><a href="#7-8-2-final-方法" class="headerlink" title="7.8.2 final 方法"></a>7.8.2 final 方法</h3></li><li><p><strong>final方法不能重写</strong> <strong>。</strong></p></li><li><p><strong>private方法已经隐式的指定为final，不能重写。</strong></p></li><li><p>final方法可以关闭动态绑定 。</p><h3 id="7-8-3-final-类"><a href="#7-8-3-final-类" class="headerlink" title="7.8.3 final 类"></a>7.8.3 final 类</h3></li><li><p><strong>final类不能继承</strong> <strong>。</strong></p></li><li><p>final类中的变量可以选择final或者不final，但是方法不能重写 。</p></li></ul>]]></content>
       
       
       <categories>
@@ -2632,11 +2657,11 @@
     
     
     <entry>
-      <title>第7章 复用类</title>
-      <link href="/2021/06/11/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/"/>
-      <url>/2021/06/11/%E7%AC%AC7%E7%AB%A0%20%E5%A4%8D%E7%94%A8%E7%B1%BB/</url>
+      <title>第8章 多态</title>
+      <link href="/2021/06/11/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/"/>
+      <url>/2021/06/11/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="7-1-当需要String时，编译器会自动调用toString"><a href="#7-1-当需要String时，编译器会自动调用toString" class="headerlink" title="7.1 当需要String时，编译器会自动调用toString()"></a>7.1 <strong>当需要String时，编译器会自动调用toString()</strong></h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p><h2 id="7-2-导出类构造器和基类构造器"><a href="#7-2-导出类构造器和基类构造器" class="headerlink" title="7.2 导出类构造器和基类构造器"></a>7.2 导出类构造器和基类构造器</h2><p><strong>所有的类都可以含有main方法，无需删除，方便单元测试。</strong></p><ul><li><strong>创建从基类继承的类的对象会先执行基类构造器，然后再执行继承类的构造器<strong><strong>，所以导出类构造器中必须带有基类构造器</strong></strong>。</strong><ul><li><strong>若想要在继承类中调用基类的带参数的构造器，需要使用super关键字****。</strong></li><li><img src="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><img src="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2></li></ul></li></ul><p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></strong><br>**</p><h3 id="7-7-2-再论继承与组合"><a href="#7-7-2-再论继承与组合" class="headerlink" title="7.7.2 再论继承与组合"></a>7.7.2 再论继承与组合</h3><p><strong>使用继承还是组合最清晰的办法就是要不要向上转型。如果要向上转型，那继承是必要的。如果不需要，再好好考虑</strong> <strong>。</strong></p><h2 id="7-8-final关键字"><a href="#7-8-final关键字" class="headerlink" title="7.8 final关键字"></a>7.8 final关键字</h2><h3 id="7-8-1-final-数据"><a href="#7-8-1-final-数据" class="headerlink" title="7.8.1 final 数据"></a>7.8.1 final 数据</h3><ul><li><p><strong>若是基本数据类型则值不变</strong> 。</p></li><li><p><strong>若是对象引用则引用不变，一旦被初始化，则无法再指向另一个对象，对象自身可以修改</strong> <strong>。</strong></p></li><li><p><strong>既是static又是final的变量用大写表示。</strong></p><h3 id="final-参数"><a href="#final-参数" class="headerlink" title="final 参数"></a>final 参数</h3></li><li><p><strong>方法的参数列表指定为final。基本数据类型值不能修改，引用对象不能更换指向。</strong></p><h3 id="7-8-2-final-方法"><a href="#7-8-2-final-方法" class="headerlink" title="7.8.2 final 方法"></a>7.8.2 final 方法</h3></li><li><p><strong>final方法不能重写</strong> <strong>。</strong></p></li><li><p><strong>private方法已经隐式的指定为final，不能重写。</strong></p></li><li><p>final方法可以关闭动态绑定 。</p><h3 id="7-8-3-final-类"><a href="#7-8-3-final-类" class="headerlink" title="7.8.3 final 类"></a>7.8.3 final 类</h3></li><li><p><strong>final类不能继承</strong> <strong>。</strong></p></li><li><p>final类中的变量可以选择final或者不final，但是方法不能重写 。</p></li></ul>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="8-2-绑定"><a href="#8-2-绑定" class="headerlink" title="8.2 绑定"></a>8.2 绑定</h2><p><strong>静态绑定和动态绑定</strong></p><ul><li><strong>绑定：一个方法的调用与方法所在的类关联起来。</strong></li><li><strong>静态绑定：在编译过程中就已经知道这个方法到底是哪个类中的方法。</strong></li><li><strong>动态绑定：运行时根据对象的类进行绑定。</strong></li></ul><p><strong>java中除了static和final方法（包括private），其他方法都是动态绑定</strong> <strong>。</strong></p><h3 id="8-2-1-向上转型"><a href="#8-2-1-向上转型" class="headerlink" title="8.2.1 向上转型"></a>8.2.1 向上转型</h3><p><img src="https://img11.360buyimg.com/ddimg/jfs/t1/185948/12/9082/119939/60c7597dE1e65c954/7e73954f040131b6.jpg" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/185948/12/9082/119939/60c7597dE1e65c954/7e73954f040131b6.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"> <br>  <strong>s.draw()调用的是circle的draw()</strong></p><ul><li><strong>多态 = 向上转型 = 动态绑定 。</strong><ul><li><strong>静态方法不具有多态性</strong> 。<img src="https://img14.360buyimg.com/ddimg/jfs/t1/137541/24/19032/220254/60c759bbE03940af0/571a93e46206a98c.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/137541/24/19032/220254/60c759bbE03940af0/571a93e46206a98c.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></li></ul></li></ul><h2 id="8-3-带main方法的类构造器继承调用顺序"><a href="#8-3-带main方法的类构造器继承调用顺序" class="headerlink" title="8.3 带main方法的类构造器继承调用顺序"></a>8.3 带main方法的类构造器继承调用顺序</h2><p><img src="https://img13.360buyimg.com/ddimg/jfs/t1/189817/35/8121/74886/60c75a10E93f2cc8c/dc80047544e3a2fb.jpg" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/189817/35/8121/74886/60c75a10E93f2cc8c/dc80047544e3a2fb.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/180763/28/9192/151689/60c75a29E195d704b/2c878cc1a1720461.jpg" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/180763/28/9192/151689/60c75a29E195d704b/2c878cc1a1720461.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>]]></content>
       
       
       <categories>
