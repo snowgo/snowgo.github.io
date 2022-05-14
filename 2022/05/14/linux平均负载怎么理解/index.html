@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>go使用指针类型作为方法的接收者的理由 | snowgo</title>
+  <title>linux平均负载怎么理解 | snowgo</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -656,21 +656,21 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/82.jpg')">
+  background-position: center center;position: relative;background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/65.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        go使用指针类型作为方法的接收者的理由
+        linux平均负载怎么理解
       </span>
     </div>
     
     
       
         <span class="post-detail-header_date">
-          <i class="fas fa-calendar"></i> Published in：2022-05-13 |
+          <i class="fas fa-calendar"></i> Published in：2022-05-14 |
         </span>
       
 
@@ -688,11 +688,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 57 |
+            <i class="fas fa-file-text-o"></i> Words: 1.3k |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> Reading time: 1min |
+            <i class="fas fa-clock"></i> Reading time: 5min |
           </span>
   
           
@@ -715,9 +715,44 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <ul>
-<li>使用指针类型能够修改调用者的值。 </li>
-<li>使用指针类型可以避免在每次调用方法时复制该值，在值的类型为大型结构体时，这样做会更加高效</li>
+        <h2 id="什么是平均负载"><a href="#什么是平均负载" class="headerlink" title="什么是平均负载"></a>什么是平均负载</h2><p>平均负载是指单位时间内，系统处于<strong>可运行状态</strong>和<strong>不可中断状态</strong>的平均进程数，也就是<strong>平均活跃进程数</strong>，它和 CPU 使用率并没有直接关系。<br>所谓可运行状态的进程，是指正在使用 CPU 或者正在等待 CPU 的进程，也就是我们常用 ps 命令看到的，处于 R 状态（Running 或 Runnable）的进程。<br>不可中断状态的进程则是正处于内核态关键流程中的进程，并且这些流程是不可打断的，比如最常见的是<strong>等待硬件设备的 I/O 响应</strong>，也就是我们在 ps 命令中看到的 D 状态（Uninterruptible Sleep，也称为 Disk Sleep）的进程。<br>比如当平均负载为 2 时，意味着什么呢？</p>
+<ul>
+<li><p>在只有 2 个 CPU 的系统上，意味着所有的 CPU 都刚好被完全占用。</p>
+</li>
+<li><p>在 4 个 CPU 的系统上，意味着 CPU 有 50% 的空闲。</p>
+</li>
+<li><p>而在只有 1 个 CPU 的系统中，则意味着有一半的进程竞争不到 CPU。</p>
+<h2 id="平均负载为多少时合理"><a href="#平均负载为多少时合理" class="headerlink" title="平均负载为多少时合理"></a>平均负载为多少时合理</h2><p>平均负载最理想的情况是等于 CPU 个数。所以在评判平均负载时，<strong>首先你要知道系统有几个 CPU</strong>，这可以通过 top 命令或者从文件 /proc/cpuinfo 中读取，比如：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#关于 grep 和 wc 的用法请查询它们的手册或者网络搜索</span><br><span class="line">grep <span class="string">&#x27;model name&#x27;</span> /proc/cpuinfo | wc -l</span><br></pre></td></tr></table></figure>
+<p>平均负载有三个数值，到底该参考哪一个呢？<br>实际上，都要看。三个不同时间间隔的平均值，其实给我们提供了，分析<strong>系统负载趋势</strong>的数据来源，让我们能更全面、更立体地理解目前的负载状况。<br>假设我们在一个单 CPU 系统上看到平均负载为 1.73，0.60，7.98，那么说明在过去 1 分钟内，系统有 73% 的超载，而在 15 分钟内，有 698% 的超载，从整体趋势来看，系统的负载在降低。</p>
+<h2 id="平均负载与-CPU-使用率"><a href="#平均负载与-CPU-使用率" class="headerlink" title="平均负载与 CPU 使用率"></a>平均负载与 CPU 使用率</h2><p>CPU 使用率，是单位时间内 CPU 繁忙情况的统计，跟平均负载并不一定完全对应。比如：</p>
+</li>
+<li><p>CPU 密集型进程，使用大量 CPU 会导致平均负载升高，此时这两者是一致的；</p>
+</li>
+<li><p>I/O 密集型进程，等待 I/O 也会导致平均负载升高，但 CPU 使用率不一定很高；</p>
+</li>
+<li><p>大量等待 CPU 的进程调度也会导致平均负载升高，此时的 CPU 使用率也会比较高。</p>
+<h2 id="平均负载案例分析"><a href="#平均负载案例分析" class="headerlink" title="平均负载案例分析"></a>平均负载案例分析</h2><p>stress 是一个 Linux 系统压力测试工具，这里我们用作异常进程模拟平均负载升高的场景。<br>而 sysstat 包含了常用的 Linux 性能工具，用来监控和分析系统的性能。我们的案例会用到这个包的两个命令 mpstat 和 pidstat。</p>
+</li>
+<li><p>mpstat 是一个常用的多核 CPU 性能分析工具，用来实时查看每个 CPU 的性能指标，以及所有 CPU 的平均指标。</p>
+</li>
+<li><p>pidstat 是一个常用的进程性能分析工具，用来实时查看进程的 CPU、内存、I/O 以及上下文切换等性能指标。</p>
+<h3 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h3><p>使用：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#模拟一个 CPU 使用率 <span class="number">100</span>% 的场景</span><br><span class="line">stress --cpu <span class="number">1</span> --timeout <span class="number">600</span></span><br><span class="line">#模拟 I/O 压力，即不停地执行 sync</span><br><span class="line">stress -i <span class="number">1</span> --timeout <span class="number">600</span></span><br><span class="line">#模拟 <span class="number">8</span> 个进程抢占cpu</span><br><span class="line">stress -c <span class="number">8</span> --timeout <span class="number">600</span></span><br></pre></td></tr></table></figure>
+<p>运行 uptime 查看平均负载的变化情况：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># -d 参数表示高亮显示变化的区域</span><br><span class="line">$ watch -d uptime</span><br><span class="line">...,  load average: <span class="number">1.00</span>, <span class="number">0.75</span>, <span class="number">0.39</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行 mpstat 查看 CPU 使用率的变化情况：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># -P ALL 表示监控所有 CPU，后面数字 <span class="number">5</span> 表示间隔 <span class="number">5</span> 秒后输出一组数据</span><br><span class="line">mpstat -P ALL <span class="number">5</span></span><br><span class="line">Linux <span class="number">4.15</span><span class="number">.0</span> (ubuntu) <span class="number">09</span>/<span class="number">22</span>/<span class="number">18</span> _x86_64_ (<span class="number">2</span> CPU)</span><br><span class="line"><span class="number">13</span>:<span class="number">30</span>:<span class="number">06</span>     CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest  %gnice   %idle</span><br><span class="line"><span class="number">13</span>:<span class="number">30</span>:<span class="number">11</span>     all   <span class="number">50.05</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>   <span class="number">49.95</span></span><br><span class="line"><span class="number">13</span>:<span class="number">30</span>:<span class="number">11</span>       <span class="number">0</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>  <span class="number">100.00</span></span><br><span class="line"><span class="number">13</span>:<span class="number">30</span>:<span class="number">11</span>       <span class="number">1</span>  <span class="number">100.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行pidstat查看是哪个进程导致：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 间隔 <span class="number">5</span> 秒后输出一组数据</span><br><span class="line">$ pidstat -u <span class="number">5</span> <span class="number">1</span></span><br><span class="line"><span class="number">13</span>:<span class="number">37</span>:<span class="number">07</span>      UID       PID    %usr %system  %guest   %wait    %CPU   CPU  Command</span><br><span class="line"><span class="number">13</span>:<span class="number">37</span>:<span class="number">12</span>        <span class="number">0</span>      <span class="number">2962</span>  <span class="number">100.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>    <span class="number">0.00</span>  <span class="number">100.00</span>     <span class="number">1</span>  stress</span><br></pre></td></tr></table></figure>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>归纳一下平均负载的理解。<br>平均负载是指单位时间内，系统处于<strong>可运行状态</strong>和<strong>不可中断状态</strong>的平均进程数，也就是<strong>平均活跃进程数。</strong><br>平均负载提供了一个快速查看系统整体性能的手段，反映了整体的负载情况。但只看平均负载本身，我们并不能直接发现，到底是哪里出现了瓶颈。所以，在理解平均负载时，也要注意：</p>
+</li>
+<li><p>平均负载高有可能是 CPU 密集型进程导致的；</p>
+</li>
+<li><p>平均负载高并不一定代表 CPU 使用率高，还有可能是 I/O 更繁忙了；</p>
+</li>
+<li><p>当发现负载高的时候，你可以使用 mpstat、pidstat 等工具，辅助分析负载的来源。</p>
+</li>
 </ul>
 
       </div>
@@ -725,8 +760,8 @@
         
         <div class="tags">
           
-            <a href="/tags/go/" class="">
-              go
+            <a href="/tags/linux/" class="">
+              linux
             </a>
           
         </div>
@@ -740,7 +775,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2022/05/13/go使用指针类型作为方法的接收者的理由/" target="_blank" title="go使用指针类型作为方法的接收者的理由">https://snowgo.live/2022/05/13/go使用指针类型作为方法的接收者的理由/</a>
+    <a href="/2022/05/14/linux平均负载怎么理解/" target="_blank" title="linux平均负载怎么理解">https://snowgo.live/2022/05/14/linux平均负载怎么理解/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
@@ -762,16 +797,16 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/65.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/65.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/161.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/161.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
     </div>
-    <a href="/2022/05/14/linux%E5%B9%B3%E5%9D%87%E8%B4%9F%E8%BD%BD%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3/" class="post-nav-link">
+    <a href="/2022/05/14/go%5B%5Dbyte%E5%92%8Cstring%E7%9A%84%E9%AB%98%E6%80%A7%E8%83%BD%E8%BD%AC%E6%8D%A2/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">linux平均负载怎么理解</div>
+        <div class="title-text">go[]byte和string的高性能转换</div>
       </div>
       
       <!-- <div class="content">
-        什么是平均负载平均负载是指单位时间内，系统处于可运行状态和不可中断状态的平均进程数，也就是平均活跃进程数，它和 CPU 
+        在fasthttp的最佳实践中有这么一句话：Avoid conversion between []byte and st
       </div> -->
     </a>
   </div>
@@ -782,15 +817,17 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/6.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/6.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/82.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/82.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
     </div>
-    <a href="/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/" class="post-nav-link">
+    <a href="/2022/05/13/go%E4%BD%BF%E7%94%A8%E6%8C%87%E9%92%88%E7%B1%BB%E5%9E%8B%E4%BD%9C%E4%B8%BA%E6%96%B9%E6%B3%95%E7%9A%84%E6%8E%A5%E6%94%B6%E8%80%85%E7%9A%84%E7%90%86%E7%94%B1/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">go函数返回局部变量的指针是否安全</div>
+        <div class="title-text">go使用指针类型作为方法的接收者的理由</div>
       </div>
       <!-- <div class="content">
-        一般来说，局部变量会在函数返回后被销毁，因此被返回的引用就成为了”无所指”的引用，程序会进入未知状态。但这在 Go 中是
+        
+使用指针类型能够修改调用者的值。 
+使用指针类型可以避免在每次调用方法时复制该值，在值的类型为大型结构体时，这样做会更
       </div> -->
     </a>
   </div>
