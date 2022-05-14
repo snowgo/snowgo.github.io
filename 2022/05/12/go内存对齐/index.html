@@ -688,11 +688,11 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 479 |
+            <i class="fas fa-file-text-o"></i> Words: 529 |
           </span>
   
           <span class="min2read">
-            <i class="fas fa-clock"></i> Reading time: 1min |
+            <i class="fas fa-clock"></i> Reading time: 2min |
           </span>
   
           
@@ -726,8 +726,8 @@
 <h3 id="第二种：按字长"><a href="#第二种：按字长" class="headerlink" title="第二种：按字长"></a>第二种：按字长</h3><p>而如果使用下面这种方式，当你再次访问 bar.y 的时候，CPU 需要访问内存一次。<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/1.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>因此真正的答案是 <strong>24</strong>，这是一种典型的用空间换时间的方法 — <strong>内存对齐</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> bar Bar</span><br><span class="line">    fmt.Println(unsafe.Sizeof(bar))  <span class="comment">// 24</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="合理定义结构体"><a href="#合理定义结构体" class="headerlink" title="合理定义结构体"></a>合理定义结构体</h2><h3 id="对齐原则"><a href="#对齐原则" class="headerlink" title="对齐原则"></a>对齐原则</h3><ol>
-<li>结构体变量中成员的偏移量必须是成员大小的整数倍 </li>
-<li>整个结构体的地址必须是最大字节的整数倍(结构体的内存占用是1/4/8/16byte…)</li>
+<li>每个成员变量的对齐值是操作系统的默认对齐长度和成员变量长度取最小值，偏移量必须是对齐值的整数倍（默认对齐数可以改，比如可以改成1，但是不建议这么做）</li>
+<li>整个结构体的地址必须是成员变量最大字节的整数倍(结构体的内存占用是1/4/8/16byte…)</li>
 </ol>
 <p>从以上可以发现，我们定义的结构体虽然不大，只占用 24个byte，但实际有用的只有 13 的byte，内存使用率只有 50% 左右，很有优化的必要性。<br>如果将第三个属性挪 y 的前面<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/2.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>那就可以省下来 1 个 byte 了,<strong>这里体现了第一条原则</strong><br>可以使用unsafe.Sizeof()查看对齐系数</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> bar Bar</span><br><span class="line">    fmt.Println(unsafe.Sizeof(bar))  <span class="comment">// 16</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
