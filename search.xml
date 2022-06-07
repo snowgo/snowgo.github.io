@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>多台电脑公用ssh远程仓库key</title>
+      <link href="/2022/06/07/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E5%85%AC%E7%94%A8ssh%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93key/"/>
+      <url>/2022/06/07/%E5%A4%9A%E5%8F%B0%E7%94%B5%E8%84%91%E5%85%AC%E7%94%A8ssh%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93key/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>首先我们得生成一个<a href="https://so.csdn.net/so/search?q=ssh&spm=1001.2101.3001.7020">ssh</a>密钥放到git仓库去具体步骤参考链接：<a href="https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh">https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/connecting-to-github-with-ssh</a>。<br>接下来我们可能会有这样一个需求：我想在两台电脑上使用同一个ssh<a href="https://so.csdn.net/so/search?q=%E5%AF%86%E9%92%A5&spm=1001.2101.3001.7020">密钥</a>。<br>假设一台电脑已经可以通过ssh方式获取代码。接下来我们要完成如下步骤：<br>1.</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name xxx</span><br><span class="line">git config --global user.email xxx</span><br></pre></td></tr></table></figure><p>这个连个信息需要和之前设置好的电脑信息一致。我们可以通过git config -l这个命令去查看之前那台电脑的设置。<br>2.在你需要设置的电脑terminal下执行ssh-keygen命令；<strong>注意这个步骤要在家目录下的.ssh文件夹中执行</strong>。<br>3.将设置好的电脑～/.ssh路径下面的id_rsa，id_rsa.pub覆盖你需要设置的电脑对应的路径下。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>goland切换go版本</title>
       <link href="/2022/06/05/goland%E5%88%87%E6%8D%A2go%E7%89%88%E6%9C%AC/"/>
       <url>/2022/06/05/goland%E5%88%87%E6%8D%A2go%E7%89%88%E6%9C%AC/</url>
