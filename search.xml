@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>正向代理和反向代理</title>
+      <link href="/2022/06/09/%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/"/>
+      <url>/2022/06/09/%E6%AD%A3%E5%90%91%E4%BB%A3%E7%90%86%E5%92%8C%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><h2 id="一句话描述"><a href="#一句话描述" class="headerlink" title="一句话描述"></a>一句话描述</h2><p>代理AKA假装，正向代理也就是假装proxy是客户端，反向代理代理的是服务端假装自己是服务器让client来访问。</p><h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><h3 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h3><ol><li><p>科学上网</p></li><li><p>加速访问</p></li><li><p>缓存数据 </p></li><li><p>授权访问</p></li><li><p>隐藏访问者</p><h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3></li><li><p>保护服务器 </p></li><li><p>负载均衡</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 计算机网络 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>go算法题整理之剑指offer</title>
       <link href="/2022/06/08/go%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%E4%B9%8B%E5%89%91%E6%8C%87offer/"/>
       <url>/2022/06/08/go%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%E4%B9%8B%E5%89%91%E6%8C%87offer/</url>
@@ -1562,33 +1587,6 @@
     
     
     <entry>
-      <title>语言基础</title>
-      <link href="/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"/>
-      <url>/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="row">    <embed src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pdf/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
-      
-      
-      <categories>
-          
-          <category> 面试题 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-            <tag> scala </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>计算机基础</title>
       <link href="/2022/01/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
       <url>/2022/01/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</url>
@@ -1612,6 +1610,33 @@
             <tag> 数据库 </tag>
             
             <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>语言基础</title>
+      <link href="/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"/>
+      <url>/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><div class="row">    <embed src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pdf/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> scala </tag>
             
         </tags>
       
@@ -2665,9 +2690,9 @@
       
         <tags>
             
-            <tag> math </tag>
-            
             <tag> dl </tag>
+            
+            <tag> math </tag>
             
         </tags>
       
@@ -2719,9 +2744,9 @@
       
         <tags>
             
-            <tag> math </tag>
-            
             <tag> dl </tag>
+            
+            <tag> math </tag>
             
         </tags>
       
@@ -2746,9 +2771,9 @@
       
         <tags>
             
-            <tag> math </tag>
-            
             <tag> dl </tag>
+            
+            <tag> math </tag>
             
         </tags>
       
