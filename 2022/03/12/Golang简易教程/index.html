@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html>
+  <!-- meta/link... -->
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>Golang简易教程 | snowgo</title>
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://cdn.jsdelivr.net/gh/inkss/fontawesome@5.15.3/css/all.min.css" rel="stylesheet">
+  <link href="/js/swiper/swiper@5.4.1.min.css" rel="stylesheet">
+  
+  
+    <script>
+        var themeModelId = '';
+        if (themeModelId) {
+            localStorage.setItem('modelId', themeModelId);
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/yuang01/live2d-widget@latest/autoload.js"></script>
+    <script>
+        var live2dOpen = eval('true') || false;
+        if (!live2dOpen) {
+            localStorage.setItem('waifu-display', 1609323474481);
+        }
+    </script>
+  
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    
+<link rel="stylesheet" href="/js/shareJs/share.min.css">
+
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+    
+
+    <!-- import link -->
+    
+        
+            
+        
+            
+        
+    
+    <!-- import script -->
+    
+        
+            
+        
+            
+        
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  
+  <!-- 依赖于jquery和vue -->
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+  
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+
+  
+  
+  <body>
+    <!-- 预加载动画 -->
+    <!-- 页面预加载动画 -->
+
+<div id='loader'>
+  <link rel="stylesheet" href="/js/loaded/index.css" >
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="configure-border-1">
+      <div class="configure-core"></div>
+    </div>
+    <div class="configure-border-2">
+      <div class="configure-core"></div>
+    </div>
+    <div class="loading-word">loading...</div>
+  </div>
+</div>
+
+<script>
+  var endLoading = function () {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('DOMContentLoaded',endLoading);
+  
+</script>
+
+    
+    <!-- 判断是否为暗黑风格 -->
+    <!-- 判断是否为黑夜模式 -->
+<script>
+  let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+  if (isDark) {
+    $(document.body).addClass('darkModel');
+  }
+</script>
+
+    <!-- 需要在上面加载的js -->
+    <script>
+  function loadScript(src, cb) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        if (cb) {
+          if (JSON.stringify(cb)) {
+            for (let p in cb) {
+              if (p == "onload") {
+                script[p] = () => {
+                  cb[p]()
+                  resolve()
+                }
+              } else {
+                script[p] = cb[p]
+                script.onload = resolve
+              }
+            }
+          } else {
+            script.onload = () => {
+              cb()
+              resolve()
+            };
+          }
+        } else {
+          script.onload = resolve
+        }
+        script.setAttribute("src", src);
+        HEAD.appendChild(script);
+      });
+    });
+  }
+
+  //https://github.com/filamentgroup/loadCSS
+  var loadCSS = function (href, before, media, attributes) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = resolve;
+        document.getElementsByTagName("head")[0].appendChild(link);
+      });
+    });
+  };
+
+</script> 
+
+<!-- 轮播图所需要的js -->
+<script src="/js/swiper/swiper.min.js"></script>
+<script src="/js/swiper/vue-awesome-swiper.js"></script>
+<script src="/js/swiper/swiper.animate1.0.3.min.js"></script>
+
+<script type="text/javascript">
+  Vue.use(window.VueAwesomeSwiper)
+</script>
+
+
+  <script src="/js/vue-typed-js/index.js"></script>
+
+
+<!-- 首页的公告滚动插件的js需要重新加载 -->
+<script src="/js/vue-seamless-scroll/index.js"></script>
+
+<!-- 打字机效果js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
+
+    <div id="safearea">
+      <main class="main" id="pjax-container">
+        <!-- 头部导航 -->
+        
+<header class="header   " 
+  id="navHeader"
+  style="position: fixed;
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <div class="drawer-box-icon">
+    <i class="fas fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  </div>
+  
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pre-medias/logo.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <h3 class="drawer-box-head_title">snowgo</h3>
+      <h5 class="drawer-box-head_desc"></h5>
+    </div>
+    
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">主页</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/archives" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">时间轴</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/tags" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">标签</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/categories" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">类别</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/about" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                  
+                  <span class="name">关于我</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/friends" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-book" aria-hidden="true"></i>
+                  
+                  <span class="name">友人帐</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/bangumis" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-video-camera" aria-hidden="true"></i>
+                  
+                  <span class="name">追番</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(7)">
+                  <span>
+                    
+                      <i class="fas fa-link"></i>
+                    
+                    <span class="name">更多</span>
+                  </span>
+                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(7)}" aria-hidden="true"></i>
+                </a>
+                <ul class="drawer-sub-menu" v-if="isOpen(7)">
+                  
+                  <li>
+                    <a href="/gallery">
+                      
+                      <i class="fas fa-music" style="margin-top: -20px;"></i>
+                      
+                      <span>图库</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="http://baidu.com">
+                      
+                      <i class="fas fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>百度</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+        
+          <li class="drawer-box-content_item">
+            <a target="_blank" rel="noopener" href="https://github.com/snowgo/">
+              <i class="fas fa-github" aria-hidden="true"></i>
+              <span>Github</span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+      openArr: [],
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      isOpen(index) {
+        if (this.openArr.includes(index)) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      openOrCloseMenu(curIndex) {
+        const index = this.openArr.indexOf(curIndex);
+        if (index !== -1) {
+          this.openArr.splice(index, 1);
+        } else {
+          this.openArr.push(curIndex);
+        }
+      },
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%;overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+
+    </div>
+    <div class="blog-title" id="author-avatar">
+      
+        <div class="avatar">
+          <img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pre-medias/logo.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+        </div>
+      
+      <a href="/" class="logo">snowgo</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/" class="menu-item-link" title="主页">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">主页</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/archives" class="menu-item-link" title="时间轴">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">时间轴</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/tags" class="menu-item-link" title="标签">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">标签</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/categories" class="menu-item-link" title="类别">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">类别</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/about" class="menu-item-link" title="关于我">
+                  
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                  
+                  <span class="name">关于我</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/friends" class="menu-item-link" title="友人帐">
+                  
+                    <i class="fas fa-book" aria-hidden="true"></i>
+                  
+                  <span class="name">友人帐</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/bangumis" class="menu-item-link" title="追番">
+                  
+                    <i class="fas fa-video-camera" aria-hidden="true"></i>
+                  
+                  <span class="name">追番</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="javascript:;" class="menu-item-link" title="更多">
+                  
+                    <i class="fas fa-link"></i>
+                  
+                  <span class="name">更多</span>
+                  <i class="fas fa-chevron-down arrow" aria-hidden="true"></i>
+                </a>
+                <ul class="sub-menu">
+                  
+                  <li>
+                    <a href="/gallery">
+                      
+                      <i class="fas fa-music" style="margin-top: -20px;"></i>
+                      
+                      <span>图库</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="http://baidu.com">
+                      
+                      <i class="fas fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>百度</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+      </ul>
+      
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fas fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <h2>
+          <span>
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <span class="title">Search</span>
+          </span>
+          <i class="fas fa-times close" pointer style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i>
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="Please enter keywords"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+      window.addEventListener('pjax:complete', () => {
+        this.cancelDialogVisible();
+      })
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/snowgo/" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
+</header>
+        <!-- 内容区域 -->
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/47.jpg')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        Golang简易教程
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2022-03-12 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> category：
+          
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%A0%88/" class="post-detail-header_category">
+              技术栈
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 3.7k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 16min |
+          </span>
+  
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <h2 id="为什么需要go"><a href="#为什么需要go" class="headerlink" title="为什么需要go"></a>为什么需要go</h2><ul>
+<li><p>编译高效</p>
+</li>
+<li><p>支持高并发</p>
+</li>
+<li><p>面向垃圾回收</p>
+<h3 id="删繁就简"><a href="#删繁就简" class="headerlink" title="删繁就简"></a>删繁就简</h3></li>
+<li><p>不支持函数重载</p>
+</li>
+<li><p>不支持隐式转换</p>
+</li>
+<li><p>不支持继承</p>
+</li>
+<li><p>不支持动态链接库</p>
+</li>
+<li><p>不支持动态加载代码</p>
+</li>
+<li><p>通过recover和panic替代异常机制</p>
+</li>
+<li><p>不支持断言</p>
+</li>
+<li><p>不支持静态变量</p>
+<h3 id="go语言特性来源"><a href="#go语言特性来源" class="headerlink" title="go语言特性来源"></a>go语言特性来源</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/0.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="配置go"><a href="#配置go" class="headerlink" title="配置go"></a>配置go</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/1.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/2.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="windows下环境变量"><a href="#windows下环境变量" class="headerlink" title="windows下环境变量"></a>windows下环境变量</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/3.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>path下添加<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/4.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>Goland中添加代理<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/5.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="GoLand生成可执行文件"><a href="#GoLand生成可执行文件" class="headerlink" title="GoLand生成可执行文件"></a>GoLand生成可执行文件</h3><p>打开运行设置<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/6.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+</li>
+</ul>
+<p>新建一个go build<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/7.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>新增一个设置，命名为“build windows”，赋值如图<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/8.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>其中最重要的是Environment<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/9.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/9.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>选择正确的配置，开始编译（运行）<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/10.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/10.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>会直接生成exe<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/11.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/11.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>双击可以直接运行<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/12.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/12.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>如果是想编译为linux可用的，配置如下（注意有三个变动，首先指定一个新的输出目录，其次要反选掉Checkbox，因为我们是windows平台，编译完无法直接执行，再次要指定GOOS为linux）<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/13.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/13.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>输出如下<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/14.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/14.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>上传到服务器<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/15.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/15.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>改权限后可以运行<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/16.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/16.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="一些基本命令"><a href="#一些基本命令" class="headerlink" title="一些基本命令"></a>一些基本命令</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/17.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/17.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/18.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/18.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="go-test"><a href="#go-test" class="headerlink" title="go test"></a>go test</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/19.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/19.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="go-vet"><a href="#go-vet" class="headerlink" title="go vet"></a>go vet</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/20.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/20.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/21.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/21.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="switch"><a href="#switch" class="headerlink" title="switch"></a>switch</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/22.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/22.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>每个switch默认带一个break</p>
+<h3 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h3><p>go中没有while循环<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/23.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/23.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="for-range"><a href="#for-range" class="headerlink" title="for-range"></a>for-range</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/24.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/24.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>这个和python类似</p>
+<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;flag&quot;</span></span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;os&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	name := flag.String(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;world&quot;</span>, <span class="string">&quot;specify the name you want to say hi&quot;</span>)</span><br><span class="line">	flag.Parse()</span><br><span class="line">	fmt.Println(<span class="string">&quot;os args is:&quot;</span>, os.Args)</span><br><span class="line">	fmt.Println(<span class="string">&quot;input parameter is:&quot;</span>, *name)</span><br><span class="line">	fullString := fmt.Sprintf(<span class="string">&quot;Hello %s from Go\n&quot;</span>, *name)</span><br><span class="line">	fmt.Println(fullString)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>go run ./main --name myname</code>的意思是把参数名为name的参数myname传给os.Args<br>flag.String()用于定义一个字符串的具有指定名称、默认值和用法字符串的字符串标志。返回值是存储标志值的字符串变量的地址。<br>flag.Parse()用于定义在接收参数之前。</p>
+<h2 id="变量定义"><a href="#变量定义" class="headerlink" title="变量定义"></a>变量定义</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/25.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/25.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><strong>：=结构不能在函数外使用</strong></p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>go不存在隐式转换，因为隐式转换容易出错<br>所以必须强制转换<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/26.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/26.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="数组和切片"><a href="#数组和切片" class="headerlink" title="数组和切片"></a>数组和切片</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/27.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/27.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>切片类似于动态数组<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/28.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/28.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="切片添加元素"><a href="#切片添加元素" class="headerlink" title="切片添加元素"></a>切片添加元素</h3><p><code>mySLice1 = append (mySlice, 1)</code></p>
+<h3 id="切片删除元素"><a href="#切片删除元素" class="headerlink" title="切片删除元素"></a>切片删除元素</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">deleteltem</span><span class="params">(slice []<span class="keyword">int</span>, index <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">append</span>(slice[:index], slicelindex+<span class="number">1</span>:]...)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="构造切片"><a href="#构造切片" class="headerlink" title="构造切片"></a>构造切片</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/29.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/29.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="关于切片的常见问题"><a href="#关于切片的常见问题" class="headerlink" title="关于切片的常见问题"></a>关于切片的常见问题</h3><p>纠正： a := []int{}<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/30.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/30.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/31.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/31.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/32.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/32.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>b原来的空间满了，导致c和a指向不同空间<br>=&gt;不要append b再赋给a，直接赋给b自己<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/33.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/33.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>修改变量value不会改变切片里的值<br><strong>go语言里全部都是值传递</strong></p>
+<h2 id="fmt包的printf-方法"><a href="#fmt包的printf-方法" class="headerlink" title="fmt包的printf()方法"></a>fmt包的printf()方法</h2><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>fmt 包实现了格式化 I/O 函数，类似于 C 的 printf 和 scanf。格式“占位符”衍生自 C，但比 C 更简单。<br>[打印]<br>占位符：</p>
+<h4 id="一般"><a href="#一般" class="headerlink" title="一般"></a>一般</h4><p>%v 相应值的默认格式。在打印结构体时，“加号”标记（%+v）会添加字段名<br>%#v 相应值的 Go 语法表示<br>%T 相应值的类型的 Go 语法表示<br>%% 字面上的百分号，并非值的占位符<br>[布尔]<br>%t 单词 true 或 false。</p>
+<h4 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h4><p>%b 二进制表示<br>%c 相应 Unicode 码点所表示的字符<br>%d 十进制表示<br>%o 八进制表示<br>%q 单引号围绕的字符字面值，由 Go 语法安全地转义<br>%x 十六进制表示，字母形式为小写 a-f<br>%X 十六进制表示，字母形式为大写 A-F<br>%U Unicode 格式：U+1234，等同于 “U+%04X”</p>
+<h4 id="浮点数及其复合构成"><a href="#浮点数及其复合构成" class="headerlink" title="浮点数及其复合构成"></a>浮点数及其复合构成</h4><p>%b 无小数部分的，指数为二的幂的科学计数法，与 strconv.FormatFloat 的 ‘b’ 转换格式一致。例如 -123456p-78<br>%e 科学计数法，例如 -1234.456e+78<br>%E 科学计数法，例如 -1234.456E+78<br>%f 有小数点而无指数，例如 123.456<br>%g 根据情况选择 %e 或 %f 以产生更紧凑的（无末尾的 0）输出<br>%G 根据情况选择 %E 或 %f 以产生更紧凑的（无末尾的 0）输出</p>
+<h4 id="字符串与字节切片"><a href="#字符串与字节切片" class="headerlink" title="字符串与字节切片"></a>字符串与字节切片</h4><p>%s 字符串或切片的无解译字节<br>%q 双引号围绕的字符串，由 Go 语法安全地转义<br>%x 十六进制，小写字母，每字节两个字符<br>%X 十六进制，大写字母，每字节两个字符</p>
+<h4 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h4><p>%p 十六进制表示，前缀 0x</p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><p>map的value可以是一个函数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	myMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>, <span class="number">10</span>)</span><br><span class="line">	myMap[<span class="string">&quot;a&quot;</span>] = <span class="string">&quot;b&quot;</span></span><br><span class="line">	myFuncMap := <span class="keyword">map</span>[<span class="keyword">string</span>]<span class="function"><span class="keyword">func</span><span class="params">()</span> <span class="title">int</span></span>&#123;</span><br><span class="line">		<span class="string">&quot;funcA&quot;</span>: <span class="function"><span class="keyword">func</span><span class="params">()</span> <span class="title">int</span></span> &#123; <span class="keyword">return</span> <span class="number">1</span> &#125;,</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(myFuncMap)</span><br><span class="line">	f := myFuncMap[<span class="string">&quot;funcA&quot;</span>]</span><br><span class="line">	fmt.Println(f())</span><br><span class="line">	value, exists := myMap[<span class="string">&quot;a&quot;</span>]</span><br><span class="line">	<span class="keyword">if</span> exists &#123;</span><br><span class="line">		<span class="built_in">println</span>(value)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> k, v := <span class="keyword">range</span> myMap &#123;</span><br><span class="line">		<span class="built_in">println</span>(k, v)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="结构体和接口"><a href="#结构体和接口" class="headerlink" title="结构体和接口"></a>结构体和接口</h2><p>结构体里只能有属性<br>接口里只能有方法<br>new一个结构体获得的是一个指针变量</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> IF <span class="keyword">interface</span> &#123;</span><br><span class="line">	getName() <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Human <span class="keyword">struct</span> &#123;</span><br><span class="line">	firstName, lastName <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">h := <span class="built_in">new</span>(Human)</span><br></pre></td></tr></table></figure>
+<h3 id="结构体和标签"><a href="#结构体和标签" class="headerlink" title="结构体和标签"></a>结构体和标签</h3><p>k8s中标签很常见<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/34.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/34.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="类型重命名"><a href="#类型重命名" class="headerlink" title="类型重命名"></a>类型重命名</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/35.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/35.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="Main函数"><a href="#Main函数" class="headerlink" title="Main函数"></a>Main函数</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/36.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/36.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="参数解析"><a href="#参数解析" class="headerlink" title="参数解析"></a>参数解析</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/37.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/37.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="Init函数"><a href="#Init函数" class="headerlink" title="Init函数"></a>Init函数</h2><p>只会运行一次<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/38.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/38.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>早期kubernetes中因为重复调用依赖会出现重复flag的问题<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/39.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/39.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/40.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/40.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="error"><a href="#error" class="headerlink" title="error"></a>error</h2><p>以下两种写法是等价的<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/41.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/41.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/42.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/42.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="传递变长参数"><a href="#传递变长参数" class="headerlink" title="传递变长参数"></a>传递变长参数</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/43.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/43.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/44.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/44.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="回调函数-Callback"><a href="#回调函数-Callback" class="headerlink" title="回调函数(Callback)"></a>回调函数(Callback)</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/45.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/45.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="闭包-匿名函数"><a href="#闭包-匿名函数" class="headerlink" title="闭包(匿名函数)"></a>闭包(匿名函数)</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/46.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/46.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="方法-成员函数"><a href="#方法-成员函数" class="headerlink" title="方法(成员函数)"></a>方法(成员函数)</h2><p>普通函数使用时需要包名+函数名来调用<br>方法的话需要接受者名+方法名来调用<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/47.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/47.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="传值还是传指针"><a href="#传值还是传指针" class="headerlink" title="传值还是传指针"></a>传值还是传指针</h2><p>每个参数都相当于是复制了一份再传进去<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/48.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/48.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/49.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/49.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> IF <span class="keyword">interface</span> &#123;</span><br><span class="line">    getName() <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Human <span class="keyword">struct</span> &#123;</span><br><span class="line">    firstName, lastName <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Plane <span class="keyword">struct</span> &#123;</span><br><span class="line">    vendor <span class="keyword">string</span></span><br><span class="line">    model  <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(h *Human)</span> <span class="title">getName</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> h.firstName + <span class="string">&quot;,&quot;</span> + h.lastName</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//不加*也是可以运行的</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Plane)</span> <span class="title">getName</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> fmt.Sprintf(<span class="string">&quot;vendor: %s, model: %s&quot;</span>, p.vendor, p.model)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Car <span class="keyword">struct</span> &#123;</span><br><span class="line">    factory, model <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(c *Car)</span> <span class="title">getName</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">    <span class="keyword">return</span> c.factory + <span class="string">&quot;-&quot;</span> + c.model</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    interfaces := []IF&#123;&#125;</span><br><span class="line">    h := <span class="built_in">new</span>(Human)</span><br><span class="line">    h.firstName = <span class="string">&quot;first&quot;</span></span><br><span class="line">    h.lastName = <span class="string">&quot;last&quot;</span></span><br><span class="line">    interfaces = <span class="built_in">append</span>(interfaces, h)</span><br><span class="line">    c := <span class="built_in">new</span>(Car)</span><br><span class="line">    c.factory = <span class="string">&quot;benz&quot;</span></span><br><span class="line">    c.model = <span class="string">&quot;s&quot;</span></span><br><span class="line">    interfaces = <span class="built_in">append</span>(interfaces, c)</span><br><span class="line">    <span class="keyword">for</span> _, f := <span class="keyword">range</span> interfaces &#123;</span><br><span class="line">        fmt.Println(f.getName())</span><br><span class="line">    &#125;</span><br><span class="line">    p := Plane&#123;&#125;</span><br><span class="line">    p.vendor = <span class="string">&quot;testVendor&quot;</span></span><br><span class="line">    p.model = <span class="string">&quot;testModel&quot;</span></span><br><span class="line">    fmt.Println(p.getName())</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li>Interface 是可能为nil的，所以针对 interface 的使用一定要 预先判空，否则会引起程序 crash(nil panic) </li>
+<li>Struct初始化意味着空间分配，对 struct 的引用不会出现空指针<h2 id="反射机制"><a href="#反射机制" class="headerlink" title="反射机制"></a>反射机制</h2><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/50.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/50.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h3 id="基于-struct-的反射"><a href="#基于-struct-的反射" class="headerlink" title="基于 struct 的反射"></a>基于 struct 的反射</h3><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/51.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/51.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></li>
+</ul>
+<h3 id="实例-1"><a href="#实例-1" class="headerlink" title="实例"></a>实例</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="string">&quot;reflect&quot;</span></span><br><span class="line">)</span><br><span class="line">funcmain() &#123;</span><br><span class="line"><span class="comment">// basic type</span></span><br><span class="line">myMap := <span class="built_in">make</span>(<span class="keyword">map</span>[<span class="keyword">string</span>]<span class="keyword">string</span>, <span class="number">10</span>)</span><br><span class="line"> myMap[<span class="string">&quot;a&quot;</span>] = <span class="string">&quot;b&quot;</span></span><br><span class="line">t := reflect.TypeOf(myMap)</span><br><span class="line"> fmt.Println(<span class="string">&quot;type:&quot;</span>, t)</span><br><span class="line">v := reflect.ValueOf(myMap)</span><br><span class="line"> fmt.Println(<span class="string">&quot;value:&quot;</span>, v)</span><br><span class="line"><span class="comment">// struct</span></span><br><span class="line">myStruct := T&#123;A: <span class="string">&quot;a&quot;</span>&#125;</span><br><span class="line">v1 := reflect.ValueOf(myStruct)</span><br><span class="line">fori := <span class="number">0</span>; i &lt; v1.NumField(); i++ &#123;</span><br><span class="line"> fmt.Printf(<span class="string">&quot;Field %d: %v\n&quot;</span>, i, v1.Field(i))</span><br><span class="line"> &#125;</span><br><span class="line">fori := <span class="number">0</span>; i &lt; v1.NumMethod(); i++ &#123;</span><br><span class="line"> fmt.Printf(<span class="string">&quot;Method %d: %v\n&quot;</span>, i, v1.Method(i))</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">// 需要注意receive是struct还是指针</span></span><br><span class="line">result := v1.Method(<span class="number">0</span>).Call(<span class="literal">nil</span>)</span><br><span class="line"> fmt.Println(<span class="string">&quot;result:&quot;</span>, result)</span><br><span class="line">&#125;</span><br><span class="line">typeTstruct &#123;</span><br><span class="line"> A <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 需要注意receive是struct还是指针</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(t T)</span> <span class="title">String</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line"><span class="keyword">return</span> t.A + <span class="string">&quot;1&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Go语言中的面向对象编程"><a href="#Go语言中的面向对象编程" class="headerlink" title="Go语言中的面向对象编程"></a>Go语言中的面向对象编程</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/52.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/52.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="Json编解码"><a href="#Json编解码" class="headerlink" title="Json编解码"></a>Json编解码</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/53.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/53.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/54.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/54.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>其中<img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/55.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/55.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg">是类型断言<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/56.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/56.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg">只能在switch语句中使用</p>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/57.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/57.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="defer"><a href="#defer" class="headerlink" title="defer"></a>defer</h2><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/58.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/58.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>defer相当于一个 栈，其他语句执行完了再执行defer栈里的 </p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">defer</span> fmt.Println(<span class="string">&quot;1&quot;</span>)</span><br><span class="line">	<span class="keyword">defer</span> fmt.Println(<span class="string">&quot;2&quot;</span>)</span><br><span class="line">	<span class="keyword">defer</span> fmt.Println(<span class="string">&quot;3&quot;</span>)</span><br><span class="line">	loopFunc()</span><br><span class="line">	time.Sleep(time.Second)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">loopFunc</span><span class="params">()</span></span> &#123;</span><br><span class="line">	lock := sync.Mutex&#123;&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">3</span>; i++ &#123;</span><br><span class="line">		<span class="comment">// go func(i int) &#123;</span></span><br><span class="line">		lock.Lock()</span><br><span class="line">		<span class="keyword">defer</span> lock.Unlock()</span><br><span class="line">		fmt.Println(<span class="string">&quot;loopFunc:&quot;</span>, i)</span><br><span class="line">		<span class="comment">// &#125;(i)</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//输出：</span></span><br><span class="line"><span class="comment">//loopFuncloopFunc: 0</span></span><br><span class="line"><span class="comment">//fatal error: all goroutines are asleep - deadlock!</span></span><br></pre></td></tr></table></figure>
+<p>加上注释里的就不会死锁了（使用了闭包），此时defer相当于finally，<strong>不管执行过程中发生了什么锁都会被释放掉</strong>。</p>
+<h2 id="Panic-和-recover"><a href="#Panic-和-recover" class="headerlink" title="Panic 和 recover"></a>Panic 和 recover</h2><p>模拟try-catch机制<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/59.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/59.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><h3 id="并发和并行"><a href="#并发和并行" class="headerlink" title="并发和并行"></a>并发和并行</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/60.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/60.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/61.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/61.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="Communication-Sequential-Process"><a href="#Communication-Sequential-Process" class="headerlink" title="Communication Sequential Process"></a>Communication Sequential Process<img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/62.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/62.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></h3><h3 id="线程和协程"><a href="#线程和协程" class="headerlink" title="线程和协程"></a>线程和协程</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/63.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/63.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="协程示例"><a href="#协程示例" class="headerlink" title="协程示例"></a>协程示例</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/64.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/64.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/65.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/65.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="channel-多线程通信"><a href="#channel-多线程通信" class="headerlink" title="channel-多线程通信"></a>channel-多线程通信</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/66.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/66.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="通道缓冲"><a href="#通道缓冲" class="headerlink" title="通道缓冲"></a>通道缓冲</h3><p>golang中定义channal是make(chan int,i)<br>后面的数字i就是channal的容量, 这里重点说一下容量为0(默认)和容量为1的区别:<br>可以把channal想象成一个水管<br>容量为0时, 这个水管必须先接好出口,即&lt;-chan, 然后才能往水管里注水, 即chan&lt;-<br>而容量为1时, 水管有了一个蓄水池, 就可以在没接出口时, 先往水管里放1个单位的水,也就是说可以先chan&lt;-, 再&lt;-chan<br>容量默认是0，也就是说：来数据的话，如果不读取的话就会一直堵塞。<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/67.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/67.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="遍历通道缓冲区"><a href="#遍历通道缓冲区" class="headerlink" title="遍历通道缓冲区"></a>遍历通道缓冲区</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/68.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/68.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="单向通道"><a href="#单向通道" class="headerlink" title="单向通道"></a>单向通道</h3><p>可以避免误操作<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/69.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/69.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="关闭通道"><a href="#关闭通道" class="headerlink" title="关闭通道"></a>关闭通道</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/70.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/70.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="select"><a href="#select" class="headerlink" title="select"></a>select</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/71.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/71.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="Timer"><a href="#Timer" class="headerlink" title="Timer"></a>Timer</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/72.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/72.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="上下文Context"><a href="#上下文Context" class="headerlink" title="上下文Context"></a>上下文Context</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/73.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/73.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="如何停止一个子协程"><a href="#如何停止一个子协程" class="headerlink" title="如何停止一个子协程"></a>如何停止一个子协程</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/74.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/74.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="基于Context停止子协程"><a href="#基于Context停止子协程" class="headerlink" title="基于Context停止子协程"></a>基于Context停止子协程</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/75.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/75.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h2><h3 id="线程加锁"><a href="#线程加锁" class="headerlink" title="线程加锁"></a>线程加锁</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/76.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/76.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="RWMutex用例"><a href="#RWMutex用例" class="headerlink" title="RWMutex用例"></a>RWMutex用例</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/77.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/77.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="如何保证执行完主线程之内的所有线程"><a href="#如何保证执行完主线程之内的所有线程" class="headerlink" title="如何保证执行完主线程之内的所有线程"></a>如何保证执行完主线程之内的所有线程</h4><p>使用WaitGroup</p>
+<h5 id="简单用例"><a href="#简单用例" class="headerlink" title="简单用例"></a>简单用例</h5><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/78.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/78.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h5 id="Kubernetes中的用例"><a href="#Kubernetes中的用例" class="headerlink" title="Kubernetes中的用例"></a>Kubernetes中的用例</h5><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/79.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/79.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="Cond示例"><a href="#Cond示例" class="headerlink" title="Cond示例"></a>Cond示例</h4><p>生产者<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/80.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/80.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>消费者：<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/81.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/81.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//简易生产者消费者模型</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">	<span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Queue <span class="keyword">struct</span> &#123;</span><br><span class="line">	queue []<span class="keyword">string</span></span><br><span class="line">	cond  *sync.Cond</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	q := Queue&#123;</span><br><span class="line">		queue: []<span class="keyword">string</span>&#123;&#125;,</span><br><span class="line">		cond:  sync.NewCond(&amp;sync.Mutex&#123;&#125;),</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			q.Enqueue(<span class="string">&quot;a&quot;</span>)</span><br><span class="line">			time.Sleep(time.Second * <span class="number">2</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		q.Dequeue()</span><br><span class="line">		time.Sleep(time.Second)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(q *Queue)</span> <span class="title">Enqueue</span><span class="params">(item <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	q.cond.L.Lock()</span><br><span class="line">	<span class="keyword">defer</span> q.cond.L.Unlock()</span><br><span class="line">	q.queue = <span class="built_in">append</span>(q.queue, item)</span><br><span class="line">	fmt.Printf(<span class="string">&quot;putting %s to queue, notify all\n&quot;</span>, item)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//broadcast与wait配合的例子</span></span><br><span class="line">    <span class="comment">//处于wait状态的协程0和1，在收到broadcast之后，都会继续执行后续操作。</span></span><br><span class="line">    <span class="comment">//signal与wait配合的例子</span></span><br><span class="line">    <span class="comment">//第一个signal触发的时候，就算已经有2个协程在wait状态，但是wait状态中的最开始等待的协程0会被先调用。</span></span><br><span class="line">	</span><br><span class="line">    q.cond.Broadcast()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(q *Queue)</span> <span class="title">Dequeue</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	q.cond.L.Lock()</span><br><span class="line">	<span class="keyword">defer</span> q.cond.L.Unlock()</span><br><span class="line">	<span class="keyword">for</span> <span class="built_in">len</span>(q.queue) == <span class="number">0</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;no data available, wait&quot;</span>)</span><br><span class="line">		q.cond.Wait()</span><br><span class="line">	&#125;</span><br><span class="line">	result := q.queue[<span class="number">0</span>]</span><br><span class="line">	q.queue = q.queue[<span class="number">1</span>:]</span><br><span class="line">	<span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="sync-Once"><a href="#sync-Once" class="headerlink" title="sync.Once"></a>sync.Once</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;sync&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> SliceNum []<span class="keyword">int</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewSlice</span><span class="params">()</span> <span class="title">SliceNum</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">make</span>(SliceNum, <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *SliceNum)</span> <span class="title">Add</span><span class="params">(elem <span class="keyword">int</span>)</span> *<span class="title">SliceNum</span></span> &#123;</span><br><span class="line">	*s = <span class="built_in">append</span>(*s, elem)</span><br><span class="line">	fmt.Println(<span class="string">&quot;add&quot;</span>, elem)</span><br><span class="line">	fmt.Println(<span class="string">&quot;add SliceNum end&quot;</span>, s)</span><br><span class="line">	<span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> once sync.Once</span><br><span class="line">	s := NewSlice()</span><br><span class="line">	<span class="comment">// 看源代码理解once的行为</span></span><br><span class="line">	once.Do(<span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		s.Add(<span class="number">16</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	once.Do(<span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		s.Add(<span class="number">16</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	once.Do(<span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		s.Add(<span class="number">16</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>源码如下：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(o *Once)</span> <span class="title">Do</span><span class="params">(f <span class="keyword">func</span>()</span>)</span> &#123;</span><br><span class="line">    <span class="comment">//这里是一个CallBack</span></span><br><span class="line">	<span class="comment">// Note: Here is an incorrect implementation of Do:</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">//	if atomic.CompareAndSwapUint32(&amp;o.done, 0, 1) &#123;</span></span><br><span class="line">	<span class="comment">//		f()</span></span><br><span class="line">	<span class="comment">//	&#125;</span></span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="comment">// Do guarantees that when it returns, f has finished.</span></span><br><span class="line">	<span class="comment">// This implementation would not implement that guarantee:</span></span><br><span class="line">	<span class="comment">// given two simultaneous calls, the winner of the cas would</span></span><br><span class="line">	<span class="comment">// call f, and the second would return immediately, without</span></span><br><span class="line">	<span class="comment">// waiting for the first&#x27;s call to f to complete.</span></span><br><span class="line">	<span class="comment">// This is why the slow path falls back to a mutex, and why</span></span><br><span class="line">	<span class="comment">// the atomic.StoreUint32 must be delayed until after f returns.</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> atomic.LoadUint32(&amp;o.done) == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="comment">// Outlined slow-path to allow inlining of the fast-path.</span></span><br><span class="line">		o.doSlow(f)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(o *Once)</span> <span class="title">doSlow</span><span class="params">(f <span class="keyword">func</span>()</span>)</span> &#123;</span><br><span class="line">	o.m.Lock()</span><br><span class="line">	<span class="keyword">defer</span> o.m.Unlock()</span><br><span class="line">	<span class="keyword">if</span> o.done == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">defer</span> atomic.StoreUint32(&amp;o.done, <span class="number">1</span>)</span><br><span class="line">		f()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>综上，有两种方式可以实现线程安全：channel和共享内存，鼓励用channel。</p>
+<h3 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h3><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/82.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/82.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="Linux进程的内存使用"><a href="#Linux进程的内存使用" class="headerlink" title="Linux进程的内存使用"></a>Linux进程的内存使用</h4><p>虚拟内存：通过内存和磁盘的交换来虚拟出更多的内存：原先的程序有4g虚拟内存，如果内存上一部分资源不活跃就被转到磁盘上，新进来的程序依旧有4g的虚拟内存。<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/83.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/83.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="CPU对内存的访问"><a href="#CPU对内存的访问" class="headerlink" title="CPU对内存的访问"></a>CPU对内存的访问</h4><p>TLB也是加速的作用<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/84.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/84.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="进程切换开销"><a href="#进程切换开销" class="headerlink" title="进程切换开销"></a>进程切换开销</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/85.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/85.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="线程切换开销"><a href="#线程切换开销" class="headerlink" title="线程切换开销"></a>线程切换开销</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/86.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/86.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="用户线程"><a href="#用户线程" class="headerlink" title="用户线程"></a>用户线程</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/87.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/87.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="Goroutine"><a href="#Goroutine" class="headerlink" title="Goroutine"></a>Goroutine</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/88.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/88.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="MPG的对应关系"><a href="#MPG的对应关系" class="headerlink" title="MPG的对应关系"></a>MPG的对应关系</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/89.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/89.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="GMP模型细节"><a href="#GMP模型细节" class="headerlink" title="GMP模型细节"></a>GMP模型细节</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/90.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/90.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="P的状态"><a href="#P的状态" class="headerlink" title="P的状态"></a>P的状态</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/91.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/91.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="G的状态"><a href="#G的状态" class="headerlink" title="G的状态"></a>G的状态</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/92.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/92.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="G的状态转换图"><a href="#G的状态转换图" class="headerlink" title="G的状态转换图"></a>G的状态转换图</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/93.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/93.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="G所处的位置"><a href="#G所处的位置" class="headerlink" title="G所处的位置"></a>G所处的位置</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/94.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/94.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="Goroutine创建过程"><a href="#Goroutine创建过程" class="headerlink" title="Goroutine创建过程"></a>Goroutine创建过程</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/95.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/95.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="将-Goroutine-放到运行队列上"><a href="#将-Goroutine-放到运行队列上" class="headerlink" title="将 Goroutine 放到运行队列上"></a>将 Goroutine 放到运行队列上</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/96.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/96.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="调度器行为"><a href="#调度器行为" class="headerlink" title="调度器行为"></a>调度器行为</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/97.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/97.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>线程和进程来比较的话线城市更轻量的，切换线程不用切换那些内存空间，线程的调度本身还是需要系统调用的，系统调用本身是涉及到内核态到用户态的切换的，会有开销，goroutine主要就是为了减少这种开销，P让每个G都能有机会运行一下，另外，M（也就是内核线程）的数量大于P，这样做的目的是M可能陷入系统调用，而系统调用可能是阻塞的，比如磁盘读取，这个时候CPU是空闲的，创建新的M并与P关联，可以让更多的G被调度，充分利用CPU。</p>
+<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><h4 id="堆内存管理"><a href="#堆内存管理" class="headerlink" title="堆内存管理"></a>堆内存管理</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/98.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/98.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/99.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/99.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="堆内存管理的挑战"><a href="#堆内存管理的挑战" class="headerlink" title="堆内存管理的挑战"></a>堆内存管理的挑战</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/100.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/100.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="ThreadCacheMalloc概览"><a href="#ThreadCacheMalloc概览" class="headerlink" title="ThreadCacheMalloc概览"></a>ThreadCacheMalloc概览</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/101.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/101.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/102.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/102.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/103.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/103.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="Go语言内存分配"><a href="#Go语言内存分配" class="headerlink" title="Go语言内存分配"></a>Go语言内存分配</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/104.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/104.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/105.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/105.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="内存回收"><a href="#内存回收" class="headerlink" title="内存回收"></a>内存回收</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/106.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/106.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="mspan"><a href="#mspan" class="headerlink" title="mspan"></a>mspan</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/107.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/107.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/108.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/108.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="GC工作流程"><a href="#GC工作流程" class="headerlink" title="GC工作流程"></a>GC工作流程</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/109.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/109.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h5 id="三色标记"><a href="#三色标记" class="headerlink" title="三色标记"></a>三色标记</h5><p>灰色就是先给他标记一下，还没有进行判断活不活跃，灰色标记完成然后把锁给解掉，用户态的就可以执行了。<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/110.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/110.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>一个函数中第一个对象指针就是根对象，全局的指针也是根对象，如果只是定义了一个没指针的（比如struct）这个对象和栈绑定，函数退出这个对象的生命周期也就结束了，所以gc只是对堆的一个扫描。<br>扫对象，能扫到的最后都被标记成黑色了，<br>黑色对象就意味着他是活跃的，他就不会被回收，凡是没有被根对象引用的他就会被回收掉。<br>扫不到的就是白的。</p>
+<h4 id="垃圾回收触发机制"><a href="#垃圾回收触发机制" class="headerlink" title="垃圾回收触发机制"></a>垃圾回收触发机制</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/111.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/111.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="包引用与依赖管理"><a href="#包引用与依赖管理" class="headerlink" title="包引用与依赖管理"></a>包引用与依赖管理</h3><h4 id="Go语言依赖管理的演进"><a href="#Go语言依赖管理的演进" class="headerlink" title="Go语言依赖管理的演进"></a>Go语言依赖管理的演进</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/112.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/112.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="vendor管理工具"><a href="#vendor管理工具" class="headerlink" title="vendor管理工具"></a>vendor管理工具</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/113.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/113.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="Go-mod使用"><a href="#Go-mod使用" class="headerlink" title="Go mod使用"></a>Go mod使用</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/114.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/114.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h5 id="sample"><a href="#sample" class="headerlink" title="sample"></a>sample</h5><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/115.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/115.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="GOPROXY-和-GOPRIVATE"><a href="#GOPROXY-和-GOPRIVATE" class="headerlink" title="GOPROXY 和 GOPRIVATE"></a>GOPROXY 和 GOPRIVATE</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/116.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/116.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h3><h5 id="Go-语言项目多采用-Makefile-组织项目编译"><a href="#Go-语言项目多采用-Makefile-组织项目编译" class="headerlink" title="Go 语言项目多采用 Makefile 组织项目编译"></a>Go 语言项目多采用 Makefile 组织项目编译</h5><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> tag=v1.0</span><br><span class="line"></span><br><span class="line"><span class="section">root:</span></span><br><span class="line">    <span class="keyword">export</span> ROOT=github.com/cncamp/golang</span><br><span class="line"></span><br><span class="line"><span class="section">build:</span></span><br><span class="line">    echo <span class="string">&quot;building httpserver binary&quot;</span></span><br><span class="line">    mkdir -p bin/amd64</span><br><span class="line">    //输出放到-o bin/amd64 .</span><br><span class="line">    CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bin/amd64 .</span><br><span class="line">//打包docker</span><br><span class="line"><span class="section">release: build</span></span><br><span class="line">    echo <span class="string">&quot;building httpserver container&quot;</span></span><br><span class="line">    docker build -t cncamp/httpserver:$&#123;tag&#125; .</span><br><span class="line"></span><br><span class="line"><span class="section">push: release</span></span><br><span class="line">    echo <span class="string">&quot;pushing cncamp/httpserver&quot;</span></span><br><span class="line">	docker push cncamp/httpserver:v1.0</span><br></pre></td></tr></table></figure>
+<h3 id="动手编写一个HTTP-Server"><a href="#动手编写一个HTTP-Server" class="headerlink" title="动手编写一个HTTP Server"></a>动手编写一个HTTP Server</h3><h4 id="理解网络协议层"><a href="#理解网络协议层" class="headerlink" title="理解网络协议层"></a>理解网络协议层</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/117.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/117.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="理解Socket"><a href="#理解Socket" class="headerlink" title="理解Socket"></a>理解Socket</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/118.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/118.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>所以说一个链接里有两个socket，链接五元组：源ip源端口目标ip目标端口+协议。</p>
+<h4 id="理解-net-http-包"><a href="#理解-net-http-包" class="headerlink" title="理解 net.http 包"></a>理解 net.http 包</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/119.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/119.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="阻塞IO模型"><a href="#阻塞IO模型" class="headerlink" title="阻塞IO模型"></a>阻塞IO模型</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/120.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/120.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="非阻塞IO-模型"><a href="#非阻塞IO-模型" class="headerlink" title="非阻塞IO 模型"></a>非阻塞IO 模型</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/121.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/121.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="IO-多路复用"><a href="#IO-多路复用" class="headerlink" title="IO 多路复用"></a>IO 多路复用</h4><p>获得一个FD列表，相当于一个单线程去问系统内核哪一个线程就绪了，而不是每一个线程自己去问，缺点是列表长度有限，最多1024<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/122.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/122.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="异步-IO"><a href="#异步-IO" class="headerlink" title="异步 IO"></a>异步 IO</h4><p>返回之后这个系统调用直接结束，等数据从socketbufffer到内存都准备好了再从内核给应用发信号。<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/123.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/123.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="IO多路复用中的epoll"><a href="#IO多路复用中的epoll" class="headerlink" title="IO多路复用中的epoll"></a>IO多路复用中的epoll</h4><p>解决了上面多路复用的问题</p>
+<ul>
+<li>用户态和kernel共享一块内存</li>
+</ul>
+<p>其中rbr是红黑树<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/124.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/124.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="Go-语言高性能-httpserver-的实现细节"><a href="#Go-语言高性能-httpserver-的实现细节" class="headerlink" title="Go 语言高性能 httpserver 的实现细节"></a>Go 语言高性能 httpserver 的实现细节</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/125.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/125.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h3><h4 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/126.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/126.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h5 id="dlv的配置"><a href="#dlv的配置" class="headerlink" title="dlv的配置"></a>dlv的配置</h5><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/127.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/127.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="更多debug方法"><a href="#更多debug方法" class="headerlink" title="更多debug方法"></a>更多debug方法</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/128.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/128.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="glog使用方法示例"><a href="#glog使用方法示例" class="headerlink" title="glog使用方法示例"></a>glog使用方法示例</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/129.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/129.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="性能分析-Performance-Profiling"><a href="#性能分析-Performance-Profiling" class="headerlink" title="性能分析( Performance Profiling)"></a>性能分析( Performance Profiling)</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/130.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/130.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h5 id="分析CPU瓶颈"><a href="#分析CPU瓶颈" class="headerlink" title="分析CPU瓶颈"></a>分析CPU瓶颈</h5><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/131.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/131.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h5 id="其他可用-profiling-工具分析的问题"><a href="#其他可用-profiling-工具分析的问题" class="headerlink" title="其他可用 profiling 工具分析的问题"></a>其他可用 profiling 工具分析的问题</h5><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/132.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/132.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h5 id="针对http服务的-pprof"><a href="#针对http服务的-pprof" class="headerlink" title="针对http服务的 pprof"></a>针对http服务的 pprof</h5><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/133.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/133.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h5 id="分析go-profiling-结果"><a href="#分析go-profiling-结果" class="headerlink" title="分析go profiling 结果"></a>分析go profiling 结果</h5><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/134.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/134.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h5 id="结果分析示例"><a href="#结果分析示例" class="headerlink" title="结果分析示例"></a>结果分析示例</h5><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/135.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/135.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="Kubernetes-中常用代码解读"><a href="#Kubernetes-中常用代码解读" class="headerlink" title="Kubernetes 中常用代码解读"></a>Kubernetes 中常用代码解读</h3><h4 id="Rate-Limit-Queue"><a href="#Rate-Limit-Queue" class="headerlink" title="Rate Limit Queue"></a>Rate Limit Queue</h4><p>出现问题控制器等待时间呈指数增长，最长5分钟<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/136.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/136.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="Kubernetes-日常运维中的代码调试场景"><a href="#Kubernetes-日常运维中的代码调试场景" class="headerlink" title="Kubernetes 日常运维中的代码调试场景"></a>Kubernetes 日常运维中的代码调试场景</h3><h4 id="案例1：空指针"><a href="#案例1：空指针" class="headerlink" title="案例1：空指针"></a>案例1：空指针</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/137.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/137.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/138.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/138.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="案例2：-Map-的读写冲突"><a href="#案例2：-Map-的读写冲突" class="headerlink" title="案例2： Map 的读写冲突"></a>案例2： Map 的读写冲突</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/139.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/139.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="案例3：-kube-proxy-消耗-10个-CPU"><a href="#案例3：-kube-proxy-消耗-10个-CPU" class="headerlink" title="案例3： kube-proxy 消耗 10个 CPU"></a>案例3： kube-proxy 消耗 10个 CPU</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/140.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/140.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/141.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/141.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h4 id="案例4：线程池耗尽"><a href="#案例4：线程池耗尽" class="headerlink" title="案例4：线程池耗尽"></a>案例4：线程池耗尽</h4><p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/142.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Golang%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/142.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/go/" class="">
+              go
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>author:  </strong>snowgo</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>link:  </strong>
+    <a href="/2022/03/12/Golang简易教程/" target="_blank" title="Golang简易教程">https://snowgo.live/2022/03/12/Golang简易教程/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/53.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/53.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+    </div>
+    <a href="/2022/03/21/Docker%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">Docker核心技术</div>
+      </div>
+      
+      <!-- <div class="content">
+        传统分层架构vs微服务传统分册：项目太大了难以维护微服务：服务和服务之间走轻量级的协议比如rest，容易维护，每个部分负
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/71.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/71.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+    </div>
+    <a href="/2022/03/11/Vscode%E4%B8%8A%E9%85%8D%E7%BD%AEGo-Mac%E7%89%88%E6%9C%AC/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">Vscode上配置Go-Mac版本</div>
+      </div>
+      <!-- <div class="content">
+        安装go
+在https://go.dev/dl/下载
+
+下载pkg后自动配置GOROOT
+
+使用go env可以查看配置
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>catalog</span>
+        
+          <div class="toc-open-close">catalog</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '10000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/air%E5%A3%81%E7%BA%B82.png';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+      </main>
+    </div>
+
+    <!-- 页脚 -->
+    
+  
+  <!-- 底部鱼儿跳动效果，依赖于jquery-->
+<div id="j-fish-skip" style=" position: relative;height: 153px;width: auto;"></div>
+<script>
+  var RENDERER = {
+    POINT_INTERVAL: 5,
+    FISH_COUNT: 3,
+    MAX_INTERVAL_COUNT: 50,
+    INIT_HEIGHT_RATE: .5,
+    THRESHOLD: 50,
+    FISH_COLOR: '',
+    init: function () {
+      this.setFishColor(); this.setParameters(), this.reconstructMethods(), this.setup(), this.bindEvent(), this.render()
+    },
+    setFishColor: function () {
+      let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+      if (isDark) {
+        this.FISH_COLOR = '#222'; // 暗黑色，有时间把这整成一个变量
+      } else {
+        this.FISH_COLOR = 'rgba(0, 0, 0, 0.5)' || '#272727';
+      }
+    },
+    setParameters: function () {
+      this.$window = $(window), this.$container = $("#j-fish-skip"), this.$canvas = $("<canvas />"), this.context = this.$canvas.appendTo(this.$container).get(0).getContext("2d"), this.points = [], this.fishes = [], this.watchIds = []
+    },
+    createSurfacePoints: function () {
+      var t = Math.round(this.width / this.POINT_INTERVAL);
+      this.pointInterval = this.width / (t - 1), this.points.push(new SURFACE_POINT(this, 0));
+      for (var i = 1; i < t; i++) {
+        var e = new SURFACE_POINT(this, i * this.pointInterval),
+          h = this.points[i - 1];
+        e.setPreviousPoint(h), h.setNextPoint(e), this.points.push(e)
+      }
+    },
+    reconstructMethods: function () {
+      this.watchWindowSize = this.watchWindowSize.bind(this), this.jdugeToStopResize = this.jdugeToStopResize.bind(this), this.startEpicenter = this.startEpicenter.bind(this), this.moveEpicenter = this.moveEpicenter.bind(this), this.reverseVertical = this.reverseVertical.bind(this), this.render = this.render.bind(this)
+    },
+    setup: function () {
+      this.points.length = 0, this.fishes.length = 0, this.watchIds.length = 0, this.intervalCount = this.MAX_INTERVAL_COUNT, this.width = this.$container.width(), this.height = this.$container.height(), this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500, this.$canvas.attr({
+        width: this.width,
+        height: this.height
+      }), this.reverse = !1, this.fishes.push(new FISH(this)), this.createSurfacePoints()
+    },
+    watchWindowSize: function () {
+      this.clearTimer(), this.tmpWidth = this.$window.width(), this.tmpHeight = this.$window.height(), this.watchIds.push(setTimeout(this.jdugeToStopResize, this.WATCH_INTERVAL))
+    },
+    clearTimer: function () {
+      for (; this.watchIds.length > 0;) clearTimeout(this.watchIds.pop())
+    },
+    jdugeToStopResize: function () {
+      var t = this.$window.width(),
+        i = this.$window.height(),
+        e = t == this.tmpWidth && i == this.tmpHeight;
+      this.tmpWidth = t, this.tmpHeight = i, e && this.setup()
+    },
+    bindEvent: function () {
+      this.$window.on("resize", this.watchWindowSize), this.$container.on("mouseenter", this.startEpicenter), this.$container.on("mousemove", this.moveEpicenter)
+    },
+    getAxis: function (t) {
+      var i = this.$container.offset();
+      return {
+        x: t.clientX - i.left + this.$window.scrollLeft(),
+        y: t.clientY - i.top + this.$window.scrollTop()
+      }
+    },
+    startEpicenter: function (t) {
+      this.axis = this.getAxis(t)
+    },
+    moveEpicenter: function (t) {
+      var i = this.getAxis(t);
+      this.axis || (this.axis = i), this.generateEpicenter(i.x, i.y, i.y - this.axis.y), this.axis = i
+    },
+    generateEpicenter: function (t, i, e) {
+      if (!(i < this.height / 2 - this.THRESHOLD || i > this.height / 2 + this.THRESHOLD)) {
+        var h = Math.round(t / this.pointInterval);
+        h < 0 || h >= this.points.length || this.points[h].interfere(i, e)
+      }
+    },
+    reverseVertical: function () {
+      this.reverse = !this.reverse;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].reverseVertical()
+    },
+    controlStatus: function () {
+      for (var t = 0, i = this.points.length; t < i; t++) this.points[t].updateSelf();
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].updateNeighbors();
+      this.fishes.length < this.fishCount && 0 == --this.intervalCount && (this.intervalCount = this.MAX_INTERVAL_COUNT, this.fishes.push(new FISH(this)))
+    },
+    render: function () {
+      requestAnimationFrame(this.render), this.controlStatus(), this.context.clearRect(0, 0, this.width, this.height), this.context.fillStyle = this.FISH_COLOR;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].render(this.context);
+      this.context.save(), this.context.globalCompositeOperation = "xor", this.context.beginPath(), this.context.moveTo(0, this.reverse ? 0 : this.height);
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].render(this.context);
+      this.context.lineTo(this.width, this.reverse ? 0 : this.height), this.context.closePath(), this.context.fill(), this.context.restore()
+    }
+  },
+  SURFACE_POINT = function (t, i) {
+    this.renderer = t, this.x = i, this.init()
+  };
+  SURFACE_POINT.prototype = {
+    SPRING_CONSTANT: .03,
+    SPRING_FRICTION: .9,
+    WAVE_SPREAD: .3,
+    ACCELARATION_RATE: .01,
+    init: function () {
+      this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE, this.height = this.initHeight, this.fy = 0, this.force = {
+        previous: 0,
+        next: 0
+      }
+    },
+    setPreviousPoint: function (t) {
+      this.previous = t
+    },
+    setNextPoint: function (t) {
+      this.next = t
+    },
+    interfere: function (t, i) {
+      this.fy = this.renderer.height * this.ACCELARATION_RATE * (this.renderer.height - this.height - t >= 0 ? -1 : 1) * Math.abs(i)
+    },
+    updateSelf: function () {
+      this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height), this.fy *= this.SPRING_FRICTION, this.height += this.fy
+    },
+    updateNeighbors: function () {
+      this.previous && (this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height)), this.next && (this.force.next = this.WAVE_SPREAD * (this.height - this.next.height))
+    },
+    render: function (t) {
+      this.previous && (this.previous.height += this.force.previous, this.previous.fy += this.force.previous), this.next && (this.next.height += this.force.next, this.next.fy += this.force.next), t.lineTo(this.x, this.renderer.height - this.height)
+    }
+  };
+  var FISH = function (t) {
+    this.renderer = t, this.init()
+  };
+  FISH.prototype = {
+    GRAVITY: .4,
+    init: function () {
+      this.direction = Math.random() < .5, this.x = this.direction ? this.renderer.width + this.renderer.THRESHOLD : -this.renderer.THRESHOLD, this.previousY = this.y, this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1), this.renderer.reverse ? (this.y = this.getRandomValue(1 * this.renderer.height / 10, 4 * this.renderer.height / 10), this.vy = this.getRandomValue(2, 5), this.ay = this.getRandomValue(.05, .2)) : (this.y = this.getRandomValue(6 * this.renderer.height / 10, 9 * this.renderer.height / 10), this.vy = this.getRandomValue(-5, -2), this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1, this.theta = 0, this.phi = 0
+    },
+    getRandomValue: function (t, i) {
+      return t + (i - t) * Math.random()
+    },
+    reverseVertical: function () {
+      this.isOut = !this.isOut, this.ay *= -1
+    },
+    controlStatus: function (t) {
+      this.previousY = this.y, this.x += this.vx, this.y += this.vy, this.vy += this.ay, this.renderer.reverse ? this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy -= this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(.05, .2)), this.isOut = !1) : this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy += this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1), this.isOut || (this.theta += Math.PI / 20, this.theta %= 2 * Math.PI, this.phi += Math.PI / 30, this.phi %= 2 * Math.PI), this.renderer.generateEpicenter(this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD, this.y, this.y - this.previousY), (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD || this.vx < 0 && this.x < -this.renderer.THRESHOLD) && this.init()
+    },
+    render: function (t) {
+      t.save(), t.translate(this.x, this.y), t.rotate(Math.PI + Math.atan2(this.vy, this.vx)), t.scale(1, this.direction ? 1 : -1), t.beginPath(), t.moveTo(-30, 0), t.bezierCurveTo(-20, 15, 15, 10, 40, 0), t.bezierCurveTo(15, -10, -20, -15, -30, 0), t.fill(), t.save(), t.translate(40, 0), t.scale(.9 + .2 * Math.sin(this.theta), 1), t.beginPath(), t.moveTo(0, 0), t.quadraticCurveTo(5, 10, 20, 8), t.quadraticCurveTo(12, 5, 10, 0), t.quadraticCurveTo(12, -5, 20, -8), t.quadraticCurveTo(5, -10, 0, 0), t.fill(), t.restore(), t.save(), t.translate(-3, 0), t.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1)), t.beginPath(), this.renderer.reverse ? (t.moveTo(5, 0), t.bezierCurveTo(10, 10, 10, 30, 0, 40), t.bezierCurveTo(-12, 25, -8, 10, 0, 0)) : (t.moveTo(-5, 0), t.bezierCurveTo(-10, -10, -10, -30, 0, -40), t.bezierCurveTo(12, -25, 8, -10, 0, 0)), t.closePath(), t.fill(), t.restore(), t.restore(), this.controlStatus(t)
+    }
+  }, $(function () {
+    RENDERER.init()
+    $('.dark').click(function () {
+      setTimeout(() => {
+        RENDERER.setFishColor();
+        RENDERER.context.fill();
+      });
+    })
+  });
+</script>
+  <div class="footer bg-color">
+    <div class="footer-main">
+      
+        
+          <div class="link">
+            
+          </div>
+        
+      
+        
+          <div class="footer-copyright">
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> |<a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra">&lt;img src=”https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png”align=”absmiddle” width=”59px” height=”30px” /&gt;</a></p>
+
+          </div>
+        
+      
+        
+          
+        
+      
+        
+          <div class="footer-custom">
+            
+          </div>
+        
+      
+    </div>
+  </div>
+
+
+
+    <!-- 渲染暗黑按钮 -->
+    
+      <div class="dark">
+  <div class="dark-content">
+    <i class="fas fa-moon" aria-hidden="true"></i>
+    <!-- <span>关灯</span> -->
+  </div>
+  
+</div>
+
+<script>
+  $(function() {
+    let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+    if (isDark) {
+      $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+    }
+    $('.dark').click(function() {
+      if ($(document.body).is('.darkModel')) {
+        $(document.body).removeClass('darkModel');
+        localStorage.setItem('dark', false);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      } else {
+        $(document.body).addClass('darkModel');
+        localStorage.setItem('dark', true);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      }
+    })
+  })
+</script>
+    
+    <!-- 渲染回到顶部按钮 -->
+    
+      <div class="goTop top-btn-color" pointer>
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/js/goTop.js"></script>
+
+    
+    <!-- 渲染左下角音乐播放器 -->
+    
+      <link rel="stylesheet" href="/js/aplayer/APlayer@1.10.1.min.css">
+<style>
+.aplayer .aplayer-lrc p {
+  
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px !important;
+}
+
+.aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  font-size: 15px;
+  color: #010202;
+}
+
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;
+}
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0px !important;
+}
+
+
+</style>
+<meting-js  
+  class=""
+  server="netease"
+  type="playlist"
+  id="2303619958"
+  fixed='true'
+  autoplay='false'
+  theme='#010202'
+  loop='all'
+  order='random'
+  preload='auto'
+  volume='0.7'
+  list-folded='true'
+>
+</meting-js>
+
+<!-- <style>
+  #aplayer {
+    position: fixed;
+    left: 0;
+    bottom: 300px;
+  }
+</style> -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    
+
+    <!-- 图片放大 -->
+    
+
+    <!-- 百度解析 -->
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    <!-- 背景彩带 -->
+    
+
+    <script src="/js/utils/index.js"></script>
+    <script src="/js/app.js"></script>
+    
+    <!-- 文章目录所需js -->
+<link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+
+<script>
+  var headerEl = 'h2, h3, h4',  //headers 
+    content = '.post-detail',//文章容器
+    idArr = {};  //标题数组以确定是否增加索引id
+  //add #id
+  var option = {
+    // Where to render the table of contents.
+    tocSelector: '.toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: content,
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: headerEl,
+    scrollSmooth: true,
+    scrollSmoothOffset: -80,
+    headingsOffset: -($(window).height() * 0.4 - 45),
+    positionFixedSelector: '.toc-main',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    activeLinkClass: 'is-active-link',
+    // onClick: function (e) {},
+  }
+  if ($('.toc').length > 0) {
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      tocbot.init(option);
+      mobileTocClick();
+    });
+
+  }
+
+  window.tocScrollFn = function () {
+    return bamboo.throttle(function () {
+      findHeadPosition();
+    }, 100)()
+  }
+  window.addEventListener('scroll', tocScrollFn);
+
+  const findHeadPosition = function (top) {
+    if ($('.toc-list').length <= 0) {
+      return false;
+    }
+    setTimeout(() => {  // or DOMContentLoaded 
+      autoScrollToc();
+    }, 0);
+  }
+
+  const autoScrollToc = function () {
+    const $activeItem = document.querySelector('.is-active-link');
+    const $cardToc = document.querySelector('.toc-content');
+    const activePosition = $activeItem.getBoundingClientRect().top
+    const sidebarScrollTop = $cardToc.scrollTop
+    if (activePosition > (document.documentElement.clientHeight - 100)) {
+      $cardToc.scrollTop = sidebarScrollTop + 150
+    }
+    if (activePosition < 100) {
+      $cardToc.scrollTop = sidebarScrollTop - 150
+    }
+  }
+
+  document.addEventListener('pjax:send', function () {
+    if ($('.toc').length) {
+      tocbot.destroy();
+    }
+  });
+
+  document.addEventListener('pjax:complete', function () {
+    if ($('.toc').length) {
+      tocbot.init(option);
+      mobileTocClick();
+    }
+  });
+  
+  // 手机端toc按钮点击出现目录
+  const mobileTocClick = function () {
+    const $cardTocLayout = document.getElementsByClassName('toc-aside')[0];
+    const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0];
+    let right = '45px';
+    if (window.innerWidth >= 551 && window.innerWidth <= 992) {
+      right = '100px'
+    }
+    const mobileToc = {
+      open: () => {
+        $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: ' + right
+      },
+
+      close: () => {
+        $cardTocLayout.style.animation = 'toc-close .2s'
+        setTimeout(() => {
+          $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
+        }, 100)
+      }
+    }
+    document.getElementById('toc-mobile-btn').addEventListener('click', () => {
+      if (window.getComputedStyle($cardTocLayout).getPropertyValue('opacity') === '0') mobileToc.open()
+      else mobileToc.close()
+    })
+
+    $cardToc.addEventListener('click', (e) => {
+      if (window.innerWidth < 992) { // 小于992px的时候
+        mobileToc.close()
+      }
+    })
+  }
+</script>
+
+<style>
+  .is-position-fixed {
+    position: sticky !important;
+    top: 74px;
+  }
+
+  .toc-main ul {
+    counter-reset: show-list;
+  }
+
+  .toc-main ul li::before {
+    content: counter(item)".";
+    display: block;
+    position: absolute;
+    left: 12px;
+    top: 0;
+  }
+</style> 
+
+<!-- 设置导航背景 -->
+<script>
+  let setHeaderClass = () => {
+    const headerMenuTransparent = true;
+    if (!headerMenuTransparent) { return; }
+    const nav = $('#navHeader');
+    const navTop = nav.outerHeight();
+    const winTop = $(window).scrollTop();
+    if(winTop > navTop) {
+      nav.addClass('header-bg-color');
+    }
+    else {
+      nav.removeClass('header-bg-color');
+    }
+  };
+
+  let scrollCollect = () => {
+    return bamboo.throttle(function (e) {
+      setHeaderClass();
+    }, 200)()
+  }
+
+  let initHeaderBg = () => {
+    setHeaderClass();
+  }
+
+  setHeaderClass();
+  window.addEventListener('scroll', scrollCollect);
+
+  document.addEventListener('pjax:send', function () {
+    window.removeEventListener('scroll', scrollCollect)
+  })
+  document.addEventListener('pjax:complete', function () {
+    window.addEventListener('scroll', scrollCollect);
+    setHeaderClass();
+  })
+</script> 
+
+<!-- 渲染issues标签里的内容 -->
+<script>
+  function loadIssuesJS() {
+    if ($(".post-detail").find(".issues-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/issues/index.js');
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof IssuesAPI == "undefined") {
+      loadIssuesJS();
+    }
+  })
+</script>
+
+<!-- 输入框打字特效 -->
+<!-- 输入框打字特效 -->
+
+  <script src="/js/activate-power-mode.js"></script>
+  <script>
+    POWERMODE.colorful = true;  // 打开随机颜色特效
+    POWERMODE.shake = false;    // 关闭输入框抖动
+    document.body.addEventListener('input', POWERMODE);//监听打字事件
+  </script>
+
+
+<!-- markdown代码一键复制功能 -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.css">
+  <script src="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+  <script src="/js/clipboard/clipboard.min.js"></script>
+  <div id="appCopy">
+  </div>
+  <script data-pjax>
+    var vm = new Vue({
+      el: '#appCopy',
+      data: {
+      },
+      computed: {
+      },
+      mounted() {
+        const that = this;
+        var copy = 'copy';
+        /* code */
+        var initCopyCode = function () {
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fas fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+            target: function (trigger) {
+              return trigger.nextElementSibling;
+            }
+          });
+        }
+        initCopyCode();
+        $('.btn-copy').unbind('click').bind('click', function () {
+          doSomething();
+        })
+        $(document).unbind('keypress').bind('keypress', function (e) {
+          if (e.ctrlKey && e.keyCode == 67) {
+            doSomething();
+          }
+        })
+
+        function doSomething() {
+          that.$notify({
+            title: "成功",
+            content: "代码已复制，请遵守相关授权协议。",
+            type: 'success'
+          })
+        }
+      },
+      methods: {
+      },
+      created() { }
+    })
+  </script>
+  
+
+<!-- 图片懒加载 -->
+<script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+<!-- 卡片滚动动画 -->
+   
+
+<!-- 评论所需js -->
+
+  
+    <script type="text/javascript">
+  var utteranceCommon = {};
+
+  function check_utterance() {
+    let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+    if (isDark) {
+      utteranceCommon.Theme = '';
+    } else {
+      utteranceCommon.Theme = 'github-light';
+    }
+
+    return document.getElementById("gitment-container");
+  }
+  comment_el = '#gitment-container';
+  load_utterance = function () {
+    if ($(comment_el).length) {
+      // 匿名函数，防止污染全局变量
+      const HEAD = check_utterance();
+
+      var utterances = document.createElement('script');
+      utterances.type = 'text/javascript';
+      utterances.async = true;
+      utterances.setAttribute('issue-term', 'pathname')
+      utterances.setAttribute('theme', utteranceCommon.Theme)
+      utterances.setAttribute('repo', 'snowgo/juicesea')
+      utterances.crossorigin = 'anonymous';
+      utterances.src = 'https://utteranc.es/client.js';
+      // content 是要插入评论的地方
+      document.getElementById('gitment-container').appendChild(utterances);
+
+    }
+  }
+
+  function dark_utterance() {
+    const HEAD = check_utterance();
+    if (!HEAD) return;
+    const message = {
+      type: 'set-theme',
+      theme: utteranceCommon.Theme
+    };
+    const utteranceIframe = document.querySelector('iframe');
+    utteranceIframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+
+  $(document).ready(load_utterance);
+  document.addEventListener('pjax:complete', function () {
+    load_utterance();
+  });
+
+  $('.dark').click(function () {
+    setTimeout(() => {
+      dark_utterance();
+    });
+  })
+
+</script>
+
+<style>
+  .utterances {
+    max-width: inherit !important;
+  }
+</style>
+  
+
+
+<!-- 鼠标点击特效 -->
+<!-- 爱心点击 -->
+
+  
+    <script src="/js/cursor/fireworks.js"></script>
+  
+
+
+
+
+
+    <!-- pjax -->
+    
+
+<!-- pjax -->
+
+
+  <script src="/js/pjax@0.2.8/index.js"></script>
+  
+    <!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script>
+      window.ShowLoading = function() {
+        $(".loading-circle").css("display", "block");
+      };
+      window.HideLoading = function() {
+        $(".loading-circle").css("display", "none");
+      }
+    </script>
+  
+	<script>
+    document.addEventListener('pjax:complete', function () {
+      window.HideLoading();
+    })
+    document.addEventListener('pjax:send', function () {
+      window.ShowLoading();
+    })
+    document.addEventListener('pjax:error', function () {
+      window.HideLoading();
+    })
+	</script>
+</div>
+
+  
+
+  <script>
+    var pjax = new Pjax({
+      elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([no-pjax])',   // 拦截正常带链接的 a 标签
+      selectors: ["#pjax-container","title"],                                   // 根据实际需要确认重载区域
+      cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+      timeout: 5000
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+
+    })
+    
+    document.addEventListener('pjax:complete', function () {
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.location.href = e.triggerElement.href;
+    })
+    
+    // 刷新不从顶部开始
+    document.addEventListener("DOMContentLoaded", function () {
+      history.scrollRestoration = 'auto';
+    })
+  </script>
+
+
+
+  </body>
+</html>

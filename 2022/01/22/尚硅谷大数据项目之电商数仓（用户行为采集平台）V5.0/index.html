@@ -1,0 +1,2767 @@
+<!DOCTYPE html>
+<html>
+  <!-- meta/link... -->
+  
+
+
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+  <title>尚硅谷大数据项目之电商数仓（用户行为采集平台）V5.0 | snowgo</title>
+
+  <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
+  <link href="https://cdn.jsdelivr.net/gh/inkss/fontawesome@5.15.3/css/all.min.css" rel="stylesheet">
+  <link href="/js/swiper/swiper@5.4.1.min.css" rel="stylesheet">
+  
+  
+    <script>
+        var themeModelId = '';
+        if (themeModelId) {
+            localStorage.setItem('modelId', themeModelId);
+        }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/yuang01/live2d-widget@latest/autoload.js"></script>
+    <script>
+        var live2dOpen = eval('true') || false;
+        if (!live2dOpen) {
+            localStorage.setItem('waifu-display', 1609323474481);
+        }
+    </script>
+  
+  
+  
+<link rel="stylesheet" href="/css/animate.min.css">
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    
+<link rel="stylesheet" href="/js/shareJs/share.min.css">
+
+  
+  <style>
+        @media (max-width: 992px) {
+            #waifu {
+                display: none;
+            }
+        }
+    </style>
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+    
+
+    <!-- import link -->
+    
+        
+            
+        
+            
+        
+    
+    <!-- import script -->
+    
+        
+            
+        
+            
+        
+    
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  
+  <!-- 依赖于jquery和vue -->
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+
+  
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
+
+  
+  
+  <body>
+    <!-- 预加载动画 -->
+    <!-- 页面预加载动画 -->
+
+<div id='loader'>
+  <link rel="stylesheet" href="/js/loaded/index.css" >
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="configure-border-1">
+      <div class="configure-core"></div>
+    </div>
+    <div class="configure-border-2">
+      <div class="configure-core"></div>
+    </div>
+    <div class="loading-word">loading...</div>
+  </div>
+</div>
+
+<script>
+  var endLoading = function () {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('DOMContentLoaded',endLoading);
+  
+</script>
+
+    
+    <!-- 判断是否为暗黑风格 -->
+    <!-- 判断是否为黑夜模式 -->
+<script>
+  let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+
+  if (isDark) {
+    $(document.body).addClass('darkModel');
+  }
+</script>
+
+    <!-- 需要在上面加载的js -->
+    <script>
+  function loadScript(src, cb) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var HEAD = document.getElementsByTagName("head")[0] || document.documentElement;
+        var script = document.createElement("script");
+        script.setAttribute("type", "text/javascript");
+        if (cb) {
+          if (JSON.stringify(cb)) {
+            for (let p in cb) {
+              if (p == "onload") {
+                script[p] = () => {
+                  cb[p]()
+                  resolve()
+                }
+              } else {
+                script[p] = cb[p]
+                script.onload = resolve
+              }
+            }
+          } else {
+            script.onload = () => {
+              cb()
+              resolve()
+            };
+          }
+        } else {
+          script.onload = resolve
+        }
+        script.setAttribute("src", src);
+        HEAD.appendChild(script);
+      });
+    });
+  }
+
+  //https://github.com/filamentgroup/loadCSS
+  var loadCSS = function (href, before, media, attributes) {
+    return new Promise(resolve => {
+      setTimeout(function () {
+        var link = document.createElement('link');
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = resolve;
+        document.getElementsByTagName("head")[0].appendChild(link);
+      });
+    });
+  };
+
+</script> 
+
+<!-- 轮播图所需要的js -->
+<script src="/js/swiper/swiper.min.js"></script>
+<script src="/js/swiper/vue-awesome-swiper.js"></script>
+<script src="/js/swiper/swiper.animate1.0.3.min.js"></script>
+
+<script type="text/javascript">
+  Vue.use(window.VueAwesomeSwiper)
+</script>
+
+
+  <script src="/js/vue-typed-js/index.js"></script>
+
+
+<!-- 首页的公告滚动插件的js需要重新加载 -->
+<script src="/js/vue-seamless-scroll/index.js"></script>
+
+<!-- 打字机效果js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+
+
+    <div id="safearea">
+      <main class="main" id="pjax-container">
+        <!-- 头部导航 -->
+        
+<header class="header   " 
+  id="navHeader"
+  style="position: fixed;
+  left: 0; top: 0; z-index: 10;width: 100%;"
+>
+  <div class="header-content">
+    <div class="bars">
+      <div id="appDrawer" class="sidebar-image">
+  <div class="drawer-box-icon">
+    <i class="fas fa-bars" aria-hidden="true" @click="showDialogDrawer"></i>
+  </div>
+  
+  <transition name="fade">
+    <div class="drawer-box_mask" v-cloak style="display: none;" v-show="visible" @click.self="cancelDialogDrawer">
+    </div>
+  </transition>
+  <div class="drawer-box" :class="{'active': visible}">
+    <div class="drawer-box-head bg-color">
+      <img class="drawer-box-head_logo lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pre-medias/logo.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <h3 class="drawer-box-head_title">snowgo</h3>
+      <h5 class="drawer-box-head_desc"></h5>
+    </div>
+    
+    <div class="drawer-box-content">
+      <ul class="drawer-box-content_menu">
+        
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">主页</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/archives" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">时间轴</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/tags" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">标签</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/categories" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">类别</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/about" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                  
+                  <span class="name">关于我</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/friends" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-book" aria-hidden="true"></i>
+                  
+                  <span class="name">友人帐</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="/bangumis" class="drawer-menu-item-link">
+                  
+                    <i class="fas fa-video-camera" aria-hidden="true"></i>
+                  
+                  <span class="name">追番</span>
+                </a>
+              
+            </li>
+          
+            <li class="drawer-box-content_item" style="position: relative;">
+              
+                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(7)">
+                  <span>
+                    
+                      <i class="fas fa-link"></i>
+                    
+                    <span class="name">更多</span>
+                  </span>
+                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(7)}" aria-hidden="true"></i>
+                </a>
+                <ul class="drawer-sub-menu" v-if="isOpen(7)">
+                  
+                  <li>
+                    <a href="/gallery">
+                      
+                      <i class="fas fa-music" style="margin-top: -20px;"></i>
+                      
+                      <span>图库</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="http://baidu.com">
+                      
+                      <i class="fas fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>百度</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+        
+          <li class="drawer-box-content_item">
+            <a target="_blank" rel="noopener" href="https://github.com/snowgo/">
+              <i class="fas fa-github" aria-hidden="true"></i>
+              <span>Github</span>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appDrawer',
+    data: {
+      visible: false,
+      top: 0,
+      openArr: [],
+    },
+    computed: {
+    },
+    mounted() {
+    },
+    methods: {
+      isOpen(index) {
+        if (this.openArr.includes(index)) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      openOrCloseMenu(curIndex) {
+        const index = this.openArr.indexOf(curIndex);
+        if (index !== -1) {
+          this.openArr.splice(index, 1);
+        } else {
+          this.openArr.push(curIndex);
+        }
+      },
+      showDialogDrawer() {
+        this.visible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'width: 100%; height: 100%;overflow: hidden;';
+      },
+      cancelDialogDrawer() {
+        this.visible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      }
+    },
+    created() {}
+  })
+</script>
+
+    </div>
+    <div class="blog-title" id="author-avatar">
+      
+        <div class="avatar">
+          <img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pre-medias/logo.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+        </div>
+      
+      <a href="/" class="logo">snowgo</a>
+    </div>
+    <nav class="navbar">
+      <ul class="menu">
+        
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/" class="menu-item-link" title="主页">
+                  
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                  
+                  <span class="name">主页</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/archives" class="menu-item-link" title="时间轴">
+                  
+                    <i class="fas fa-archive" aria-hidden="true"></i>
+                  
+                  <span class="name">时间轴</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/tags" class="menu-item-link" title="标签">
+                  
+                    <i class="fas fa-tags" aria-hidden="true"></i>
+                  
+                  <span class="name">标签</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/categories" class="menu-item-link" title="类别">
+                  
+                    <i class="fas fa-bookmark" aria-hidden="true"></i>
+                  
+                  <span class="name">类别</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/about" class="menu-item-link" title="关于我">
+                  
+                    <i class="fas fa-user" aria-hidden="true"></i>
+                  
+                  <span class="name">关于我</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/friends" class="menu-item-link" title="友人帐">
+                  
+                    <i class="fas fa-book" aria-hidden="true"></i>
+                  
+                  <span class="name">友人帐</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="/bangumis" class="menu-item-link" title="追番">
+                  
+                    <i class="fas fa-video-camera" aria-hidden="true"></i>
+                  
+                  <span class="name">追番</span>
+                </a>
+              
+            </li>
+          
+            <li class="menu-item" style="position: relative;">
+              
+                <a href="javascript:;" class="menu-item-link" title="更多">
+                  
+                    <i class="fas fa-link"></i>
+                  
+                  <span class="name">更多</span>
+                  <i class="fas fa-chevron-down arrow" aria-hidden="true"></i>
+                </a>
+                <ul class="sub-menu">
+                  
+                  <li>
+                    <a href="/gallery">
+                      
+                      <i class="fas fa-music" style="margin-top: -20px;"></i>
+                      
+                      <span>图库</span>
+                    </a>
+                  </li>
+                  
+                  <li>
+                    <a target="_blank" rel="noopener" href="http://baidu.com">
+                      
+                      <i class="fas fa-film" style="margin-top: -20px;"></i>
+                      
+                      <span>百度</span>
+                    </a>
+                  </li>
+                  
+                </ul>
+              
+            </li>
+          
+        
+      </ul>
+      
+      
+        <div id="appSearch">
+  <div class="search"  @click="showDialog()"><i class="fas fa-search" aria-hidden="true"></i></div>
+  <transition name="fade">
+    <div class="message-box_wrapper" style="display: none;" v-cloak v-show="dialogVisible" @click.self="cancelDialogVisible()">
+      <div class="message-box animated bounceInDown">
+        <h2>
+          <span>
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <span class="title">Search</span>
+          </span>
+          <i class="fas fa-times close" pointer style="float:right;" aria-hidden="true" @click.self="cancelDialogVisible()"></i>
+        </h2>
+        <form class="site-search-form">
+          <input type="text"
+            placeholder="Please enter keywords"
+            id="local-search-input" 
+            @click="getSearchFile()"
+            class="st-search-input"
+            v-model="searchInput"
+          />
+        </form>
+        <div class="result-wrapper">
+          <div id="local-search-result" class="local-search-result-cls"></div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</div>
+<script src="/js/local_search.js"></script>
+<script>
+  var body = document.body || document.documentElement || window;
+  var vm = new Vue({
+    el: '#appSearch',
+    data: {
+      dialogVisible: false,
+      searchInput: '',
+      top: 0,
+    },
+    computed: {
+    },
+    mounted() {
+      window.addEventListener('pjax:complete', () => {
+        this.cancelDialogVisible();
+      })
+    },
+    methods: {
+      showDialog() {
+        this.dialogVisible = true;
+        // 防止页面滚动，只能让弹框滚动
+        this.top = $(document).scrollTop()
+        body.style.cssText = 'overflow: hidden;';
+      },
+      getSearchFile() {
+        if (!this.searchInput) {
+          getSearchFile("/search.xml");
+        }
+      },
+      cancelDialogVisible() {
+        this.dialogVisible = false;
+        body.removeAttribute('style');
+        $(document).scrollTop(this.top)
+      },
+    },
+    created() {}
+  })
+</script>
+<!-- 解决刷新页面闪烁问题，可以在元素上添加display: none, 或者用vue.extend方法，详情：https://blog.csdn.net/qq_31393401/article/details/81017912 -->
+<!-- 下面是搜索基本写法 -->
+<!-- <script type="text/javascript" id="local.search.active">
+  var inputArea = document.querySelector("#local-search-input");
+  inputArea.onclick   = function(){ getSearchFile(); this.onclick = null }
+  inputArea.onkeydown = function(){ if(event.keyCode == 13) return false }
+</script> -->
+
+      
+
+    </nav>
+  </div>
+  
+    <a target="_blank" rel="noopener" href="https://github.com/snowgo/" class="github-corner color-primary" aria-label="View source on GitHub"><svg width="60" height="60" viewBox="0 0 250 250" style="fill:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+  
+    <div id="he-plugin-simple"></div>
+    <script>
+      WIDGET = {
+        CONFIG: {
+          "modules": "012",
+          "background": 5,
+          "tmpColor": "4A4A4A",
+          "tmpSize": 16,
+          "cityColor": "4A4A4A",
+          "citySize": 16,
+          "aqiSize": 16,
+          "weatherIconSize": 24,
+          "alertIconSize": 18,
+          "padding": "10px 10px 10px 10px",
+          "shadow": "1",
+          "language": "auto",
+          "borderRadius": 5,
+          "fixed": "false",
+          "vertical": "middle",
+          "horizontal": "center",
+          "key": "2784dd3fcb1e4f0f9a9b579bf69641f2"
+        }
+      }
+    </script>
+    <script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script> 
+    
+</header>
+        <!-- 内容区域 -->
+        
+ <!-- prismjs 代码高亮 -->
+ 
+
+
+<div class="bg-dark-floor" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -1;"></div>
+
+
+  <!-- 文章详情页顶部图片和标题 -->
+
+
+
+
+<div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
+  background-position: center center;position: relative;background-image:url('https://images5.alphacoders.com/119/thumb-1920-1199650.jpg')">
+  <div class="post-detail-header-mask"></div>
+  <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
+  
+  <div class="post-detail-header_info-box">
+    <div class="title-box">
+      <span class="title">
+        尚硅谷大数据项目之电商数仓（用户行为采集平台）V5.0
+      </span>
+    </div>
+    
+    
+      
+        <span class="post-detail-header_date">
+          <i class="fas fa-calendar"></i> Published in：2022-01-22 |
+        </span>
+      
+
+      
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> category：
+          
+            <a href="/categories/%E9%A1%B9%E7%9B%AE/" class="post-detail-header_category">
+              项目
+            </a>
+          
+        </span>
+      
+
+      
+        <div class="post-detail-header_wordcount">
+          <span class="totalcount">
+            <i class="fas fa-file-text-o"></i> Words: 7.6k |
+          </span>
+  
+          <span class="min2read">
+            <i class="fas fa-clock"></i> Reading time: 34min |
+          </span>
+  
+          
+        </div>
+      
+    
+  </div>
+  
+  
+    <script src="/js/bubble/bubble.js"></script>
+  
+</div>
+
+
+
+
+
+<div class="row justify-position" 
+  style="padding-top: 0px;">
+  <div class="main-content">
+    <article class="post post-detail">
+      <div class="post-content">
+        <p>尚硅谷大数据项目之电商数仓（用户行为采集平台）</p>
+<p>(作者：尚硅谷大数据研发部)</p>
+<p>版本：V5.0</p>
+<h2 id="第1章-数据仓库概念"><a href="#第1章-数据仓库概念" class="headerlink" title="第1章 数据仓库概念"></a>第1章 数据仓库概念</h2><h2 id="第2章-项目需求及架构设计"><a href="#第2章-项目需求及架构设计" class="headerlink" title="第2章 项目需求及架构设计"></a>第2章 项目需求及架构设计</h2><h3 id="项目需求分析"><a href="#项目需求分析" class="headerlink" title="项目需求分析"></a>项目需求分析</h3><h3 id="项目框架"><a href="#项目框架" class="headerlink" title="项目框架"></a>项目框架</h3><h4 id="技术选型"><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h4><h4 id="系统数据流程设计"><a href="#系统数据流程设计" class="headerlink" title="系统数据流程设计"></a>系统数据流程设计</h4><h4 id="框架版本选型"><a href="#框架版本选型" class="headerlink" title="框架版本选型"></a>框架版本选型</h4><h4 id="服务器选型"><a href="#服务器选型" class="headerlink" title="服务器选型"></a>服务器选型</h4><h4 id="集群资源规划设计"><a href="#集群资源规划设计" class="headerlink" title="集群资源规划设计"></a>集群资源规划设计</h4><p>2）测试集群服务器规划</p>
+<table>
+<thead>
+<tr>
+<th>服务名称</th>
+<th>子服务</th>
+<th>服务器 hadoop102</th>
+<th>服务器 hadoop103</th>
+<th>服务器 hadoop104</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HDFS</td>
+<td>NameNode</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>DataNode</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td></td>
+<td>SecondaryNameNode</td>
+<td></td>
+<td></td>
+<td>√</td>
+</tr>
+<tr>
+<td>Yarn</td>
+<td>NodeManager</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td></td>
+<td>Resourcemanager</td>
+<td></td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>Zookeeper</td>
+<td>Zookeeper Server</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Flume(采集日志)</td>
+<td>Flume</td>
+<td>√</td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>Kafka</td>
+<td>Kafka</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Flume（消费Kafka）</td>
+<td>Flume</td>
+<td></td>
+<td></td>
+<td>√</td>
+</tr>
+<tr>
+<td>Hive</td>
+<td>Hive</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td>MySQL</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>DataX</td>
+<td>DataX</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Maxwell</td>
+<td>Maxwell</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Presto</td>
+<td>Coordinator</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Worker</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>DolphinScheduler</td>
+<td>MasterServer</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>WorkerServer</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Druid</td>
+<td>Druid</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Kylin</td>
+<td></td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Hbase</td>
+<td>HMaster</td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>HRegionServer</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+<tr>
+<td>Superset</td>
+<td></td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Atlas</td>
+<td></td>
+<td>√</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Solr</td>
+<td>Jar</td>
+<td>√</td>
+<td>√</td>
+<td>√</td>
+</tr>
+</tbody></table>
+<h2 id="第3章-用户行为日志"><a href="#第3章-用户行为日志" class="headerlink" title="第3章 用户行为日志"></a>第3章 用户行为日志</h2><h3 id="用户行为日志概述"><a href="#用户行为日志概述" class="headerlink" title="用户行为日志概述"></a>用户行为日志概述</h3><p>用户行为日志的内容，主要包括用户的各项<strong>行为信息</strong>以及行为所处的<strong>环境信息</strong>。收集这些信息的主要目的是优化产品和为各项分析统计指标提供数据支撑。收集这些信息的手段通常为<strong>埋点</strong>。</p>
+<p>目前主流的埋点方式，有代码埋点（前端/后端）、可视化埋点、全埋点等。</p>
+<p><strong>代码埋点</strong>是通过调用埋点SDK函数，在需要埋点的业务逻辑功能位置调用接口，上报埋点数据。例如，我们对页面中的某个按钮埋点后，当这个按钮被点击时，可以在这个按钮对应的<br>OnClick 函数里面调用SDK提供的数据发送接口，来发送数据。</p>
+<p><strong>可视化埋点</strong>只需要研发人员集成采集<br>SDK，不需要写埋点代码，业务人员就可以通过访问分析平台的“圈选”功能，来“圈”出需要对用户行为进行捕捉的控件，并对该事件进行命名。圈选完毕后，这些配置会同步到各个用户的终端上，由采集<br>SDK 按照圈选的配置自动进行用户行为数据的采集和发送。</p>
+<p><strong>全埋点</strong>是通过在产品中嵌入SDK，前端自动采集页面上的全部用户行为事件，上报埋点数据，相当于做了一个统一的埋点。然后再通过界面配置哪些数据需要在系统里面进行分析。</p>
+<h3 id="用户行为日志内容"><a href="#用户行为日志内容" class="headerlink" title="用户行为日志内容"></a>用户行为日志内容</h3><p>本项目收集和分析的用户行为信息主要有<strong>页面浏览记录、动作记录、曝光记录、启动记录和错误记录。</strong></p>
+<h4 id="页面浏览记录"><a href="#页面浏览记录" class="headerlink" title="页面浏览记录"></a>页面浏览记录</h4><p>页面浏览记录，记录的是访客对页面的浏览行为，该行为的环境信息主要有用户信息、时间信息、地理位置信息、设备信息、应用信息、渠道信息及页面信息等。</p>
+<h4 id="动作记录"><a href="#动作记录" class="headerlink" title="动作记录"></a>动作记录</h4><p>动作记录，记录的是用户的业务操作行为，该行为的环境信息主要有用户信息、时间信息、地理位置信息、设备信息、应用信息、渠道信息及动作目标对象信息等。</p>
+<h4 id="曝光记录"><a href="#曝光记录" class="headerlink" title="曝光记录"></a>曝光记录</h4><p>曝光记录，记录的是曝光行为，该行为的环境信息主要有用户信息、时间信息、地理位置信息、设备信息、应用信息、渠道信息及曝光对象信息等。</p>
+<h4 id="启动记录"><a href="#启动记录" class="headerlink" title="启动记录"></a>启动记录</h4><p>启动记录，记录的是用户启动应用的行为，该行为的环境信息主要有用户信息、时间信息、地理位置信息、设备信息、应用信息、渠道信息、启动类型及开屏广告信息等。</p>
+<h4 id="错误记录"><a href="#错误记录" class="headerlink" title="错误记录"></a>错误记录</h4><p>启动记录，记录的是用户在使用应用过程中的报错行为，该行为的环境信息主要有用户信息、时间信息、地理位置信息、设备信息、应用信息、渠道信息、以及可能与报错相关的页面信息、动作信息、曝光信息和动作信息。</p>
+<h3 id="用户行为日志格式"><a href="#用户行为日志格式" class="headerlink" title="用户行为日志格式"></a>用户行为日志格式</h3><p>我们的日志结构大致可分为两类，一是页面日志，二是启动日志。</p>
+<h4 id="页面日志"><a href="#页面日志" class="headerlink" title="页面日志"></a>页面日志</h4><p>页面日志，以页面浏览为单位，即一个页面浏览记录，生成一条页面埋点日志。一条<strong>完整</strong>的页面日志包含，一个页面浏览记录，若干个用户在该页面所做的动作记录，若干个该页面的曝光记录，以及一个在该页面发生的报错记录。除上述行为信息，页面日志还包含了这些行为所处的各种环境信息，包括用户信息、时间信息、地理位置信息、设备信息、应用信息、渠道信息等。</p>
+<p>{</p>
+<p>“common”: { – 环境信息</p>
+<p>“ar”: “230000”, – 地区编码</p>
+<p>“ba”: “iPhone”, – 手机品牌</p>
+<p>“ch”: “Appstore”, – 渠道</p>
+<p>“is_new”:<br>“1”,–是否首日使用，首次使用的当日，该字段值为1，过了24:00，该字段置为0。</p>
+<p>“md”: “iPhone 8”, – 手机型号</p>
+<p>“mid”: “YXfhjAYH6As2z9Iq”, – 设备id</p>
+<p>“os”: “iOS 13.2.9”, – 操作系统</p>
+<p>“uid”: “485”, – 会员id</p>
+<p>“vc”: “v2.1.134” – app版本号</p>
+<p>},</p>
+<p>“actions”: [ –动作(事件)</p>
+<p>{</p>
+<p>“action_id”: “favor_add”, –动作id</p>
+<p>“item”: “3”, –目标id</p>
+<p>“item_type”: “sku_id”, –目标类型</p>
+<p>“ts”: 1585744376605 –动作时间戳</p>
+<p>}</p>
+<p>],</p>
+<p>“displays”: [</p>
+<p>{</p>
+<p>“displayType”: “query”, – 曝光类型</p>
+<p>“item”: “3”, – 曝光对象id</p>
+<p>“item_type”: “sku_id”, – 曝光对象类型</p>
+<p>“order”: 1, –出现顺序</p>
+<p>“pos_id”: 2 –曝光位置</p>
+<p>},</p>
+<p>{</p>
+<p>“displayType”: “promotion”,</p>
+<p>“item”: “6”,</p>
+<p>“item_type”: “sku_id”,</p>
+<p>“order”: 2,</p>
+<p>“pos_id”: 1</p>
+<p>},</p>
+<p>{</p>
+<p>“displayType”: “promotion”,</p>
+<p>“item”: “9”,</p>
+<p>“item_type”: “sku_id”,</p>
+<p>“order”: 3,</p>
+<p>“pos_id”: 3</p>
+<p>},</p>
+<p>{</p>
+<p>“displayType”: “recommend”,</p>
+<p>“item”: “6”,</p>
+<p>“item_type”: “sku_id”,</p>
+<p>“order”: 4,</p>
+<p>“pos_id”: 2</p>
+<p>},</p>
+<p>{</p>
+<p>“displayType”: “query “,</p>
+<p>“item”: “6”,</p>
+<p>“item_type”: “sku_id”,</p>
+<p>“order”: 5,</p>
+<p>“pos_id”: 1</p>
+<p>}</p>
+<p>],</p>
+<p>“page”: { –页面信息</p>
+<p>“during_time”: 7648, – 持续时间毫秒</p>
+<p>“item”: “3”, – 目标id</p>
+<p>“item_type”: “sku_id”, – 目标类型</p>
+<p>“last_page_id”: “login”, – 上页类型</p>
+<p>“page_id”: “good_detail”, – 页面ID</p>
+<p>“sourceType”: “promotion” – 来源类型</p>
+<p>},</p>
+<p>“err”:{ –错误</p>
+<p>“error_code”: “1234”, –错误码</p>
+<p>“msg”: “***********“ –错误信息</p>
+<p>},</p>
+<p>“ts”: 1585744374423 –跳入时间戳</p>
+<p>}</p>
+<h4 id="启动日志"><a href="#启动日志" class="headerlink" title="启动日志"></a>启动日志</h4><p>启动日志以启动为单位，及一次启动行为，生成一条启动日志。一条完整的启动日志包括一个启动记录，一个本次启动时的报错记录，以及启动时所处的环境信息，包括用户信息、时间信息、地理位置信息、设备信息、应用信息、渠道信息等。</p>
+<p>{</p>
+<p>“common”: {</p>
+<p>“ar”: “370000”,</p>
+<p>“ba”: “Honor”,</p>
+<p>“ch”: “wandoujia”,</p>
+<p>“is_new”: “1”,</p>
+<p>“md”: “Honor 20s”,</p>
+<p>“mid”: “eQF5boERMJFOujcp”,</p>
+<p>“os”: “Android 11.0”,</p>
+<p>“uid”: “76”,</p>
+<p>“vc”: “v2.1.134”</p>
+<p>},</p>
+<p>“start”: {</p>
+<p>“entry”: “icon”, –icon手机图标 notice 通知 install 安装后启动</p>
+<p>“loading_time”: 18803, –启动加载时间</p>
+<p>“open_ad_id”: 7, –广告页ID</p>
+<p>“open_ad_ms”: 3449, – 广告总共播放时间</p>
+<p>“open_ad_skip_ms”: 1989 – 用户跳过广告时点</p>
+<p>},</p>
+<p>“err”:{ –错误</p>
+<p>“error_code”: “1234”, –错误码</p>
+<p>“msg”: “***********“ –错误信息</p>
+<p>},</p>
+<p>“ts”: 1585744304000</p>
+<p>}</p>
+<h3 id="模拟生成用户行为日志"><a href="#模拟生成用户行为日志" class="headerlink" title="模拟生成用户行为日志"></a>模拟生成用户行为日志</h3><h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><p><strong>1）服务器准备</strong></p>
+<p>安装如下文档配置步骤，准备hadoop102、hadoop103、hadoop104三台虚拟机。</p>
+<p>如需使用阿里云服务器，可参考以下文档。</p>
+<p><strong>2）JDK准备</strong></p>
+<p><strong>（1）卸载现有JDK（3台节点）</strong></p>
+<p>[atguigu@hadoop102 opt]## sudo rpm -qa | grep -i java | xargs -n1 sudo rpm -e<br>--nodeps</p>
+<p>[atguigu@hadoop103 opt]## sudo rpm -qa | grep -i java | xargs -n1 sudo rpm -e<br>--nodeps</p>
+<p>[atguigu@hadoop104 opt]## sudo rpm -qa | grep -i java | xargs -n1 sudo rpm -e<br>--nodeps</p>
+<p><strong>（2）用SecureCRT工具将JDK导入到hadoop102的/opt/software文件夹下面</strong></p>
+<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/d44e9b5727d45ae6a1f4733ddb23b743.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/d44e9b5727d45ae6a1f4733ddb23b743.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><strong>（3） “alt+p”进入sftp模式</strong></p>
+<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/6974407b7e3e788b5446b8bcd2b36466.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/6974407b7e3e788b5446b8bcd2b36466.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><strong>（4）选择jdk1.8拖入工具</strong></p>
+<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/b6cdad0ae4a090f67fdc0f30ba9665bc.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/b6cdad0ae4a090f67fdc0f30ba9665bc.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><strong>（5）在Linux系统下的opt目录中查看软件包是否导入成功</strong></p>
+<p>[atguigu@hadoop102 software]## ls /opt/software/</p>
+<p>看到如下结果：</p>
+<p>jdk-8u212-linux-x64.tar.gz</p>
+<p><strong>（6）解压JDK到/opt/module目录下</strong></p>
+<p>[atguigu@hadoop102 software]## tar -zxvf jdk-8u212-linux-x64.tar.gz -C<br>/opt/module/</p>
+<p><strong>（7）配置JDK环境变量</strong></p>
+<p>（1）新建/etc/profile.d/my_env.sh文件</p>
+<p>[atguigu@hadoop102 module]## sudo vim /etc/profile.d/my_env.sh</p>
+<p>添加如下内容，然后保存（:wq）退出</p>
+<p>##JAVA_HOME</p>
+<p>export JAVA_HOME=/opt/module/jdk1.8.0_212</p>
+<p>export PATH=$PATH:$JAVA_HOME/bin</p>
+<p>（2）让环境变量生效</p>
+<p>[atguigu@hadoop102 software]$ source /etc/profile.d/my_env.sh</p>
+<p><strong>（8）测试JDK是否安装成功</strong></p>
+<p>[atguigu@hadoop102 module]## java -version</p>
+<p>如果能看到以下结果、则Java正常安装</p>
+<p>java version “1.8.0_212”</p>
+<p><strong>（9）分发JDK</strong></p>
+<p>[atguigu@hadoop102 module]$ xsync /opt/module/jdk1.8.0_212/</p>
+<p><strong>（10）分发环境变量配置文件</strong></p>
+<p>[atguigu@hadoop102 module]$ sudo /home/atguigu/bin/xsync<br>/etc/profile.d/my_env.sh</p>
+<p><strong>（11）分别在hadoop103、hadoop104上执行source</strong></p>
+<p>[atguigu@hadoop103 module]$ source /etc/profile.d/my_env.sh</p>
+<p>[atguigu@hadoop104 module]$ source /etc/profile.d/my_env.sh</p>
+<p><strong>3）环境变量配置说明</strong></p>
+<p>Linux的环境变量可在多个文件中配置，如/etc/profile，/etc/profile.d/*.sh，~/.bashrc，~/.bash_profile等，下面说明上述几个文件之间的关系和区别。</p>
+<p>bash的运行模式可分为login shell和non-login shell。</p>
+<p>例如，我们通过终端，输入用户名、密码，登录系统之后，得到就是一个login<br>shell，而当我们执行以下命令ssh hadoop103<br>command，在hadoop103执行command的就是一个non-login shell。</p>
+<p>这两种shell的主要区别在于，它们启动时会加载不同的配置文件，login<br>shell启动时会加载/etc/profile，~/.bash_profile，~/.bashrc，non-login<br>shell启动时会加载~/.bashrc。即login shell会多加载/etc/profile文件。</p>
+<p>而在加载~/.bashrc（实际是~/.bashrc中加载的/etc/bashrc）或/etc/profile时，都会执行如下代码片段，</p>
+<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f33dbe2730179246e8ec1808a780b4bc.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f33dbe2730179246e8ec1808a780b4bc.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>因此不管是login shell还是non-login<br>shell，启动时都会加载/etc/profile.d/*.sh中的环境变量。而login<br>shell会多加载/etc/profile.d/sh.local文件。</p>
+<h4 id="模拟数据"><a href="#模拟数据" class="headerlink" title="模拟数据"></a>模拟数据</h4><p><strong>1）模拟器使用说明</strong></p>
+<p><strong>（1）上传模拟器</strong></p>
+<p>将application.yml、gmall2020-mock-log-2021-10-10.jar、path.json、logback.xml上传到hadoop102的/opt/module/applog目录下</p>
+<p><strong>创建applog路径</strong></p>
+<p>[atguigu@hadoop102 module]$ mkdir /opt/module/applog</p>
+<p><strong>上传文件</strong></p>
+<p><strong>（2）配置文件说明</strong></p>
+<p><strong>application.yml文件</strong></p>
+<p>可以根据需求生成对应日期的用户行为日志。</p>
+<p>[atguigu@hadoop102 applog]$ vim application.yml</p>
+<p>修改如下内容</p>
+<p>## 外部配置打开</p>
+<p>logging.config: “./logback.xml”</p>
+<p>##业务日期 即数据内的时间戳</p>
+<p>mock.date: “2020-06-14”</p>
+<p>##模拟数据发送模式</p>
+<p>mock.type: “log”</p>
+<p>##mock.type: “http”</p>
+<p>##mock.type: “kafka”</p>
+<p>##http模式下，发送的地址 没有使用</p>
+<p>mock.url: “<a target="_blank" rel="noopener" href="http://localhost:8090/applog&quot;">http://localhost:8090/applog&quot;</a></p>
+<p>##kafka模式下，发送的地址 没有使用</p>
+<p>mock:</p>
+<p>kafka-server: “hdp1:9092,hdp2:9092,hdp3:9092”</p>
+<p>kafka-topic: “ODS_BASE_LOG”</p>
+<p>##启动次数</p>
+<p>mock.startup.count: 200</p>
+<p>##设备最大值</p>
+<p>mock.max.mid: 1000000</p>
+<p>##会员最大值</p>
+<p>mock.max.uid: 1000</p>
+<p>##商品最大值</p>
+<p>mock.max.sku-id: 35</p>
+<p>##页面平均访问时间</p>
+<p>mock.page.during-time-ms: 20000</p>
+<p>##错误概率 百分比</p>
+<p>mock.error.rate: 3</p>
+<p>##每条日志发送延迟 ms</p>
+<p>mock.log.sleep: 20</p>
+<p>##商品详情来源 用户查询，商品推广，智能推荐, 促销活动</p>
+<p>mock.detail.source-type-rate: “40:25:15:20”</p>
+<p>##领取购物券概率</p>
+<p>mock.if_get_coupon_rate: 75</p>
+<p>##购物券最大id</p>
+<p>mock.max.coupon-id: 3</p>
+<p>##搜索关键词</p>
+<p>mock.search.keyword: “图书,小米,iphone11,电视,口红,ps5,苹果手机,小米盒子”</p>
+<p>## 男女浏览商品比重（35sku)</p>
+<p>mock.sku-weight.male:<br>“10:10:10:10:10:10:10:5:5:5:5:5:10:10:10:10:12:12:12:12:12:5:5:5:5:3:3:3:3:3:3:3:3:10:10”</p>
+<p>mock.sku-weight.female:<br>“1:1:1:1:1:1:1:5:5:5:5:5:1:1:1:1:2:2:2:2:2:8:8:8:8:15:15:15:15:15:15:15:15:1:1”</p>
+<p><strong>path.json</strong></p>
+<p>该文件用来配置访问路径，可以根据需求，灵活配置用户访问路径。</p>
+<p>[</p>
+<p>{“path”:[“home”,”good_list”,”good_detail”,”cart”,”trade”,”payment”],”rate”:20 },</p>
+<p>{“path”:[“home”,”search”,”good_list”,”good_detail”,”login”,”good_detail”,”cart”,”trade”,”payment”],”rate”:30<br>},</p>
+<p>{“path”:[“home”,”search”,”good_list”,”good_detail”,”login”,”register”,”good_detail”,”cart”,”trade”,”payment”],”rate”:20<br>},</p>
+<p>{“path”:[“home”,”mine”,”orders_unpaid”,”trade”,”payment”],”rate”:10 },</p>
+<p>{“path”:[“home”,”mine”,”orders_unpaid”,”good_detail”,”good_spec”,”comment”,”trade”,”payment”],”rate”:5<br>},</p>
+<p>{“path”:[“home”,”mine”,”orders_unpaid”,”good_detail”,”good_spec”,”comment”,”home”],”rate”:5<br>},</p>
+<p>{“path”:[“home”,”good_detail”],”rate”:20 },</p>
+<p>{“path”:[“home” ],”rate”:10 }</p>
+<p>]</p>
+<p><strong>logback配置文件</strong></p>
+<p>可配置日志生成路径，修改内容如下</p>
+<p>&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</p>
+<p>&lt;configuration&gt;</p>
+<p>&lt;property name=”**LOG_HOME**” value=”**/opt/module/applog/log**” /&gt;</p>
+<p>&lt;appender name=”console” class=”ch.qos.logback.core.ConsoleAppender”&gt;</p>
+<p>&lt;encoder&gt;</p>
+<p>&lt;pattern&gt;%msg%n&lt;/pattern&gt;</p>
+<p>&lt;/encoder&gt;</p>
+<p>&lt;/appender&gt;</p>
+<p>&lt;appender name=”rollingFile”<br>class=”ch.qos.logback.core.rolling.RollingFileAppender”&gt;</p>
+<p>&lt;rollingPolicy class=”ch.qos.logback.core.rolling.TimeBasedRollingPolicy”&gt;</p>
+<p>&lt;fileNamePattern&gt;${LOG_HOME}/app.%d{yyyy-MM-dd}.log&lt;/fileNamePattern&gt;</p>
+<p>&lt;/rollingPolicy&gt;</p>
+<p>&lt;encoder&gt;</p>
+<p>&lt;pattern&gt;%msg%n&lt;/pattern&gt;</p>
+<p>&lt;/encoder&gt;</p>
+<p>&lt;/appender&gt;</p>
+<p>&lt;!– 将某一个包下日志单独打印日志 –&gt;</p>
+<p>&lt;logger name=”com.atguigu.gmall2020.mock.log.util.LogUtil”</p>
+<p>level=”INFO” additivity=”false”&gt;</p>
+<p>&lt;appender-ref ref=”rollingFile” /&gt;</p>
+<p>&lt;appender-ref ref=”console” /&gt;</p>
+<p>&lt;/logger&gt;</p>
+<p>&lt;root level=”error” &gt;</p>
+<p>&lt;appender-ref ref=”console” /&gt;</p>
+<p>&lt;!– &lt;appender-ref ref=”async-rollingFile” /&gt; –&gt;</p>
+<p>&lt;/root&gt;</p>
+<p>&lt;/configuration&gt;</p>
+<p><strong>2）生成日志</strong></p>
+<p>（1）进入到/opt/module/applog路径，执行以下命令</p>
+<p>[atguigu@hadoop102 applog]$ java -jar gmall2020-mock-log-2021-10-10.jar</p>
+<p>（2）在/opt/module/applog/log目录下查看生成日志</p>
+<p>[atguigu@hadoop102 log]$ ll</p>
+<p><strong>3）集群日志生成脚本</strong></p>
+<p><strong>在hadoop102的/home/atguigu目录下创建bin目录，这样脚本可以在服务器的任何目录执行。</strong></p>
+<p>[atguigu@hadoop102 ~]$ echo $PATH</p>
+<p>/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/atguigu/.local/bin:/home/atguigu/bin</p>
+<p><strong>（1）在/home/atguigu/bin目录下创建脚本lg.sh</strong></p>
+<p>[atguigu@hadoop102 bin]$ vim lg.sh</p>
+<p><strong>（2）在脚本中编写如下内容</strong></p>
+<p>##!/bin/bash</p>
+<p>for i in hadoop102 hadoop103; do</p>
+<p>echo “========== $i ==========”</p>
+<p>ssh $i “cd /opt/module/applog/; java -jar gmall2020-mock-log-2021-10-10.jar<br>&gt;/dev/null 2&gt;&amp;1 &amp;”</p>
+<p>done</p>
+<p>注：</p>
+<p>/opt/module/applog/为jar包及配置文件所在路径</p>
+<p>/dev/null代表linux的空设备文件，所有往这个文件里面写入的内容都会丢失，俗称“黑洞”。</p>
+<p>标准输入0：从键盘获得输入 /proc/self/fd/0</p>
+<p>标准输出1：输出到屏幕（即控制台） /proc/self/fd/1</p>
+<p>错误输出2：输出到屏幕（即控制台） /proc/self/fd/2</p>
+<p><strong>（3）修改脚本执行权限</strong></p>
+<p>[atguigu@hadoop102 bin]$ chmod u+x lg.sh</p>
+<p><strong>（4）将jar包及配置文件上传至hadoop103的</strong>/opt/module/applog/<strong>路径</strong></p>
+<p><strong>（5）启动脚本</strong></p>
+<p>[atguigu@hadoop102 module]$ lg.sh</p>
+<p><strong>（6）分别在hadoop102、hadoop103的/opt/module/applog/log目录上查看生成的数据</strong></p>
+<p>[atguigu@hadoop102 logs]$ ls</p>
+<p>app.2020-06-14.log</p>
+<p>[atguigu@hadoop103 logs]$ ls</p>
+<p>app.2020-06-14.log</p>
+<h2 id="第4章-数据采集模块"><a href="#第4章-数据采集模块" class="headerlink" title="第4章 数据采集模块"></a>第4章 数据采集模块</h2><h3 id="数据通道"><a href="#数据通道" class="headerlink" title="数据通道"></a>数据通道</h3><h3 id="环境准备-1"><a href="#环境准备-1" class="headerlink" title="环境准备"></a>环境准备</h3><h4 id="集群所有进程查看脚本"><a href="#集群所有进程查看脚本" class="headerlink" title="集群所有进程查看脚本"></a>集群所有进程查看脚本</h4><p>1）在/home/atguigu/bin目录下创建脚本xcall.sh</p>
+<p>[atguigu@hadoop102 bin]$ vim xcall.sh</p>
+<p>2）在脚本中编写如下内容</p>
+<p>##! /bin/bash</p>
+<p>for i in hadoop102 hadoop103 hadoop104</p>
+<p>do</p>
+<p>echo ——— $i ———-</p>
+<p>ssh $i “$*“</p>
+<p>done</p>
+<p>3）修改脚本执行权限</p>
+<p>[atguigu@hadoop102 bin]$ chmod 777 xcall.sh</p>
+<p>4）启动脚本</p>
+<p>[atguigu@hadoop102 bin]$ xcall.sh jps</p>
+<p>如果只是查看集群进程启动情况，可以使用jpsall脚本</p>
+<p>##! /bin/bash</p>
+<p>for i in hadoop102 hadoop103 hadoop104</p>
+<p>do</p>
+<p>echo ——— $i ———-</p>
+<p>ssh $i “jps $@ | grep -v Jps”</p>
+<p>done</p>
+<h4 id="Hadoop安装"><a href="#Hadoop安装" class="headerlink" title="Hadoop安装"></a>Hadoop安装</h4><p><strong>1）安装步骤</strong></p>
+<p>详见：尚硅谷大数据技术之Hadoop（入门）</p>
+<p><strong>2）项目经验</strong></p>
+<p><strong>（1）项目经验之HDFS存储多目录</strong></p>
+<p>生产环境服务器磁盘情况</p>
+<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/abe21863ff846b4404d27ac0cda1460c.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/abe21863ff846b4404d27ac0cda1460c.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>在hdfs-site.xml文件中配置多目录，注意新挂载磁盘的访问权限问题。（本项目不需要配置多目录，如果配置启动hadoop会报错）</p>
+<p>HDFS的DataNode节点保存数据的路径由dfs.datanode.data.dir参数决定，其默认值为file://${hadoop.tmp.dir}/dfs/data，若服务器有多个磁盘，必须对该参数进行修改。如服务器磁盘如上图所示，则该参数应修改为如下的值。</p>
+<p>&lt;property&gt;</p>
+<p>&lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</p>
+<p>&lt;value&gt;file:///dfs/data1,file:///hd2/dfs/data2,file:///hd3/dfs/data3,file:///hd4/dfs/data4&lt;/value&gt;</p>
+<p>&lt;/property&gt;</p>
+<p>注意：每台服务器挂载的磁盘不一样，所以每个节点的多目录配置可以不一致。单独配置即可。</p>
+<p><strong>（2）项目经验之集群数据均衡</strong></p>
+<p><strong>节点间数据均衡</strong></p>
+<p>开启数据均衡命令：</p>
+<p>start-balancer.sh -threshold 10</p>
+<p>对于参数10，代表的是集群中各个节点的磁盘空间利用率相差不超过10%，可根据实际情况进行调整。</p>
+<p>停止数据均衡命令：</p>
+<p>stop-balancer.sh</p>
+<p><strong>磁盘间数据均衡</strong></p>
+<p>生成均衡计划<strong>（我们只有一块磁盘，不会生成计划）</strong></p>
+<p>hdfs diskbalancer -plan hadoop103</p>
+<p>执行均衡计划</p>
+<p>hdfs diskbalancer -execute hadoop103.plan.json</p>
+<p>查看当前均衡任务的执行情况</p>
+<p>hdfs diskbalancer -query hadoop103</p>
+<p>取消均衡任务</p>
+<p>hdfs diskbalancer -cancel hadoop103.plan.json</p>
+<p><strong>（3）项目经验之Hadoop参数调优</strong></p>
+<p>HDFS参数调优hdfs-site.xml</p>
+<p>The number of Namenode RPC server threads that listen to requests from clients.<br>If dfs.namenode.servicerpc-address is not configured then Namenode RPC server<br>threads listen to requests from all nodes.</p>
+<p>NameNode有一个工作线程池，用来处理不同DataNode的并发心跳以及客户端并发的元数据操作。</p>
+<p>对于大集群或者有大量客户端的集群来说，通常需要增大参数dfs.namenode.handler.count的默认值10。</p>
+<p>&lt;property&gt;</p>
+<p>&lt;name&gt;dfs.namenode.handler.count&lt;/name&gt;</p>
+<p>&lt;value&gt;10&lt;/value&gt;</p>
+<p>&lt;/property&gt;</p>
+<p>dfs.namenode.handler.count=，比如集群规模为8台时，此参数设置为41。可通过简单的python代码计算该值，代码如下。</p>
+<p>[atguigu@hadoop102 ~]$ python</p>
+<p>Python 2.7.5 (default, Apr 11 2018, 07:36:10)</p>
+<p>[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux2</p>
+<p>Type “help”, “copyright”, “credits” or “license” for more information.</p>
+<p>&gt;&gt;&gt; import math</p>
+<p>&gt;&gt;&gt; print int(20*math.log(8))</p>
+<p>41</p>
+<p>&gt;&gt;&gt; quit()</p>
+<p>YARN参数调优yarn-site.xml</p>
+<p><strong>情景描述</strong>：总共7台机器，每天几亿条数据，数据源-&gt;Flume-&gt;Kafka-&gt;HDFS-&gt;Hive</p>
+<p><strong>面临问题</strong>：数据统计主要用HiveSQL，没有数据倾斜，小文件已经做了合并处理，开启的JVM重用，而且IO没有阻塞，内存用了不到50%。但是还是跑的非常慢，而且数据量洪峰过来时，整个集群都会宕掉。基于这种情况有没有优化方案。</p>
+<p><strong>解决办法，修改yarn关键参数：</strong></p>
+<p>内存利用率不够。这个一般是Yarn的2个配置造成的，单个任务可以申请的最大内存大小，和Hadoop单个节点可用内存大小。调节这两个参数能提高系统内存的利用率。</p>
+<p>（a）yarn.nodemanager.resource.memory-mb</p>
+<p>表示该节点上YARN可使用的物理内存总量，默认是8192（MB），注意，如果你的节点内存资源不够8GB，则需要调减小这个值，而YARN不会智能的探测节点的物理内存总量。</p>
+<p>（b）yarn.scheduler.maximum-allocation-mb</p>
+<p>单个任务可申请的最多物理内存量，默认是8192（MB）。</p>
+<h4 id="Zookeeper安装"><a href="#Zookeeper安装" class="headerlink" title="Zookeeper安装"></a>Zookeeper安装</h4><p><strong>1）安装步骤</strong></p>
+<p>详见：尚硅谷大数据技术之Zookeeper</p>
+<p><strong>2）ZK集群启动停止脚本</strong></p>
+<p>（1）在hadoop102的/home/atguigu/bin目录下创建脚本</p>
+<p>[atguigu@hadoop102 bin]$ vim zk.sh</p>
+<p>在脚本中编写如下内容</p>
+<p>##!/bin/bash</p>
+<p>case $1 in</p>
+<p>“start”){</p>
+<p>for i in hadoop102 hadoop103 hadoop104</p>
+<p>do</p>
+<p>echo ———- zookeeper $i 启动 ————</p>
+<p>ssh $i “/opt/module/zookeeper-3.5.7/bin/zkServer.sh start”</p>
+<p>done</p>
+<p>};;</p>
+<p>“stop”){</p>
+<p>for i in hadoop102 hadoop103 hadoop104</p>
+<p>do</p>
+<p>echo ———- zookeeper $i 停止 ————</p>
+<p>ssh $i “/opt/module/zookeeper-3.5.7/bin/zkServer.sh stop”</p>
+<p>done</p>
+<p>};;</p>
+<p>“status”){</p>
+<p>for i in hadoop102 hadoop103 hadoop104</p>
+<p>do</p>
+<p>echo ———- zookeeper $i 状态 ————</p>
+<p>ssh $i “/opt/module/zookeeper-3.5.7/bin/zkServer.sh status”</p>
+<p>done</p>
+<p>};;</p>
+<p>esac</p>
+<p>（2）增加脚本执行权限</p>
+<p>[atguigu@hadoop102 bin]$ chmod u+x zk.sh</p>
+<p>（3）Zookeeper集群启动脚本</p>
+<p>[atguigu@hadoop102 module]$ zk.sh start</p>
+<p>（4）Zookeeper集群停止脚本</p>
+<p>[atguigu@hadoop102 module]$ zk.sh stop</p>
+<h4 id="Kafka安装"><a href="#Kafka安装" class="headerlink" title="Kafka安装"></a>Kafka安装</h4><p><strong>1）安装步骤</strong></p>
+<p>详见：尚硅谷大数据技术之Kafka</p>
+<p><strong>2）Kafka集群启动停止脚本</strong></p>
+<p>（1）在/home/atguigu/bin目录下创建脚本kf.sh</p>
+<p>[atguigu@hadoop102 bin]$ vim kf.sh</p>
+<p>在脚本中填写如下内容</p>
+<p>##! /bin/bash</p>
+<p>case $1 in</p>
+<p>“start”){</p>
+<p>for i in hadoop102 hadoop103 hadoop104</p>
+<p>do</p>
+<p>echo “ ——–启动 $i Kafka——-“</p>
+<p>ssh $i “/opt/module/kafka/bin/kafka-server-start.sh -daemon<br>/opt/module/kafka/config/server.properties”</p>
+<p>done</p>
+<p>};;</p>
+<p>“stop”){</p>
+<p>for i in hadoop102 hadoop103 hadoop104</p>
+<p>do</p>
+<p>echo “ ——–停止 $i Kafka——-“</p>
+<p>ssh $i “/opt/module/kafka/bin/kafka-server-stop.sh stop”</p>
+<p>done</p>
+<p>};;</p>
+<p>esac</p>
+<p>（2）增加脚本执行权限</p>
+<p>[atguigu@hadoop102 bin]$ chmod u+x kf.sh</p>
+<p>（3）kf集群启动脚本</p>
+<p>[atguigu@hadoop102 module]$ kf.sh start</p>
+<p>（4）kf集群停止脚本</p>
+<p>[atguigu@hadoop102 module]$ kf.sh stop</p>
+<p><strong>3）Kafka常用命令</strong></p>
+<p><strong>（1）查看Kafka Topic列表</strong></p>
+<p>[atguigu@hadoop102 kafka]$ bin/kafka-topics.sh –zookeeper hadoop102:2181/kafka<br>--list</p>
+<p><strong>（2）创建Kafka Topic</strong></p>
+<p>进入到/opt/module/kafka/目录下创建日志主题</p>
+<p>[atguigu@hadoop102 kafka]$ bin/kafka-topics.sh –bootstrap-server<br>hadoop102:9092 –create –replication-factor 2 –partitions 3 –topic topic_log</p>
+<p><strong>（3）删除Kafka Topic</strong></p>
+<p>[atguigu@hadoop102 kafka]$ bin/kafka-topics.sh –delete –bootstrap-server<br>hadoop102:9092 –topic topic_log</p>
+<p><strong>（4）Kafka生产消息</strong></p>
+<p>[atguigu@hadoop102 kafka]$ bin/kafka-console-producer.sh \</p>
+<p>--broker-list hadoop102:9092 –topic topic_log</p>
+<p>&gt;hello world</p>
+<p>&gt;atguigu atguigu</p>
+<p><strong>（5）Kafka消费消息</strong></p>
+<p>[atguigu@hadoop102 kafka]$ bin/kafka-console-consumer.sh \</p>
+<p>--bootstrap-server hadoop102:9092 –from-beginning –topic topic_log</p>
+<p>--from-beginning：会把主题中以往所有的数据都读取出来。根据业务场景选择是否增加该配置。</p>
+<p><strong>（6）查看Kafka Topic详情</strong></p>
+<p>[atguigu@hadoop102 kafka]$ bin/kafka-topics.sh –zookeeper hadoop102:2181/kafka<br>\</p>
+<p>--describe –topic topic_log</p>
+<h4 id="Flume安装"><a href="#Flume安装" class="headerlink" title="Flume安装"></a>Flume安装</h4><p>按照采集通道规划，需在hadoop102，hadoop103，hadoop104三台节点分别部署一个Flume。<strong>可参照以下步骤先在hadoop102安装，然后再进行分发。</strong></p>
+<p><strong>1）安装步骤</strong></p>
+<p>详见：尚硅谷大数据技术之Flume</p>
+<p><strong>2）分发Flume</strong></p>
+<p>[atguigu@hadoop102 ~]$ xsync /opt/module/flume/</p>
+<p><strong>3）项目经验</strong></p>
+<p><strong>（1）堆内存调整</strong></p>
+<p>Flume堆内存通常设置为4G或更高，配置方式如下：</p>
+<p>修改/opt/module/flume/conf/flume-env.sh文件，配置如下参数<strong>（虚拟机环境暂不配置，千万别配）</strong></p>
+<p>export JAVA_OPTS=”-Xms4096m -Xmx4096m -Dcom.sun.management.jmxremote”</p>
+<p>注：</p>
+<p>-Xms表示JVM Heap(堆内存)最小尺寸，初始分配；</p>
+<p>-Xmx 表示JVM Heap(堆内存)最大允许的尺寸，按需分配。</p>
+<h3 id="日志采集Flume"><a href="#日志采集Flume" class="headerlink" title="日志采集Flume"></a>日志采集Flume</h3><h4 id="日志采集Flume配置概述"><a href="#日志采集Flume配置概述" class="headerlink" title="日志采集Flume配置概述"></a>日志采集Flume配置概述</h4><p>按照规划，需要采集的用户行为日志文件分布在hadoop102，hadoop103两台日志服务器，故需要在hadoop102，hadoop103两台节点配置日志采集Flume。日志采集Flume需要采集日志文件内容，并对日志格式（JSON）进行校验，然后将校验通过的日志发送到Kafka。</p>
+<p>此处可选择TaildirSource和KafkaChannel，并配置日志校验拦截器。</p>
+<p>选择TailDirSource和KafkaChannel的原因如下：</p>
+<p><strong>1）TailDirSource</strong></p>
+<p>TailDirSource相比ExecSource、SpoolingDirectorySource的优势</p>
+<p>TailDirSource：断点续传、多目录。Flume1.6以前需要自己自定义Source记录每次读取文件位置，实现断点续传。</p>
+<p>ExecSource可以实时搜集数据，但是在Flume不运行或者Shell命令出错的情况下，数据将会丢失。</p>
+<p>SpoolingDirectorySource监控目录，支持断点续传。</p>
+<p><strong>2）KafkaChannel</strong></p>
+<p>采用Kafka Channel，省去了Sink，提高了效率。</p>
+<p>日志采集Flume关键配置如下：</p>
+<h4 id="日志采集Flume配置实操"><a href="#日志采集Flume配置实操" class="headerlink" title="日志采集Flume配置实操"></a>日志采集Flume配置实操</h4><p><strong>1）创建Flume配置文件</strong></p>
+<p>在hadoop102节点的Flume的job目录下创建file_to_kafka.conf</p>
+<p>[atguigu@hadoop104 flume]$ mkdir job</p>
+<p>[atguigu@hadoop104 flume]$ vim job/file_to_kafka.conf</p>
+<p><strong>2）配置文件内容如下</strong></p>
+<p>##为各组件命名</p>
+<p>a1.sources = r1</p>
+<p>a1.channels = c1</p>
+<p>##描述source</p>
+<p>a1.sources.r1.type = TAILDIR</p>
+<p>a1.sources.r1.filegroups = f1</p>
+<p>a1.sources.r1.filegroups.f1 = /opt/module/applog/log/app.*</p>
+<p>a1.sources.r1.positionFile = /opt/module/flume/taildir_position.json</p>
+<p>a1.sources.r1.interceptors = i1</p>
+<p>a1.sources.r1.interceptors.i1.type =<br>com.atguigu.flume.interceptor.ETLInterceptor$Builder</p>
+<p>##描述channel</p>
+<p>a1.channels.c1.type = org.apache.flume.channel.kafka.KafkaChannel</p>
+<p>a1.channels.c1.kafka.bootstrap.servers = hadoop102:9092,hadoop103:9092</p>
+<p>a1.channels.c1.kafka.topic = topic_log</p>
+<p>a1.channels.c1.parseAsFlumeEvent = false</p>
+<p>##绑定source和channel以及sink和channel的关系</p>
+<p>a1.sources.r1.channels = c1</p>
+<p><strong>3）编写Flume拦截器</strong></p>
+<p>（1）创建Maven工程flume-interceptor</p>
+<p>（2）创建包：com.atguigu.flume.interceptor</p>
+<p>（3）在pom.xml文件中添加如下配置</p>
+<p>&lt;dependencies&gt;<br>&lt;dependency&gt;<br>&lt;groupId&gt;org.apache.flume&lt;/groupId&gt;<br>&lt;artifactId&gt;flume-ng-core&lt;/artifactId&gt;<br>&lt;version&gt;1.9.0&lt;/version&gt;<br>&lt;scope&gt;provided&lt;/scope&gt;<br>&lt;/dependency&gt;  </p>
+<p>&lt;dependency&gt;<br>&lt;groupId&gt;com.alibaba&lt;/groupId&gt;<br>&lt;artifactId&gt;fastjson&lt;/artifactId&gt;<br>&lt;version&gt;1.2.62&lt;/version&gt;<br>&lt;/dependency&gt;<br>&lt;/dependencies&gt;  </p>
+<p>&lt;build&gt;<br>&lt;plugins&gt;<br>&lt;plugin&gt;<br>&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;<br>&lt;version&gt;2.3.2&lt;/version&gt;<br>&lt;configuration&gt;<br>&lt;source&gt;1.8&lt;/source&gt;<br>&lt;target&gt;1.8&lt;/target&gt;<br>&lt;/configuration&gt;<br>&lt;/plugin&gt;<br>&lt;plugin&gt;<br>&lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;<br>&lt;configuration&gt;<br>&lt;descriptorRefs&gt;<br>&lt;descriptorRef&gt;jar-with-dependencies&lt;/descriptorRef&gt;<br>&lt;/descriptorRefs&gt;<br>&lt;/configuration&gt;<br>&lt;executions&gt;<br>&lt;execution&gt;<br>&lt;id&gt;make-assembly&lt;/id&gt;<br>&lt;phase&gt;package&lt;/phase&gt;<br>&lt;goals&gt;<br>&lt;goal&gt;single&lt;/goal&gt;<br>&lt;/goals&gt;<br>&lt;/execution&gt;<br>&lt;/executions&gt;<br>&lt;/plugin&gt;<br>&lt;/plugins&gt;<br>&lt;/build&gt;</p>
+<p>（4）在com.atguigu.flume.interceptor包下创建JSONUtils类</p>
+<p>package com.atguigu.flume.interceptor;  </p>
+<p>import com.alibaba.fastjson.JSON;<br>import com.alibaba.fastjson.JSONException;  </p>
+<p>public class JSONUtils {<br>public static boolean isJSONValidate(String log){<br>try {<br>JSON.parse(log);<br>return true;<br>}catch (JSONException e){<br>return false;<br>}<br>}<br>}</p>
+<p>（5）在com.atguigu.flume.interceptor包下创建LogInterceptor类</p>
+<p>package com.atguigu.flume.interceptor;</p>
+<p>import com.alibaba.fastjson.JSON;</p>
+<p>import org.apache.flume.Context;</p>
+<p>import org.apache.flume.Event;</p>
+<p>import org.apache.flume.interceptor.Interceptor;</p>
+<p>import java.nio.charset.StandardCharsets;</p>
+<p>import java.util.Iterator;</p>
+<p>import java.util.List;</p>
+<p>public class ETLInterceptor implements Interceptor {</p>
+<p>@Override</p>
+<p>public void initialize() {</p>
+<p>}</p>
+<p>@Override</p>
+<p>public Event intercept(Event event) {</p>
+<p>byte[] body = event.getBody();</p>
+<p>String log = new String(body, StandardCharsets.UTF_8);</p>
+<p>if (JSONUtils.isJSONValidate(log)) {</p>
+<p>return event;</p>
+<p>} else {</p>
+<p>return null;</p>
+<p>}</p>
+<p>}</p>
+<p>@Override</p>
+<p>public List&lt;Event&gt; intercept(List&lt;Event&gt; list) {</p>
+<p>Iterator&lt;Event&gt; iterator = list.iterator();</p>
+<p>while (iterator.hasNext()){</p>
+<p>Event next = iterator.next();</p>
+<p>if(intercept(next)==null){</p>
+<p>iterator.remove();</p>
+<p>}</p>
+<p>}</p>
+<p>return list;</p>
+<p>}</p>
+<p>public static class Builder implements Interceptor.Builder{</p>
+<p>@Override</p>
+<p>public Interceptor build() {</p>
+<p>return new ETLInterceptor();</p>
+<p>}</p>
+<p>@Override</p>
+<p>public void configure(Context context) {</p>
+<p>}</p>
+<p>}</p>
+<p>@Override</p>
+<p>public void close() {</p>
+<p>}</p>
+<p>}</p>
+<p>（6）打包</p>
+<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/361c38002f9891ce01e4771948d70b01.png" alt="图片包含 图形用户界面
+描述已自动生成"></p>
+<p>（7）需要先将打好的包放入到hadoop102的/opt/module/flume/lib文件夹下面。</p>
+<h4 id="日志采集Flume测试"><a href="#日志采集Flume测试" class="headerlink" title="日志采集Flume测试"></a>日志采集Flume测试</h4><p><strong>1）启动Zookeeper、Kafka集群</strong></p>
+<p><strong>2）启动hadoop102的日志采集Flume</strong></p>
+<p>[atguigu@hadoop102 flume]$ bin/flume-ng agent -n a1 -c conf/ -f<br>job/file_to_kafka.conf -Dflume.root.logger=info,console</p>
+<p><strong>3）启动一个Kafka的Console-Consumer</strong></p>
+<p>[atguigu@hadoop102 kafka]$ bin/kafka-console-consumer.sh –bootstrap-server<br>hadoop102:9092 –topic topic_log</p>
+<p><strong>4）生成模拟数据</strong></p>
+<p>[atguigu@hadoop102 ~]$ lg.sh</p>
+<p><strong>5）观察Kafka消费者是否能消费到数据</strong></p>
+<h4 id="日志采集Flume启停脚本"><a href="#日志采集Flume启停脚本" class="headerlink" title="日志采集Flume启停脚本"></a>日志采集Flume启停脚本</h4><p><strong>1）分发日志采集Flume配置文件和拦截器</strong></p>
+<p>若上述测试通过，需将hadoop102节点的Flume的配置文件和拦截器jar包，向另一台日志服务器发送一份。</p>
+<p>[atguigu@hadoop102 flume]$ scp -r job hadoop103:/opt/module/flume/</p>
+<p>[atguigu@hadoop102 flume]$ scp<br>lib/flume-interceptor-1.0-SNAPSHOT-jar-with-dependencies.jar<br>hadoop103:/opt/module/flume/lib/</p>
+<p><strong>2）方便起见，此处编写一个日志采集Flume进程的启停脚本</strong></p>
+<p><strong>1）在hadoop102节点的/home/atguigu/bin目录下创建脚本f1.sh</strong></p>
+<p>[atguigu@hadoop102 bin]$ vim f1.sh</p>
+<p>在脚本中填写如下内容</p>
+<p>##!/bin/bash</p>
+<p>case $1 in</p>
+<p>“start”){</p>
+<p>for i in hadoop102 hadoop103</p>
+<p>do</p>
+<p>echo “ ——–启动 $i 采集flume——-“</p>
+<p>ssh $i “nohup /opt/module/flume/bin/flume-ng agent -n a1 -c<br>/opt/module/flume/conf/ -f /opt/module/flume/job/file_to_kafka.conf &gt;/dev/null<br>2&gt;&amp;1 &amp;”</p>
+<p>done</p>
+<p>};;</p>
+<p>“stop”){</p>
+<p>for i in hadoop102 hadoop103</p>
+<p>do</p>
+<p>echo “ ——–停止 $i 采集flume——-“</p>
+<p>ssh $i “ps -ef | grep file_to_kafka.conf | grep -v grep |awk ‘{print \$2}’<br>| xargs -n1 kill -9 “</p>
+<p>done</p>
+<p>};;</p>
+<p>esac</p>
+<p><strong>2）增加脚本执行权限</strong></p>
+<p>[atguigu@hadoop102 bin]$ chmod x f1.sh</p>
+<p><strong>3）f1启动</strong></p>
+<p>[atguigu@hadoop102 module]$ f1.sh start</p>
+<p><strong>4）f2停止</strong></p>
+<p>[atguigu@hadoop102 module]$ f1.sh stop</p>
+<h3 id="日志消费Flume"><a href="#日志消费Flume" class="headerlink" title="日志消费Flume"></a>日志消费Flume</h3><h4 id="日志消费Flume配置概述"><a href="#日志消费Flume配置概述" class="headerlink" title="日志消费Flume配置概述"></a>日志消费Flume配置概述</h4><p>按照规划，该Flume需将Kafka中topic_log的数据发往HDFS。并且对每天产生的用户行为日志进行区分，将不同天的数据发往HDFS不同天的路径。</p>
+<p>此处选择KafkaSource、FileChannel、HDFSSink。</p>
+<p>关键配置如下：</p>
+<h4 id="日志消费Flume配置实操"><a href="#日志消费Flume配置实操" class="headerlink" title="日志消费Flume配置实操"></a>日志消费Flume配置实操</h4><p><strong>1）创建Flume配置文件</strong></p>
+<p>在hadoop104节点的Flume的job目录下创建kafka_to_hdfs.conf</p>
+<p>[atguigu@hadoop104 flume]$ mkdir job</p>
+<p>[atguigu@hadoop104 flume]$ vim job/kafka_to_hdfs.conf</p>
+<p><strong>2）配置文件内容如下</strong></p>
+<p>#### 组件</p>
+<p>a1.sources=r1</p>
+<p>a1.channels=c1</p>
+<p>a1.sinks=k1</p>
+<p>#### source1</p>
+<p>a1.sources.r1.type = org.apache.flume.source.kafka.KafkaSource</p>
+<p>a1.sources.r1.batchSize = 5000</p>
+<p>a1.sources.r1.batchDurationMillis = 2000</p>
+<p>a1.sources.r1.kafka.bootstrap.servers =<br>hadoop102:9092,hadoop103:9092,hadoop104:9092</p>
+<p>a1.sources.r1.kafka.topics=topic_log</p>
+<p>a1.sources.r1.interceptors = i1</p>
+<p>a1.sources.r1.interceptors.i1.type =<br>com.atguigu.flume.interceptor.TimestampInterceptor$Builder</p>
+<p>#### channel1</p>
+<p>a1.channels.c1.type = file</p>
+<p>a1.channels.c1.checkpointDir = /opt/module/flume/checkpoint/behavior1</p>
+<p>a1.channels.c1.dataDirs = /opt/module/flume/data/behavior1/</p>
+<p>a1.channels.c1.maxFileSize = 2146435071</p>
+<p>a1.channels.c1.capacity = 1000000</p>
+<p>a1.channels.c1.keep-alive = 6</p>
+<p>#### sink1</p>
+<p>a1.sinks.k1.type = hdfs</p>
+<p>a1.sinks.k1.hdfs.path = /origin_data/gmall/log/topic_log/%Y-%m-%d</p>
+<p>a1.sinks.k1.hdfs.filePrefix = log-</p>
+<p>a1.sinks.k1.hdfs.rollInterval = 10</p>
+<p>a1.sinks.k1.hdfs.rollSize = 134217728</p>
+<p>a1.sinks.k1.hdfs.rollCount = 0</p>
+<p>#### 控制输出文件是原生文件。</p>
+<p>a1.sinks.k1.hdfs.fileType = CompressedStream</p>
+<p>a1.sinks.k1.hdfs.codeC = gzip</p>
+<p>#### 拼装</p>
+<p>a1.sources.r1.channels = c1</p>
+<p>a1.sinks.k1.channel= c1</p>
+<p><strong>注：配置优化</strong></p>
+<p>1）FileChannel优化</p>
+<p>通过配置dataDirs指向多个路径，每个路径对应不同的硬盘，增大Flume吞吐量。</p>
+<p>官方说明如下：</p>
+<p>Comma separated list of directories for storing log files. Using multiple<br>directories on separate disks can improve file channel peformance</p>
+<p>checkpointDir和backupCheckpointDir也尽量配置在不同硬盘对应的目录中，保证checkpoint坏掉后，可以快速使用backupCheckpointDir恢复数据</p>
+<p>2）HDFS Sink优化</p>
+<p>（1）HDFS存入大量小文件，有什么影响？</p>
+<p><strong>元数据层面：</strong>每个小文件都有一份元数据，其中包括文件路径，文件名，所有者，所属组，权限，创建时间等，这些信息都保存在Namenode内存中。所以小文件过多，会占用Namenode服务器大量内存，影响Namenode性能和使用寿命</p>
+<p><strong>计算层面：</strong>默认情况下MR会对每个小文件启用一个Map任务计算，非常影响计算性能。同时也影响磁盘寻址时间。</p>
+<p>（2）HDFS小文件处理</p>
+<p>官方默认的这三个参数配置写入HDFS后会产生小文件，hdfs.rollInterval、hdfs.rollSize、hdfs.rollCount</p>
+<p>基于以上hdfs.rollInterval=3600，hdfs.rollSize=134217728，hdfs.rollCount<br>=0几个参数综合作用，效果如下：</p>
+<p>（1）文件在达到128M时会滚动生成新文件</p>
+<p>（2）文件创建超3600秒时会滚动生成新文件</p>
+<p><strong>3）编写Flume拦截器</strong></p>
+<p>（1）在com.atguigu.flume.interceptor包下创建TimeStampInterceptor类</p>
+<p>package com.atguigu.flume.interceptor;</p>
+<p>import com.alibaba.fastjson.JSONObject;</p>
+<p>import org.apache.flume.Context;</p>
+<p>import org.apache.flume.Event;</p>
+<p>import org.apache.flume.interceptor.Interceptor;</p>
+<p>import java.nio.charset.StandardCharsets;</p>
+<p>import java.util.List;</p>
+<p>import java.util.Map;</p>
+<p>public class TimeStampInterceptor implements Interceptor {</p>
+<p>@Override</p>
+<p>public void initialize() {</p>
+<p>}</p>
+<p>@Override</p>
+<p>public Event intercept(Event event) {</p>
+<p>Map&lt;String, String&gt; headers = event.getHeaders();</p>
+<p>String log = new String(event.getBody(), StandardCharsets.UTF_8);</p>
+<p>JSONObject jsonObject = JSONObject.parseObject(log);</p>
+<p>String ts = jsonObject.getString(“ts”);</p>
+<p>headers.put(“timestamp”, ts);</p>
+<p>return event;</p>
+<p>}</p>
+<p>@Override</p>
+<p>public List&lt;Event&gt; intercept(List&lt;Event&gt; events) {</p>
+<p>for (Event event : events) {</p>
+<p>intercept(event);</p>
+<p>}</p>
+<p>return events;</p>
+<p>}</p>
+<p>@Override</p>
+<p>public void close() {</p>
+<p>}</p>
+<p>public static class Builder implements Interceptor.Builder {</p>
+<p>@Override</p>
+<p>public Interceptor build() {</p>
+<p>return new TimeStampInterceptor();</p>
+<p>}</p>
+<p>@Override</p>
+<p>public void configure(Context context) {</p>
+<p>}</p>
+<p>}</p>
+<p>}</p>
+<p>（2）重新打包</p>
+<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/361c38002f9891ce01e4771948d70b01.png" alt="图片包含 图形用户界面
+描述已自动生成"></p>
+<p>3）需要先将打好的包放入到hadoop104的/opt/module/flume/lib文件夹下面。</p>
+<h4 id="日志消费Flume测试"><a href="#日志消费Flume测试" class="headerlink" title="日志消费Flume测试"></a>日志消费Flume测试</h4><p><strong>1）启动Zookeeper、Kafka集群</strong></p>
+<p><strong>2）启动日志采集Flume</strong></p>
+<p>[atguigu@hadoop102 ~]$ f1.sh start</p>
+<p><strong>3）启动hadoop104的日志消费Flume</strong></p>
+<p>[atguigu@hadoop104 flume]$ bin/flume-ng agent -n a1 -c conf/ -f<br>job/kafka_to_hdfs.conf -Dflume.root.logger=info,console</p>
+<p><strong>4）生成模拟数据</strong></p>
+<p>[atguigu@hadoop102 ~]$ lg.sh</p>
+<p><strong>5）观察HDFS是否出现数据</strong></p>
+<h4 id="日志消费Flume启停脚本"><a href="#日志消费Flume启停脚本" class="headerlink" title="日志消费Flume启停脚本"></a>日志消费Flume启停脚本</h4><p>若上述测试通过，为方便，此处创建一个Flume的启停脚本。</p>
+<p><strong>1）在hadoop102节点的/home/atguigu/bin目录下创建脚本f2.sh</strong></p>
+<p>[atguigu@hadoop102 bin]$ vim f2.sh</p>
+<p>在脚本中填写如下内容</p>
+<p>##!/bin/bash</p>
+<p>case $1 in</p>
+<p>“start”)</p>
+<p>echo “ ——–启动 hadoop104 日志数据flume——-“</p>
+<p>ssh hadoop104 “nohup /opt/module/flume/bin/flume-ng agent -n a1 -c<br>/opt/module/flume/conf -f /opt/module/flume/job/kafka_to_hdfs.conf &gt;/dev/null<br>2&gt;&amp;1 &amp;”</p>
+<p>;;</p>
+<p>“stop”)</p>
+<p>echo “ ——–停止 hadoop104 日志数据flume——-“</p>
+<p>ssh hadoop104 “ps -ef | grep kafka_to_hdfs.conf | grep -v grep |awk ‘{print<br>\$2}’ | xargs -n1 kill”</p>
+<p>;;</p>
+<p>esac</p>
+<p><strong>2）增加脚本执行权限</strong></p>
+<p>[atguigu@hadoop102 bin]$ chmod +x f2.sh</p>
+<p><strong>3）f2启动</strong></p>
+<p>[atguigu@hadoop102 module]$ f2.sh start</p>
+<p><strong>4）f2停止</strong></p>
+<p>[atguigu@hadoop102 module]$ f2.sh stop</p>
+<h3 id="采集通道启动-停止脚本"><a href="#采集通道启动-停止脚本" class="headerlink" title="采集通道启动/停止脚本"></a>采集通道启动/停止脚本</h3><p>1）在/home/atguigu/bin目录下创建脚本cluster.sh</p>
+<p>[atguigu@hadoop102 bin]$ vim cluster.sh</p>
+<p>在脚本中填写如下内容</p>
+<p>##!/bin/bash</p>
+<p>case $1 in</p>
+<p>“start”){</p>
+<p>echo ================== 启动 集群 ==================</p>
+<p>##启动 Zookeeper集群</p>
+<p>zk.sh start</p>
+<p>##启动 Hadoop集群</p>
+<p>myhadoop.sh start</p>
+<p>##启动 Kafka采集集群</p>
+<p>kf.sh start</p>
+<p>##启动 Flume采集集群</p>
+<p>f1.sh start</p>
+<p>##启动 Flume消费集群</p>
+<p>f2.sh start</p>
+<p>};;</p>
+<p>“stop”){</p>
+<p>echo ================== 停止 集群 ==================</p>
+<p>##停止 Flume消费集群</p>
+<p>f2.sh stop</p>
+<p>##停止 Flume采集集群</p>
+<p>f1.sh stop</p>
+<p>##停止 Kafka采集集群</p>
+<p>kf.sh stop</p>
+<p>##停止 Hadoop集群</p>
+<p>myhadoop.sh stop</p>
+<p>##停止 Zookeeper集群</p>
+<p>zk.sh stop</p>
+<p>};;</p>
+<p>esac</p>
+<p>2）增加脚本执行权限</p>
+<p>[atguigu@hadoop102 bin]$ chmod +x cluster.sh</p>
+<p>3）cluster集群启动脚本</p>
+<p>[atguigu@hadoop102 module]$ cluster.sh start</p>
+<p>4）cluster集群停止脚本</p>
+<p>[atguigu@hadoop102 module]$ cluster.sh stop</p>
+
+      </div>
+      <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/" class="">
+              数据仓库
+            </a>
+          
+        </div>
+        
+      </div>
+      
+        <div class="copyright">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+    <strong>author:  </strong>snowgo</a>
+    </li>
+    <li class="post-copyright-link">
+    <strong>link:  </strong>
+    <a href="/2022/01/22/尚硅谷大数据项目之电商数仓（用户行为采集平台）V5.0/" target="_blank" title="尚硅谷大数据项目之电商数仓（用户行为采集平台）V5.0">https://snowgo.live/2022/01/22/尚硅谷大数据项目之电商数仓（用户行为采集平台）V5.0/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong>Copyright notice:   </strong>
+      All articles on this website, unless otherwise stated, adopt <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+      reprint policy. If reproduced, please indicate source!
+    </li>
+  </ul>
+<div>
+      
+    </article>
+    <!-- 上一篇文章和下一篇文章 -->
+    
+      <!-- 文章详情页的上一页和下一页 -->
+<div class="post-nav">
+
+
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://images2.alphacoders.com/860/thumb-1920-860454.jpg" class="lazyload placeholder" data-srcset="https://images2.alphacoders.com/860/thumb-1920-860454.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+    </div>
+    <a href="/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">语言基础</div>
+      </div>
+      
+      <!-- <div class="content">
+        
+
+	
+    
+	
+
+
+
+      </div> -->
+    </a>
+  </div>
+
+
+
+  
+  <div class="post-nav-next post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload lazyload placeholder" src="https://images4.alphacoders.com/822/thumb-1920-822927.jpg" class="lazyload placeholder" data-srcset="https://images4.alphacoders.com/822/thumb-1920-822927.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+    </div>
+    <a href="/2022/01/22/%E5%B0%9A%E7%A1%85%E8%B0%B7%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%A1%B9%E7%9B%AE%E4%B9%8B%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%93%EF%BC%88%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%B9%B3%E5%8F%B0%EF%BC%89V5.0/" class="post-nav-link">
+      <div class="title">
+        Next: <i class="fas fa-angle-right"></i>
+        <div class="title-text">尚硅谷大数据项目之电商数仓（业务数据采集平台）V5.0</div>
+      </div>
+      <!-- <div class="content">
+        尚硅谷大数据项目之电商数仓（业务数据采集平台）
+(作者：尚硅谷大数据研发部)
+版本：V5.0
+第1章 电商业务简介电商业
+      </div> -->
+    </a>
+  </div>
+
+</div>
+
+    
+    
+
+    <!-- 打赏 -->
+    
+
+    <!-- 分享 -->
+    
+      <!-- https://github.com/overtrue/share.js -->
+<!-- 文章详情页的分享 -->
+<div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+
+<script src="/js/shareJs/social-share.min.js"></script>
+</script>
+
+<style>
+  .social-share {
+    margin: 20px 0;
+  }
+</style>
+
+
+    
+    
+    <!-- 评论 -->
+    <!-- 评论 -->
+
+  <div id="myComment">
+    
+      <div id="gitment-container"></div>
+
+    
+  </div>
+
+<!-- comment script in themes\hexo-theme-bamboo\layout\_partial\scripts\index.ejs -->
+
+
+  </div>
+
+  <!-- 目录 -->
+  <!-- 文章详情页右侧目录 -->
+
+  <div class="toc-aside">
+    <div class="toc-main">
+      <div class="toc-aside-title">
+        <i class="fas fa-list-ul" aria-hidden="true"></i><span>catalog</span>
+        
+          <div class="toc-open-close">catalog</div>
+        
+      </div>
+      <div class="toc-content">
+        <div class="toc"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 手机端目录按钮 -->
+  <div id="toc-mobile-btn">
+    <i class="fas fa-list-ul" aria-hidden="true"></i>
+  </div>
+
+
+<script>
+  function closeToc(init) {
+    $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
+    $(".toc-content").css({'width': 0});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
+    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+  };
+  function openToc() {
+    $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
+    $(".toc-aside").css({'width': '300px', 'padding': '0 10px', 'transition': 'width 0.3s'});
+    $(".toc-content").css({'width': '300px'});
+    $(".toc-aside-title span, .toc-aside-title i").css({'display': 'inline-block'});
+  }
+  function openBtnClickFn () {
+    let openOrCloseBtn = $('.toc-aside .toc-aside-title .toc-open-close');
+    let open = eval('' || 'true');
+    openOrCloseBtn.click(function() {
+      if (open) {
+        closeToc();
+        open = false;
+      } else {
+        openToc();
+        open = true;
+      }
+    });
+  };
+  openBtnClickFn();
+  initCloseTocWidth(true);
+
+  function initCloseTocWidth(init) {
+    if (window.innerWidth >= 992) {
+      let isClose = false;
+      isClose && closeToc(init)
+    }
+  }
+
+  document.addEventListener('pjax:complete', function () {
+    $(".toc-aside").css({'transition': 'no'});
+  })
+  document.addEventListener('pjax:complete', function () {
+    openBtnClickFn();
+  })
+  
+</script>
+
+  <!-- 图片放大 Wrap images with fancybox support -->
+  <script src="/js/wrapImage.js"></script>
+</div>
+
+<!-- 文章详情页背景图 -->
+<div id="appBgSwiper" style="position: fixed;left: 0;top: 0;width: 100%;height: 100%;z-index: -2;"
+	:style="{'background-color': bgColor ? bgColor : 'transparent'}">
+	<transition-group tag="ul" :name="names">
+		<li v-for='(image,index) in img' :key='index' v-show="index === mark" class="bg-swiper-box">
+			<img :src="image" class="bg-swiper-img no-lazy">
+		</li>
+	</transition-group>
+</div>
+<script>
+	var vm = new Vue({
+		el: '#appBgSwiper',
+		data: {
+			names: '' || 'fade' || 'fade', // translate-fade fade
+			mark: 0,
+			img: [],
+			bgColor: '',
+			time: null
+		},
+		methods: {   //添加方法
+			change(i, m) {
+				if (i > m) {
+					// this.names = 'fade';
+				} else if (i < m) {
+					// this.names = 'fade';
+				} else {
+					return;
+				}
+				this.mark = i;
+			},
+			prev() {
+				// this.names = 'fade';
+				this.mark--;
+				if (this.mark === -1) {
+					this.mark = 3;
+					return
+				}
+			},
+			next() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			autoPlay() {
+				// this.names = 'fade';
+				this.mark++;
+				if (this.mark === this.img.length) {
+					this.mark = 0;
+					return
+				}
+			},
+			play() {
+				let bgImgDelay = '' || '10000'
+				let delay = parseInt(bgImgDelay) || 180000;
+				this.time = setInterval(this.autoPlay, delay);
+			},
+			enter() {
+				clearInterval(this.time);
+			},
+			leave() {
+				this.play();
+			}
+		},
+		created() {
+			this.play()
+		},
+		beforeDestroy() {
+			clearInterval(this.time);
+		},
+		mounted() {
+			let prop = '' || 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/air%E5%A3%81%E7%BA%B82.png';
+			let isImg = prop.includes('.bmp') || prop.includes('.jpg') || prop.includes('.png') || prop.includes('.tif') || prop.includes('.gif') || prop.includes('.pcx') || prop.includes('.tga') || prop.includes('.exif') || prop.includes('.fpx') || prop.includes('.psd') || prop.includes('.cdr') || prop.includes('.pcd') || prop.includes('.dxf') || prop.includes('.ufo') || prop.includes('.eps') || prop.includes('.ai') || prop.includes('.raw') || prop.includes('.WMF') || prop.includes('.webp') || prop.includes('.jpeg') || prop.includes('http://') || prop.includes('https://')
+			if (isImg) {
+				let img = prop.split(',');
+				let configRoot = '/'
+				let arrImg = [];
+				img.forEach(el => {
+					var Expression = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+					var objExp = new RegExp(Expression);
+
+					if (objExp.test(el)) {
+						// http or https
+						arrImg.push(el);
+					} else {
+						// 非http or https开头
+						// 本地文件
+						let firstStr = el.charAt(0);
+						if (firstStr == '/') {
+							el = el.substr(1); // 删除第一个字符 '/',因为 configRoot最后一个字符为 /
+						}
+						el = configRoot + el;
+						arrImg.push(el);
+					}
+				})
+				this.img = arrImg;
+			} else {
+				this.bgColor = prop;
+			}
+		}
+	})
+</script>
+
+<style>
+	.bg-swiper-box {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+	.bg-swiper-img {
+		object-fit: cover;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+
+
+
+      </main>
+    </div>
+
+    <!-- 页脚 -->
+    
+  
+  <!-- 底部鱼儿跳动效果，依赖于jquery-->
+<div id="j-fish-skip" style=" position: relative;height: 153px;width: auto;"></div>
+<script>
+  var RENDERER = {
+    POINT_INTERVAL: 5,
+    FISH_COUNT: 3,
+    MAX_INTERVAL_COUNT: 50,
+    INIT_HEIGHT_RATE: .5,
+    THRESHOLD: 50,
+    FISH_COLOR: '',
+    init: function () {
+      this.setFishColor(); this.setParameters(), this.reconstructMethods(), this.setup(), this.bindEvent(), this.render()
+    },
+    setFishColor: function () {
+      let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+      if (isDark) {
+        this.FISH_COLOR = '#222'; // 暗黑色，有时间把这整成一个变量
+      } else {
+        this.FISH_COLOR = 'rgba(0, 0, 0, 0.5)' || '#272727';
+      }
+    },
+    setParameters: function () {
+      this.$window = $(window), this.$container = $("#j-fish-skip"), this.$canvas = $("<canvas />"), this.context = this.$canvas.appendTo(this.$container).get(0).getContext("2d"), this.points = [], this.fishes = [], this.watchIds = []
+    },
+    createSurfacePoints: function () {
+      var t = Math.round(this.width / this.POINT_INTERVAL);
+      this.pointInterval = this.width / (t - 1), this.points.push(new SURFACE_POINT(this, 0));
+      for (var i = 1; i < t; i++) {
+        var e = new SURFACE_POINT(this, i * this.pointInterval),
+          h = this.points[i - 1];
+        e.setPreviousPoint(h), h.setNextPoint(e), this.points.push(e)
+      }
+    },
+    reconstructMethods: function () {
+      this.watchWindowSize = this.watchWindowSize.bind(this), this.jdugeToStopResize = this.jdugeToStopResize.bind(this), this.startEpicenter = this.startEpicenter.bind(this), this.moveEpicenter = this.moveEpicenter.bind(this), this.reverseVertical = this.reverseVertical.bind(this), this.render = this.render.bind(this)
+    },
+    setup: function () {
+      this.points.length = 0, this.fishes.length = 0, this.watchIds.length = 0, this.intervalCount = this.MAX_INTERVAL_COUNT, this.width = this.$container.width(), this.height = this.$container.height(), this.fishCount = this.FISH_COUNT * this.width / 500 * this.height / 500, this.$canvas.attr({
+        width: this.width,
+        height: this.height
+      }), this.reverse = !1, this.fishes.push(new FISH(this)), this.createSurfacePoints()
+    },
+    watchWindowSize: function () {
+      this.clearTimer(), this.tmpWidth = this.$window.width(), this.tmpHeight = this.$window.height(), this.watchIds.push(setTimeout(this.jdugeToStopResize, this.WATCH_INTERVAL))
+    },
+    clearTimer: function () {
+      for (; this.watchIds.length > 0;) clearTimeout(this.watchIds.pop())
+    },
+    jdugeToStopResize: function () {
+      var t = this.$window.width(),
+        i = this.$window.height(),
+        e = t == this.tmpWidth && i == this.tmpHeight;
+      this.tmpWidth = t, this.tmpHeight = i, e && this.setup()
+    },
+    bindEvent: function () {
+      this.$window.on("resize", this.watchWindowSize), this.$container.on("mouseenter", this.startEpicenter), this.$container.on("mousemove", this.moveEpicenter)
+    },
+    getAxis: function (t) {
+      var i = this.$container.offset();
+      return {
+        x: t.clientX - i.left + this.$window.scrollLeft(),
+        y: t.clientY - i.top + this.$window.scrollTop()
+      }
+    },
+    startEpicenter: function (t) {
+      this.axis = this.getAxis(t)
+    },
+    moveEpicenter: function (t) {
+      var i = this.getAxis(t);
+      this.axis || (this.axis = i), this.generateEpicenter(i.x, i.y, i.y - this.axis.y), this.axis = i
+    },
+    generateEpicenter: function (t, i, e) {
+      if (!(i < this.height / 2 - this.THRESHOLD || i > this.height / 2 + this.THRESHOLD)) {
+        var h = Math.round(t / this.pointInterval);
+        h < 0 || h >= this.points.length || this.points[h].interfere(i, e)
+      }
+    },
+    reverseVertical: function () {
+      this.reverse = !this.reverse;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].reverseVertical()
+    },
+    controlStatus: function () {
+      for (var t = 0, i = this.points.length; t < i; t++) this.points[t].updateSelf();
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].updateNeighbors();
+      this.fishes.length < this.fishCount && 0 == --this.intervalCount && (this.intervalCount = this.MAX_INTERVAL_COUNT, this.fishes.push(new FISH(this)))
+    },
+    render: function () {
+      requestAnimationFrame(this.render), this.controlStatus(), this.context.clearRect(0, 0, this.width, this.height), this.context.fillStyle = this.FISH_COLOR;
+      for (var t = 0, i = this.fishes.length; t < i; t++) this.fishes[t].render(this.context);
+      this.context.save(), this.context.globalCompositeOperation = "xor", this.context.beginPath(), this.context.moveTo(0, this.reverse ? 0 : this.height);
+      for (t = 0, i = this.points.length; t < i; t++) this.points[t].render(this.context);
+      this.context.lineTo(this.width, this.reverse ? 0 : this.height), this.context.closePath(), this.context.fill(), this.context.restore()
+    }
+  },
+  SURFACE_POINT = function (t, i) {
+    this.renderer = t, this.x = i, this.init()
+  };
+  SURFACE_POINT.prototype = {
+    SPRING_CONSTANT: .03,
+    SPRING_FRICTION: .9,
+    WAVE_SPREAD: .3,
+    ACCELARATION_RATE: .01,
+    init: function () {
+      this.initHeight = this.renderer.height * this.renderer.INIT_HEIGHT_RATE, this.height = this.initHeight, this.fy = 0, this.force = {
+        previous: 0,
+        next: 0
+      }
+    },
+    setPreviousPoint: function (t) {
+      this.previous = t
+    },
+    setNextPoint: function (t) {
+      this.next = t
+    },
+    interfere: function (t, i) {
+      this.fy = this.renderer.height * this.ACCELARATION_RATE * (this.renderer.height - this.height - t >= 0 ? -1 : 1) * Math.abs(i)
+    },
+    updateSelf: function () {
+      this.fy += this.SPRING_CONSTANT * (this.initHeight - this.height), this.fy *= this.SPRING_FRICTION, this.height += this.fy
+    },
+    updateNeighbors: function () {
+      this.previous && (this.force.previous = this.WAVE_SPREAD * (this.height - this.previous.height)), this.next && (this.force.next = this.WAVE_SPREAD * (this.height - this.next.height))
+    },
+    render: function (t) {
+      this.previous && (this.previous.height += this.force.previous, this.previous.fy += this.force.previous), this.next && (this.next.height += this.force.next, this.next.fy += this.force.next), t.lineTo(this.x, this.renderer.height - this.height)
+    }
+  };
+  var FISH = function (t) {
+    this.renderer = t, this.init()
+  };
+  FISH.prototype = {
+    GRAVITY: .4,
+    init: function () {
+      this.direction = Math.random() < .5, this.x = this.direction ? this.renderer.width + this.renderer.THRESHOLD : -this.renderer.THRESHOLD, this.previousY = this.y, this.vx = this.getRandomValue(4, 10) * (this.direction ? -1 : 1), this.renderer.reverse ? (this.y = this.getRandomValue(1 * this.renderer.height / 10, 4 * this.renderer.height / 10), this.vy = this.getRandomValue(2, 5), this.ay = this.getRandomValue(.05, .2)) : (this.y = this.getRandomValue(6 * this.renderer.height / 10, 9 * this.renderer.height / 10), this.vy = this.getRandomValue(-5, -2), this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1, this.theta = 0, this.phi = 0
+    },
+    getRandomValue: function (t, i) {
+      return t + (i - t) * Math.random()
+    },
+    reverseVertical: function () {
+      this.isOut = !this.isOut, this.ay *= -1
+    },
+    controlStatus: function (t) {
+      this.previousY = this.y, this.x += this.vx, this.y += this.vy, this.vy += this.ay, this.renderer.reverse ? this.y > this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy -= this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(.05, .2)), this.isOut = !1) : this.y < this.renderer.height * this.renderer.INIT_HEIGHT_RATE ? (this.vy += this.GRAVITY, this.isOut = !0) : (this.isOut && (this.ay = this.getRandomValue(-.2, -.05)), this.isOut = !1), this.isOut || (this.theta += Math.PI / 20, this.theta %= 2 * Math.PI, this.phi += Math.PI / 30, this.phi %= 2 * Math.PI), this.renderer.generateEpicenter(this.x + (this.direction ? -1 : 1) * this.renderer.THRESHOLD, this.y, this.y - this.previousY), (this.vx > 0 && this.x > this.renderer.width + this.renderer.THRESHOLD || this.vx < 0 && this.x < -this.renderer.THRESHOLD) && this.init()
+    },
+    render: function (t) {
+      t.save(), t.translate(this.x, this.y), t.rotate(Math.PI + Math.atan2(this.vy, this.vx)), t.scale(1, this.direction ? 1 : -1), t.beginPath(), t.moveTo(-30, 0), t.bezierCurveTo(-20, 15, 15, 10, 40, 0), t.bezierCurveTo(15, -10, -20, -15, -30, 0), t.fill(), t.save(), t.translate(40, 0), t.scale(.9 + .2 * Math.sin(this.theta), 1), t.beginPath(), t.moveTo(0, 0), t.quadraticCurveTo(5, 10, 20, 8), t.quadraticCurveTo(12, 5, 10, 0), t.quadraticCurveTo(12, -5, 20, -8), t.quadraticCurveTo(5, -10, 0, 0), t.fill(), t.restore(), t.save(), t.translate(-3, 0), t.rotate((Math.PI / 3 + Math.PI / 10 * Math.sin(this.phi)) * (this.renderer.reverse ? -1 : 1)), t.beginPath(), this.renderer.reverse ? (t.moveTo(5, 0), t.bezierCurveTo(10, 10, 10, 30, 0, 40), t.bezierCurveTo(-12, 25, -8, 10, 0, 0)) : (t.moveTo(-5, 0), t.bezierCurveTo(-10, -10, -10, -30, 0, -40), t.bezierCurveTo(12, -25, 8, -10, 0, 0)), t.closePath(), t.fill(), t.restore(), t.restore(), this.controlStatus(t)
+    }
+  }, $(function () {
+    RENDERER.init()
+    $('.dark').click(function () {
+      setTimeout(() => {
+        RENDERER.setFishColor();
+        RENDERER.context.fill();
+      });
+    })
+  });
+</script>
+  <div class="footer bg-color">
+    <div class="footer-main">
+      
+        
+          <div class="link">
+            
+          </div>
+        
+      
+        
+          <div class="footer-copyright">
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> |<a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra">&lt;img src=”https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png”align=”absmiddle” width=”59px” height=”30px” /&gt;</a></p>
+
+          </div>
+        
+      
+        
+          
+        
+      
+        
+          <div class="footer-custom">
+            
+          </div>
+        
+      
+    </div>
+  </div>
+
+
+
+    <!-- 渲染暗黑按钮 -->
+    
+      <div class="dark">
+  <div class="dark-content">
+    <i class="fas fa-moon" aria-hidden="true"></i>
+    <!-- <span>关灯</span> -->
+  </div>
+  
+</div>
+
+<script>
+  $(function() {
+    let isDark = JSON.parse(localStorage.getItem('dark'))  || JSON.parse('false');
+    if (isDark) {
+      $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+    }
+    $('.dark').click(function() {
+      if ($(document.body).is('.darkModel')) {
+        $(document.body).removeClass('darkModel');
+        localStorage.setItem('dark', false);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      } else {
+        $(document.body).addClass('darkModel');
+        localStorage.setItem('dark', true);
+        $(".dark-content").replaceWith(
+          `
+          <div class='dark-content'>
+            <i class="fas fa-lightbulb" aria-hidden="true"></i>
+          </div>
+          `
+        );
+      }
+    })
+  })
+</script>
+    
+    <!-- 渲染回到顶部按钮 -->
+    
+      <div class="goTop top-btn-color" pointer>
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</div>
+<script src="/js/goTop.js"></script>
+
+    
+    <!-- 渲染左下角音乐播放器 -->
+    
+      <link rel="stylesheet" href="/js/aplayer/APlayer@1.10.1.min.css">
+<style>
+.aplayer .aplayer-lrc p {
+  
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px !important;
+}
+
+.aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  font-size: 15px;
+  color: #010202;
+}
+
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;
+}
+
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0px !important;
+}
+
+
+</style>
+<meting-js  
+  class=""
+  server="netease"
+  type="playlist"
+  id="2303619958"
+  fixed='true'
+  autoplay='false'
+  theme='#010202'
+  loop='all'
+  order='random'
+  preload='auto'
+  volume='0.7'
+  list-folded='true'
+>
+</meting-js>
+
+<!-- <style>
+  #aplayer {
+    position: fixed;
+    left: 0;
+    bottom: 300px;
+  }
+</style> -->
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+    
+
+    <!-- 图片放大 -->
+    
+
+    <!-- 百度解析 -->
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+    
+    <!-- 背景彩带 -->
+    
+
+    <script src="/js/utils/index.js"></script>
+    <script src="/js/app.js"></script>
+    
+    <!-- 文章目录所需js -->
+<link href="/js/tocbot/tocbot.css" rel="stylesheet">
+<script src="/js/tocbot/tocbot.min.js"></script>
+
+<script>
+  var headerEl = 'h2, h3, h4',  //headers 
+    content = '.post-detail',//文章容器
+    idArr = {};  //标题数组以确定是否增加索引id
+  //add #id
+  var option = {
+    // Where to render the table of contents.
+    tocSelector: '.toc',
+    // Where to grab the headings to build the table of contents.
+    contentSelector: content,
+    // Which headings to grab inside of the contentSelector element.
+    headingSelector: headerEl,
+    scrollSmooth: true,
+    scrollSmoothOffset: -80,
+    headingsOffset: -($(window).height() * 0.4 - 45),
+    positionFixedSelector: '.toc-main',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+    activeLinkClass: 'is-active-link',
+    // onClick: function (e) {},
+  }
+  if ($('.toc').length > 0) {
+
+    $(content).children(headerEl).each(function () {
+      //去除空格以及多余标点
+      var headerId = $(this).text().replace(/[\s|\~|`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\_|\+|\=|\||\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?|\：|\，|\。]/g, '');
+
+      headerId = headerId.toLowerCase();
+      if (idArr[headerId]) {
+        //id已经存在
+        $(this).attr('id', headerId + '-' + idArr[headerId]);
+        idArr[headerId]++;
+      }
+      else {
+        //id未存在
+        idArr[headerId] = 1;
+        $(this).attr('id', headerId);
+      }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      tocbot.init(option);
+      mobileTocClick();
+    });
+
+  }
+
+  window.tocScrollFn = function () {
+    return bamboo.throttle(function () {
+      findHeadPosition();
+    }, 100)()
+  }
+  window.addEventListener('scroll', tocScrollFn);
+
+  const findHeadPosition = function (top) {
+    if ($('.toc-list').length <= 0) {
+      return false;
+    }
+    setTimeout(() => {  // or DOMContentLoaded 
+      autoScrollToc();
+    }, 0);
+  }
+
+  const autoScrollToc = function () {
+    const $activeItem = document.querySelector('.is-active-link');
+    const $cardToc = document.querySelector('.toc-content');
+    const activePosition = $activeItem.getBoundingClientRect().top
+    const sidebarScrollTop = $cardToc.scrollTop
+    if (activePosition > (document.documentElement.clientHeight - 100)) {
+      $cardToc.scrollTop = sidebarScrollTop + 150
+    }
+    if (activePosition < 100) {
+      $cardToc.scrollTop = sidebarScrollTop - 150
+    }
+  }
+
+  document.addEventListener('pjax:send', function () {
+    if ($('.toc').length) {
+      tocbot.destroy();
+    }
+  });
+
+  document.addEventListener('pjax:complete', function () {
+    if ($('.toc').length) {
+      tocbot.init(option);
+      mobileTocClick();
+    }
+  });
+  
+  // 手机端toc按钮点击出现目录
+  const mobileTocClick = function () {
+    const $cardTocLayout = document.getElementsByClassName('toc-aside')[0];
+    const $cardToc = $cardTocLayout.getElementsByClassName('toc-content')[0];
+    let right = '45px';
+    if (window.innerWidth >= 551 && window.innerWidth <= 992) {
+      right = '100px'
+    }
+    const mobileToc = {
+      open: () => {
+        $cardTocLayout.style.cssText = 'animation: toc-open .3s; opacity: 1; right: ' + right
+      },
+
+      close: () => {
+        $cardTocLayout.style.animation = 'toc-close .2s'
+        setTimeout(() => {
+          $cardTocLayout.style.cssText = "opacity:''; animation: ''; right: ''"
+        }, 100)
+      }
+    }
+    document.getElementById('toc-mobile-btn').addEventListener('click', () => {
+      if (window.getComputedStyle($cardTocLayout).getPropertyValue('opacity') === '0') mobileToc.open()
+      else mobileToc.close()
+    })
+
+    $cardToc.addEventListener('click', (e) => {
+      if (window.innerWidth < 992) { // 小于992px的时候
+        mobileToc.close()
+      }
+    })
+  }
+</script>
+
+<style>
+  .is-position-fixed {
+    position: sticky !important;
+    top: 74px;
+  }
+
+  .toc-main ul {
+    counter-reset: show-list;
+  }
+
+  .toc-main ul li::before {
+    content: counter(item)".";
+    display: block;
+    position: absolute;
+    left: 12px;
+    top: 0;
+  }
+</style> 
+
+<!-- 设置导航背景 -->
+<script>
+  let setHeaderClass = () => {
+    const headerMenuTransparent = true;
+    if (!headerMenuTransparent) { return; }
+    const nav = $('#navHeader');
+    const navTop = nav.outerHeight();
+    const winTop = $(window).scrollTop();
+    if(winTop > navTop) {
+      nav.addClass('header-bg-color');
+    }
+    else {
+      nav.removeClass('header-bg-color');
+    }
+  };
+
+  let scrollCollect = () => {
+    return bamboo.throttle(function (e) {
+      setHeaderClass();
+    }, 200)()
+  }
+
+  let initHeaderBg = () => {
+    setHeaderClass();
+  }
+
+  setHeaderClass();
+  window.addEventListener('scroll', scrollCollect);
+
+  document.addEventListener('pjax:send', function () {
+    window.removeEventListener('scroll', scrollCollect)
+  })
+  document.addEventListener('pjax:complete', function () {
+    window.addEventListener('scroll', scrollCollect);
+    setHeaderClass();
+  })
+</script> 
+
+<!-- 渲染issues标签里的内容 -->
+<script>
+  function loadIssuesJS() {
+    if ($(".post-detail").find(".issues-api").length == 0) {
+      return;
+    } 
+    loadScript('/js/issues/index.js');
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  document.addEventListener('pjax:complete', function () {
+    if (typeof IssuesAPI == "undefined") {
+      loadIssuesJS();
+    }
+  })
+</script>
+
+<!-- 输入框打字特效 -->
+<!-- 输入框打字特效 -->
+
+  <script src="/js/activate-power-mode.js"></script>
+  <script>
+    POWERMODE.colorful = true;  // 打开随机颜色特效
+    POWERMODE.shake = false;    // 关闭输入框抖动
+    document.body.addEventListener('input', POWERMODE);//监听打字事件
+  </script>
+
+
+<!-- markdown代码一键复制功能 -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.css">
+  <script src="https://cdn.jsdelivr.net/npm/v-plugs-ayu/lib/ayu.umd.min.js"></script>
+  <script src="/js/clipboard/clipboard.min.js"></script>
+  <div id="appCopy">
+  </div>
+  <script data-pjax>
+    var vm = new Vue({
+      el: '#appCopy',
+      data: {
+      },
+      computed: {
+      },
+      mounted() {
+        const that = this;
+        var copy = 'copy';
+        /* code */
+        var initCopyCode = function () {
+          var copyHtml = '';
+          copyHtml += '<button class="btn-copy" data-clipboard-snippet="" style="position:absolute;top:0;right:0;z-index:1;">';
+          copyHtml += '<i class="fas fa-copy"></i><span>' + copy + '</span>';
+          copyHtml += '</button>';
+          $(".post-detail pre").not('.gutter pre').wrap("<div class='codeBox' style='position:relative;width:100%;'></div>")
+          $(".post-detail pre").not('.gutter pre').before(copyHtml);
+          new ClipboardJS('.btn-copy', {
+            target: function (trigger) {
+              return trigger.nextElementSibling;
+            }
+          });
+        }
+        initCopyCode();
+        $('.btn-copy').unbind('click').bind('click', function () {
+          doSomething();
+        })
+        $(document).unbind('keypress').bind('keypress', function (e) {
+          if (e.ctrlKey && e.keyCode == 67) {
+            doSomething();
+          }
+        })
+
+        function doSomething() {
+          that.$notify({
+            title: "成功",
+            content: "代码已复制，请遵守相关授权协议。",
+            type: 'success'
+          })
+        }
+      },
+      methods: {
+      },
+      created() { }
+    })
+  </script>
+  
+
+<!-- 图片懒加载 -->
+<script defer src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js"></script>
+<script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script>
+
+
+<!-- 卡片滚动动画 -->
+   
+
+<!-- 评论所需js -->
+
+  
+    <script type="text/javascript">
+  var utteranceCommon = {};
+
+  function check_utterance() {
+    let isDark = JSON.parse(localStorage.getItem('dark')) || JSON.parse('false');
+    if (isDark) {
+      utteranceCommon.Theme = '';
+    } else {
+      utteranceCommon.Theme = 'github-light';
+    }
+
+    return document.getElementById("gitment-container");
+  }
+  comment_el = '#gitment-container';
+  load_utterance = function () {
+    if ($(comment_el).length) {
+      // 匿名函数，防止污染全局变量
+      const HEAD = check_utterance();
+
+      var utterances = document.createElement('script');
+      utterances.type = 'text/javascript';
+      utterances.async = true;
+      utterances.setAttribute('issue-term', 'pathname')
+      utterances.setAttribute('theme', utteranceCommon.Theme)
+      utterances.setAttribute('repo', 'snowgo/juicesea')
+      utterances.crossorigin = 'anonymous';
+      utterances.src = 'https://utteranc.es/client.js';
+      // content 是要插入评论的地方
+      document.getElementById('gitment-container').appendChild(utterances);
+
+    }
+  }
+
+  function dark_utterance() {
+    const HEAD = check_utterance();
+    if (!HEAD) return;
+    const message = {
+      type: 'set-theme',
+      theme: utteranceCommon.Theme
+    };
+    const utteranceIframe = document.querySelector('iframe');
+    utteranceIframe.contentWindow.postMessage(message, 'https://utteranc.es');
+  }
+
+  $(document).ready(load_utterance);
+  document.addEventListener('pjax:complete', function () {
+    load_utterance();
+  });
+
+  $('.dark').click(function () {
+    setTimeout(() => {
+      dark_utterance();
+    });
+  })
+
+</script>
+
+<style>
+  .utterances {
+    max-width: inherit !important;
+  }
+</style>
+  
+
+
+<!-- 鼠标点击特效 -->
+<!-- 爱心点击 -->
+
+  
+    <script src="/js/cursor/fireworks.js"></script>
+  
+
+
+
+
+
+    <!-- pjax -->
+    
+
+<!-- pjax -->
+
+
+  <script src="/js/pjax@0.2.8/index.js"></script>
+  
+    <!-- 样式位于：source/css/_third-party/pjaxanimate.styl -->
+
+<div class="pjax-animate">
+  
+    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script>
+      window.ShowLoading = function() {
+        $(".loading-circle").css("display", "block");
+      };
+      window.HideLoading = function() {
+        $(".loading-circle").css("display", "none");
+      }
+    </script>
+  
+	<script>
+    document.addEventListener('pjax:complete', function () {
+      window.HideLoading();
+    })
+    document.addEventListener('pjax:send', function () {
+      window.ShowLoading();
+    })
+    document.addEventListener('pjax:error', function () {
+      window.HideLoading();
+    })
+	</script>
+</div>
+
+  
+
+  <script>
+    var pjax = new Pjax({
+      elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([no-pjax])',   // 拦截正常带链接的 a 标签
+      selectors: ["#pjax-container","title"],                                   // 根据实际需要确认重载区域
+      cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+      timeout: 5000
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+
+    })
+    
+    document.addEventListener('pjax:complete', function () {
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+      window.location.href = e.triggerElement.href;
+    })
+    
+    // 刷新不从顶部开始
+    document.addEventListener("DOMContentLoaded", function () {
+      history.scrollRestoration = 'auto';
+    })
+  </script>
+
+
+
+  </body>
+</html>
