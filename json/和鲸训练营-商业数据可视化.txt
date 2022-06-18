@@ -1,0 +1,11 @@
+---
+title: 和鲸训练营-商业数据可视化
+date: 2021-12-04
+swiper: false
+swiperImg: 'https://images7.alphacoders.com/118/thumb-1920-1189235.png'
+img: 'https://images7.alphacoders.com/118/thumb-1920-1189235.png'
+categories: DataAnalysis
+tags: [Pyecharts]
+top: false
+---
+

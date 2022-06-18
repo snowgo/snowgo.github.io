@@ -1,0 +1,11 @@
+---
+title: 关于Transformer的理解
+date: 2021-07-27
+swiper: false
+swiperImg: 'https://images8.alphacoders.com/653/653611.png'
+img: 'https://images8.alphacoders.com/653/653611.png'
+categories: DL
+tags: [dl]
+top: false
+---
+

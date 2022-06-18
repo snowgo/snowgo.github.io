@@ -1,0 +1,11 @@
+---
+title: 关于函数空间的简单理解
+date: 2021-10-15
+swiper: false
+swiperImg: 'https://images5.alphacoders.com/118/1182746.png'
+img: 'https://images5.alphacoders.com/118/1182746.png'
+categories: DL
+tags: [dl]
+top: false
+---
+
