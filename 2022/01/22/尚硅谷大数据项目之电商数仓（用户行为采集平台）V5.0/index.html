@@ -1017,11 +1017,11 @@
 <p>[atguigu@hadoop103 opt]## sudo rpm -qa | grep -i java | xargs -n1 sudo rpm -e<br>--nodeps</p>
 <p>[atguigu@hadoop104 opt]## sudo rpm -qa | grep -i java | xargs -n1 sudo rpm -e<br>--nodeps</p>
 <p><strong>（2）用SecureCRT工具将JDK导入到hadoop102的/opt/software文件夹下面</strong></p>
-<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/d44e9b5727d45ae6a1f4733ddb23b743.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/d44e9b5727d45ae6a1f4733ddb23b743.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/d44e9b5727d45ae6a1f4733ddb23b743.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/d44e9b5727d45ae6a1f4733ddb23b743.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
 <p><strong>（3） “alt+p”进入sftp模式</strong></p>
-<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/6974407b7e3e788b5446b8bcd2b36466.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/6974407b7e3e788b5446b8bcd2b36466.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/6974407b7e3e788b5446b8bcd2b36466.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/6974407b7e3e788b5446b8bcd2b36466.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
 <p><strong>（4）选择jdk1.8拖入工具</strong></p>
-<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/b6cdad0ae4a090f67fdc0f30ba9665bc.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/b6cdad0ae4a090f67fdc0f30ba9665bc.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/b6cdad0ae4a090f67fdc0f30ba9665bc.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/b6cdad0ae4a090f67fdc0f30ba9665bc.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
 <p><strong>（5）在Linux系统下的opt目录中查看软件包是否导入成功</strong></p>
 <p>[atguigu@hadoop102 software]## ls /opt/software/</p>
 <p>看到如下结果：</p>
@@ -1054,7 +1054,7 @@
 <p>例如，我们通过终端，输入用户名、密码，登录系统之后，得到就是一个login<br>shell，而当我们执行以下命令ssh hadoop103<br>command，在hadoop103执行command的就是一个non-login shell。</p>
 <p>这两种shell的主要区别在于，它们启动时会加载不同的配置文件，login<br>shell启动时会加载/etc/profile，~/.bash_profile，~/.bashrc，non-login<br>shell启动时会加载~/.bashrc。即login shell会多加载/etc/profile文件。</p>
 <p>而在加载~/.bashrc（实际是~/.bashrc中加载的/etc/bashrc）或/etc/profile时，都会执行如下代码片段，</p>
-<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f33dbe2730179246e8ec1808a780b4bc.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f33dbe2730179246e8ec1808a780b4bc.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f33dbe2730179246e8ec1808a780b4bc.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f33dbe2730179246e8ec1808a780b4bc.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
 <p>因此不管是login shell还是non-login<br>shell，启动时都会加载/etc/profile.d/*.sh中的环境变量。而login<br>shell会多加载/etc/profile.d/sh.local文件。</p>
 <h4 id="模拟数据"><a href="#模拟数据" class="headerlink" title="模拟数据"></a>模拟数据</h4><p><strong>1）模拟器使用说明</strong></p>
 <p><strong>（1）上传模拟器</strong></p>
@@ -1205,7 +1205,7 @@
 <p><strong>2）项目经验</strong></p>
 <p><strong>（1）项目经验之HDFS存储多目录</strong></p>
 <p>生产环境服务器磁盘情况</p>
-<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/abe21863ff846b4404d27ac0cda1460c.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/abe21863ff846b4404d27ac0cda1460c.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/abe21863ff846b4404d27ac0cda1460c.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/abe21863ff846b4404d27ac0cda1460c.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
 <p>在hdfs-site.xml文件中配置多目录，注意新挂载磁盘的访问权限问题。（本项目不需要配置多目录，如果配置启动hadoop会报错）</p>
 <p>HDFS的DataNode节点保存数据的路径由dfs.datanode.data.dir参数决定，其默认值为file://${hadoop.tmp.dir}/dfs/data，若服务器有多个磁盘，必须对该参数进行修改。如服务器磁盘如上图所示，则该参数应修改为如下的值。</p>
 <p>&lt;property&gt;</p>
@@ -1446,7 +1446,7 @@
 <p>}</p>
 <p>}</p>
 <p>（6）打包</p>
-<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/361c38002f9891ce01e4771948d70b01.png" alt="图片包含 图形用户界面
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/361c38002f9891ce01e4771948d70b01.png" alt="图片包含 图形用户界面
 描述已自动生成"></p>
 <p>（7）需要先将打好的包放入到hadoop102的/opt/module/flume/lib文件夹下面。</p>
 <h4 id="日志采集Flume测试"><a href="#日志采集Flume测试" class="headerlink" title="日志采集Flume测试"></a>日志采集Flume测试</h4><p><strong>1）启动Zookeeper、Kafka集群</strong></p>
@@ -1587,7 +1587,7 @@
 <p>}</p>
 <p>}</p>
 <p>（2）重新打包</p>
-<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/361c38002f9891ce01e4771948d70b01.png" alt="图片包含 图形用户界面
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/361c38002f9891ce01e4771948d70b01.png" alt="图片包含 图形用户界面
 描述已自动生成"></p>
 <p>3）需要先将打好的包放入到hadoop104的/opt/module/flume/lib文件夹下面。</p>
 <h4 id="日志消费Flume测试"><a href="#日志消费Flume测试" class="headerlink" title="日志消费Flume测试"></a>日志消费Flume测试</h4><p><strong>1）启动Zookeeper、Kafka集群</strong></p>

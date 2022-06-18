@@ -2,8 +2,8 @@
 title: UUID：如何高效生成全局的唯一ID？
 date: 2022-03-29
 swiper: false
-swiperImg: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/147.jpg'
-img: 'https://5nowg0.oss-cn-hangzhou.aliyuncs.com/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/147.jpg'
+swiperImg: 'http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/147.jpg'
+img: 'http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/147.jpg'
 categories: 问题和技巧
 tags: [UUID]
 top: false
