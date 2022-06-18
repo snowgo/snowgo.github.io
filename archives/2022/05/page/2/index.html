@@ -698,16 +698,16 @@
           <li class="post-item" data-aos="fade-left">
             
             <div class="post-img-box">
-              <a href="/2022/05/12/go_channel%E7%AE%80%E4%BB%8B/" class="post-img " style="background-size: cover; 
+              <a href="/2022/05/12/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/" class="post-img " style="background-size: cover; 
                 background-position: center center;">
-                <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/140.jpg" alt="">
+                <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/19.jpg" alt="">
               </a>
             </div>
             <div class="post-date-title">
               <div>
                 <span class="post-date">05-12</span>
               </div>
-              <a class="post-title" href="/2022/05/12/go_channel%E7%AE%80%E4%BB%8B/">go_channel简介</a>
+              <a class="post-title" href="/2022/05/12/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/">go内存对齐</a>
             </div>
           </li>
         
@@ -1534,13 +1534,14 @@
 
 <div class="pjax-animate">
   
-    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
     <script>
       window.ShowLoading = function() {
-        $(".loading-circle").css("display", "block");
+        NProgress.start();
       };
       window.HideLoading = function() {
-        $(".loading-circle").css("display", "none");
+        NProgress.done();
       }
     </script>
   

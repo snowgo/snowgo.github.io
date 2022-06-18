@@ -2743,7 +2743,7 @@ URL (Universal Resource Locator) 即统一资源定位符
         <div class="webinfo-item">
           <div>最后活动时间：</div>
           
-            <div id="last-update" style="display: none;">Sat Jun 18 2022 18:12:49 GMT+0800 (中国标准时间)</div>
+            <div id="last-update" style="display: none;">Sat Jun 18 2022 22:25:27 GMT+0800 (中国标准时间)</div>
             <div id="last-update-show">2022-06-18 日</div>
           
         </div>
@@ -3549,13 +3549,14 @@ URL (Universal Resource Locator) 即统一资源定位符
 
 <div class="pjax-animate">
   
-    <div class="loading-circle"><div id="loader-circle"></div></div>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.min.js"></script>
+    <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
     <script>
       window.ShowLoading = function() {
-        $(".loading-circle").css("display", "block");
+        NProgress.start();
       };
       window.HideLoading = function() {
-        $(".loading-circle").css("display", "none");
+        NProgress.done();
       }
     </script>
   
