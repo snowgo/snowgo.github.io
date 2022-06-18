@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -715,7 +691,7 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h2 id="11-2-基本概念"><a href="#11-2-基本概念" class="headerlink" title="11.2 基本概念"></a>11.2 基本概念</h2><p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/194804/21/8107/119987/60c80d9eE646309f6/14b69fd5d3d42e6d.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/194804/21/8107/119987/60c80d9eE646309f6/14b69fd5d3d42e6d.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+        <h2 id="11-2-基本概念"><a href="#11-2-基本概念" class="headerlink" title="11.2 基本概念"></a>11.2 基本概念</h2><p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/194804/21/8107/119987/60c80d9eE646309f6/14b69fd5d3d42e6d.jpg"></p>
 <blockquote>
 <p><strong>Collection接口：</strong></p>
 <ul>
@@ -749,9 +725,9 @@
 <li><strong>Hashtable：接口实现类， 同步， 线程安全</strong></li>
 </ul>
 </blockquote>
-<h2 id="11-3-Collection接口方法"><a href="#11-3-Collection接口方法" class="headerlink" title="11.3 Collection接口方法"></a>11.3 Collection接口方法</h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/179128/17/9179/165707/60c74ba0E32f5b85a/9a68e43c3f21496a.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/179128/17/9179/165707/60c74ba0E32f5b85a/9a68e43c3f21496a.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="11-3-Collection接口方法"><a href="#11-3-Collection接口方法" class="headerlink" title="11.3 Collection接口方法"></a>11.3 Collection接口方法</h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/179128/17/9179/165707/60c74ba0E32f5b85a/9a68e43c3f21496a.jpg"></p>
 <hr>
-<h2 id="11-5-List接口"><a href="#11-5-List接口" class="headerlink" title="11.5 List接口"></a>11.5 List接口</h2><p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/177265/15/8483/192890/60c80984Ec5274ff2/a5c5d7852650e1ad.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/177265/15/8483/192890/60c80984Ec5274ff2/a5c5d7852650e1ad.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="11-5-List接口"><a href="#11-5-List接口" class="headerlink" title="11.5 List接口"></a>11.5 List接口</h2><p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/177265/15/8483/192890/60c80984Ec5274ff2/a5c5d7852650e1ad.jpg"></p>
 <hr>
 <h2 id="11-6-迭代器Iterator"><a href="#11-6-迭代器Iterator" class="headerlink" title="11.6 迭代器Iterator"></a>11.6 迭代器Iterator</h2><blockquote>
 <p><strong>Iterator：</strong></p>
@@ -764,7 +740,7 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;...&gt; it = a.iterator();</span><br><span class="line"><span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">	print(it.next());</span><br><span class="line">    it.remove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>如果只想遍历List，不想修改，应该用foreach</strong></p>
-<h3 id="11-6-1-ListIterator"><a href="#11-6-1-ListIterator" class="headerlink" title="11.6.1 ListIterator"></a>11.6.1 ListIterator</h3><p><img src="https://img10.360buyimg.com/ddimg/jfs/t1/174547/24/14667/332001/60c81452E423a1227/7973fcdf1a3097f0.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/174547/24/14667/332001/60c81452E423a1227/7973fcdf1a3097f0.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="11-6-1-ListIterator"><a href="#11-6-1-ListIterator" class="headerlink" title="11.6.1 ListIterator"></a>11.6.1 ListIterator</h3><p><img src="https://img10.360buyimg.com/ddimg/jfs/t1/174547/24/14667/332001/60c81452E423a1227/7973fcdf1a3097f0.jpg"></p>
 <hr>
 <h2 id="11-9-Set"><a href="#11-9-Set" class="headerlink" title="11.9 Set"></a>11.9 Set</h2><blockquote>
 <p><strong>Set和List的区别：</strong></p>
@@ -775,7 +751,7 @@
 </ul>
 </blockquote>
 <hr>
-<h2 id="11-10-Map"><a href="#11-10-Map" class="headerlink" title="11.10 Map"></a>11.10 Map</h2><p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/195266/31/8254/290736/60c84667E2b4c4f75/101c49f5fe6ff436.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/195266/31/8254/290736/60c84667E2b4c4f75/101c49f5fe6ff436.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="11-10-Map"><a href="#11-10-Map" class="headerlink" title="11.10 Map"></a>11.10 Map</h2><p><img src="https://img14.360buyimg.com/ddimg/jfs/t1/195266/31/8254/290736/60c84667E2b4c4f75/101c49f5fe6ff436.jpg"></p>
 <hr>
 <h2 id="11-11-Queue"><a href="#11-11-Queue" class="headerlink" title="11.11 Queue"></a>11.11 Queue</h2><p><strong>Collection-》Queue-》LinkedList</strong><br><strong>创建一个队列：<code>Queue&lt;...&gt; queue = new LinkedList&lt;...&gt;()</code></strong></p>
 <h3 id="Queue方法"><a href="#Queue方法" class="headerlink" title="Queue方法"></a>Queue方法</h3><blockquote>
@@ -835,7 +811,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/178916/3/9115/3909348/60c7fd3bEba302120/57d3cba209336e3a.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/178916/3/9115/3909348/60c7fd3bEba302120/57d3cba209336e3a.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://img12.360buyimg.com/ddimg/jfs/t1/178916/3/9115/3909348/60c7fd3bEba302120/57d3cba209336e3a.jpg" alt="">
     </div>
     <a href="/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84/" class="post-nav-link">
       <div class="title">
@@ -858,7 +834,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img14.360buyimg.com/ddimg/jfs/t1/188107/27/8094/2110936/60c7fc85E3f13d1ec/767e5ecd762b215f.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/188107/27/8094/2110936/60c7fc85E3f13d1ec/767e5ecd762b215f.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://img14.360buyimg.com/ddimg/jfs/t1/188107/27/8094/2110936/60c7fc85E3f13d1ec/767e5ecd762b215f.jpg" src="" alt="">
     </div>
     <a href="/2021/06/15/%E7%AC%AC12%E7%AB%A0%20%E5%BC%82%E5%B8%B8/" class="post-nav-link">
       <div class="title">
@@ -1286,7 +1262,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1368,12 +1344,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -726,36 +702,36 @@
 <p>生成网络通过训练获得一个p(x)分布输出，防御网络通过真实样本分布p(X)来鉴定生成网络的输出是真还是假，若50%判定为真，则形成纳什均衡，训练完成。</p>
 <iframe src="//player.bilibili.com/player.html?bvid=BV1RU4y1h74n&cid=327744141&page=3&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>
 
-<h2 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h2><p><img src="https://z3.ax1x.com/2021/06/16/2XrIUA.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/16/2XrIUA.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="目标函数"><a href="#目标函数" class="headerlink" title="目标函数"></a>目标函数</h2><p><img src="https://z3.ax1x.com/2021/06/16/2XrIUA.png"></p>
 <iframe src="//player.bilibili.com/player.html?bvid=BV1RU4y1h74n&cid=327744141&page=4&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>
 
-<h2 id="问题一：固定G，D会训练成什么样？"><a href="#问题一：固定G，D会训练成什么样？" class="headerlink" title="问题一：固定G，D会训练成什么样？"></a>问题一：固定G，D会训练成什么样？</h2><p><img src="https://z3.ax1x.com/2021/06/16/2XsZVJ.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/16/2XsZVJ.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="问题一：固定G，D会训练成什么样？"><a href="#问题一：固定G，D会训练成什么样？" class="headerlink" title="问题一：固定G，D会训练成什么样？"></a>问题一：固定G，D会训练成什么样？</h2><p><img src="https://z3.ax1x.com/2021/06/16/2XsZVJ.png"></p>
 <iframe src="//player.bilibili.com/player.html?bvid=BV1RU4y1h74n&cid=327744141&page=5&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>
 
-<h2 id="问题二：再训练G，G会训练成什么样？"><a href="#问题二：再训练G，G会训练成什么样？" class="headerlink" title="问题二：再训练G，G会训练成什么样？"></a>问题二：再训练G，G会训练成什么样？</h2><p><img src="https://z3.ax1x.com/2021/06/16/2Xyq0g.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/16/2Xyq0g.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h2 id="KL距离与JS距离"><a href="#KL距离与JS距离" class="headerlink" title="KL距离与JS距离"></a>KL距离与JS距离</h2><p><img src="https://z3.ax1x.com/2021/06/16/2XsvQK.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/16/2XsvQK.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="问题二：再训练G，G会训练成什么样？"><a href="#问题二：再训练G，G会训练成什么样？" class="headerlink" title="问题二：再训练G，G会训练成什么样？"></a>问题二：再训练G，G会训练成什么样？</h2><p><img src="https://z3.ax1x.com/2021/06/16/2Xyq0g.png"></p>
+<h2 id="KL距离与JS距离"><a href="#KL距离与JS距离" class="headerlink" title="KL距离与JS距离"></a>KL距离与JS距离</h2><p><img src="https://z3.ax1x.com/2021/06/16/2XsvQK.png"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>也就是说，D达到最优时，G也可以达到真实水平，此时D(X)=1/2</p>
 <hr>
 <iframe src="//player.bilibili.com/player.html?bvid=BV1RU4y1h74n&cid=327744141&page=6&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>
 
-<h2 id="DCGAN"><a href="#DCGAN" class="headerlink" title="DCGAN"></a>DCGAN</h2><h3 id="Transposed-Convolution"><a href="#Transposed-Convolution" class="headerlink" title="Transposed Convolution"></a>Transposed Convolution</h3><p><img src="https://z3.ax1x.com/2021/06/16/2XWZyq.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/16/2XWZyq.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="DCGAN"><a href="#DCGAN" class="headerlink" title="DCGAN"></a>DCGAN</h2><h3 id="Transposed-Convolution"><a href="#Transposed-Convolution" class="headerlink" title="Transposed Convolution"></a>Transposed Convolution</h3><p><img src="https://z3.ax1x.com/2021/06/16/2XWZyq.png"></p>
 <p>6<em>6-&gt;4</em>4</p>
 <h3 id="训练难题：不稳定"><a href="#训练难题：不稳定" class="headerlink" title="训练难题：不稳定"></a>训练难题：不稳定</h3><p>训练开始时，生成的p(x)与真实的p(X)很可能不overlap</p>
-<p><img src="https://z3.ax1x.com/2021/06/16/2XhHoT.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/16/2XhHoT.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<p><img src="https://z3.ax1x.com/2021/06/16/2X4Vld.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/16/2X4Vld.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="很可能没有梯度信息"></p>
+<p><img src="https://z3.ax1x.com/2021/06/16/2XhHoT.png"></p>
+<p><img src="https://z3.ax1x.com/2021/06/16/2X4Vld.png" alt="很可能没有梯度信息"></p>
 <hr>
 <iframe src="//player.bilibili.com/player.html?bvid=BV1RU4y1h74n&cid=327744141&page=7&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>
 
 <iframe src="//player.bilibili.com/player.html?bvid=BV1RU4y1h74n&cid=327744141&page=8&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>
 
 <h2 id="WGAN"><a href="#WGAN" class="headerlink" title="WGAN"></a>WGAN</h2><p>采用EM距离：</p>
-<p><img src="https://z3.ax1x.com/2021/06/18/2zxCl9.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/18/2zxCl9.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<p>只要满足<img src="https://z3.ax1x.com/2021/06/18/2zxQOI.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/18/2zxQOI.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="1-LZ"></p>
+<p><img src="https://z3.ax1x.com/2021/06/18/2zxCl9.png"></p>
+<p>只要满足<img src="https://z3.ax1x.com/2021/06/18/2zxQOI.png" alt="1-LZ"></p>
 <p>学到的Discriminater就能够模拟Wasserstein Distance，trainning在任何时候都有梯度</p>
 <h3 id="为了满足1-LZ"><a href="#为了满足1-LZ" class="headerlink" title="为了满足1-LZ"></a>为了满足1-LZ</h3><ul>
 <li>Weight clipping</li>
 <li>Gradient Penalty</li>
-<li><img src="https://z3.ax1x.com/2021/06/18/2zxI76.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/18/2zxI76.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></li>
+<li><img src="https://z3.ax1x.com/2021/06/18/2zxI76.png"></li>
 </ul>
 
       </div>
@@ -800,7 +776,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/185346/35/9972/784416/60cd9b90Ec7e637f2/434550c6655c617d.jpg" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/185346/35/9972/784416/60cd9b90Ec7e637f2/434550c6655c617d.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://img11.360buyimg.com/ddimg/jfs/t1/185346/35/9972/784416/60cd9b90Ec7e637f2/434550c6655c617d.jpg" alt="">
     </div>
     <a href="/2021/06/19/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E6%A0%B7%E9%80%9A%E4%BF%A1%E7%9A%84/" class="post-nav-link">
       <div class="title">
@@ -822,7 +798,7 @@ URL
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/195441/24/8141/2553009/60c7fd32E53be5795/52b89ca402f48914.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/195441/24/8141/2553009/60c7fd32E53be5795/52b89ca402f48914.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://img12.360buyimg.com/ddimg/jfs/t1/195441/24/8141/2553009/60c7fd32E53be5795/52b89ca402f48914.jpg" src="" alt="">
     </div>
     <a href="/2021/06/18/%E7%AC%AC15%E7%AB%A0%20%E6%B3%9B%E5%9E%8B/" class="post-nav-link">
       <div class="title">
@@ -1246,7 +1222,7 @@ URL
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1328,12 +1304,16 @@ URL
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -727,7 +703,7 @@
 <li>缩放到-1和1之间（<strong>Standardization——</strong>MaxAbsScaler()）</li>
 <li>缩放到0和1之间，保留原始数据的分布（<strong>Normalization——</strong>Normalizer()）</li>
 </ol>
-<p>1就是常说的z-score归一化，2是min-max归一化。<br>举个例子来看看它们之间的区别，假设一个数据集包括「身高」和「体重」两个特征，它们都满足正态分布，画出原始数据图像为：<br><img src="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>使用1.StandardScaler()缩放，结果为：<br><img src="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>使用2.MinMaxScaler()缩放，结果为：<br><img src="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>使用3.MaxAbsScaler()缩放，结果为：<br><img src="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/3.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>使用4.Normalizer()缩放，结果为：<br><img src="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/4.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>按需选择。<br>附：</p>
+<p>1就是常说的z-score归一化，2是min-max归一化。<br>举个例子来看看它们之间的区别，假设一个数据集包括「身高」和「体重」两个特征，它们都满足正态分布，画出原始数据图像为：<br><img src="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/0.png"><br>使用1.StandardScaler()缩放，结果为：<br><img src="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/1.png"><br>使用2.MinMaxScaler()缩放，结果为：<br><img src="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/2.png"><br>使用3.MaxAbsScaler()缩放，结果为：<br><img src="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/3.png"><br>使用4.Normalizer()缩放，结果为：<br><img src="http://106.12.125.218/medias/medias/%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E6%A0%87%E5%87%86%E5%8C%96/4.png"><br>按需选择。<br>附：</p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> preprocessing</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot</span>(<span class="params">data, title</span>):</span></span><br><span class="line">    sns.set_style(<span class="string">&#x27;dark&#x27;</span>)</span><br><span class="line">    f, ax = plt.subplots()</span><br><span class="line">    ax.<span class="built_in">set</span>(ylabel=<span class="string">&#x27;frequency&#x27;</span>)</span><br><span class="line">    ax.<span class="built_in">set</span>(xlabel=<span class="string">&#x27;height(blue) / weight(green)&#x27;</span>)</span><br><span class="line">    ax.<span class="built_in">set</span>(title=title)</span><br><span class="line">    sns.distplot(data[:, <span class="number">0</span>:<span class="number">1</span>], color=<span class="string">&#x27;blue&#x27;</span>)</span><br><span class="line">    sns.distplot(data[:, <span class="number">1</span>:<span class="number">2</span>], color=<span class="string">&#x27;green&#x27;</span>)</span><br><span class="line">    plt.savefig(title + <span class="string">&#x27;.png&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">42</span>)</span><br><span class="line">height = np.random.normal(loc=<span class="number">168</span>, scale=<span class="number">5</span>, size=<span class="number">1000</span>).reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">weight = np.random.normal(loc=<span class="number">70</span>, scale=<span class="number">10</span>, size=<span class="number">1000</span>).reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">original_data = np.concatenate((height, weight), axis=<span class="number">1</span>)</span><br><span class="line">plot(original_data, <span class="string">&#x27;Original&#x27;</span>)</span><br><span class="line"></span><br><span class="line">standard_scaler_data = preprocessing.StandardScaler().fit_transform(original_data)</span><br><span class="line">plot(standard_scaler_data, <span class="string">&#x27;StandardScaler&#x27;</span>)</span><br><span class="line"></span><br><span class="line">min_max_scaler_data = preprocessing.MinMaxScaler().fit_transform(original_data)</span><br><span class="line">plot(min_max_scaler_data, <span class="string">&#x27;MinMaxScaler&#x27;</span>)</span><br><span class="line"></span><br><span class="line">max_abs_scaler_data = preprocessing.MaxAbsScaler().fit_transform(original_data)</span><br><span class="line">plot(max_abs_scaler_data, <span class="string">&#x27;MaxAbsScaler&#x27;</span>)</span><br><span class="line"></span><br><span class="line">normalizer_data = preprocessing.Normalizer().fit_transform(original_data)</span><br><span class="line">plot(normalizer_data, <span class="string">&#x27;Normalizer&#x27;</span>)</span><br><span class="line"></span><br><span class="line">robust_scaler_data = preprocessing.RobustScaler().fit_transform(original_data)</span><br><span class="line">plot(robust_scaler_data, <span class="string">&#x27;RobustScaler&#x27;</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h2><p>​<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20467170/answer/839255695">https://www.zhihu.com/question/20467170/answer/839255695</a></p>
 
@@ -773,7 +749,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://picfiles.alphacoders.com/248/248010.jpg" class="lazyload placeholder" data-srcset="https://picfiles.alphacoders.com/248/248010.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://picfiles.alphacoders.com/248/248010.jpg" alt="">
     </div>
     <a href="/2021/09/06/Flink%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-nav-link">
       <div class="title">
@@ -796,7 +772,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://images4.alphacoders.com/926/926968.png" class="lazyload placeholder" data-srcset="https://images4.alphacoders.com/926/926968.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://images4.alphacoders.com/926/926968.png" src="" alt="">
     </div>
     <a href="/2021/08/09/%E4%BB%80%E4%B9%88%E6%98%AFoof_predictions/" class="post-nav-link">
       <div class="title">
@@ -1224,7 +1200,7 @@ oof = out of fold
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1306,12 +1282,16 @@ oof = out of fold
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

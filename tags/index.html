@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -715,14 +691,6 @@
             <div class="tag-chips">
                 
                 
-                <a href="/tags/math/" title="math: 3">
-                    <span class="tag-content"
-                        title="math" style="background-color: #E8F8F5;">math
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/dl/" title="dl: 20">
                     <span class="tag-content"
                         title="dl" style="background-color: #F8C471;">dl
@@ -735,6 +703,14 @@
                     <span class="tag-content"
                         title="tools" style="background-color: #F5EEF8;">tools
                         <span class="tag-length">7</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/math/" title="math: 3">
+                    <span class="tag-content"
+                        title="math" style="background-color: #E8F8F5;">math
+                        <span class="tag-length">3</span>
                     </span>
                 </a>
                 
@@ -763,18 +739,18 @@
                 </a>
                 
                 
-                <a href="/tags/go/" title="go: 20">
-                    <span class="tag-content"
-                        title="go" style="background-color: #D5F5E3;">go
-                        <span class="tag-length">20</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/IELTS/" title="IELTS: 2">
                     <span class="tag-content"
                         title="IELTS" style="background-color: #FFF;">IELTS
                         <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/go/" title="go: 20">
+                    <span class="tag-content"
+                        title="go" style="background-color: #D5F5E3;">go
+                        <span class="tag-length">20</span>
                     </span>
                 </a>
                 
@@ -803,18 +779,18 @@
                 </a>
                 
                 
-                <a href="/tags/interesting/" title="interesting: 2">
-                    <span class="tag-content"
-                        title="interesting" style="background-color: #E8F8F5;">interesting
-                        <span class="tag-length">2</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/linux/" title="linux: 3">
                     <span class="tag-content"
                         title="linux" style="background-color: #85C1E9;">linux
                         <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/interesting/" title="interesting: 2">
+                    <span class="tag-content"
+                        title="interesting" style="background-color: #E8F8F5;">interesting
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
@@ -859,17 +835,17 @@
                 </a>
                 
                 
-                <a href="/tags/nginx/" title="nginx: 1">
+                <a href="/tags/paper/" title="paper: 1">
                     <span class="tag-content"
-                        title="nginx" style="background-color: #FEF9E7;">nginx
+                        title="paper" style="background-color: #FEF9E7;">paper
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/paper/" title="paper: 1">
+                <a href="/tags/nginx/" title="nginx: 1">
                     <span class="tag-content"
-                        title="paper" style="background-color: #FEF9E7;">paper
+                        title="nginx" style="background-color: #FEF9E7;">nginx
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -879,14 +855,6 @@
                     <span class="tag-content"
                         title="numpy" style="background-color: #82E0AA;">numpy
                         <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/shell/" title="shell: 11">
-                    <span class="tag-content"
-                        title="shell" style="background-color: #FFF;">shell
-                        <span class="tag-length">11</span>
                     </span>
                 </a>
                 
@@ -907,6 +875,14 @@
                 </a>
                 
                 
+                <a href="/tags/shell/" title="shell: 11">
+                    <span class="tag-content"
+                        title="shell" style="background-color: #FFF;">shell
+                        <span class="tag-length">11</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/tags/ssh/" title="ssh: 1">
                     <span class="tag-content"
                         title="ssh" style="background-color: #F8F9F9;">ssh
@@ -923,17 +899,17 @@
                 </a>
                 
                 
-                <a href="/tags/ml/" title="ml: 1">
+                <a href="/tags/%E6%94%B6%E7%9B%8A%E6%8C%87%E6%A0%87/" title="收益指标: 1">
                     <span class="tag-content"
-                        title="ml" style="background-color: #E8F8F5;">ml
+                        title="收益指标" style="background-color: #FEF9E7;">收益指标
                         <span class="tag-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/%E6%94%B6%E7%9B%8A%E6%8C%87%E6%A0%87/" title="收益指标: 1">
+                <a href="/tags/ml/" title="ml: 1">
                     <span class="tag-content"
-                        title="收益指标" style="background-color: #FEF9E7;">收益指标
+                        title="ml" style="background-color: #E8F8F5;">ml
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -947,17 +923,17 @@
                 </a>
                 
                 
-                <a href="/tags/%E6%97%A5%E6%8A%A5/" title="日报: 2">
+                <a href="/tags/spark/" title="spark: 2">
                     <span class="tag-content"
-                        title="日报" style="background-color: #E8F8F5;">日报
+                        title="spark" style="background-color: #F8F9F9;">spark
                         <span class="tag-length">2</span>
                     </span>
                 </a>
                 
                 
-                <a href="/tags/spark/" title="spark: 2">
+                <a href="/tags/%E6%97%A5%E6%8A%A5/" title="日报: 2">
                     <span class="tag-content"
-                        title="spark" style="background-color: #F8F9F9;">spark
+                        title="日报" style="background-color: #E8F8F5;">日报
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -1019,18 +995,18 @@
                 </a>
                 
                 
-                <a href="/tags/bigdata/" title="bigdata: 1">
-                    <span class="tag-content"
-                        title="bigdata" style="background-color: #A3E4D7;">bigdata
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/" title="数据仓库: 3">
                     <span class="tag-content"
                         title="数据仓库" style="background-color: #F9E79F;">数据仓库
                         <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/bigdata/" title="bigdata: 1">
+                    <span class="tag-content"
+                        title="bigdata" style="background-color: #A3E4D7;">bigdata
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -1221,7 +1197,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1303,12 +1279,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

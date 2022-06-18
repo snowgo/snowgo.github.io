@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -766,7 +742,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/106.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/106.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/106.jpg" alt="">
     </div>
     <a href="/2022/04/24/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" class="post-nav-link">
       <div class="title">
@@ -792,7 +768,7 @@ HTTP 请
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/161.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/161.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/161.jpg" src="" alt="">
     </div>
     <a href="/2022/04/21/IELTS%E5%90%AC%E5%8A%9B%E7%AC%94%E8%AE%B0-1/" class="post-nav-link">
       <div class="title">
@@ -1215,7 +1191,7 @@ HTTP 请
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1297,12 +1273,16 @@ HTTP 请
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

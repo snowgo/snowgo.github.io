@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -724,11 +700,11 @@
 <h1 id="常用的warmup"><a href="#常用的warmup" class="headerlink" title="常用的warmup"></a>常用的warmup</h1><p>​</p>
 <h2 id="Constant-Warmup"><a href="#Constant-Warmup" class="headerlink" title="Constant Warmup"></a>Constant Warmup</h2><pre><code>学习率从非常小的数值线性增加到预设值之后保持不变，其学习率的系数如下图所示： 
 </code></pre>
-<p><img src="https://z3.ax1x.com/2021/07/08/RLtuqg.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/07/08/RLtuqg.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="https://z3.ax1x.com/2021/07/08/RLtuqg.png"></p>
 <p>​</p>
-<h2 id="Linner-Warmup"><a href="#Linner-Warmup" class="headerlink" title="Linner Warmup"></a>Linner Warmup</h2><p>学习率从非常小的数值线性增加到预设值之后，然后再线性减小。其学习率的系数如下图所示。<br><img src="https://z3.ax1x.com/2021/07/08/RLtrJ1.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/07/08/RLtrJ1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="Linner-Warmup"><a href="#Linner-Warmup" class="headerlink" title="Linner Warmup"></a>Linner Warmup</h2><p>学习率从非常小的数值线性增加到预设值之后，然后再线性减小。其学习率的系数如下图所示。<br><img src="https://z3.ax1x.com/2021/07/08/RLtrJ1.png"></p>
 <p>​</p>
-<h2 id="Cosine-Warmup"><a href="#Cosine-Warmup" class="headerlink" title="Cosine Warmup"></a>Cosine Warmup</h2><p>学习率先从很小的数值线性增加到预设学习率，然后按照cos函数值进行衰减。其学习率系数如下图所示。<br><img src="https://z3.ax1x.com/2021/07/08/RLtqOS.png" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/07/08/RLtqOS.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>​</p>
+<h2 id="Cosine-Warmup"><a href="#Cosine-Warmup" class="headerlink" title="Cosine Warmup"></a>Cosine Warmup</h2><p>学习率先从很小的数值线性增加到预设学习率，然后按照cos函数值进行衰减。其学习率系数如下图所示。<br><img src="https://z3.ax1x.com/2021/07/08/RLtqOS.png"><br>​</p>
 <blockquote>
 <p>转自<a target="_blank" rel="noopener" href="https://blog.csdn.net/dendi_hust/article/details/104465337">https://blog.csdn.net/dendi_hust/article/details/104465337</a></p>
 </blockquote>
@@ -775,7 +751,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" alt="">
     </div>
     <a href="/2021/07/11/%E9%AA%8C%E8%AF%81%E9%9B%86%E5%8F%82%E4%B8%8E%E8%AE%AD%E7%BB%83%E4%BA%86%E5%90%97%EF%BC%9F/" class="post-nav-link">
       <div class="title">
@@ -795,7 +771,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img10.360buyimg.com/ddimg/jfs/t1/188094/17/8354/721071/60c7fbfbE76330a2c/6f5f82c9ed377cc6.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/188094/17/8354/721071/60c7fbfbE76330a2c/6f5f82c9ed377cc6.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://img10.360buyimg.com/ddimg/jfs/t1/188094/17/8354/721071/60c7fbfbE76330a2c/6f5f82c9ed377cc6.jpg" src="" alt="">
     </div>
     <a href="/2021/07/08/%E9%86%8B%E6%BA%9C%E9%A5%B9%E9%A6%87%E5%81%9A%E6%B3%95/" class="post-nav-link">
       <div class="title">
@@ -1220,7 +1196,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1302,12 +1278,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -801,17 +777,17 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://img10.360buyimg.com/ddimg/jfs/t1/188094/17/8354/721071/60c7fbfbE76330a2c/6f5f82c9ed377cc6.jpg" alt="">
     </div>
-    <a href="/2021/06/16/%E7%AC%AC13%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-nav-link">
+    <a href="/2021/06/16/%E5%8D%81%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%20(1)/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">第13章 字符串</div>
+        <div class="title-text">十折交叉验证</div>
       </div>
       
       <!-- <div class="content">
-        13.1 不可变StringString类中修改String的方法都是创建新的String，最初的String不变**
-
+        
+  十折交叉验证，英文名叫做10-fold cross-validation，用来测试算法准确性。是常用的测试方法。将
       </div> -->
     </a>
   </div>
@@ -822,18 +798,16 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/178916/3/9115/3909348/60c7fd3bEba302120/57d3cba209336e3a.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/178916/3/9115/3909348/60c7fd3bEba302120/57d3cba209336e3a.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://img13.360buyimg.com/ddimg/jfs/t1/193757/21/8205/1699718/60c7fc81Ed0f17d7b/65a7dc35be8430f2.jpg" src="" alt="">
     </div>
-    <a href="/2021/06/16/%E7%AC%AC14%E7%AB%A0%20%E5%8F%8D%E5%B0%84/" class="post-nav-link">
+    <a href="/2021/06/16/%E7%AC%AC13%E7%AB%A0%20%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">第14章 反射</div>
+        <div class="title-text">第13章 字符串</div>
       </div>
       <!-- <div class="content">
-        什么是反射？反射是在运行时动态访问类和对象的技术
-为什么要用反射？
+        13.1 不可变StringString类中修改String的方法都是创建新的String，最初的String不变**
 
-实例化对象用new关键字，但是这样就把实例化的工作
       </div> -->
     </a>
   </div>
@@ -1248,7 +1222,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1330,12 +1304,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

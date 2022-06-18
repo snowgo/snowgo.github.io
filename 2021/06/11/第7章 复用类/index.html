@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -715,16 +691,16 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h2 id="7-1-当需要String时，编译器会自动调用toString"><a href="#7-1-当需要String时，编译器会自动调用toString" class="headerlink" title="7.1 当需要String时，编译器会自动调用toString()"></a>7.1 <strong>当需要String时，编译器会自动调用toString()</strong></h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+        <h2 id="7-1-当需要String时，编译器会自动调用toString"><a href="#7-1-当需要String时，编译器会自动调用toString" class="headerlink" title="7.1 当需要String时，编译器会自动调用toString()"></a>7.1 <strong>当需要String时，编译器会自动调用toString()</strong></h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg"></p>
 <h2 id="7-2-导出类构造器和基类构造器"><a href="#7-2-导出类构造器和基类构造器" class="headerlink" title="7.2 导出类构造器和基类构造器"></a>7.2 导出类构造器和基类构造器</h2><p><strong>所有的类都可以含有main方法，无需删除，方便单元测试。</strong></p>
 <ul>
 <li><strong>创建从基类继承的类的对象会先执行基类构造器，然后再执行继承类的构造器<strong><strong>，所以导出类构造器中必须带有基类构造器</strong></strong>。</strong><ul>
 <li><strong>若想要在继承类中调用基类的带参数的构造器，需要使用super关键字****。</strong></li>
-<li><img src="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" class="lazyload placeholder" data-srcset="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><img src="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2></li>
+<li><img src="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg"><h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><img src="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg"><h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2></li>
 </ul>
 </li>
 </ul>
-<p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></strong><br>**</p>
+<p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg"></strong><br>**</p>
 <h3 id="7-7-2-再论继承与组合"><a href="#7-7-2-再论继承与组合" class="headerlink" title="7.7.2 再论继承与组合"></a>7.7.2 再论继承与组合</h3><p><strong>使用继承还是组合最清晰的办法就是要不要向上转型。如果要向上转型，那继承是必要的。如果不需要，再好好考虑</strong> <strong>。</strong></p>
 <h2 id="7-8-final关键字"><a href="#7-8-final关键字" class="headerlink" title="7.8 final关键字"></a>7.8 final关键字</h2><h3 id="7-8-1-final-数据"><a href="#7-8-1-final-数据" class="headerlink" title="7.8.1 final 数据"></a>7.8.1 final 数据</h3><ul>
 <li><p><strong>若是基本数据类型则值不变</strong> 。</p>
@@ -789,7 +765,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" class="lazyload placeholder" data-srcset="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://img13.360buyimg.com/ddimg/jfs/t1/187152/11/7561/2372205/60c7fac2E32b9bab3/4b3a2fd948eefa35.jpg" alt="">
     </div>
     <a href="/2021/06/12/%E7%AC%AC9%E7%AB%A0%20%E6%8E%A5%E5%8F%A3/" class="post-nav-link">
       <div class="title">
@@ -809,7 +785,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img10.360buyimg.com/ddimg/jfs/t1/193253/38/8203/4625208/60c7faefEf9ca76d7/d88aedc7544425a2.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/193253/38/8203/4625208/60c7faefEf9ca76d7/d88aedc7544425a2.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://img10.360buyimg.com/ddimg/jfs/t1/193253/38/8203/4625208/60c7faefEf9ca76d7/d88aedc7544425a2.jpg" src="" alt="">
     </div>
     <a href="/2021/06/11/%E7%AC%AC8%E7%AB%A0%20%E5%A4%9A%E6%80%81/" class="post-nav-link">
       <div class="title">
@@ -1235,7 +1211,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1317,12 +1293,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

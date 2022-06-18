@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -716,14 +692,14 @@
     <article class="post post-detail">
       <div class="post-content">
         <p>围棋实际上就是一个空间，在微积分里可以定义极限和连续，依赖于<strong>距离</strong></p>
-<h3 id="向量的距离"><a href="#向量的距离" class="headerlink" title="向量的距离"></a>向量的距离</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h3 id="函数的距离"><a href="#函数的距离" class="headerlink" title="函数的距离"></a>函数的距离<img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></h3><h3 id="距离的定义"><a href="#距离的定义" class="headerlink" title="距离的定义"></a>距离的定义</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h3 id="线性空间"><a href="#线性空间" class="headerlink" title="线性空间"></a>线性空间</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/3.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>为了创造一个“工作平台”，除了距离和线性空间，我们还需要再加一点什么呢。（也就是，水果-》热带水果。</p>
-<h3 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/4.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>距离可以定义范数，但是范数不能定义距离。（类比距离（水果） 范数（热带水果））</p>
+<h3 id="向量的距离"><a href="#向量的距离" class="headerlink" title="向量的距离"></a>向量的距离</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/0.png"></p>
+<h3 id="函数的距离"><a href="#函数的距离" class="headerlink" title="函数的距离"></a>函数的距离<img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/1.png"></h3><h3 id="距离的定义"><a href="#距离的定义" class="headerlink" title="距离的定义"></a>距离的定义</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/2.png"></p>
+<h3 id="线性空间"><a href="#线性空间" class="headerlink" title="线性空间"></a>线性空间</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/3.png"><br>为了创造一个“工作平台”，除了距离和线性空间，我们还需要再加一点什么呢。（也就是，水果-》热带水果。</p>
+<h3 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/4.png"><br>距离可以定义范数，但是范数不能定义距离。（类比距离（水果） 范数（热带水果））</p>
 <p>赋予范数或者距离的集合分别称为：<strong>赋范空间</strong>和<strong>度量空间</strong>；<br>若在其上再加上线性结构称为<strong>线性赋范空间</strong>和<strong>线性度量空间</strong>。<br>​</p>
 <p>那么。赋范空间有向量的模长，即范数。但是还缺乏一个很重要的概念-两个向量的夹角。为克服这一缺陷，我们引入<strong>内积</strong></p>
-<h3 id="内积空间"><a href="#内积空间" class="headerlink" title="内积空间"></a>内积空间</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/5.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>内积：（x，y）<br>线性性：也就是对第一个变元如果乘a，这个a可以提出来，就跟刚才的范数的这个东西有点类似了，但是它是对第一个（变元）<br>正定：大于等于0<br><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/6.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>内积可以导出范数<br><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/7.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>我们日常生活中的问题大都可以再欧几里得空间内解决。</p>
-<h3 id="希尔伯特空间和巴拿赫空间"><a href="#希尔伯特空间和巴拿赫空间" class="headerlink" title="希尔伯特空间和巴拿赫空间"></a>希尔伯特空间和巴拿赫空间</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/8.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg">​<br>什么是完备性？<br>就是这个空间在极限运算中，它取极限不能跑出去，就是相当于我们原来做极限的时候，有理数集不行，一定要到实数集<br>赋范空间：比内积要少一点，它完备的赋范空间就称为巴拿赫空间</p>
+<h3 id="内积空间"><a href="#内积空间" class="headerlink" title="内积空间"></a>内积空间</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/5.png"><br>内积：（x，y）<br>线性性：也就是对第一个变元如果乘a，这个a可以提出来，就跟刚才的范数的这个东西有点类似了，但是它是对第一个（变元）<br>正定：大于等于0<br><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/6.png"><br>内积可以导出范数<br><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/7.png"><br>我们日常生活中的问题大都可以再欧几里得空间内解决。</p>
+<h3 id="希尔伯特空间和巴拿赫空间"><a href="#希尔伯特空间和巴拿赫空间" class="headerlink" title="希尔伯特空间和巴拿赫空间"></a>希尔伯特空间和巴拿赫空间</h3><p><img src="http://106.12.125.218/medias/medias/%E5%85%B3%E4%BA%8E%E5%87%BD%E6%95%B0%E7%A9%BA%E9%97%B4%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/8.png">​<br>什么是完备性？<br>就是这个空间在极限运算中，它取极限不能跑出去，就是相当于我们原来做极限的时候，有理数集不行，一定要到实数集<br>赋范空间：比内积要少一点，它完备的赋范空间就称为巴拿赫空间</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>范数可以定义“强化” 了的距离<br>内积是较距离和范数有更多内涵<br>希尔伯特空间：具有完备性的内积空间<br>巴拿赫空间：具有完备性的赋范空间</p>
 
       </div>
@@ -768,7 +744,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/medias/Github配置SSH-key时出现Permission-denied(publickey)/thumb-1920-1111008.jpg?versionId=CAEQKRiBgMCJs6zw5hciIGQyOWRkNzQ4N2YzNDQxNDliMDExNGE2NmViOWFhYWQ3" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Github配置SSH-key时出现Permission-denied(publickey)/thumb-1920-1111008.jpg?versionId=CAEQKRiBgMCJs6zw5hciIGQyOWRkNzQ4N2YzNDQxNDliMDExNGE2NmViOWFhYWQ3" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/medias/Github配置SSH-key时出现Permission-denied(publickey)/thumb-1920-1111008.jpg?versionId=CAEQKRiBgMCJs6zw5hciIGQyOWRkNzQ4N2YzNDQxNDliMDExNGE2NmViOWFhYWQ3" alt="">
     </div>
     <a href="/2021/11/01/Github%E9%85%8D%E7%BD%AESSH-key%E6%97%B6%E5%87%BA%E7%8E%B0Permission-denied(publickey)/" class="post-nav-link">
       <div class="title">
@@ -789,7 +765,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/215486/33/64/892565/61657df4Ea1b7c735/10607cd8451f5710.jpg" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/215486/33/64/892565/61657df4Ea1b7c735/10607cd8451f5710.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://img11.360buyimg.com/ddimg/jfs/t1/215486/33/64/892565/61657df4Ea1b7c735/10607cd8451f5710.jpg" src="" alt="">
     </div>
     <a href="/2021/10/03/%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB%E7%AC%94%E8%AE%B0/" class="post-nav-link">
       <div class="title">
@@ -1215,7 +1191,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1297,12 +1273,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

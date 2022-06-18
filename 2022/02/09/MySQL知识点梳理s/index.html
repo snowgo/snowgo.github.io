@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -727,10 +703,10 @@
 <li>叶子节点两两指针相互连接（符合磁盘的预读特性)，顺序查询性能更高<h3 id="MySQL为什么要设置成主键自增"><a href="#MySQL为什么要设置成主键自增" class="headerlink" title="MySQL为什么要设置成主键自增"></a>MySQL为什么要设置成主键自增</h3>如果不自增可能会导致页分裂，分裂后会需要增加父节点对子节点的指针，如果设置成自增的就不需要页分裂了<h2 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h2>索引和数据放在一起就是聚簇索引<br>​</li>
 </ol>
 <p>​</p>
-<p><img src="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="非聚簇索引" title="非聚簇索引"></p>
-<h3 id="一个表中可以由多少个索引？"><a href="#一个表中可以由多少个索引？" class="headerlink" title="一个表中可以由多少个索引？"></a>一个表中可以由多少个索引？</h3><p>肯定不是只有一个索引，可以根据用户需要来创建索引<br><img src="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="再试一下" title="再试一下"></p>
+<p><img src="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/0.png" alt="非聚簇索引" title="非聚簇索引"></p>
+<h3 id="一个表中可以由多少个索引？"><a href="#一个表中可以由多少个索引？" class="headerlink" title="一个表中可以由多少个索引？"></a>一个表中可以由多少个索引？</h3><p>肯定不是只有一个索引，可以根据用户需要来创建索引<br><img src="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/1.png" alt="再试一下" title="再试一下"></p>
 <h3 id="如果一个表中由3个索引，那么数据要存储几份？"><a href="#如果一个表中由3个索引，那么数据要存储几份？" class="headerlink" title="如果一个表中由3个索引，那么数据要存储几份？"></a>如果一个表中由3个索引，那么数据要存储几份？</h3><p>注意，一个表中无论由多少索引，数据只存储一份 </p>
-<h3 id="如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？"><a href="#如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？" class="headerlink" title="如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？"></a>如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？</h3><p>回表<br>数据在进行插入的时候，是必须要跟索引存储在一起的，在innodb的存储引擎中，如果表中由主键，那么数据跟主键放在一起，如果没有主键，跟唯一键放在一起，如果没有唯一键，会生成一 个6字节的rowid，数据跟rowid放在一起，无论如果，总是需要一个索引列的<br><img src="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h3 id="如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？"><a href="#如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？" class="headerlink" title="如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？"></a>如果数据只存储一份的话，那么其他的素引怎么检素到数据呢？</h3><p>回表<br>数据在进行插入的时候，是必须要跟索引存储在一起的，在innodb的存储引擎中，如果表中由主键，那么数据跟主键放在一起，如果没有主键，跟唯一键放在一起，如果没有唯一键，会生成一 个6字节的rowid，数据跟rowid放在一起，无论如果，总是需要一个索引列的<br><img src="http://106.12.125.218/medias/medias/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86s/2.png"></p>
 
       </div>
       <div class="post-tags-categories">
@@ -774,7 +750,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/196.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/196.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/196.jpg" alt="">
     </div>
     <a href="/2022/02/09/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bls/" class="post-nav-link">
       <div class="title">
@@ -795,7 +771,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://api.mtyqx.cn/api/random.php?return=302" class="lazyload placeholder" data-srcset="https://api.mtyqx.cn/api/random.php?return=302" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://api.mtyqx.cn/api/random.php?return=302" src="" alt="">
     </div>
     <a href="/2022/02/08/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/" class="post-nav-link">
       <div class="title">
@@ -1219,7 +1195,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1301,12 +1277,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

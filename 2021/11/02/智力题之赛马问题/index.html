@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -717,12 +693,12 @@
       <div class="post-content">
         <iframe src="//player.bilibili.com/player.html?bvid=BV1KJ411g78y&cid=118835090&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>
 
-<h2 id="赛马问题"><a href="#赛马问题" class="headerlink" title="赛马问题"></a>赛马问题</h2><h3 id="64匹马8个跑道"><a href="#64匹马8个跑道" class="headerlink" title="64匹马8个跑道"></a>64匹马8个跑道</h3><p>64匹马8个跑道（不计时），问最少要比多少次，才能知道最快的4匹马<br><img src="http://106.12.125.218/medias/medias/%E6%99%BA%E5%8A%9B%E9%A2%98%E4%B9%8B%E8%B5%9B%E9%A9%AC%E9%97%AE%E9%A2%98/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E6%99%BA%E5%8A%9B%E9%A2%98%E4%B9%8B%E8%B5%9B%E9%A9%AC%E9%97%AE%E9%A2%98/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>​</p>
+<h2 id="赛马问题"><a href="#赛马问题" class="headerlink" title="赛马问题"></a>赛马问题</h2><h3 id="64匹马8个跑道"><a href="#64匹马8个跑道" class="headerlink" title="64匹马8个跑道"></a>64匹马8个跑道</h3><p>64匹马8个跑道（不计时），问最少要比多少次，才能知道最快的4匹马<br><img src="http://106.12.125.218/medias/medias/%E6%99%BA%E5%8A%9B%E9%A2%98%E4%B9%8B%E8%B5%9B%E9%A9%AC%E9%97%AE%E9%A2%98/0.png"><br>​</p>
 <p>首先要赛8+1场，得到上表中的相对顺序<br>A1&gt;A2&gt;…&gt;A8<br>B1&gt;B2&gt;…&gt;B8<br>…<br>H1&gt;H2&gt;…&gt;H8<br>A1&gt;B1&gt;…&gt;H1<br>​</p>
 <p>可以知道第一名已经确定了，第2-4名只可能在红色区域出现（如：D2&lt;D1&lt;C1&lt;B1&lt;A1,所以D2一定不是前四）<br>​</p>
 <p>红色区域共有9匹马，取出A2，让剩下8匹马赛一场，如果A3第一，则前4已经确定了共8+1+1=10场，如果A3不是第一，则还需要让这一场的前三名和A2赛一场，共8+1+1+1=11场<br>​</p>
 <p>所以最少10场，最多11场</p>
-<h3 id="36匹马6个跑道"><a href="#36匹马6个跑道" class="headerlink" title="36匹马6个跑道"></a>36匹马6个跑道</h3><p><img src="http://106.12.125.218/medias/medias/%E6%99%BA%E5%8A%9B%E9%A2%98%E4%B9%8B%E8%B5%9B%E9%A9%AC%E9%97%AE%E9%A2%98/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E6%99%BA%E5%8A%9B%E9%A2%98%E4%B9%8B%E8%B5%9B%E9%A9%AC%E9%97%AE%E9%A2%98/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>先赛6 + 1场得到上表<br>然后让红色区域再赛一场就可以确定前三名了<br>​</p>
+<h3 id="36匹马6个跑道"><a href="#36匹马6个跑道" class="headerlink" title="36匹马6个跑道"></a>36匹马6个跑道</h3><p><img src="http://106.12.125.218/medias/medias/%E6%99%BA%E5%8A%9B%E9%A2%98%E4%B9%8B%E8%B5%9B%E9%A9%AC%E9%97%AE%E9%A2%98/1.png"><br>先赛6 + 1场得到上表<br>然后让红色区域再赛一场就可以确定前三名了<br>​</p>
 <p>所以共6 + 1 + 1 = 8场<br>​</p>
 <p>同理<br>25匹马5赛道，赛出前3名<br>需要5 + 1 + 1 = 7场</p>
 <blockquote>
@@ -771,7 +747,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://animecorner.me/wp-content/uploads/2021/08/deji-meets-girl-fantasia.jpg" class="lazyload placeholder" data-srcset="https://animecorner.me/wp-content/uploads/2021/08/deji-meets-girl-fantasia.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://animecorner.me/wp-content/uploads/2021/08/deji-meets-girl-fantasia.jpg" alt="">
     </div>
     <a href="/2021/11/28/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6%E5%91%BD%E4%BB%A4(%E7%BA%AF%E5%87%80%E7%89%88)/" class="post-nav-link">
       <div class="title">
@@ -804,7 +780,7 @@ y数字y
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/medias/Github配置SSH-key时出现Permission-denied(publickey)/thumb-1920-1111008.jpg?versionId=CAEQKRiBgMCJs6zw5hciIGQyOWRkNzQ4N2YzNDQxNDliMDExNGE2NmViOWFhYWQ3" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Github配置SSH-key时出现Permission-denied(publickey)/thumb-1920-1111008.jpg?versionId=CAEQKRiBgMCJs6zw5hciIGQyOWRkNzQ4N2YzNDQxNDliMDExNGE2NmViOWFhYWQ3" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/medias/Github配置SSH-key时出现Permission-denied(publickey)/thumb-1920-1111008.jpg?versionId=CAEQKRiBgMCJs6zw5hciIGQyOWRkNzQ4N2YzNDQxNDliMDExNGE2NmViOWFhYWQ3" src="" alt="">
     </div>
     <a href="/2021/11/01/Github%E9%85%8D%E7%BD%AESSH-key%E6%97%B6%E5%87%BA%E7%8E%B0Permission-denied(publickey)/" class="post-nav-link">
       <div class="title">
@@ -1228,7 +1204,7 @@ y数字y
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1310,12 +1286,16 @@ y数字y
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

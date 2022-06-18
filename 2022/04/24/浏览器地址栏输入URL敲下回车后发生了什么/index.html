@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -715,7 +691,7 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+        <p><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/0.png"></p>
 <h2 id="一、简单分析"><a href="#一、简单分析" class="headerlink" title="一、简单分析"></a>一、简单分析</h2><p>简单的分析，从输入 URL到回车后发生的行为如下：</p>
 <ol>
 <li>URL解析</li>
@@ -723,7 +699,7 @@
 <li>TCP 连接</li>
 <li>HTTP 请求</li>
 <li>响应请求</li>
-<li>页面渲染<h2 id="二、详细分析"><a href="#二、详细分析" class="headerlink" title="二、详细分析"></a>二、详细分析</h2><h3 id="URL解析"><a href="#URL解析" class="headerlink" title="URL解析"></a>URL解析</h3>首先判断你输入的是一个合法的URL 还是一个待搜索的关键词，并且根据你输入的内容进行对应操作<br>一个url的结构解析如下：<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h3 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h3>在DNS协议中讲过DNS的查询，这里就不再讲述了<br>整个查询过程如下图所示：<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>最终，获取到了域名对应的目标服务器IP地址<h3 id="TCP连接"><a href="#TCP连接" class="headerlink" title="TCP连接"></a>TCP连接</h3>在理解TCP中，了解到tcp是一种面向有连接的传输层协议<br>在确定目标服务器服务器的IP地址后，则经历三次握手建立TCP连接，流程如下：<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/3.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h3 id="发送-http-请求"><a href="#发送-http-请求" class="headerlink" title="发送 http 请求"></a>发送 http 请求</h3>当建立tcp连接之后，就可以在这基础上进行通信，浏览器发送 http 请求到目标服务器<br>请求的内容包括：<br>请求行请求头请求主体<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/4.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h3 id="响应请求"><a href="#响应请求" class="headerlink" title="响应请求"></a>响应请求</h3>当服务器接收到浏览器的请求之后，就会进行逻辑操作，处理完成之后返回一个HTTP响应消息，包括：<br>状态行响应头响应正文<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/5.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>在服务器响应之后，由于现在http默认开始长连接keep-alive，当页面关闭之后，tcp链接则会经过四次挥手完成断开<h3 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h3>当浏览器接收到服务器响应的资源后，首先会对资源进行解析：<br>查看响应头的信息，根据不同的指示做对应处理，比如重定向，存储cookie，解压gzip，缓存资源等等查看响应头的 Content-Type的值，根据不同的资源类型采用不同的解析方式关于页面的渲染过程如下：<br>解析HTML，构建 DOM 树解析 CSS ，生成 CSS 规则树合并 DOM 树和 CSS 规则，生成 render 树布局 render 树（ Layout / reflow ），负责各元素尺寸、位置的计算绘制 render 树（ paint ），绘制页面像素信息浏览器会将各层的信息发送给 GPU，GPU 会将各层合成（ composite ），显示在屏幕上<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/6.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><blockquote>
+<li>页面渲染<h2 id="二、详细分析"><a href="#二、详细分析" class="headerlink" title="二、详细分析"></a>二、详细分析</h2><h3 id="URL解析"><a href="#URL解析" class="headerlink" title="URL解析"></a>URL解析</h3>首先判断你输入的是一个合法的URL 还是一个待搜索的关键词，并且根据你输入的内容进行对应操作<br>一个url的结构解析如下：<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/1.png"><h3 id="DNS查询"><a href="#DNS查询" class="headerlink" title="DNS查询"></a>DNS查询</h3>在DNS协议中讲过DNS的查询，这里就不再讲述了<br>整个查询过程如下图所示：<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/2.png"><br>最终，获取到了域名对应的目标服务器IP地址<h3 id="TCP连接"><a href="#TCP连接" class="headerlink" title="TCP连接"></a>TCP连接</h3>在理解TCP中，了解到tcp是一种面向有连接的传输层协议<br>在确定目标服务器服务器的IP地址后，则经历三次握手建立TCP连接，流程如下：<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/3.png"><h3 id="发送-http-请求"><a href="#发送-http-请求" class="headerlink" title="发送 http 请求"></a>发送 http 请求</h3>当建立tcp连接之后，就可以在这基础上进行通信，浏览器发送 http 请求到目标服务器<br>请求的内容包括：<br>请求行请求头请求主体<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/4.png"><h3 id="响应请求"><a href="#响应请求" class="headerlink" title="响应请求"></a>响应请求</h3>当服务器接收到浏览器的请求之后，就会进行逻辑操作，处理完成之后返回一个HTTP响应消息，包括：<br>状态行响应头响应正文<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/5.png"><br>在服务器响应之后，由于现在http默认开始长连接keep-alive，当页面关闭之后，tcp链接则会经过四次挥手完成断开<h3 id="页面渲染"><a href="#页面渲染" class="headerlink" title="页面渲染"></a>页面渲染</h3>当浏览器接收到服务器响应的资源后，首先会对资源进行解析：<br>查看响应头的信息，根据不同的指示做对应处理，比如重定向，存储cookie，解压gzip，缓存资源等等查看响应头的 Content-Type的值，根据不同的资源类型采用不同的解析方式关于页面的渲染过程如下：<br>解析HTML，构建 DOM 树解析 CSS ，生成 CSS 规则树合并 DOM 树和 CSS 规则，生成 render 树布局 render 树（ Layout / reflow ），负责各元素尺寸、位置的计算绘制 render 树（ paint ），绘制页面像素信息浏览器会将各层的信息发送给 GPU，GPU 会将各层合成（ composite ），显示在屏幕上<br><img src="http://106.12.125.218/medias/medias/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5URL%E6%95%B2%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%90%8E%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/6.png"><blockquote>
 <p>参考文献<br><a target="_blank" rel="noopener" href="https://github.com/febobo/web-interview/issues/141https://zhuanlan.zhihu.com/p/80551769">https://github.com/febobo/web-interview/issues/141https://zhuanlan.zhihu.com/p/80551769</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1707485335576146048&wfr=spider&for=pc">https://baijiahao.baidu.com/s?id=1707485335576146048&amp;wfr=spider&amp;for=pc</a></p>
 </blockquote>
 </li>
@@ -771,7 +747,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/206.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/206.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/206.jpg" alt="">
     </div>
     <a href="/2022/04/24/go%E8%AF%AD%E8%A8%80slice%E4%BC%98%E5%8C%96/" class="post-nav-link">
       <div class="title">
@@ -792,7 +768,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/91.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/91.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/91.jpg" src="" alt="">
     </div>
     <a href="/2022/04/24/%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/" class="post-nav-link">
       <div class="title">
@@ -1217,7 +1193,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1299,12 +1275,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

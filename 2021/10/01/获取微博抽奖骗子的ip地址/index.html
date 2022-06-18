@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -715,10 +691,10 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>发烧了好几天，心情不太好，就想在微博上抽点奖玩玩，结果就发现了一个性价比极高的：<br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>我立马转发<br>结果第二天我一看，<br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>这是我中奖了吗，我中了iPhone13？？？<br>然后我来到他主页一看：<br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/3.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>好家伙你这13还没开奖就又搞了个抽奖，还想让我先交钱？来知乎看了一下，发现已经有好多受害者了。（<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/437835565/answer/1827689954%EF%BC%89">https://www.zhihu.com/question/437835565/answer/1827689954）</a><br>我立马举报。<br>骗子这么嚣张，必须被打击打击才行啊<br>那么用个简单的小工具发链接查查骗子的ip地址好了<br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/4.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/5.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/6.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>骗子点了之后，为了再验证一下，换了个链接让骗子再点一次<br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/7.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<p><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/8.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>骗子非常顺利的上钩了<br>那么图中的两个网页链接呢，骗子每个都点了，返回的值都对应着这个ip</p>
-<p><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/9.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/9.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>​</p>
-<p><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/10.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/10.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/11.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/11.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>那么大概就是在这附近了<br>所以，能不能把他们全都抓起来？</p>
+        <p>发烧了好几天，心情不太好，就想在微博上抽点奖玩玩，结果就发现了一个性价比极高的：<br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/0.png"><br>我立马转发<br>结果第二天我一看，<br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/1.png"><br>这是我中奖了吗，我中了iPhone13？？？<br>然后我来到他主页一看：<br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/2.png"><br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/3.png"><br>好家伙你这13还没开奖就又搞了个抽奖，还想让我先交钱？来知乎看了一下，发现已经有好多受害者了。（<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/437835565/answer/1827689954%EF%BC%89">https://www.zhihu.com/question/437835565/answer/1827689954）</a><br>我立马举报。<br>骗子这么嚣张，必须被打击打击才行啊<br>那么用个简单的小工具发链接查查骗子的ip地址好了<br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/4.png"><br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/5.png"><br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/6.png"><br>骗子点了之后，为了再验证一下，换了个链接让骗子再点一次<br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/7.png"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/8.png"><br>骗子非常顺利的上钩了<br>那么图中的两个网页链接呢，骗子每个都点了，返回的值都对应着这个ip</p>
+<p><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/9.png"><br>​</p>
+<p><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/10.png"><br><img src="http://106.12.125.218/medias/medias/%E8%8E%B7%E5%8F%96%E5%BE%AE%E5%8D%9A%E6%8A%BD%E5%A5%96%E9%AA%97%E5%AD%90%E7%9A%84ip%E5%9C%B0%E5%9D%80/11.png"><br>那么大概就是在这附近了<br>所以，能不能把他们全都抓起来？</p>
 
       </div>
       <div class="post-tags-categories">
@@ -762,7 +738,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img11.360buyimg.com/ddimg/jfs/t1/215486/33/64/892565/61657df4Ea1b7c735/10607cd8451f5710.jpg" class="lazyload placeholder" data-srcset="https://img11.360buyimg.com/ddimg/jfs/t1/215486/33/64/892565/61657df4Ea1b7c735/10607cd8451f5710.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://img11.360buyimg.com/ddimg/jfs/t1/215486/33/64/892565/61657df4Ea1b7c735/10607cd8451f5710.jpg" alt="">
     </div>
     <a href="/2021/10/03/%E9%AA%8C%E8%AF%81%E7%A0%81%E8%AF%86%E5%88%AB%E7%AC%94%E8%AE%B0/" class="post-nav-link">
       <div class="title">
@@ -785,7 +761,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://images6.alphacoders.com/753/753266.png" class="lazyload placeholder" data-srcset="https://images6.alphacoders.com/753/753266.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://images6.alphacoders.com/753/753266.png" src="" alt="">
     </div>
     <a href="/2021/09/14/Java%E7%AC%94%E8%AE%B0-%E6%B3%A8%E8%A7%A3%E5%92%8C%E5%8F%8D%E5%B0%84/" class="post-nav-link">
       <div class="title">
@@ -1208,7 +1184,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1290,12 +1266,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

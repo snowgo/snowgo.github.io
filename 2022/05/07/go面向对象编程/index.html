@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -721,7 +697,7 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span>&#123;</span><br><span class="line">	Name <span class="keyword">string</span></span><br><span class="line">	Age <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p *Person)</span><span class="title">Say</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(p.Name,<span class="string">&quot;say hello&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以指针方式绑定结构体或者直接类型绑定，访问属性值可以用（&amp;p）.Name ,go官方在底层其实已经实现了可以直接用p.Name 进行访问。但是要注意的是，指针绑定的对象是值引用，直接类型绑定的是值拷贝</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">type</span> Person <span class="keyword">struct</span>&#123;</span><br><span class="line">	Name <span class="keyword">string</span></span><br><span class="line">	Age <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p Person)</span><span class="title">test1</span><span class="params">()</span></span> &#123;</span><br><span class="line">	p.Name = <span class="string">&quot;tom&quot;</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;test1&quot;</span>,p.Name)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(p *Person)</span><span class="title">test2</span><span class="params">()</span></span> &#123;</span><br><span class="line">	p.Name = <span class="string">&quot;jack&quot;</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;test2&quot;</span>,p.Name)</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	p := Person&#123;<span class="string">&quot;Nomen&quot;</span>,<span class="number">18</span>&#125;</span><br><span class="line">	(&amp;p).test1()</span><br><span class="line">	p.test1()</span><br><span class="line">	fmt.Println((&amp;p).Name,p.Name)</span><br><span class="line">	(&amp;p).test2()</span><br><span class="line">	p.test2()</span><br><span class="line">	fmt.Println((&amp;p).Name,p.Name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="http://106.12.125.218/medias/medias/go%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/go%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="http://106.12.125.218/medias/medias/go%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/0.png"></p>
 <p>由执行结果可以说明：test1()  直接绑定类型（值拷贝），方法内更改了name为tom，方法内输出为tom，而方法外用p.Name 依然是初始值Nome。 <strong>说明启用test1时，拷贝了一份Persen。操作的内存空间不同了</strong>。所以方法内和方法外的结果不同</p>
 <p>test2() 绑定的是指针类型（值引用），方法内更改Name为jack，方法内输出为jack，方法外用p.Name已经将Nome更改为jack了。<strong>说明启用test2()时，引用了初始的Person</strong>。方法内部操作的内存空间还是同一份。所以方法内和方法外的结果是一样的。</p>
 <p><strong>所以我们在实际项目中，大部分都会绑定指针类型。既节省了资源，又同步了对象的数据。</strong></p>
@@ -770,7 +746,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/52.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/52.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/52.jpg" alt="">
     </div>
     <a href="/2022/05/09/linux%E4%B9%8Bio%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E4%B8%8Eepoll/" class="post-nav-link">
       <div class="title">
@@ -790,7 +766,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/47.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/47.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/47.jpg" src="" alt="">
     </div>
     <a href="/2022/05/06/Go%E8%AF%AD%E8%A8%80map%E5%A3%B0%E6%98%8E%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B0%8F%E7%BB%93/" class="post-nav-link">
       <div class="title">
@@ -1214,7 +1190,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1296,12 +1272,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

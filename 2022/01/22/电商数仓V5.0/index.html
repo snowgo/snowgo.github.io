@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -737,12 +713,12 @@
 <p><strong>（3）第二范式</strong></p>
 <p><strong>（4）第三范式</strong></p>
 <p>下图为一个采用Bill<br>Inmon倡导的建模方法构建的模型，从图中可以看出，较为松散、零碎，物理表数量多。</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/250b56b4e3e1198e1f6df4cfadcf3651.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/250b56b4e3e1198e1f6df4cfadcf3651.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/250b56b4e3e1198e1f6df4cfadcf3651.png"></p>
 <p>这种建模方法的出发点是整合数据，其目的是将整个企业的数据进行组合和合并，并进行规范处理，减少数据冗余性，保证数据的一致性。这种模型并不适合直接用于分析统计。</p>
 <h4 id="维度模型"><a href="#维度模型" class="headerlink" title="维度模型"></a>维度模型</h4><p>数据仓库领域的令一位大师——Ralph<br>Kimball倡导的建模方法为维度建模。维度模型将复杂的业务通过事实和维度两个概念进行呈现。事实通常对应业务过程，而维度通常对应业务过程发生时所处的环境。</p>
 <p><strong>注</strong>：业务过程可以概括为一个个不可拆分的行为事件，例如电商交易中的下单，取消订单，付款，退单等，都是业务过程。</p>
 <p>下图为一个典型的维度模型，其中位于中心的SalesOrder为事实表，其中保存的是下单这个业务过程的所有记录。位于周围每张表都是维度表，包括Date（日期），Customer（顾客），Product（产品），Location（地区）等，这些维度表就组成了每个订单发生时所处的环境，即何人、何时、在何地下单了何种产品。从图中可以看出，模型相对清晰、简洁。</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/d48645420eb5979f3550dc6589449f50.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/d48645420eb5979f3550dc6589449f50.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图示 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/d48645420eb5979f3550dc6589449f50.png" alt="图示 描述已自动生成"></p>
 <p>维度建模以数据分析作为出发点，为数据分析服务，因此它关注的重点的用户如何更快的完成需求分析以及如何实现较好的大规模复杂查询的响应性能。</p>
 <h2 id="第3章-维度建模理论之事实表"><a href="#第3章-维度建模理论之事实表" class="headerlink" title="第3章 维度建模理论之事实表"></a>第3章 维度建模理论之事实表</h2><h3 id="事实表概述"><a href="#事实表概述" class="headerlink" title="事实表概述"></a>事实表概述</h3><p>事实表作为数据仓库维度建模的核心，紧紧围绕着业务过程来设计。其包含与该业务过程有关的维度引用（维度表外键）以及该业务过程的度量（通常是可累加的数字类型字段）。</p>
 <h4 id="事实表特点"><a href="#事实表特点" class="headerlink" title="事实表特点"></a>事实表特点</h4><p>事实表通常比较“细长”，即列较少，但行较多，且行的增速快。</p>
@@ -993,7 +969,7 @@
 <p>（3）通过insert测试效果</p>
 <p>hive (default)&gt; insert into table student values(1,’abc’);</p>
 <p>若结果如下，则说明配置成功</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/bce7a0b2e183b0457f5cdde8c162d748.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/bce7a0b2e183b0457f5cdde8c162d748.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="日程表 中度可信度描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/bce7a0b2e183b0457f5cdde8c162d748.png" alt="日程表 中度可信度描述已自动生成"></p>
 <h4 id="Yarn环境配置"><a href="#Yarn环境配置" class="headerlink" title="Yarn环境配置"></a>Yarn环境配置</h4><p><strong>1）增加ApplicationMaster资源比例</strong></p>
 <p>容量调度器对每个资源队列中同时运行的Application<br>Master占用的资源进行了限制，该限制通过yarn.scheduler.capacity.maximum-am-resource-percent参数实现，其默认值是0.1，表示每个资源队列上Application<br>Master最多可使用的资源为该队列总资源的10%，目的是防止大部分资源都被Application<br>Master占用，而导致Map/Reduce Task无法执行。</p>
 <p>生产环境该参数可使用默认值。但学习环境，集群资源总数很少，如果只分配10%的资源给Application<br>Master，则可能出现，同一时刻只能运行一个Job的情况，因为一个Application<br>Master使用的资源就可能已经达到10%的上限了。故此处可将该值适当调大。</p>
@@ -1046,11 +1022,11 @@
 <p>业务数据一般存在历史数据，此处需准备2020-06-10至2020-06-14的数据。具体操作如下。</p>
 <p><strong>（1）生成模拟数据</strong></p>
 <p>修改hadoop102节点上的/opt/module/db_log/application.properties文件，将mock.date、mock.clear，mock.clear.user三个参数调整为如图所示的值。</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/928174bb07164efac9511dbf482a878f.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/928174bb07164efac9511dbf482a878f.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="文本 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/928174bb07164efac9511dbf482a878f.png" alt="文本 描述已自动生成"></p>
 <p>执行模拟生成业务数据的命令，生成第一天2020-06-10的历史数据。</p>
 <p>[atguigu@hadoop102 db_log]$ java -jar gmall2020-mock-db-2021-01-22.jar</p>
 <p>修改/opt/module/db_log/application.properties文件，将mock.date、mock.clear，mock.clear.user三个参数调整为如图所示的值。</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/10f27d1b2dceed818de8b1a8b4de20fa.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/10f27d1b2dceed818de8b1a8b4de20fa.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="文本 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/10f27d1b2dceed818de8b1a8b4de20fa.png" alt="文本 描述已自动生成"></p>
 <p>执行模拟生成业务数据的命令，生成第二天2020-06-11的历史数据。</p>
 <p>[atguigu@hadoop102 db_log]$ java -jar gmall2020-mock-db-2021-10-10.jar</p>
 <p>之后只修改/opt/module/db_log/application.properties文件中的mock.date参数，依次改为2020-06-12，2020-06-13，2020-06-14，并分别生成对应日期的数据。</p>
@@ -9557,7 +9533,7 @@
 <p>)t2</p>
 <p>on t1.recent_days=t2.recent_days;</p>
 <h4 id="用户行为漏斗分析"><a href="#用户行为漏斗分析" class="headerlink" title="用户行为漏斗分析"></a>用户行为漏斗分析</h4><p>漏斗分析是一个数据分析模型，它能够科学反映一个业务过程从起点到终点各阶段用户转化情况。由于其能将各阶段环节都展示出来，故哪个阶段存在问题，就能一目了然。</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f0bc0e0694859a6902469b238252b58a.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f0bc0e0694859a6902469b238252b58a.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图表, 漏斗图 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f0bc0e0694859a6902469b238252b58a.png" alt="图表, 漏斗图 描述已自动生成"></p>
 <p>该需求要求统计一个完整的购物流程各个阶段的人数，具体说明如下：</p>
 <table>
 <thead>
@@ -11851,27 +11827,27 @@
 描述已自动生成"></p>
 <p><strong>（2）各任务节点配置如下</strong></p>
 <p>mysql_to_hdfs_full</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/69e0cb43ad0c3fb4a489714786c83698.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/69e0cb43ad0c3fb4a489714786c83698.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图形用户界面 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/69e0cb43ad0c3fb4a489714786c83698.png" alt="图形用户界面 描述已自动生成"></p>
 <p>hdfs_to_ods_db</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/83911dcf800a2eb193f3065fbf1b9b34.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/83911dcf800a2eb193f3065fbf1b9b34.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图形用户界面, 网站 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/83911dcf800a2eb193f3065fbf1b9b34.png" alt="图形用户界面, 网站 描述已自动生成"></p>
 <p>hdfs_to_ods_log</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/8bb4060781485c522894d2ebc62f1635.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/8bb4060781485c522894d2ebc62f1635.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图形用户界面 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/8bb4060781485c522894d2ebc62f1635.png" alt="图形用户界面 描述已自动生成"></p>
 <p>ods_to_dwd</p>
 <p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/b4e4a357d08b7bab51f62e65ff38be78.png" alt="图形用户界面, 应用程序
 描述已自动生成"></p>
 <p>ods_to_dim</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/cf3545948699c57f70046ea24e7624fb.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/cf3545948699c57f70046ea24e7624fb.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/cf3545948699c57f70046ea24e7624fb.png"></p>
 <p>dwd_to_dws_1d</p>
 <p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/7b73a75923f13e3f26143924e2d2c855.png" alt="图形用户界面, 应用程序
 描述已自动生成"></p>
 <p>dws_1d_to_dws_nd</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/3a75dd2406a506dce545ffd66d2edbf6.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/3a75dd2406a506dce545ffd66d2edbf6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图形用户界面 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/3a75dd2406a506dce545ffd66d2edbf6.png" alt="图形用户界面 描述已自动生成"></p>
 <p>dws_1d_to_dws_td</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f55099f34de24da6434f1b64abc7284d.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f55099f34de24da6434f1b64abc7284d.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图形用户界面 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/f55099f34de24da6434f1b64abc7284d.png" alt="图形用户界面 描述已自动生成"></p>
 <p>dws_to_ads</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/48e17699e7ca2b90fedbdff780114ef2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/48e17699e7ca2b90fedbdff780114ef2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图形用户界面 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/48e17699e7ca2b90fedbdff780114ef2.png" alt="图形用户界面 描述已自动生成"></p>
 <p>hdfs_to_mysql</p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/b836f074cb3cd97aea4180eba5dacc43.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/b836f074cb3cd97aea4180eba5dacc43.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图形用户界面 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/b836f074cb3cd97aea4180eba5dacc43.png" alt="图形用户界面 描述已自动生成"></p>
 <p><strong>（3）各节点依赖关系如下</strong></p>
 <p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/939d849431ec54a97b617843bcd93c95.png" alt="图片包含 图形用户界面
 描述已自动生成"></p>
@@ -11893,14 +11869,14 @@
 <p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/1481d8f1ba008676e566cbdc2500fd15.png" alt="图形用户界面, 应用程序
 描述已自动生成"></p>
 <p><strong>（2）创建租户</strong></p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/0a674653cabbac1345075a5875dd95f7.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/0a674653cabbac1345075a5875dd95f7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图形用户界面 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/0a674653cabbac1345075a5875dd95f7.png" alt="图形用户界面 描述已自动生成"></p>
 <p><strong>（3）创建用户</strong></p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/bda9944d222b47200b691e3cf2657388.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/bda9944d222b47200b691e3cf2657388.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="手机屏幕截图 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/bda9944d222b47200b691e3cf2657388.png" alt="手机屏幕截图 描述已自动生成"></p>
 <p><strong>3）切换普通用户登录</strong></p>
 <p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/1481d8f1ba008676e566cbdc2500fd15.png" alt="图形用户界面, 应用程序
 描述已自动生成"></p>
 <p><strong>4）创建项目</strong></p>
-<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/ab622546c77763b07184f0dcbf1afc28.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/ab622546c77763b07184f0dcbf1afc28.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="图形用户界面, 网站 描述已自动生成"></p>
+<p><img src="http://106.12.125.218/medias/medias/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%935.0/ab622546c77763b07184f0dcbf1afc28.png" alt="图形用户界面, 网站 描述已自动生成"></p>
 <p><strong>5）其余操作</strong></p>
 <p>其余操作与集群模式基本一致，其中分发Hive、Spark、DataX这一步可以省略。</p>
 
@@ -11946,7 +11922,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://images4.alphacoders.com/822/thumb-1920-822927.jpg" class="lazyload placeholder" data-srcset="https://images4.alphacoders.com/822/thumb-1920-822927.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://images4.alphacoders.com/822/thumb-1920-822927.jpg" alt="">
     </div>
     <a href="/2022/01/22/%E5%B0%9A%E7%A1%85%E8%B0%B7%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%A1%B9%E7%9B%AE%E4%B9%8B%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%93%EF%BC%88%E4%B8%9A%E5%8A%A1%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E5%B9%B3%E5%8F%B0%EF%BC%89V5.0/" class="post-nav-link">
       <div class="title">
@@ -11969,7 +11945,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://images2.alphacoders.com/119/thumb-1920-1191962.jpg" class="lazyload placeholder" data-srcset="https://images2.alphacoders.com/119/thumb-1920-1191962.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://images2.alphacoders.com/119/thumb-1920-1191962.jpg" src="" alt="">
     </div>
     <a href="/2021/12/21/Log4j%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90/" class="post-nav-link">
       <div class="title">
@@ -12392,7 +12368,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -12474,12 +12450,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

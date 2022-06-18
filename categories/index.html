@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -716,6 +692,14 @@
             <div class="category-chips">
                 
                 
+                <a href="/categories/DL/" title="DL: 16">
+                    <span class="category-content"
+                        title="DL" style="background-color: #F9EBEA;">DL
+                        <span class="category-length">16</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/categories/MATH/" title="MATH: 3">
                     <span class="category-content"
                         title="MATH" style="background-color: #E8F8F5;">MATH
@@ -736,14 +720,6 @@
                     <span class="category-content"
                         title="技术栈" style="background-color: #D7BDE2;">技术栈
                         <span class="category-length">13</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/DL/" title="DL: 16">
-                    <span class="category-content"
-                        title="DL" style="background-color: #F9EBEA;">DL
-                        <span class="category-length">16</span>
                     </span>
                 </a>
                 
@@ -796,17 +772,17 @@
                 </a>
                 
                 
-                <a href="/categories/ML/" title="ML: 1">
+                <a href="/categories/%E7%90%86%E8%B4%A2/" title="理财: 1">
                     <span class="category-content"
-                        title="ML" style="background-color: #82E0AA;">ML
+                        title="理财" style="background-color: #F5EEF8;">理财
                         <span class="category-length">1</span>
                     </span>
                 </a>
                 
                 
-                <a href="/categories/%E7%90%86%E8%B4%A2/" title="理财: 1">
+                <a href="/categories/ML/" title="ML: 1">
                     <span class="category-content"
-                        title="理财" style="background-color: #F5EEF8;">理财
+                        title="ML" style="background-color: #82E0AA;">ML
                         <span class="category-length">1</span>
                     </span>
                 </a>
@@ -860,18 +836,18 @@
                 </a>
                 
                 
-                <a href="/categories/BIGDATA/" title="BIGDATA: 1">
-                    <span class="category-content"
-                        title="BIGDATA" style="background-color: #FFF;">BIGDATA
-                        <span class="category-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/categories/%E9%A1%B9%E7%9B%AE/" title="项目: 3">
                     <span class="category-content"
                         title="项目" style="background-color: #85C1E9;">项目
                         <span class="category-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/BIGDATA/" title="BIGDATA: 1">
+                    <span class="category-content"
+                        title="BIGDATA" style="background-color: #FFF;">BIGDATA
+                        <span class="category-length">1</span>
                     </span>
                 </a>
                 
@@ -1062,7 +1038,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1144,12 +1120,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

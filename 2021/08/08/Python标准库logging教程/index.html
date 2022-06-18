@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -717,53 +693,53 @@
       <div class="post-content">
         <iframe src="//player.bilibili.com/player.html?aid=883945077&cid=213322412&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>
 
-<h2 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h2><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="日志级别"><a href="#日志级别" class="headerlink" title="日志级别"></a>日志级别</h2><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/0.png"></p>
 <blockquote>
 <p>默认是WARNING，投入生产环境可以只输出大于INFO级别的日志</p>
 </blockquote>
-<h2 id="简单实例"><a href="#简单实例" class="headerlink" title="简单实例"></a>简单实例</h2><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>可以指定输出级别：<br>使用</p>
+<h2 id="简单实例"><a href="#简单实例" class="headerlink" title="简单实例"></a>简单实例</h2><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/1.png"><br>可以指定输出级别：<br>使用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logging.basicConfig(level=logging.DEBUG)</span><br></pre></td></tr></table></figure>
-<p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/2.png"></p>
 <blockquote>
 <p>logging之间的输出顺序是一定按顺序的，但是和print()的输出顺序是不固定的</p>
 </blockquote>
-<p>其中：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/3.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>为记录器</p>
-<h2 id="将日志输出保存到log文件"><a href="#将日志输出保存到log文件" class="headerlink" title="将日志输出保存到log文件"></a>将日志输出保存到log文件</h2><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/4.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>默认模式是追加模式，如果不想追加：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/5.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>即先清空再写入</p>
-<h2 id="向日志输出变量"><a href="#向日志输出变量" class="headerlink" title="向日志输出变量"></a>向日志输出变量</h2><p>如下：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/6.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><strong>也可以用%运算符来传递变量：</strong><br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/7.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>.format(元组)也是可以的：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/8.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>或者可以字符串前加f：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/9.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/9.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg">​</p>
+<p>其中：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/3.png"><br>为记录器</p>
+<h2 id="将日志输出保存到log文件"><a href="#将日志输出保存到log文件" class="headerlink" title="将日志输出保存到log文件"></a>将日志输出保存到log文件</h2><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/4.png"><br>默认模式是追加模式，如果不想追加：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/5.png"><br>即先清空再写入</p>
+<h2 id="向日志输出变量"><a href="#向日志输出变量" class="headerlink" title="向日志输出变量"></a>向日志输出变量</h2><p>如下：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/6.png"><br><strong>也可以用%运算符来传递变量：</strong><br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/7.png"><br>.format(元组)也是可以的：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/8.png"><br>或者可以字符串前加f：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/9.png">​</p>
 <h2 id="指定公共信息"><a href="#指定公共信息" class="headerlink" title="指定公共信息"></a>指定公共信息</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%()s</span><br></pre></td></tr></table></figure>
-<p>将想要添加的公共信息写在()中即可，如：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/10.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/10.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p>将想要添加的公共信息写在()中即可，如：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/10.png"></p>
 <h2 id="logging高级应用"><a href="#logging高级应用" class="headerlink" title="logging高级应用"></a>logging高级应用</h2><p>logging模块采用了模块化设计，主要包含四种组件:</p>
 <ul>
 <li>Loggers:记录器，提供应用程序代码能直接使用的接口; </li>
 <li>Handlers: 处理器，将记录器产生的日志发送至目的地; </li>
 <li>Filters: 过滤器，提供更好的粒度控制，决定哪些日志会被输出； </li>
-<li>Formatters: 格式化器，设置日志内容的组成结构和消息字段。<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/11.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/11.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h3 id="记录器"><a href="#记录器" class="headerlink" title="记录器"></a>记录器</h3><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/12.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/12.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><h3 id="Handlers处理器"><a href="#Handlers处理器" class="headerlink" title="Handlers处理器"></a>Handlers处理器</h3>它们将日志分发到不同的目的地。可以是文件、标准输出、 邮件、或者通过socket、 http等协议发送到任何地方。<br>有以下实例：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/13.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/13.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>encoding：指定字符集<br>delay：指定缓存</li>
+<li>Formatters: 格式化器，设置日志内容的组成结构和消息字段。<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/11.png"><h3 id="记录器"><a href="#记录器" class="headerlink" title="记录器"></a>记录器</h3><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/12.png"><h3 id="Handlers处理器"><a href="#Handlers处理器" class="headerlink" title="Handlers处理器"></a>Handlers处理器</h3>它们将日志分发到不同的目的地。可以是文件、标准输出、 邮件、或者通过socket、 http等协议发送到任何地方。<br>有以下实例：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/13.png"><br>encoding：指定字符集<br>delay：指定缓存</li>
 </ul>
-<p><strong>所有的handler都可以用setFormatter()设置当前handler对象使用的消息格式</strong>​<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/14.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/14.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>TimedRotatingFileHandler可以根据时间生成对应的log文件，避免一个log文件过大</p>
-<h3 id="Formatters格式"><a href="#Formatters格式" class="headerlink" title="Formatters格式"></a>Formatters格式</h3><p>Formatter对象用来最终设置日志信息的顺序、结构和内容。<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/15.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/15.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>可添加的公共信息字符串包扩以下：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/16.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/16.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="生成记录器"><a href="#生成记录器" class="headerlink" title="生成记录器"></a>生成记录器</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/17.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/17.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h4 id="更改日志级别"><a href="#更改日志级别" class="headerlink" title="更改日志级别"></a>更改日志级别</h4><p>使用setLevel()<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/18.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/18.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h4 id="生成handler"><a href="#生成handler" class="headerlink" title="生成handler"></a>生成handler</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/19.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/19.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h4 id="生成formatter"><a href="#生成formatter" class="headerlink" title="生成formatter"></a>生成formatter</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/20.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/20.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h4 id="给handler处理器设置格式"><a href="#给handler处理器设置格式" class="headerlink" title="给handler处理器设置格式"></a>给handler处理器设置格式</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/21.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/21.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h4 id="logger记录器设置handler处理器"><a href="#logger记录器设置handler处理器" class="headerlink" title="logger记录器设置handler处理器"></a>logger记录器设置handler处理器</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/22.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/22.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg">​</p>
-<h4 id="打印日志的代码"><a href="#打印日志的代码" class="headerlink" title="打印日志的代码"></a>打印日志的代码</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/23.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/23.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h4 id="日志等级关系"><a href="#日志等级关系" class="headerlink" title="日志等级关系"></a>日志等级关系</h4><p>handler的setlevel设置的是这个处理器生成的日志级别，上面的logger设置的是输出级别。<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/24.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/24.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>控制台输出：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/25.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/25.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>文件输出：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/26.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/26.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><strong>所有的handler都可以用setFormatter()设置当前handler对象使用的消息格式</strong>​<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/14.png"><br>TimedRotatingFileHandler可以根据时间生成对应的log文件，避免一个log文件过大</p>
+<h3 id="Formatters格式"><a href="#Formatters格式" class="headerlink" title="Formatters格式"></a>Formatters格式</h3><p>Formatter对象用来最终设置日志信息的顺序、结构和内容。<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/15.png"><br>可添加的公共信息字符串包扩以下：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/16.png"></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><h4 id="生成记录器"><a href="#生成记录器" class="headerlink" title="生成记录器"></a>生成记录器</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/17.png"></p>
+<h4 id="更改日志级别"><a href="#更改日志级别" class="headerlink" title="更改日志级别"></a>更改日志级别</h4><p>使用setLevel()<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/18.png"></p>
+<h4 id="生成handler"><a href="#生成handler" class="headerlink" title="生成handler"></a>生成handler</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/19.png"></p>
+<h4 id="生成formatter"><a href="#生成formatter" class="headerlink" title="生成formatter"></a>生成formatter</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/20.png"></p>
+<h4 id="给handler处理器设置格式"><a href="#给handler处理器设置格式" class="headerlink" title="给handler处理器设置格式"></a>给handler处理器设置格式</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/21.png"></p>
+<h4 id="logger记录器设置handler处理器"><a href="#logger记录器设置handler处理器" class="headerlink" title="logger记录器设置handler处理器"></a>logger记录器设置handler处理器</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/22.png">​</p>
+<h4 id="打印日志的代码"><a href="#打印日志的代码" class="headerlink" title="打印日志的代码"></a>打印日志的代码</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/23.png"></p>
+<h4 id="日志等级关系"><a href="#日志等级关系" class="headerlink" title="日志等级关系"></a>日志等级关系</h4><p>handler的setlevel设置的是这个处理器生成的日志级别，上面的logger设置的是输出级别。<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/24.png"><br>控制台输出：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/25.png"><br>文件输出：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/26.png"></p>
 <blockquote>
-<p>输出中没有对齐，可以通过格式化字符串来对齐：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/27.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/27.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>（数字8前加‘-’可以左对齐）</p>
+<p>输出中没有对齐，可以通过格式化字符串来对齐：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/27.png"><br>（数字8前加‘-’可以左对齐）</p>
 </blockquote>
 <h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><blockquote>
 <p>以记录器的名字来过滤</p>
 </blockquote>
-<h4 id="定义过滤器"><a href="#定义过滤器" class="headerlink" title="定义过滤器"></a>定义过滤器</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/28.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/28.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>当前logger叫做：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/29.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/29.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>所以被过滤掉了，输出为：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/30.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/30.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>将此logger改名为<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/31.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/31.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>可以看到正常输出了：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/32.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/32.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>handler也可以加上过滤器：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/33.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/33.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>此时logger设置为：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/34.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/34.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>输出为：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/35.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/35.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>而文件里为空</p>
+<h4 id="定义过滤器"><a href="#定义过滤器" class="headerlink" title="定义过滤器"></a>定义过滤器</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/28.png"><br>当前logger叫做：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/29.png"><br>所以被过滤掉了，输出为：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/30.png"><br>将此logger改名为<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/31.png"><br>可以看到正常输出了：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/32.png"><br>handler也可以加上过滤器：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/33.png"><br>此时logger设置为：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/34.png"><br>输出为：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/35.png"><br>而文件里为空</p>
 <h3 id="使用配置文件"><a href="#使用配置文件" class="headerlink" title="使用配置文件"></a>使用配置文件</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><blockquote>
 <p>其中logger中的root必须保留</p>
 </blockquote>
-<p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/36.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/36.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h4 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/37.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/37.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>qualname相当于getLogger(‘applog’)<br>propagate：继承关系，一般写0<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/38.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/38.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>‘midnight’是指按时间每天分割一次log，图中表示午夜过了1秒后分割，最后的0表示持续保留，若想保留30天则改成30即可<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/39.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/39.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h4 id="调用配置"><a href="#调用配置" class="headerlink" title="调用配置"></a>调用配置</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/40.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/40.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>输出：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/41.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/41.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h4 id="记录异常"><a href="#记录异常" class="headerlink" title="记录异常"></a>记录异常</h4><p>记录异常需要保留发生异常的栈信息：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/42.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/42.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>文件里：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/43.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/43.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h3 id="字典方式的配置"><a href="#字典方式的配置" class="headerlink" title="字典方式的配置"></a>字典方式的配置</h3><p>只要传入的格式是字典格式不论配置是json还是xml等都可以读取<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/44.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/44.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/36.png"></p>
+<h4 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/37.png"><br>qualname相当于getLogger(‘applog’)<br>propagate：继承关系，一般写0<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/38.png"><br>‘midnight’是指按时间每天分割一次log，图中表示午夜过了1秒后分割，最后的0表示持续保留，若想保留30天则改成30即可<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/39.png"></p>
+<h4 id="调用配置"><a href="#调用配置" class="headerlink" title="调用配置"></a>调用配置</h4><p><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/40.png"><br>输出：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/41.png"></p>
+<h4 id="记录异常"><a href="#记录异常" class="headerlink" title="记录异常"></a>记录异常</h4><p>记录异常需要保留发生异常的栈信息：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/42.png"><br>文件里：<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/43.png"></p>
+<h3 id="字典方式的配置"><a href="#字典方式的配置" class="headerlink" title="字典方式的配置"></a>字典方式的配置</h3><p>只要传入的格式是字典格式不论配置是json还是xml等都可以读取<br><img src="http://106.12.125.218/medias/medias/Python%E6%A0%87%E5%87%86%E5%BA%93logging%E6%95%99%E7%A8%8B/44.png"></p>
 
       </div>
       <div class="post-tags-categories">
@@ -807,7 +783,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://images4.alphacoders.com/926/926968.png" class="lazyload placeholder" data-srcset="https://images4.alphacoders.com/926/926968.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://images4.alphacoders.com/926/926968.png" alt="">
     </div>
     <a href="/2021/08/09/%E4%BB%80%E4%B9%88%E6%98%AFoof_predictions/" class="post-nav-link">
       <div class="title">
@@ -832,7 +808,7 @@ oof = out of fold
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://images7.alphacoders.com/333/333580.jpg" class="lazyload placeholder" data-srcset="https://images7.alphacoders.com/333/333580.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://images7.alphacoders.com/333/333580.jpg" src="" alt="">
     </div>
     <a href="/2021/08/07/%E4%B8%80%E6%96%87%E6%A2%B3%E7%90%86pytorch%E4%BF%9D%E5%AD%98%E5%92%8C%E9%87%8D%E8%BD%BD%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E6%94%BB%E7%95%A5/" class="post-nav-link">
       <div class="title">
@@ -1258,7 +1234,7 @@ oof = out of fold
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1340,12 +1316,16 @@ oof = out of fold
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

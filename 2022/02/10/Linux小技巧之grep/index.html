@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -716,20 +692,20 @@
     <article class="post post-detail">
       <div class="post-content">
         <p><strong>作为linux中最为常用的三大文本（awk，sed，grep）处理工具之一，掌握好其用法是很有必要的。</strong><br><strong>首先谈一下grep命令的常用格式为：grep  [选项]  ‘模式’  [文件]</strong><br><strong>grep家族总共有三个：grep，egrep，fgrep。</strong></p>
-<h2 id="常用选项："><a href="#常用选项：" class="headerlink" title="常用选项："></a>常用选项：</h2><p><strong>-E ：开启扩展（Extend）的正则表达式。</strong><br><strong>-i ：忽略大小写（ignore case）。</strong><br><strong>-v ：反过来（invert），只打印没有匹配的，而匹配的反而不打印。</strong><br><strong>-n ：显示行号</strong><br><strong>-w ：被匹配的文本只能是单词，而不能是单词中的某一部分，如文本中有liker，而我搜寻的只是like，就可以使用-w选项来避免匹配liker</strong><br><strong>-c ：显示总共有多少行被匹配到了，而不是显示被匹配到的内容，注意如果同时使用-cv选项是显示有多少行没有被匹配到。</strong><br><strong>-o ：只显示被模式匹配到的字符串。</strong><br><strong>–color :将匹配到的内容以颜色高亮显示。</strong><br><strong>-A  n：显示匹配到的字符串所在的行及其后n行，after</strong><br><strong>-B  n：显示匹配到的字符串所在的行及其前n行，before</strong><br><strong>-C  n：显示匹配到的字符串所在的行及其前后各n行，context</strong><br><strong>​</strong><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><strong>​</strong><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><strong>​</strong></p>
+<h2 id="常用选项："><a href="#常用选项：" class="headerlink" title="常用选项："></a>常用选项：</h2><p><strong>-E ：开启扩展（Extend）的正则表达式。</strong><br><strong>-i ：忽略大小写（ignore case）。</strong><br><strong>-v ：反过来（invert），只打印没有匹配的，而匹配的反而不打印。</strong><br><strong>-n ：显示行号</strong><br><strong>-w ：被匹配的文本只能是单词，而不能是单词中的某一部分，如文本中有liker，而我搜寻的只是like，就可以使用-w选项来避免匹配liker</strong><br><strong>-c ：显示总共有多少行被匹配到了，而不是显示被匹配到的内容，注意如果同时使用-cv选项是显示有多少行没有被匹配到。</strong><br><strong>-o ：只显示被模式匹配到的字符串。</strong><br><strong>–color :将匹配到的内容以颜色高亮显示。</strong><br><strong>-A  n：显示匹配到的字符串所在的行及其后n行，after</strong><br><strong>-B  n：显示匹配到的字符串所在的行及其前n行，before</strong><br><strong>-C  n：显示匹配到的字符串所在的行及其前后各n行，context</strong><br><strong>​</strong><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/0.png"><br><strong>​</strong><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/1.png"><br><strong>​</strong></p>
 <p><strong>​</strong></p>
-<h2 id="模式部分："><a href="#模式部分：" class="headerlink" title="模式部分："></a>模式部分：</h2><p><strong>1、直接输入要匹配的字符串，这个可以用fgrep（fast grep）代替来提高查找速度，比如我要匹配一下hello.c文件中printf的个数：fgrep  -c  “printf”  hello.c</strong><br><strong>2、使用基本正则表达式，下面谈关于基本正则表达式的使用：</strong><br><strong>匹配字符：</strong><br><strong>. ：任意一个字符。</strong><br><strong>[abc] ：表示匹配一个字符，这个字符必须是abc中的一个。</strong><br><strong>[a-zA-Z] ：表示匹配一个字符，这个字符必须是a-z或A-Z这52个字母中的一个。</strong><br><strong>[^123] ：匹配一个字符，这个字符是除了1、2、3以外的所有字符。</strong><br><strong>对于一些常用的字符集，系统做了定义：</strong><br><strong>[A-Za-z] 等价于 [[:alpha:]]</strong><br><strong>[0-9] 等价于 [[:digit:]]</strong><br><strong>[A-Za-z0-9] 等价于 [[:alnum:]]</strong><br><strong>tab,space 等空白字符 [[:space:]]</strong><br><strong>[A-Z] 等价于 [[:upper:]]</strong><br><strong>[a-z] 等价于 [[:lower:]]</strong><br><strong>标点符号 [[:punct:]]</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><strong>​</strong></p>
+<h2 id="模式部分："><a href="#模式部分：" class="headerlink" title="模式部分："></a>模式部分：</h2><p><strong>1、直接输入要匹配的字符串，这个可以用fgrep（fast grep）代替来提高查找速度，比如我要匹配一下hello.c文件中printf的个数：fgrep  -c  “printf”  hello.c</strong><br><strong>2、使用基本正则表达式，下面谈关于基本正则表达式的使用：</strong><br><strong>匹配字符：</strong><br><strong>. ：任意一个字符。</strong><br><strong>[abc] ：表示匹配一个字符，这个字符必须是abc中的一个。</strong><br><strong>[a-zA-Z] ：表示匹配一个字符，这个字符必须是a-z或A-Z这52个字母中的一个。</strong><br><strong>[^123] ：匹配一个字符，这个字符是除了1、2、3以外的所有字符。</strong><br><strong>对于一些常用的字符集，系统做了定义：</strong><br><strong>[A-Za-z] 等价于 [[:alpha:]]</strong><br><strong>[0-9] 等价于 [[:digit:]]</strong><br><strong>[A-Za-z0-9] 等价于 [[:alnum:]]</strong><br><strong>tab,space 等空白字符 [[:space:]]</strong><br><strong>[A-Z] 等价于 [[:upper:]]</strong><br><strong>[a-z] 等价于 [[:lower:]]</strong><br><strong>标点符号 [[:punct:]]</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/2.png"><br><strong>​</strong></p>
 <p><strong>​</strong></p>
 <p><strong>匹配次数：</strong><br>**{m,n} ：匹配其前面出现的字符至少m次，至多n次。<br>? ：匹配其前面出现的内容0次或1次，等价于{0,1}。</p>
 <ul>
-<li>：匹配其前面出现的内容任意次，等价于{0,}，所以 “.<em>“ 表述任意字符任意次，即无论什么内容全部匹配。</em>*<br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/3.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></li>
+<li>：匹配其前面出现的内容任意次，等价于{0,}，所以 “.<em>“ 表述任意字符任意次，即无论什么内容全部匹配。</em>*<br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/3.png"></li>
 <li><em>​</em>*</li>
 </ul>
 <p><strong>​</strong></p>
 <p><strong>​</strong></p>
-<p><strong>位置锚定：</strong><br><strong>^ ：锚定行首</strong><br><strong>$ ：锚定行尾。技巧：”^$”用于匹配空白行。</strong><br><strong>\b或&lt;：锚定单词的词首。如”\blike”不会匹配alike，但是会匹配liker**<br>**\b或&gt;：锚定单词的词尾。如”\blike\b”不会匹配alike和liker，只会匹配like</strong><br><strong>\B ：与\b作用相反。</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/4.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/5.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><strong>​</strong></p>
+<p><strong>位置锚定：</strong><br><strong>^ ：锚定行首</strong><br><strong>$ ：锚定行尾。技巧：”^$”用于匹配空白行。</strong><br><strong>\b或&lt;：锚定单词的词首。如”\blike”不会匹配alike，但是会匹配liker**<br>**\b或&gt;：锚定单词的词尾。如”\blike\b”不会匹配alike和liker，只会匹配like</strong><br><strong>\B ：与\b作用相反。</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/4.png"><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/5.png"><br><strong>​</strong></p>
 <p><strong>​</strong></p>
-<p><strong>分组及引用：</strong><br><strong>(string) ：将string作为一个整体方便后面引用</strong><br><strong>\1 ：引用第1个左括号及其对应的右括号所匹配的内容。</strong><br><strong>\2 ：引用第2个左括号及其对应的右括号所匹配的内容。</strong><br><strong>\n ：引用第n个左括号及其对应的右括号所匹配的内容。</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/6.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><strong>​</strong></p>
+<p><strong>分组及引用：</strong><br><strong>(string) ：将string作为一个整体方便后面引用</strong><br><strong>\1 ：引用第1个左括号及其对应的右括号所匹配的内容。</strong><br><strong>\2 ：引用第2个左括号及其对应的右括号所匹配的内容。</strong><br><strong>\n ：引用第n个左括号及其对应的右括号所匹配的内容。</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/6.png"><br><strong>​</strong></p>
 <p><strong>​</strong></p>
 <p><strong>3、扩展的（Extend）正则表达式（注意要使用扩展的正则表达式要加-E选项，或者直接使用egrep）：</strong><br><strong>匹配字符：这部分和基本正则表达式一样</strong><br><strong>​</strong></p>
 <p><strong>匹配次数：</strong><br>*** ：和基本正则表达式一样**<br><strong>? ：基本正则表达式是?，二这里没有\。</strong><br><strong>{m,n} ：相比基本正则表达式也是没有了\。</strong><br><strong>+ ：匹配其前面的字符至少一次，相当于{1,}。</strong><br><strong>​</strong></p>
@@ -737,7 +713,7 @@
 <p><strong>分组及引用：</strong><br><strong>(string) ：相比基本正则表达式也是没有了\。</strong><br><strong>\1 ：引用部分和基本正则表达式一样。</strong><br><strong>\n ：引用部分和基本正则表达式一样。</strong><br><strong>​</strong></p>
 <p><strong>或者：</strong><br><strong>a|b ：匹配a或b，注意a是指 | 的左边的整体，b也同理。比如 C|cat 表示的是 C或cat，而不是Cat或cat，如果要表示Cat或cat，则应该写为 (C|c)at 。记住(string)除了用于引用还用于分组。</strong><br><strong>​</strong></p>
 <p><strong>注1：默认情况下，正则表达式的匹配工作在贪婪模式下，也就是说它会尽可能长地去匹配，比如某一行有字符串 abacb，如果搜索内容为 “a.<em>b” 那么会直接匹配 abacb这个串，而不会只匹配ab或acb。</em>*<br>*<em>注2：所有的正则字符，如 [ 、</em> 、( 等，若要搜索 * ，而不是想把 * 解释为重复先前字符任意次，可以使用 * 来转义。</strong><br><strong>​</strong></p>
-<p><strong>下面用一个练习来结束本次grep的学习：</strong><br><strong>在网络配置文件 /etc/sysconfig/network-scripts/ifcfg-ens33 中检索出所有的 IP</strong><br><strong>1、检索出 0-255的范围</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/7.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><strong>2、由0-255的数字组合成IP</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/8.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><strong>3、简化</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/9.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/9.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><strong>下面用一个练习来结束本次grep的学习：</strong><br><strong>在网络配置文件 /etc/sysconfig/network-scripts/ifcfg-ens33 中检索出所有的 IP</strong><br><strong>1、检索出 0-255的范围</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/7.png"><br><strong>2、由0-255的数字组合成IP</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/8.png"><br><strong>3、简化</strong><br><img src="http://106.12.125.218/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/9.png"></p>
 <h2 id="附：配合ls使用"><a href="#附：配合ls使用" class="headerlink" title="附：配合ls使用"></a>附：配合ls使用</h2><p>只列出子目录</p>
 <ol>
 <li>ls -F | grep /$ 或者 alias sub = “ls -F | grep /$”(linux)</li>
@@ -789,7 +765,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/182.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/182.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/182.jpg" alt="">
     </div>
     <a href="/2022/02/12/java%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84%E6%B7%BB%E5%8A%A0%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84/" class="post-nav-link">
       <div class="title">
@@ -810,7 +786,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/196.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/196.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/196.jpg" src="" alt="">
     </div>
     <a href="/2022/02/09/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bls/" class="post-nav-link">
       <div class="title">
@@ -1234,7 +1210,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1316,12 +1292,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

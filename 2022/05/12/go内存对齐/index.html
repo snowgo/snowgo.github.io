@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -722,16 +698,16 @@
 </ul>
 <h2 id="两种内存布局"><a href="#两种内存布局" class="headerlink" title="两种内存布局"></a>两种内存布局</h2><p>下边是一个结构体的两种内存布局方式</p>
 <h3 id="第一种：按顺序"><a href="#第一种：按顺序" class="headerlink" title="第一种：按顺序"></a>第一种：按顺序</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Foo <span class="keyword">struct</span> &#123;</span><br><span class="line">    A <span class="keyword">int8</span> <span class="comment">// 1</span></span><br><span class="line">    B <span class="keyword">int8</span> <span class="comment">// 1</span></span><br><span class="line">    C <span class="keyword">int8</span> <span class="comment">// 1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Bar <span class="keyword">struct</span> &#123;</span><br><span class="line">    x <span class="keyword">int32</span> <span class="comment">// 4</span></span><br><span class="line">    y *Foo  <span class="comment">// 8</span></span><br><span class="line">    z <span class="keyword">bool</span>  <span class="comment">// 1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>你觉得 Bar 对象会占用多少的内存？ 可能很多人会下意识地回答 <strong>13</strong><br>会回答 13 是因为你觉得该结构体的内存分配是下面这样按顺利分配的。<br>按照前面所介绍的 word size 为 8 来计算，使用这种分配方式，当你访问 bar.y 的时候，CPU 需要访问内存两次。<br><img src="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h3 id="第二种：按字长"><a href="#第二种：按字长" class="headerlink" title="第二种：按字长"></a>第二种：按字长</h3><p>而如果使用下面这种方式，当你再次访问 bar.y 的时候，CPU 需要访问内存一次。<br><img src="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>因此真正的答案是 <strong>24</strong>，这是一种典型的用空间换时间的方法 — <strong>内存对齐</strong></p>
+<p>你觉得 Bar 对象会占用多少的内存？ 可能很多人会下意识地回答 <strong>13</strong><br>会回答 13 是因为你觉得该结构体的内存分配是下面这样按顺利分配的。<br>按照前面所介绍的 word size 为 8 来计算，使用这种分配方式，当你访问 bar.y 的时候，CPU 需要访问内存两次。<br><img src="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/0.png"></p>
+<h3 id="第二种：按字长"><a href="#第二种：按字长" class="headerlink" title="第二种：按字长"></a>第二种：按字长</h3><p>而如果使用下面这种方式，当你再次访问 bar.y 的时候，CPU 需要访问内存一次。<br><img src="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/1.png"><br>因此真正的答案是 <strong>24</strong>，这是一种典型的用空间换时间的方法 — <strong>内存对齐</strong></p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> bar Bar</span><br><span class="line">    fmt.Println(unsafe.Sizeof(bar))  <span class="comment">// 24</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="合理定义结构体"><a href="#合理定义结构体" class="headerlink" title="合理定义结构体"></a>合理定义结构体</h2><h3 id="对齐原则"><a href="#对齐原则" class="headerlink" title="对齐原则"></a>对齐原则</h3><ol>
 <li>每个成员变量的对齐值是操作系统的默认对齐长度和成员变量长度取最小值，偏移量必须是对齐值的整数倍（默认对齐数可以改，比如可以改成1，但是不建议这么做）</li>
 <li>整个结构体的地址必须是成员变量最大字节的整数倍(结构体的内存占用是1/4/8/16byte…)</li>
 </ol>
-<p>从以上可以发现，我们定义的结构体虽然不大，只占用 24个byte，但实际有用的只有 13 的byte，内存使用率只有 50% 左右，很有优化的必要性。<br>如果将第三个属性挪 y 的前面<br><img src="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>那就可以省下来 1 个 byte 了,<strong>这里体现了第一条原则</strong><br>可以使用unsafe.Sizeof()查看对齐系数</p>
+<p>从以上可以发现，我们定义的结构体虽然不大，只占用 24个byte，但实际有用的只有 13 的byte，内存使用率只有 50% 左右，很有优化的必要性。<br>如果将第三个属性挪 y 的前面<br><img src="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/2.png"><br>那就可以省下来 1 个 byte 了,<strong>这里体现了第一条原则</strong><br>可以使用unsafe.Sizeof()查看对齐系数</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> bar Bar</span><br><span class="line">    fmt.Println(unsafe.Sizeof(bar))  <span class="comment">// 16</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>下面体现了第二条原则</strong><br><img src="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/3.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><strong>下面体现了第二条原则</strong><br><img src="http://106.12.125.218/medias/medias/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/3.png"></p>
 
       </div>
       <div class="post-tags-categories">
@@ -775,7 +751,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/73.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/73.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/73.jpg" alt="">
     </div>
     <a href="/2022/05/12/go%E4%B8%A4%E4%B8%AAstruct%E5%AE%9E%E4%BE%8B%E8%83%BD%E5%90%A6%E6%AF%94%E8%BE%83/" class="post-nav-link">
       <div class="title">
@@ -795,7 +771,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/26.jpg" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/26.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/26.jpg" src="" alt="">
     </div>
     <a href="/2022/05/10/Go%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E9%80%83%E9%80%B8%E7%8E%B0%E8%B1%A1/" class="post-nav-link">
       <div class="title">
@@ -1219,7 +1195,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1301,12 +1277,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

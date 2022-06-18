@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -719,16 +695,16 @@
 <h2 id="编译正则表达式"><a href="#编译正则表达式" class="headerlink" title="编译正则表达式"></a>编译正则表达式</h2><p>m=re.compile(r’\d+’)</p>
 <h2 id="使用正则表达式"><a href="#使用正则表达式" class="headerlink" title="使用正则表达式"></a>使用正则表达式</h2><h3 id="match（）"><a href="#match（）" class="headerlink" title="match（）"></a>match（）</h3><p>q=m.match(‘1833’)<br>q.span()<br>Out[42]: (0, 4)</p>
 <h3 id="search（）"><a href="#search（）" class="headerlink" title="search（）"></a>search（）</h3><p>q=m.search(‘..1833’)<br>q.span()<br>Out[44]: (2, 6)</p>
-<h1 id="编译标志"><a href="#编译标志" class="headerlink" title="编译标志"></a>编译标志</h1><p><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/0.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/0.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>re.S  :让.可以匹配\n<br>re.I   :对大小写不敏感<br>re.M  :多行匹配，可以查找每一行的开头结尾<br>re.X  :当正则表达式是多行的时候，忽略其中的\n<br>​</p>
-<h1 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h1><p>需要注意的是分组的findall（）会优先匹配分组内的内容，如<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/1.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/1.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/2.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/2.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>用法：<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/3.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/3.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>需要匹配绿框的形式，但是只想要src=后面的数据<br>这时就要用分组<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/4.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/4.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>( )（？：）和（？=）的区别<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/5.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/5.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/6.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/6.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/7.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/7.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<p><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/8.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/8.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/9.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/9.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>补充：<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/10.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/10.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h2 id="取分组"><a href="#取分组" class="headerlink" title="取分组"></a>取分组</h2><p>每个分组都全替换，并且是最长替换（超出分组范围的贪婪的替换）<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/11.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/11.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/12.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/12.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>只对第一个分组用全替换,第二个分组部分替换<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/13.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/13.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>同理只对第二个分组用全替换,第一个分组部分替换<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/14.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/14.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h3 id="另外注意"><a href="#另外注意" class="headerlink" title="另外注意"></a>另外注意</h3><p>匹配完foob之后就只剩下ar了<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/15.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/15.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/16.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/16.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h2 id="对分组命名"><a href="#对分组命名" class="headerlink" title="对分组命名"></a>对分组命名</h2><p><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/17.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/17.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>或<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/18.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/18.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h1 id="要求某个字符串中不能出现某个str"><a href="#要求某个字符串中不能出现某个str" class="headerlink" title="要求某个字符串中不能出现某个str"></a>要求某个字符串中不能出现某个str</h1><p>^((?!str).)*$<br>既有^又有$表示每个空字符的位置开始的检测都要满足该正则表达式<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/19.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/19.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
-<h1 id="结合lambada表达式使用"><a href="#结合lambada表达式使用" class="headerlink" title="结合lambada表达式使用"></a>结合lambada表达式使用</h1><p><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/20.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/20.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h1 id="编译标志"><a href="#编译标志" class="headerlink" title="编译标志"></a>编译标志</h1><p><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/0.png"><br>re.S  :让.可以匹配\n<br>re.I   :对大小写不敏感<br>re.M  :多行匹配，可以查找每一行的开头结尾<br>re.X  :当正则表达式是多行的时候，忽略其中的\n<br>​</p>
+<h1 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h1><p>需要注意的是分组的findall（）会优先匹配分组内的内容，如<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/1.png"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/2.png"><br>用法：<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/3.png"><br>需要匹配绿框的形式，但是只想要src=后面的数据<br>这时就要用分组<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/4.png"><br>( )（？：）和（？=）的区别<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/5.png"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/6.png"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/7.png"></p>
+<p><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/8.png"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/9.png"><br>补充：<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/10.png"></p>
+<h2 id="取分组"><a href="#取分组" class="headerlink" title="取分组"></a>取分组</h2><p>每个分组都全替换，并且是最长替换（超出分组范围的贪婪的替换）<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/11.png"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/12.png"><br>只对第一个分组用全替换,第二个分组部分替换<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/13.png"><br>同理只对第二个分组用全替换,第一个分组部分替换<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/14.png"></p>
+<h3 id="另外注意"><a href="#另外注意" class="headerlink" title="另外注意"></a>另外注意</h3><p>匹配完foob之后就只剩下ar了<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/15.png"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/16.png"></p>
+<h2 id="对分组命名"><a href="#对分组命名" class="headerlink" title="对分组命名"></a>对分组命名</h2><p><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/17.png"><br>或<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/18.png"></p>
+<h1 id="要求某个字符串中不能出现某个str"><a href="#要求某个字符串中不能出现某个str" class="headerlink" title="要求某个字符串中不能出现某个str"></a>要求某个字符串中不能出现某个str</h1><p>^((?!str).)*$<br>既有^又有$表示每个空字符的位置开始的检测都要满足该正则表达式<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/19.png"></p>
+<h1 id="结合lambada表达式使用"><a href="#结合lambada表达式使用" class="headerlink" title="结合lambada表达式使用"></a>结合lambada表达式使用</h1><p><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/20.png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;<span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">ret, key, value</span>):</span></span><br><span class="line">    ret[key] = value</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">&gt;&gt;string = <span class="string">&#x27;apple pear banana meat&#x27;</span></span><br><span class="line">&gt;&gt;ret = &#123;&#125;</span><br><span class="line">&gt;&gt;re.sub(<span class="string">r&#x27;(apple|banana)\s(\w+)\s?&#x27;</span>, <span class="keyword">lambda</span> x: func(ret, x.group(<span class="number">1</span>), x.group(<span class="number">2</span>)), string)       </span><br><span class="line">&gt;&gt;ret</span><br><span class="line">Out[<span class="number">35</span>]: &#123;<span class="string">&#x27;apple&#x27;</span>: <span class="string">&#x27;pear&#x27;</span>, <span class="string">&#x27;banana&#x27;</span>: <span class="string">&#x27;meat&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#首先用正则表达式去匹配string，把返回的结果传给lambada表达式处理</span></span><br></pre></td></tr></table></figure>
-<h2 id="关于其中的group（）"><a href="#关于其中的group（）" class="headerlink" title="关于其中的group（）"></a>关于其中的group（）</h2><p><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/21.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/21.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/22.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/22.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>可以看到group（0）和group（1）都是字符串元组<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/23.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/23.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>group（1）取出了按空格划分的第一列（自动去掉了空格）<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/24.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/24.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/25.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/25.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="关于其中的group（）"><a href="#关于其中的group（）" class="headerlink" title="关于其中的group（）"></a>关于其中的group（）</h2><p><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/21.png"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/22.png"><br>可以看到group（0）和group（1）都是字符串元组<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/23.png"><br>group（1）取出了按空格划分的第一列（自动去掉了空格）<br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/24.png"><br><img src="http://106.12.125.218/medias/medias/Python%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%85%A5%E9%97%A8/25.png"></p>
 
       </div>
       <div class="post-tags-categories">
@@ -772,7 +748,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/otherpic/905289.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/otherpic/905289.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/otherpic/905289.png" alt="">
     </div>
     <a href="/2021/07/28/fastai%E6%95%99%E7%A8%8B/" class="post-nav-link">
       <div class="title">
@@ -792,7 +768,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://images8.alphacoders.com/653/653611.png" class="lazyload placeholder" data-srcset="https://images8.alphacoders.com/653/653611.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://images8.alphacoders.com/653/653611.png" src="" alt="">
     </div>
     <a href="/2021/07/27/%E5%85%B3%E4%BA%8ETransformer%E7%9A%84%E7%90%86%E8%A7%A3/" class="post-nav-link">
       <div class="title">
@@ -1217,7 +1193,7 @@ Encoder
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1299,12 +1275,16 @@ Encoder
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;

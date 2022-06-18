@@ -97,30 +97,6 @@
     <!-- 预加载动画 -->
     <!-- 页面预加载动画 -->
 
-<div id='loader'>
-  <link rel="stylesheet" href="/js/loaded/index.css" >
-  <div class="loading-left-bg"></div>
-  <div class="loading-right-bg"></div>
-  <div class="spinner-box">
-    <div class="configure-border-1">
-      <div class="configure-core"></div>
-    </div>
-    <div class="configure-border-2">
-      <div class="configure-core"></div>
-    </div>
-    <div class="loading-word">loading...</div>
-  </div>
-</div>
-
-<script>
-  var endLoading = function () {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loader').classList.add("loading");
-  }
-  window.addEventListener('DOMContentLoaded',endLoading);
-  
-</script>
-
     
     <!-- 判断是否为暗黑风格 -->
     <!-- 判断是否为黑夜模式 -->
@@ -225,7 +201,7 @@
   </transition>
   <div class="drawer-box" :class="{'active': visible}">
     <div class="drawer-box-head bg-color">
-      <img class="drawer-box-head_logo lazyload placeholder" src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+      <img class="drawer-box-head_logo" src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
       <h3 class="drawer-box-head_title">snowgo</h3>
       <h5 class="drawer-box-head_desc"></h5>
     </div>
@@ -409,7 +385,7 @@
     <div class="blog-title" id="author-avatar">
       
         <div class="avatar">
-          <img src="http://106.12.125.218/medias/pre-medias/logo.png" class="lazyload placeholder" data-srcset="http://106.12.125.218/medias/pre-medias/logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="logo">
+          <img src="http://106.12.125.218/medias/pre-medias/logo.png" alt="logo">
         </div>
       
       <a href="/" class="logo">snowgo</a>
@@ -719,7 +695,7 @@
 <p><strong>首先，为什么需要有 Batch_Size 这个参数？</strong><br>Batch 的选择，<strong>首先决定的是下降的方向。</strong>如果数据集比较小，完全可以采用<strong>全数据集</strong> （ <strong>Full Batch Learning</strong> ）的形式，这样做至少有 2 个好处：其一，由全数据集确定的方向能够更好地代表样本总体，从而更准确地朝向极值所在的方向。其二，由于不同权重的梯度值差别巨大，因此选取一个全局的学习率很困难。 Full Batch Learning 可以使用<strong>Rprop</strong> 只基于梯度符号并且针对性单独更新各权值。</p>
 <p>对于更大的数据集，以上 2 个好处又变成了 2 个坏处：其一，随着数据集的海量增长和内存限制，一次性载入所有的数据进来变得越来越不可行。其二，以 Rprop 的方式迭代，会由于各个 Batch 之间的采样差异性，各次梯度修正值相互抵消，无法修正。这才有了后来 <strong>RMSProp</strong> 的妥协方案。</p>
 <p><strong>既然 Full Batch Learning 并不适用大数据集，那么走向另一个极端怎么样？</strong><br>所谓另一个极端，就是每次只训练一个样本，即 Batch_Size = 1。这就是<strong>在线学习（Online Learning）</strong>。线性神经元在均方误差代价函数的错误面是一个抛物面，横截面是椭圆。对于多层神经元、非线性网络，在局部依然近似是抛物面。使用在线学习，每次修正方向以各自样本的梯度方向修正，横冲直撞各自为政，<strong>难以达到收敛</strong>。</p>
-<p><img src="https://z3.ax1x.com/2021/06/16/2LFJ78.jpg" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/16/2LFJ78.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<p><img src="https://z3.ax1x.com/2021/06/16/2LFJ78.jpg"></p>
 <p><strong>可不可以选择一个适中的 Batch_Size 值呢？</strong><br>当然可以，这就是<strong>批梯度下降法（Mini-batches Learning）</strong>。因为如果数据集足够充分，那么用一半（甚至少得多）的数据训练算出来的梯度与用全部数据训练出来的梯度是几乎一样的。</p>
 <p><strong>在合理范围内，增大 Batch_Size 有何好处？</strong></p>
 <ul>
@@ -746,7 +722,7 @@
 <li><p>由于最终收敛精度会陷入不同的局部极值，因此 Batch_Size 增大到某些时候，达到最终收敛<strong>精度上</strong>的最优。</p>
 </li>
 </ul>
-<h2 id="batch-size-需要调参"><a href="#batch-size-需要调参" class="headerlink" title="batch size 需要调参"></a>batch size 需要<strong>调参</strong></h2><p>可以确定的是，<strong>batch size 绝非越大越好</strong>。<br>因为 batch size 的极限是训练集样本总个数，而这是当初神经网络还未如此之火时的训练方式 Gradient Descent (GD)。<br>2014 年初我上的人工神经网络 (还不叫深度学习，非常旧的教学材料) 课程，老师留的作业就是用自己写个神经网络去实现 4 输入<a href="https://link.zhihu.com/?target=https://wenku.baidu.com/view/bba0bf1090c69ec3d5bb7537.html">异或门</a>。<br><img src="https://z3.ax1x.com/2021/06/16/2LVSD1.jpg" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/16/2LVSD1.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"></p>
+<h2 id="batch-size-需要调参"><a href="#batch-size-需要调参" class="headerlink" title="batch size 需要调参"></a>batch size 需要<strong>调参</strong></h2><p>可以确定的是，<strong>batch size 绝非越大越好</strong>。<br>因为 batch size 的极限是训练集样本总个数，而这是当初神经网络还未如此之火时的训练方式 Gradient Descent (GD)。<br>2014 年初我上的人工神经网络 (还不叫深度学习，非常旧的教学材料) 课程，老师留的作业就是用自己写个神经网络去实现 4 输入<a href="https://link.zhihu.com/?target=https://wenku.baidu.com/view/bba0bf1090c69ec3d5bb7537.html">异或门</a>。<br><img src="https://z3.ax1x.com/2021/06/16/2LVSD1.jpg"></p>
 <p>中间层的 w 的梯度是纯粹用解析公式计算而得 (不是如今的计算图)，激活函数是 sigmoid (不是 Relu)，而且每次更新都使用所有的 16 个样本，就是单纯的去完全拟合训练集，只是为了查看神经网络拟合任意函数的能力 (这很不现实，因为如果知道所有样本，压根就不需要去学习。现实的任务，是需要从有限的训练样本中训练出可以用于预测测试数据的模型)。<br>下面是我当时交作业的 loss 下降图。可以看到 loss 呈阶梯式下降。当时被解读为是陷入局部最小值。22000次 (横坐标) 迭代才能够拟合 (纵坐标是 loss 大小)，用全部样本作为 batch size 的 Gradient Descent (GD) 效果是很差的。</p>
 <p>深度学习和以前的人工神经网络差在哪里了？为什么近几年突然变成各个媒体吹上天的神话？事实上深度学习的核心技术在二三十年前就有，是各个技术组合方式的才造成了今天的差异 (也因如此，刚入门的伙伴很容易因某个细节不同甚至无法收敛)。这可以从 keras, lasagne 等库包的文档分类注意到<strong>深度学习的跃进来源于不同技术的组合</strong>：<strong>层</strong>、<strong>梯度更新方式</strong>、<strong>初始化方式</strong>、<strong>非线性</strong>、<strong>目标函数</strong>、<strong>正规项</strong>等。(研究时也会分别去提升不同的技术细节)<br>现在人们分析深度学习崛起原因时人们常会说：因为大数据、GPU 的高并行计算能力、ReLU，等等，但还有一个常被忽略，简单却又意外强大的因素就是 Gradient Descent (GD) 替换成了 Stochastic Gradient Descent (SGD)。随后又有大批的弥补 朴素SGD 不足的更新算法，也就是在 <strong>梯度更新方式</strong> 这一类。可以参考这篇文章 <a href="https://link.zhihu.com/?target=http://ruder.io/optimizing-gradient-descent/">An overview of gradient descent optimization algorithms</a>。</p>
 <ul>
@@ -765,7 +741,7 @@
 <p><strong>大 batch size 限于空间，小 batch size 苦于时间。</strong></p>
 </blockquote>
 <hr>
-<h2 id="为什么-batch-size-会影响训练结果"><a href="#为什么-batch-size-会影响训练结果" class="headerlink" title="为什么 batch size 会影响训练结果"></a>为什么 batch size 会影响训练结果</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/c4cfdf10563bff74ebf3e58d9f1c8592">@Unstoppable</a> 有问到“一直很难理解为什么 batch size 会影响训练结果，答主能解读一下么”。<br>举一个特别简化的例子。<br>假如要学习一个f:x-&gt;y去拟合下面这样的一维数据，如下图所示。有 6 个训练样本 (编号 1,2,3,4,5,6)。<br><img src="https://z3.ax1x.com/2021/06/16/2Lm82D.jpg" class="lazyload placeholder" data-srcset="https://z3.ax1x.com/2021/06/16/2Lm82D.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg"><br>如果使用 Gradient Descent，那么每一步的更新都会向类似于黄线那种同时满足 6 个样本的 f 去贴近 (不是一步到位，而是一点点更新变形)。<br>如果使用 Stochastic Gradient Descent，那么每一步的更新都会向能穿过该样本点的f 去贴近。<br>如果使用 3-Batch Gradient Descent，那么每一步都会向同时满足 3 个样本点的形状更新，比如 1,2,3 样本组成的 batch 会往黑色虚线的形状变化。下一步可能是向同时满足 1,5,6 的 batch 的形状去变化。<br>同理，若使用 2-Batch Gradient Descent，绿色虚线是例子。<br>打个比方。这好比素描绘画，不同的 batch 策略决定了用什么样的线条 (线段、曲线段、角度等) 去描绘 (允许覆盖已画的线条)，最后画出的图形是由这些线条构成的。神经网络训练所得的 f 也是根据梯度 (类比线条) 一点点更新出来的。所以能够影响梯度的 batch size 会影响神经网络训练出的 f 。<br>诚然用 Gradient Descent 同时参考所有的训练样本去选择绘画线条的话，感觉上最能够画出拟合所有训练集样本的形状，但是这样会使每次绘画的线条从绘画开始到结束都是一样的 (对应神经网络陷入鞍点)，仅仅是不断的描粗线条，反而容易画不出想要的形状。即便是能够成功画出，但别忘了，我们真正想要画的<strong>形状是连同测试样本在内的 (编号 a,b) 也同时满足的 f</strong>。<br>可以把神经网络的训练想象成一种特殊的绘画。绘画过程中不允许使用测试样本作为参考，只允许用<strong>有限的</strong>训练样本作为参考，还要求所画的形状覆盖测试样本。</p>
+<h2 id="为什么-batch-size-会影响训练结果"><a href="#为什么-batch-size-会影响训练结果" class="headerlink" title="为什么 batch size 会影响训练结果"></a>为什么 batch size 会影响训练结果</h2><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/c4cfdf10563bff74ebf3e58d9f1c8592">@Unstoppable</a> 有问到“一直很难理解为什么 batch size 会影响训练结果，答主能解读一下么”。<br>举一个特别简化的例子。<br>假如要学习一个f:x-&gt;y去拟合下面这样的一维数据，如下图所示。有 6 个训练样本 (编号 1,2,3,4,5,6)。<br><img src="https://z3.ax1x.com/2021/06/16/2Lm82D.jpg"><br>如果使用 Gradient Descent，那么每一步的更新都会向类似于黄线那种同时满足 6 个样本的 f 去贴近 (不是一步到位，而是一点点更新变形)。<br>如果使用 Stochastic Gradient Descent，那么每一步的更新都会向能穿过该样本点的f 去贴近。<br>如果使用 3-Batch Gradient Descent，那么每一步都会向同时满足 3 个样本点的形状更新，比如 1,2,3 样本组成的 batch 会往黑色虚线的形状变化。下一步可能是向同时满足 1,5,6 的 batch 的形状去变化。<br>同理，若使用 2-Batch Gradient Descent，绿色虚线是例子。<br>打个比方。这好比素描绘画，不同的 batch 策略决定了用什么样的线条 (线段、曲线段、角度等) 去描绘 (允许覆盖已画的线条)，最后画出的图形是由这些线条构成的。神经网络训练所得的 f 也是根据梯度 (类比线条) 一点点更新出来的。所以能够影响梯度的 batch size 会影响神经网络训练出的 f 。<br>诚然用 Gradient Descent 同时参考所有的训练样本去选择绘画线条的话，感觉上最能够画出拟合所有训练集样本的形状，但是这样会使每次绘画的线条从绘画开始到结束都是一样的 (对应神经网络陷入鞍点)，仅仅是不断的描粗线条，反而容易画不出想要的形状。即便是能够成功画出，但别忘了，我们真正想要画的<strong>形状是连同测试样本在内的 (编号 a,b) 也同时满足的 f</strong>。<br>可以把神经网络的训练想象成一种特殊的绘画。绘画过程中不允许使用测试样本作为参考，只允许用<strong>有限的</strong>训练样本作为参考，还要求所画的形状覆盖测试样本。</p>
 <hr>
 <h2 id="Tensorflow-Playground-演示"><a href="#Tensorflow-Playground-演示" class="headerlink" title="Tensorflow Playground 演示"></a><a href="https://link.zhihu.com/?target=http://playground.tensorflow.org/">Tensorflow Playground</a> 演示</h2><p>我们可以用<a href="https://link.zhihu.com/?target=http://playground.tensorflow.org/">Tensorflow — Neural Network Playground</a>来实际的体验一下这种“绘画”过程。</p>
 <hr>
@@ -813,7 +789,7 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img12.360buyimg.com/ddimg/jfs/t1/195441/24/8141/2553009/60c7fd32E53be5795/52b89ca402f48914.jpg" class="lazyload placeholder" data-srcset="https://img12.360buyimg.com/ddimg/jfs/t1/195441/24/8141/2553009/60c7fd32E53be5795/52b89ca402f48914.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" alt="">
+      <img class="lazyload" src="https://img12.360buyimg.com/ddimg/jfs/t1/195441/24/8141/2553009/60c7fd32E53be5795/52b89ca402f48914.jpg" alt="">
     </div>
     <a href="/2021/06/18/%E7%AC%AC15%E7%AB%A0%20%E6%B3%9B%E5%9E%8B/" class="post-nav-link">
       <div class="title">
@@ -834,7 +810,7 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload lazyload placeholder" src="https://img10.360buyimg.com/ddimg/jfs/t1/188094/17/8354/721071/60c7fbfbE76330a2c/6f5f82c9ed377cc6.jpg" class="lazyload placeholder" data-srcset="https://img10.360buyimg.com/ddimg/jfs/t1/188094/17/8354/721071/60c7fbfbE76330a2c/6f5f82c9ed377cc6.jpg" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" src="" alt="">
+      <img class="lazyload" src="https://img10.360buyimg.com/ddimg/jfs/t1/188094/17/8354/721071/60c7fbfbE76330a2c/6f5f82c9ed377cc6.jpg" src="" alt="">
     </div>
     <a href="/2021/06/16/%E5%8D%81%E6%8A%98%E4%BA%A4%E5%8F%89%E9%AA%8C%E8%AF%81%20(1)/" class="post-nav-link">
       <div class="title">
@@ -1258,7 +1234,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" class="lazyload placeholder" data-srcset="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" srcset="https://img2.baidu.com/it/u=2037979560,2772131037&fm=26&fmt=auto&gp=0.jpg" align="absmiddle" width="59px" height="30px" /></a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&amp;utm_medium=referra" style="display: inline-block;  vertical-align: middle;"><img src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN/又拍云_logo.png" align="absmiddle" width="59px" height="30px" /></a></p>
 
           </div>
         
@@ -1340,12 +1316,16 @@
 <style>
 .aplayer .aplayer-lrc p {
   
+  display: none;
+  
   font-size: 12px;
   font-weight: 700;
   line-height: 16px !important;
 }
 
 .aplayer .aplayer-lrc p.aplayer-lrc-current {
+  
+  display: none;
   
   font-size: 15px;
   color: #010202;
