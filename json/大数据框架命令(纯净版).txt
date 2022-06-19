@@ -4,6 +4,7 @@ date: 2021-11-28
 swiper: false
 swiperImg: 'https://animecorner.me/wp-content/uploads/2021/08/deji-meets-girl-fantasia.jpg'
 img: 'https://animecorner.me/wp-content/uploads/2021/08/deji-meets-girl-fantasia.jpg'
+bgImg: 'https://animecorner.me/wp-content/uploads/2021/08/deji-meets-girl-fantasia.jpg'
 categories: BIGDATA
 tags: [bigdata]
 top: false

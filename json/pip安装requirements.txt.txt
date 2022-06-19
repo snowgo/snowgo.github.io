@@ -4,6 +4,7 @@ date: 2022-01-28
 swiper: false
 swiperImg: 'https://api.ixiaowai.cn/api/api.php?return=302'
 img: 'https://api.ixiaowai.cn/api/api.php?return=302'
+bgImg: 'https://api.ixiaowai.cn/api/api.php?return=302'
 categories: 技术栈
 tags: [pip,python]
 top: false

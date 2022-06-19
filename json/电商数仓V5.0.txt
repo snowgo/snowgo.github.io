@@ -4,6 +4,7 @@ date: 2022-01-22
 swiper: false
 swiperImg: 'https://images2.alphacoders.com/176/thumb-1920-176292.jpg'
 img: 'https://images2.alphacoders.com/176/thumb-1920-176292.jpg'
+bgImg: 'https://images2.alphacoders.com/176/thumb-1920-176292.jpg'
 categories: 项目
 tags: [数据仓库]
 top: false

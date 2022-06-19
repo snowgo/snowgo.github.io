@@ -4,6 +4,7 @@ date: 2021-07-27
 swiper: false
 swiperImg: 'https://z3.ax1x.com/2021/07/23/Wrw2ZV.jpg'
 img: 'https://z3.ax1x.com/2021/07/23/Wrw2ZV.jpg'
+bgImg: 'https://z3.ax1x.com/2021/07/23/Wrw2ZV.jpg'
 categories: TOOLS
 tags: [tools]
 top: false

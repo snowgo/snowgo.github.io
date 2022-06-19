@@ -4,6 +4,7 @@ date: 2021-07-28
 swiper: false
 swiperImg: 'https://images7.alphacoders.com/687/687126.png'
 img: 'https://images7.alphacoders.com/687/687126.png'
+bgImg: 'https://images7.alphacoders.com/687/687126.png'
 categories: DL
 tags: [dl]
 top: false

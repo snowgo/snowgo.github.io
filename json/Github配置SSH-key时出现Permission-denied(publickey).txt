@@ -4,6 +4,7 @@ date: 2021-11-01
 swiper: false
 swiperImg: 'http://106.12.125.218/medias/medias/Github配置SSH-key时出现Permission-denied(publickey)/thumb-1920-1111008.jpg?versionId=CAEQKRiBgMCJs6zw5hciIGQyOWRkNzQ4N2YzNDQxNDliMDExNGE2NmViOWFhYWQ3'
 img: 'http://106.12.125.218/medias/medias/Github配置SSH-key时出现Permission-denied(publickey)/thumb-1920-1111008.jpg?versionId=CAEQKRiBgMCJs6zw5hciIGQyOWRkNzQ4N2YzNDQxNDliMDExNGE2NmViOWFhYWQ3'
+bgImg: 'http://106.12.125.218/medias/medias/Github配置SSH-key时出现Permission-denied(publickey)/thumb-1920-1111008.jpg?versionId=CAEQKRiBgMCJs6zw5hciIGQyOWRkNzQ4N2YzNDQxNDliMDExNGE2NmViOWFhYWQ3'
 categories: GIT
 tags: [git]
 top: false

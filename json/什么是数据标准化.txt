@@ -4,6 +4,7 @@ date: 2021-08-13
 swiper: false
 swiperImg: 'https://artfiles.alphacoders.com/750/thumb-1920-75008.jpg'
 img: 'https://artfiles.alphacoders.com/750/thumb-1920-75008.jpg'
+bgImg: 'https://artfiles.alphacoders.com/750/thumb-1920-75008.jpg'
 categories: ML
 tags: [ml]
 top: false

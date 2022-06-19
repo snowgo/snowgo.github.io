@@ -4,6 +4,7 @@ date: 2021-12-21
 swiper: false
 swiperImg: 'https://images2.alphacoders.com/119/thumb-1920-1191962.jpg'
 img: 'https://images2.alphacoders.com/119/thumb-1920-1191962.jpg'
+bgImg: 'https://images2.alphacoders.com/119/thumb-1920-1191962.jpg'
 categories: INTERESTING
 tags: [interesting]
 top: false

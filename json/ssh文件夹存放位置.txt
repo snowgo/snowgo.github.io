@@ -2,8 +2,9 @@
 title: ssh文件夹存放位置
 date: 2022-01-28
 swiper: false
-swiperImg: 'https://api.yimian.xyz/img?return=302'
+swiperImg: 'https://api.yimian.xyz/
 img: 'https://api.yimian.xyz/img?return=302'
+bgImg: 'https://api.yimian.xyz/img?return=302'
 categories: 技术栈
 tags: [ssh,git]
 top: false

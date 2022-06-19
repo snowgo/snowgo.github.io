@@ -4,6 +4,7 @@ date: 2022-02-08
 swiper: false
 swiperImg: 'https://api.mtyqx.cn/api/random.php?return=302'
 img: 'https://api.mtyqx.cn/api/random.php?return=302'
+bgImg: 'https://api.mtyqx.cn/api/random.php?return=302'
 categories: MySQL
 tags: [MySQL]
 top: false

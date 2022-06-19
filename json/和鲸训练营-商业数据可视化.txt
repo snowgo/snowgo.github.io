@@ -4,6 +4,7 @@ date: 2021-12-04
 swiper: false
 swiperImg: 'https://images7.alphacoders.com/118/thumb-1920-1189235.png'
 img: 'https://images7.alphacoders.com/118/thumb-1920-1189235.png'
+bgImg: 'https://images7.alphacoders.com/118/thumb-1920-1189235.png'
 categories: DataAnalysis
 tags: [Pyecharts]
 top: false

@@ -4,6 +4,7 @@ date: 2022-02-03
 swiper: false
 swiperImg: 'https://api.r10086.com/动漫综合6.php?return=302'
 img: 'https://api.r10086.com/动漫综合6.php?return=302'
+bgImg: 'https://api.r10086.com/动漫综合6.php?return=302'
 categories: 日报
 tags: [日报]
 top: false
