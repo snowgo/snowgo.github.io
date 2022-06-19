@@ -11,7 +11,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>snowgo</title>
+  <title>go算法题整理之随便整理 | snowgo</title>
 
   <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_1911880_c1nvbyezg17.css">
@@ -542,14 +542,14 @@
 
 
 <div class="post-detail-header" id="thumbnail_canvas" style="background-repeat: no-repeat; background-size: cover; 
-  background-position: center center;position: relative;background-image:url('http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/1.jpg')">
+  background-position: center center;position: relative;background-image:url('http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/398.jpg')">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
   
   <div class="post-detail-header_info-box">
     <div class="title-box">
       <span class="title">
-        
+        go算法题整理之随便整理
       </span>
     </div>
     
@@ -561,11 +561,20 @@
       
 
       
+        <span class="post-detail-header_categories">
+          <i class="iconfont iconbookmark1"></i> category：
+          
+            <a href="/categories/%E6%8A%80%E6%9C%AF%E6%A0%88/" class="post-detail-header_category">
+              技术栈
+            </a>
+          
+        </span>
+      
 
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 119 |
+            <i class="fas fa-file-text-o"></i> Words: 115 |
           </span>
   
           <span class="min2read">
@@ -592,11 +601,17 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p>cccc技术栈cccc<br>ttttgotttt</p>
-<h3 id="10进制转化成x进制表示"><a href="#10进制转化成x进制表示" class="headerlink" title="10进制转化成x进制表示"></a>10进制转化成x进制表示</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;strconv&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将十进制数字转化为二进制字符串</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">convertToBin</span><span class="params">(num <span class="keyword">int</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	s := <span class="string">&quot;&quot;</span></span><br><span class="line">	<span class="keyword">if</span> num == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;0&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// num /= 2 每次循环的时候 都将num除以2  再把结果赋值给 num</span></span><br><span class="line">	<span class="keyword">for</span> ; num &gt; <span class="number">0</span>; num /= <span class="number">2</span> &#123;</span><br><span class="line">		lsb := num % <span class="number">2</span></span><br><span class="line">		<span class="comment">// strconv.Itoa() 将数字强制性转化为字符串</span></span><br><span class="line">		s = strconv.Itoa(lsb) + s</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	tmp := convertToBin(<span class="number">18</span>)</span><br><span class="line">	fmt.Println(tmp)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
+        <h3 id="10进制转化成x进制表示"><a href="#10进制转化成x进制表示" class="headerlink" title="10进制转化成x进制表示"></a>10进制转化成x进制表示</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;strconv&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将十进制数字转化为二进制字符串</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">convertToBin</span><span class="params">(num <span class="keyword">int</span>)</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	s := <span class="string">&quot;&quot;</span></span><br><span class="line">	<span class="keyword">if</span> num == <span class="number">0</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;0&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// num /= 2 每次循环的时候 都将num除以2  再把结果赋值给 num</span></span><br><span class="line">	<span class="keyword">for</span> ; num &gt; <span class="number">0</span>; num /= <span class="number">2</span> &#123;</span><br><span class="line">		lsb := num % <span class="number">2</span></span><br><span class="line">		<span class="comment">// strconv.Itoa() 将数字强制性转化为字符串</span></span><br><span class="line">		s = strconv.Itoa(lsb) + s</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	tmp := convertToBin(<span class="number">18</span>)</span><br><span class="line">	fmt.Println(tmp)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       </div>
       <div class="post-tags-categories">
+        
+        <div class="tags">
+          
+            <a href="/tags/go/" class="">
+              go
+            </a>
+          
+        </div>
         
       </div>
       
@@ -607,7 +622,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>link:  </strong>
-    <a href="/2022/06/19/go算法题整理之随便整理/" target="_blank" title="">https://snowgo.live/2022/06/19/go算法题整理之随便整理/</a>
+    <a href="/2022/06/19/go算法题整理之随便整理/" target="_blank" title="go算法题整理之随便整理">https://snowgo.live/2022/06/19/go算法题整理之随便整理/</a>
     </li>
     <li class="post-copyright-license">
       <strong>Copyright notice:   </strong>
