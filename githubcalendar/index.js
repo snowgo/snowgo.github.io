@@ -266,16 +266,17 @@ var loading_git = (color) => {
     return loading
 };
 
+
 (function(){
     var git_user = 'snowgo'; // 这里更改为你的github 用户名
     var github_container = document.getElementById('github_container');
     var github_loading = document.getElementById('github_loading');
     var git_purple = ['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f',];
-    var git_green = ['#ebedf0', '#85e89d', '#85e89d', '#85e89d', '#85e89d', '#85e89d', '#144620', '#144620', '#144620', '#144620', '#144620'];
+    var git_green = ['#ebedf0', '#3D7D2F', '#448C35', '#4B9A3A', '#52A940', '#59B745', '#60C54B', '#67D450', '#6EE256', '#75F15B', '#7CFF60',];
     var git_blue = ['#ebedf0', '#f1f8ff', '#dbedff', '#c8e1ff', '#79b8ff', '#2188ff', '#0366d6', '#005cc5', '#044289', '#032f62', '#05264c',];
     var git_color = git_green;
     if (github_container) {
-      append_div_gitcalendar(github_container, loading_git(git_color[2]));
+      append_div_gitcalendar(github_container, loading_git(git_color[4]));
       github_canlendar(git_user, git_color)
     } else {
       console.log('nonono');
