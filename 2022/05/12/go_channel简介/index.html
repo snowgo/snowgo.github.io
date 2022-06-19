@@ -276,52 +276,6 @@
               
             </li>
           
-            <li class="drawer-box-content_item" style="position: relative;">
-              
-                <a href="/bangumis" class="drawer-menu-item-link">
-                  
-                    <i class="fas fa-video-camera" aria-hidden="true"></i>
-                  
-                  <span class="name">追番</span>
-                </a>
-              
-            </li>
-          
-            <li class="drawer-box-content_item" style="position: relative;">
-              
-                <a href="javascript:;" class="drawer-menu-item-link has-children" @click="openOrCloseMenu(7)">
-                  <span>
-                    
-                      <i class="fas fa-link"></i>
-                    
-                    <span class="name">更多</span>
-                  </span>
-                  <i class="fas fa-chevron-left arrow " :class="{'icon-rotate': isOpen(7)}" aria-hidden="true"></i>
-                </a>
-                <ul class="drawer-sub-menu" v-if="isOpen(7)">
-                  
-                  <li>
-                    <a href="/gallery">
-                      
-                      <i class="fas fa-music" style="margin-top: -20px;"></i>
-                      
-                      <span>图库</span>
-                    </a>
-                  </li>
-                  
-                  <li>
-                    <a target="_blank" rel="noopener" href="http://baidu.com">
-                      
-                      <i class="fas fa-film" style="margin-top: -20px;"></i>
-                      
-                      <span>百度</span>
-                    </a>
-                  </li>
-                  
-                </ul>
-              
-            </li>
-          
         
         
           <li class="drawer-box-content_item">
@@ -457,50 +411,6 @@
                   
                   <span class="name">友人帐</span>
                 </a>
-              
-            </li>
-          
-            <li class="menu-item" style="position: relative;">
-              
-                <a href="/bangumis" class="menu-item-link" title="追番">
-                  
-                    <i class="fas fa-video-camera" aria-hidden="true"></i>
-                  
-                  <span class="name">追番</span>
-                </a>
-              
-            </li>
-          
-            <li class="menu-item" style="position: relative;">
-              
-                <a href="javascript:;" class="menu-item-link" title="更多">
-                  
-                    <i class="fas fa-link"></i>
-                  
-                  <span class="name">更多</span>
-                  <i class="fas fa-chevron-down arrow" aria-hidden="true"></i>
-                </a>
-                <ul class="sub-menu">
-                  
-                  <li>
-                    <a href="/gallery">
-                      
-                      <i class="fas fa-music" style="margin-top: -20px;"></i>
-                      
-                      <span>图库</span>
-                    </a>
-                  </li>
-                  
-                  <li>
-                    <a target="_blank" rel="noopener" href="http://baidu.com">
-                      
-                      <i class="fas fa-film" style="margin-top: -20px;"></i>
-                      
-                      <span>百度</span>
-                    </a>
-                  </li>
-                  
-                </ul>
               
             </li>
           
@@ -799,17 +709,15 @@
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/19.jpg" src="" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/73.jpg" src="" alt="">
     </div>
-    <a href="/2022/05/12/go%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90/" class="post-nav-link">
+    <a href="/2022/05/12/go%E4%B8%A4%E4%B8%AAstruct%E5%AE%9E%E4%BE%8B%E8%83%BD%E5%90%A6%E6%AF%94%E8%BE%83/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">go内存对齐</div>
+        <div class="title-text">go两个struct实例能否比较</div>
       </div>
       <!-- <div class="content">
-        字长（word size）字长（word size），指的是 CPU 一次可以访问数据的最大长度：
-
-对于 32 位的 
+        同一个struct的2个实例能不能用==  或者 !=比较可以比较的情况：1。结构体当中没有不可比较的类型，比如slic
       </div> -->
     </a>
   </div>
