@@ -574,7 +574,7 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 426 |
+            <i class="fas fa-file-text-o"></i> Words: 351 |
           </span>
   
           <span class="min2read">
@@ -607,7 +607,7 @@
 <li>pidstat 是一个常用的进程性能分析工具，用来实时查看进程的 CPU、内存、I/O 以及上下文切换等性能指标。</li>
 </ul>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>yum install sysstat</code></p>
-<h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><h3 id="场景一：CPU-密集型进程"><a href="#场景一：CPU-密集型进程" class="headerlink" title="场景一：CPU 密集型进程"></a>场景一：CPU 密集型进程</h3><p>首先，我们在第一个终端运行 stress 命令，模拟一个 CPU 使用率 100% 的场景：<br><code>stress --cpu 1 --timeout 600</code><br><img src="http://106.12.125.218/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/0.png"><br>接着，在第二个终端运行 uptime 查看平均负载的变化情况：<br><code>watch -d uptime</code><br><img src="http://106.12.125.218/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/1.png"><br>最后，在第三个终端运行 mpstat 查看 CPU 使用率的变化情况：<br><code>mpstat -P ALL 5</code><br><img src="http://106.12.125.218/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/2.png"><br>从终端二中可以看到，1 分钟的平均负载会慢慢增加到 1.00，而从终端三中还可以看到，正好有一个 CPU 的使用率为 100%，但它的 iowait 只有 0。这说明，平均负载的升高正是由于 CPU 使用率为 100% 。<br>那么，到底是哪个进程导致了 CPU 使用率为 100% 呢？你可以使用 pidstat 来查询：<br><code>pidstat -u 5 1000</code><br><img src="http://106.12.125.218/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/3.png"><br>从这里可以明显看到，stress 进程的 CPU 使用率为 100%。</p>
+<h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><h3 id="场景一：CPU-密集型进程"><a href="#场景一：CPU-密集型进程" class="headerlink" title="场景一：CPU 密集型进程"></a>场景一：CPU 密集型进程</h3><p>首先，我们在第一个终端运行 stress 命令，模拟一个 CPU 使用率 100% 的场景：<br><code>stress --cpu 1 --timeout 600</code><br><img src="http://106.12.125.218/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/0.png"><br>接着，在第二个终端运行 uptime 查看平均负载的变化情况：<br><code>watch -d uptime</code><br><img src="http://106.12.125.218/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/1.png"><br>最后，在第三个终端运行 mpstat 查看 CPU 使用率的变化情况：<br><code>mpstat -P ALL 5</code><br><img src="http://106.12.125.218/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/2.png"><br>那么，到底是哪个进程导致了 CPU 使用率为 100% 呢？你可以使用 pidstat 来查询：<br><code>pidstat -u 5 1000</code><br><img src="http://106.12.125.218/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/3.png"><br>从这里可以明显看到，stress 进程的 CPU 使用率为 100%。</p>
 <h3 id="模拟其他场景"><a href="#模拟其他场景" class="headerlink" title="模拟其他场景"></a>模拟其他场景</h3><h4 id="I-O-密集型进程"><a href="#I-O-密集型进程" class="headerlink" title="I/O 密集型进程"></a>I/O 密集型进程</h4><p>模拟 I/O 压力，即不停地执行 sync：<br><code>stress -i 1 --timeout 600</code></p>
 <h4 id="大量进程的场景"><a href="#大量进程的场景" class="headerlink" title="大量进程的场景"></a>大量进程的场景</h4><p>当系统中运行进程超出 CPU 运行能力时，就会出现等待 CPU 的进程。<br>比如，我们还是使用 stress，但这次模拟的是 8 个进程：<br><code>stress -c 8 --timeout 600</code></p>
 
@@ -649,39 +649,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img" style="background-size: cover; 
-      background-position: center center;">
-      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/456.jpg" alt="">
-    </div>
-    <a href="/2022/06/20/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/" class="post-nav-link">
-      <div class="title">
-        <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">Linux安装压测工具stress</div>
-      </div>
-      
-      <!-- <div class="content">
-        stress简介stress是一个linux下的压力测试工具，专门为那些想要测试自己的系统，完全高负荷和监督这些设备运行
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/398.jpg" src="" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/456.jpg" src="" alt="">
     </div>
-    <a href="/2022/06/19/go%E7%AE%97%E6%B3%95%E9%A2%98%E6%95%B4%E7%90%86%E4%B9%8B%E9%9A%8F%E4%BE%BF%E6%95%B4%E7%90%86/" class="post-nav-link">
+    <a href="/2022/06/20/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/" class="post-nav-link">
       <div class="title">
         Next: <i class="fas fa-angle-right"></i>
-        <div class="title-text">go算法题整理之随便整理</div>
+        <div class="title-text">Linux安装压测工具stress</div>
       </div>
       <!-- <div class="content">
-        10进制转化成x进制表示1234567891011121314151617181920212223242526packa
+        stress简介stress是一个linux下的压力测试工具，专门为那些想要测试自己的系统，完全高负荷和监督这些设备运行
       </div> -->
     </a>
   </div>
