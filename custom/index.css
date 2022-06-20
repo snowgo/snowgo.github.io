@@ -10,3 +10,24 @@
     filter: brightness(0.8);
     background: rgba(0, 0, 0, .3)!important;
 }
+.tags-header{
+    background-image: none!important;
+    background-color: transparent!important;
+    
+}
+.archive-header{
+    background-image: none!important;
+    background-color: transparent!important;
+}
+.categories-header{
+    background-image: none!important;
+    background-color: transparent!important;
+}
+.about-header{
+    background-image: none!important;
+    background-color: transparent!important;
+}
+.item swiper-lazy{
+    background-image: none!important;
+    background-color: transparent!important;
+}
