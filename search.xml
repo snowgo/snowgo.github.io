@@ -479,11 +479,11 @@
     
     
     <entry>
-      <title>go有哪些关键字</title>
-      <link href="/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/"/>
-      <url>/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+      <title>go函数返回局部变量的指针是否安全</title>
+      <link href="/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/"/>
+      <url>/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/</url>
       
-        <content type="html"><![CDATA[<p>go中有25个关键字<br><img src="http://106.12.125.218/medias/medias/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/1.png"><br>注：fallthrough是用于打破switch中默认break的限制</p>]]></content>
+        <content type="html"><![CDATA[<p>一般来说，局部变量会在函数返回后被销毁，因此被返回的引用就成为了”无所指”的引用，程序会进入未知状态。<br><strong>但这在 Go 中是安全的，Go 编译器将会对每个局部变量进行逃逸分析。如果发现局部变量的作用域超出该函数，则不会将内存分配在栈上，而是分配在堆上，因为他们不在栈区，即使释放函数，其内容也不会受影响。</strong><br>编译时可以借助选项 -gcflags=-m，查看变量逃逸的情况。<br><img src="http://106.12.125.218/medias/medias/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/0.png"></p>]]></content>
       
       
       <categories>
@@ -504,11 +504,11 @@
     
     
     <entry>
-      <title>go函数返回局部变量的指针是否安全</title>
-      <link href="/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/"/>
-      <url>/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/</url>
+      <title>go有哪些关键字</title>
+      <link href="/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+      <url>/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/</url>
       
-        <content type="html"><![CDATA[<p>一般来说，局部变量会在函数返回后被销毁，因此被返回的引用就成为了”无所指”的引用，程序会进入未知状态。<br><strong>但这在 Go 中是安全的，Go 编译器将会对每个局部变量进行逃逸分析。如果发现局部变量的作用域超出该函数，则不会将内存分配在栈上，而是分配在堆上，因为他们不在栈区，即使释放函数，其内容也不会受影响。</strong><br>编译时可以借助选项 -gcflags=-m，查看变量逃逸的情况。<br><img src="http://106.12.125.218/medias/medias/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/0.png"></p>]]></content>
+        <content type="html"><![CDATA[<p>go中有25个关键字<br><img src="http://106.12.125.218/medias/medias/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/1.png"><br>注：fallthrough是用于打破switch中默认break的限制</p>]]></content>
       
       
       <categories>
@@ -879,31 +879,6 @@
     
     
     <entry>
-      <title>《Git解密》笔记——认识Git对象</title>
-      <link href="/2022/04/14/%E3%80%8AGit%E8%A7%A3%E5%AF%86%E3%80%8B%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86Git%E5%AF%B9%E8%B1%A1/"/>
-      <url>/2022/04/14/%E3%80%8AGit%E8%A7%A3%E5%AF%86%E3%80%8B%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86Git%E5%AF%B9%E8%B1%A1/</url>
-      
-        <content type="html"><![CDATA[<h2 id="认识Git对象"><a href="#认识Git对象" class="headerlink" title="认识Git对象"></a>认识Git对象</h2><p>在Git的世界里，Git把它所管理的一切内容都当作了一个个的Git对象（Git object），这些对象就被保存在.git目录下。<strong>Git在保存这些对象时，还会为它们生成一个基于SHA-1算法的全局唯一的hash值，以便后面利用这个hash值对Git对象进行存取和引用。</strong><br>所以，Git的核心，其实就是一个基于文件系统的，存储“键值对”的数据库。<br>基于这一认识，我们再回过头来看.git目录下的这两个目录和一个文件：</p><ul><li>objects: 顾名思义，这个目录里存的都是Git对象。它以Git对象的形式保存了该Git库所包含和管理的全部内容；</li><li>refs: 保存了指向Git对象的引用。准确地说，这个引用所指向的，是与分支，标签，远程库等相关联的commit对象。Git把它所管理的对象分成了几种类型，commit对象就是其中之一。关于commit对象，引用，以及refs目录，后面我们还会详细介绍；</li><li>HEAD: 这个很容易理解，它保存了当前分支的head指针，实际上就是指向当前分支最新提交（也是一个commit对象）的引用。<h2 id="Blob对象"><a href="#Blob对象" class="headerlink" title="Blob对象"></a>Blob对象</h2>首先手工创建一个Git对象，现在就让我们利用git hash-object，手工把一个新建的文件存入Git库：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ echo &#x27;Inside Git&#x27; &gt; README</span><br><span class="line">$ git hash-object -w README</span><br><span class="line">968b2bf72e28d8c6756054730880cf9f9ab06062</span><br></pre></td></tr></table></figure>此时，我们会发现在.git目录的objects子目录下多了一个新文件。文件名和上级目录名称的组合刚好构成了git hash-object返回的唯一键：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ find .git/objects -type f</span><br><span class="line">.git/objects/96/8b2bf72e28d8c6756054730880cf9f9ab06062</span><br></pre></td></tr></table></figure>如果在执行git cat-file命令时使用-t参数，我们还能看到Git对象的所属类型：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -t 8b2bf72e28d8c6756054730880cf9f9ab06062</span><br><span class="line">blob</span><br></pre></td></tr></table></figure>可以看到，<strong>与文件相对应的Git对象都是blob类型的</strong>。很快我们就会看到，除了blob对象，Git还支持很多其他类型的对象。<br>好了，今天就先到这里啦。在下篇文章里，我们将讨论Git中的另外两种重要的对象，它们分别是：Tree和Commit！</li></ul><blockquote><p><a href="https://morningspace.github.io/tech/inside-git-1/">https://morningspace.github.io/tech/inside-git-1/</a></p></blockquote>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技术栈 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> git </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>shell系列题之第二列是否有重复</title>
       <link href="/2022/04/14/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%AC%AC%E4%BA%8C%E5%88%97%E6%98%AF%E5%90%A6%E6%9C%89%E9%87%8D%E5%A4%8D/"/>
       <url>/2022/04/14/shell%E7%B3%BB%E5%88%97%E9%A2%98%E4%B9%8B%E7%AC%AC%E4%BA%8C%E5%88%97%E6%98%AF%E5%90%A6%E6%9C%89%E9%87%8D%E5%A4%8D/</url>
@@ -921,6 +896,31 @@
         <tags>
             
             <tag> shell </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>《Git解密》笔记——认识Git对象</title>
+      <link href="/2022/04/14/%E3%80%8AGit%E8%A7%A3%E5%AF%86%E3%80%8B%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86Git%E5%AF%B9%E8%B1%A1/"/>
+      <url>/2022/04/14/%E3%80%8AGit%E8%A7%A3%E5%AF%86%E3%80%8B%E7%AC%94%E8%AE%B0%E2%80%94%E2%80%94%E8%AE%A4%E8%AF%86Git%E5%AF%B9%E8%B1%A1/</url>
+      
+        <content type="html"><![CDATA[<h2 id="认识Git对象"><a href="#认识Git对象" class="headerlink" title="认识Git对象"></a>认识Git对象</h2><p>在Git的世界里，Git把它所管理的一切内容都当作了一个个的Git对象（Git object），这些对象就被保存在.git目录下。<strong>Git在保存这些对象时，还会为它们生成一个基于SHA-1算法的全局唯一的hash值，以便后面利用这个hash值对Git对象进行存取和引用。</strong><br>所以，Git的核心，其实就是一个基于文件系统的，存储“键值对”的数据库。<br>基于这一认识，我们再回过头来看.git目录下的这两个目录和一个文件：</p><ul><li>objects: 顾名思义，这个目录里存的都是Git对象。它以Git对象的形式保存了该Git库所包含和管理的全部内容；</li><li>refs: 保存了指向Git对象的引用。准确地说，这个引用所指向的，是与分支，标签，远程库等相关联的commit对象。Git把它所管理的对象分成了几种类型，commit对象就是其中之一。关于commit对象，引用，以及refs目录，后面我们还会详细介绍；</li><li>HEAD: 这个很容易理解，它保存了当前分支的head指针，实际上就是指向当前分支最新提交（也是一个commit对象）的引用。<h2 id="Blob对象"><a href="#Blob对象" class="headerlink" title="Blob对象"></a>Blob对象</h2>首先手工创建一个Git对象，现在就让我们利用git hash-object，手工把一个新建的文件存入Git库：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ echo &#x27;Inside Git&#x27; &gt; README</span><br><span class="line">$ git hash-object -w README</span><br><span class="line">968b2bf72e28d8c6756054730880cf9f9ab06062</span><br></pre></td></tr></table></figure>此时，我们会发现在.git目录的objects子目录下多了一个新文件。文件名和上级目录名称的组合刚好构成了git hash-object返回的唯一键：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ find .git/objects -type f</span><br><span class="line">.git/objects/96/8b2bf72e28d8c6756054730880cf9f9ab06062</span><br></pre></td></tr></table></figure>如果在执行git cat-file命令时使用-t参数，我们还能看到Git对象的所属类型：<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git cat-file -t 8b2bf72e28d8c6756054730880cf9f9ab06062</span><br><span class="line">blob</span><br></pre></td></tr></table></figure>可以看到，<strong>与文件相对应的Git对象都是blob类型的</strong>。很快我们就会看到，除了blob对象，Git还支持很多其他类型的对象。<br>好了，今天就先到这里啦。在下篇文章里，我们将讨论Git中的另外两种重要的对象，它们分别是：Tree和Commit！</li></ul><blockquote><p><a href="https://morningspace.github.io/tech/inside-git-1/">https://morningspace.github.io/tech/inside-git-1/</a></p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术栈 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> git </tag>
             
         </tags>
       
@@ -1458,11 +1458,11 @@
     
     
     <entry>
-      <title>整体架构</title>
-      <link href="/2022/02/16/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/"/>
-      <url>/2022/02/16/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/</url>
+      <title>配置spark开发环境</title>
+      <link href="/2022/02/16/%E9%85%8D%E7%BD%AEspark%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+      <url>/2022/02/16/%E9%85%8D%E7%BD%AEspark%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
       
-        <content type="html"><![CDATA[<h2 id="首先了解一下大数据处理框架的四层结构"><a href="#首先了解一下大数据处理框架的四层结构" class="headerlink" title="首先了解一下大数据处理框架的四层结构"></a>首先了解一下大数据处理框架的四层结构</h2><p><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/0.png"><br><strong>注意：上图体现了rdd和task的关系</strong><br><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/1.png"></p><ul><li><strong>上图所示，即大数据处理框架四层结构，下面将逐一介绍</strong></li></ul><h3 id="用户层"><a href="#用户层" class="headerlink" title="用户层"></a>用户层</h3><ul><li><strong>这一层主要是准备输入数据、Spark或Hadoop的用户代码、配置参数</strong><ul><li><strong>输入数据：一般以分块形式存在HDFS或者Hbase或数据库中</strong></li><li><strong>用户代码：这里需要了解的是，编写代码后会生成一个Driver程序，将代码提交给集群运行，如下图所示，提交Spark代码后，生成的Driver程序可以广播数据给各个task，并且收集task的运行结果</strong></li></ul></li></ul><p><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/2.png"></p><ul><li><strong>配置参数：一种是资源需求参数如资源容器数和Cpu大小等，另一种是数据流参数如数据分片大小和分片个数等见四层结构图即可</strong></li></ul><h3 id="分布式数据并行处理层"><a href="#分布式数据并行处理层" class="headerlink" title="分布式数据并行处理层"></a>分布式数据并行处理层</h3><ul><li><strong>这一层是把用户提交的应用转化为计算任务，然后调用下一层(资源管理与任务调度层)实现并行执行</strong><ul><li><strong>转化过程：MapReduce直接就map-shuffle-reduce，但是Spark不一样，如下图所示</strong></li></ul><ol><li><strong>Spark首先要把Spark代码转化为逻辑处理流程，数据处理流程包括数据单元RDD和数据依赖关系，图中每个数据单元RDD里的圆形是RDD的多个数据分片，正方形指的是输入数据分片</strong></li><li><strong>然后如图对逻辑处理流程进行划分，生成物理执行计划，包含多个stage，每个stage包含多个task，task个数一般就是RDD中数据分片的个数</strong><br><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/3.png"></li></ol></li></ul><h3 id="资源管理与任务调度层"><a href="#资源管理与任务调度层" class="headerlink" title="资源管理与任务调度层"></a>资源管理与任务调度层</h3><ul><li><strong>这一层就是资源管理和任务调度，如下图所示</strong></li><li><strong>对于资源管理来说，Spark部署模式不同这一层的工作就不同</strong><ul><li><strong>这里仅介绍Spark的Standalone模式，其他模式后面章节会详细介绍</strong></li><li><strong>Standalone模式类似于MapReduce。区别在于MapReduce为每个task将要运行时启动一个JVM进程，而Spark是预先启动资源容器(Executor JVM)，然后在task执行时在JVM中启动task线程</strong></li></ul></li><li><strong>任务调度有两种调度器：一种是作业调度器：决定多个作业执行顺序；一种是任务调度器，决定多个task执行顺序。下图所示的是先进先出的任务调度器</strong><br><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/4.png"></li></ul><h3 id="物理执行层"><a href="#物理执行层" class="headerlink" title="物理执行层"></a>物理执行层</h3><ul><li><strong>这一层就是负责启动task</strong></li><li><strong>在Spark中一个作业有很多阶段(stage)，每个stage包含很多task，每个task又对应一个JVM的的线程，一个JVM可以同时运行多个task，所以一个JVM的内存空间由多个task共享</strong></li></ul><h2 id="下面介绍Spark的Standalone模式的系统架构"><a href="#下面介绍Spark的Standalone模式的系统架构" class="headerlink" title="下面介绍Spark的Standalone模式的系统架构"></a>下面介绍Spark的Standalone模式的系统架构</h2><p><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/5.png"></p><ul><li><strong>上图所示即为Standalone模式架构图，下面将详细介绍</strong></li><li><strong>首先需要了解几个概念：</strong><ul><li><strong>MasterNode：该节点上常驻Master进程，负责管理全部WorkerNode</strong></li><li><strong>WorkerNode：该节点上常驻Worker进程，负责管理执行Spark任务</strong></li><li><strong>Spark作业：就是一个Spark程序，例如WordCount.scala</strong></li><li><strong>Drive进程：就是运行Spark程序中main()函数的进程</strong></li><li><strong>Executor：就是Spark计算资源的一个单位，用这个单位来占用集群资源，然后分配具体的task给Executor。在Standalone模式中，启动Executor实际上是启动图中的CoarseGrainedExecutorBackend的JVM进程</strong></li><li><strong>Task：Driver在运行main()函数时，会把一个作业拆成多个task，以线程方式在Executor执行如map算子、reduce算子。每个Executor具有多少个cpu就可以运行多少个task，如图中八个cpu两个Executor，故每个Executor可以并行运行4个task</strong></li></ul></li><li><strong>然后介绍一下流程：</strong><ol><li><strong>启动Spark集群时，Master节点会启动Master进程，Worker节点上启动Worker进程</strong></li><li><strong>接下来就提交作业给Master节点，Master节点会通知Worker节点启动Executor</strong></li><li><strong>分配task到Executor上执行，每个Executor可以执行多个task，每个task启动一个线程来执行</strong></li></ol></li><li><strong>还有一些细节：</strong><ul><li><strong>Worker进程上有一个或多个ExecutorRunner对象，每个对象可以控制一个CoarseGrainedExecutorBackend进程的启动和关闭</strong></li></ul></li></ul><h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><h3 id="​Spark-的运行流程？"><a href="#​Spark-的运行流程？" class="headerlink" title="​Spark 的运行流程？"></a>​Spark 的运行流程？</h3><p><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/6.png"><br>具体运行流程如下: </p><ol><li>SparkContext 向资源管理器注册并向资源管理器申请运行Executor</li><li>资源管理器分配 Executor,然后资源管理器启动Executor </li><li> Executor 发送心跳至资源管理器 </li><li>SparkContext 构建 DAG 有向无环图 </li><li>将DAG分解成 Stage (TaskSet) </li><li>把 Stage 发送给 TaskScheduler </li><li>Executor 向 SparkContext 申请 Task </li><li>TaskScheduler 将 Task 发送给 Executor 运行 </li><li>同时 SparkContext 将应用程序代码发放给Executor </li><li>Task 在 Executor 上运行,运行完毕释放所有资源</li></ol><h3 id="​Spark-有哪些组件？"><a href="#​Spark-有哪些组件？" class="headerlink" title="​Spark 有哪些组件？"></a>​Spark 有哪些组件？</h3><ul><li>master：管理集群和节点，不参与计算</li><li>worker： 计算节点，进程本身不参与计算，和 master 汇报</li><li>Driver：运行程序的 main 方法，创建 spark context 对象</li><li>spark context:控制整个 application 的生命周期,包括 dagsheduler 和 task scheduler 等组件</li><li>client: 用户提交程序的入口.</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="如何在IDEA中配置Spark开发环境？"><a href="#如何在IDEA中配置Spark开发环境？" class="headerlink" title="如何在IDEA中配置Spark开发环境？"></a>如何在IDEA中配置Spark开发环境？</h2><ol><li><strong>首先自行下载scala，并在IDEA中加入scala的SDK，因为spark2.4.3依赖scala2.11，故这里下载scala2.11.11</strong></li></ol><p>[<img src="http://106.12.125.218/medias/medias/%E9%85%8D%E7%BD%AEspark%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/0.png"></p><ol><li><strong>并在pom.xml中添加spark2.4.3的依赖</strong><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li></ol>]]></content>
       
       
       <categories>
@@ -1483,11 +1483,11 @@
     
     
     <entry>
-      <title>配置spark开发环境</title>
-      <link href="/2022/02/16/%E9%85%8D%E7%BD%AEspark%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
-      <url>/2022/02/16/%E9%85%8D%E7%BD%AEspark%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/</url>
+      <title>整体架构</title>
+      <link href="/2022/02/16/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/"/>
+      <url>/2022/02/16/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/</url>
       
-        <content type="html"><![CDATA[<h2 id="如何在IDEA中配置Spark开发环境？"><a href="#如何在IDEA中配置Spark开发环境？" class="headerlink" title="如何在IDEA中配置Spark开发环境？"></a>如何在IDEA中配置Spark开发环境？</h2><ol><li><strong>首先自行下载scala，并在IDEA中加入scala的SDK，因为spark2.4.3依赖scala2.11，故这里下载scala2.11.11</strong></li></ol><p>[<img src="http://106.12.125.218/medias/medias/%E9%85%8D%E7%BD%AEspark%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/0.png"></p><ol><li><strong>并在pom.xml中添加spark2.4.3的依赖</strong><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.spark<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spark-core_2.11<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li></ol>]]></content>
+        <content type="html"><![CDATA[<h2 id="首先了解一下大数据处理框架的四层结构"><a href="#首先了解一下大数据处理框架的四层结构" class="headerlink" title="首先了解一下大数据处理框架的四层结构"></a>首先了解一下大数据处理框架的四层结构</h2><p><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/0.png"><br><strong>注意：上图体现了rdd和task的关系</strong><br><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/1.png"></p><ul><li><strong>上图所示，即大数据处理框架四层结构，下面将逐一介绍</strong></li></ul><h3 id="用户层"><a href="#用户层" class="headerlink" title="用户层"></a>用户层</h3><ul><li><strong>这一层主要是准备输入数据、Spark或Hadoop的用户代码、配置参数</strong><ul><li><strong>输入数据：一般以分块形式存在HDFS或者Hbase或数据库中</strong></li><li><strong>用户代码：这里需要了解的是，编写代码后会生成一个Driver程序，将代码提交给集群运行，如下图所示，提交Spark代码后，生成的Driver程序可以广播数据给各个task，并且收集task的运行结果</strong></li></ul></li></ul><p><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/2.png"></p><ul><li><strong>配置参数：一种是资源需求参数如资源容器数和Cpu大小等，另一种是数据流参数如数据分片大小和分片个数等见四层结构图即可</strong></li></ul><h3 id="分布式数据并行处理层"><a href="#分布式数据并行处理层" class="headerlink" title="分布式数据并行处理层"></a>分布式数据并行处理层</h3><ul><li><strong>这一层是把用户提交的应用转化为计算任务，然后调用下一层(资源管理与任务调度层)实现并行执行</strong><ul><li><strong>转化过程：MapReduce直接就map-shuffle-reduce，但是Spark不一样，如下图所示</strong></li></ul><ol><li><strong>Spark首先要把Spark代码转化为逻辑处理流程，数据处理流程包括数据单元RDD和数据依赖关系，图中每个数据单元RDD里的圆形是RDD的多个数据分片，正方形指的是输入数据分片</strong></li><li><strong>然后如图对逻辑处理流程进行划分，生成物理执行计划，包含多个stage，每个stage包含多个task，task个数一般就是RDD中数据分片的个数</strong><br><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/3.png"></li></ol></li></ul><h3 id="资源管理与任务调度层"><a href="#资源管理与任务调度层" class="headerlink" title="资源管理与任务调度层"></a>资源管理与任务调度层</h3><ul><li><strong>这一层就是资源管理和任务调度，如下图所示</strong></li><li><strong>对于资源管理来说，Spark部署模式不同这一层的工作就不同</strong><ul><li><strong>这里仅介绍Spark的Standalone模式，其他模式后面章节会详细介绍</strong></li><li><strong>Standalone模式类似于MapReduce。区别在于MapReduce为每个task将要运行时启动一个JVM进程，而Spark是预先启动资源容器(Executor JVM)，然后在task执行时在JVM中启动task线程</strong></li></ul></li><li><strong>任务调度有两种调度器：一种是作业调度器：决定多个作业执行顺序；一种是任务调度器，决定多个task执行顺序。下图所示的是先进先出的任务调度器</strong><br><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/4.png"></li></ul><h3 id="物理执行层"><a href="#物理执行层" class="headerlink" title="物理执行层"></a>物理执行层</h3><ul><li><strong>这一层就是负责启动task</strong></li><li><strong>在Spark中一个作业有很多阶段(stage)，每个stage包含很多task，每个task又对应一个JVM的的线程，一个JVM可以同时运行多个task，所以一个JVM的内存空间由多个task共享</strong></li></ul><h2 id="下面介绍Spark的Standalone模式的系统架构"><a href="#下面介绍Spark的Standalone模式的系统架构" class="headerlink" title="下面介绍Spark的Standalone模式的系统架构"></a>下面介绍Spark的Standalone模式的系统架构</h2><p><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/5.png"></p><ul><li><strong>上图所示即为Standalone模式架构图，下面将详细介绍</strong></li><li><strong>首先需要了解几个概念：</strong><ul><li><strong>MasterNode：该节点上常驻Master进程，负责管理全部WorkerNode</strong></li><li><strong>WorkerNode：该节点上常驻Worker进程，负责管理执行Spark任务</strong></li><li><strong>Spark作业：就是一个Spark程序，例如WordCount.scala</strong></li><li><strong>Drive进程：就是运行Spark程序中main()函数的进程</strong></li><li><strong>Executor：就是Spark计算资源的一个单位，用这个单位来占用集群资源，然后分配具体的task给Executor。在Standalone模式中，启动Executor实际上是启动图中的CoarseGrainedExecutorBackend的JVM进程</strong></li><li><strong>Task：Driver在运行main()函数时，会把一个作业拆成多个task，以线程方式在Executor执行如map算子、reduce算子。每个Executor具有多少个cpu就可以运行多少个task，如图中八个cpu两个Executor，故每个Executor可以并行运行4个task</strong></li></ul></li><li><strong>然后介绍一下流程：</strong><ol><li><strong>启动Spark集群时，Master节点会启动Master进程，Worker节点上启动Worker进程</strong></li><li><strong>接下来就提交作业给Master节点，Master节点会通知Worker节点启动Executor</strong></li><li><strong>分配task到Executor上执行，每个Executor可以执行多个task，每个task启动一个线程来执行</strong></li></ol></li><li><strong>还有一些细节：</strong><ul><li><strong>Worker进程上有一个或多个ExecutorRunner对象，每个对象可以控制一个CoarseGrainedExecutorBackend进程的启动和关闭</strong></li></ul></li></ul><h2 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h2><h3 id="​Spark-的运行流程？"><a href="#​Spark-的运行流程？" class="headerlink" title="​Spark 的运行流程？"></a>​Spark 的运行流程？</h3><p><img src="http://106.12.125.218/medias/medias/%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84/6.png"><br>具体运行流程如下: </p><ol><li>SparkContext 向资源管理器注册并向资源管理器申请运行Executor</li><li>资源管理器分配 Executor,然后资源管理器启动Executor </li><li> Executor 发送心跳至资源管理器 </li><li>SparkContext 构建 DAG 有向无环图 </li><li>将DAG分解成 Stage (TaskSet) </li><li>把 Stage 发送给 TaskScheduler </li><li>Executor 向 SparkContext 申请 Task </li><li>TaskScheduler 将 Task 发送给 Executor 运行 </li><li>同时 SparkContext 将应用程序代码发放给Executor </li><li>Task 在 Executor 上运行,运行完毕释放所有资源</li></ol><h3 id="​Spark-有哪些组件？"><a href="#​Spark-有哪些组件？" class="headerlink" title="​Spark 有哪些组件？"></a>​Spark 有哪些组件？</h3><ul><li>master：管理集群和节点，不参与计算</li><li>worker： 计算节点，进程本身不参与计算，和 master 汇报</li><li>Driver：运行程序的 main 方法，创建 spark context 对象</li><li>spark context:控制整个 application 的生命周期,包括 dagsheduler 和 task scheduler 等组件</li><li>client: 用户提交程序的入口.</li></ul>]]></content>
       
       
       <categories>
@@ -1710,33 +1710,6 @@
     
     
     <entry>
-      <title>语言基础</title>
-      <link href="/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"/>
-      <url>/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
-      
-        <content type="html"><![CDATA[<div class="row">    <embed src="http://106.12.125.218/medias/pdf/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
-      
-      
-      <categories>
-          
-          <category> 面试题 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-            <tag> scala </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>计算机基础</title>
       <link href="/2022/01/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
       <url>/2022/01/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</url>
@@ -1760,6 +1733,33 @@
             <tag> 数据库 </tag>
             
             <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>语言基础</title>
+      <link href="/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/"/>
+      <url>/2022/01/22/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</url>
+      
+        <content type="html"><![CDATA[<div class="row">    <embed src="http://106.12.125.218/medias/pdf/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80.pdf" width="100%" height="550" type="application/pdf"></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> scala </tag>
             
         </tags>
       
@@ -2788,9 +2788,9 @@
       
         <tags>
             
-            <tag> dl </tag>
-            
             <tag> math </tag>
+            
+            <tag> dl </tag>
             
         </tags>
       
@@ -2842,9 +2842,9 @@
       
         <tags>
             
-            <tag> dl </tag>
-            
             <tag> math </tag>
+            
+            <tag> dl </tag>
             
         </tags>
       
@@ -2869,9 +2869,9 @@
       
         <tags>
             
-            <tag> dl </tag>
-            
             <tag> math </tag>
+            
+            <tag> dl </tag>
             
         </tags>
       
