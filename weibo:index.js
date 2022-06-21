@@ -1,4 +1,4 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>new Vue({
+new Vue({
   el: "#myWeibo", // el不要是最外面的id_name，应该是html: ''里的div的id
   data: function () {
     return {

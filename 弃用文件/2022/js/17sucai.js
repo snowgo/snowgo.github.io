@@ -1,4 +1,4 @@
-<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script>window.HUB_EVENTS = {
+window.HUB_EVENTS = {
     ASSET_ADDED: "ASSET_ADDED",
     ASSET_DELETED: "ASSET_DELETED",
     ASSET_DESELECTED: "ASSET_DESELECTED",
