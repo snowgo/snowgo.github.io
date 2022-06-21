@@ -596,7 +596,7 @@
 
 
 
-<div class="row justify-position" 
+<div class="post-detail-content row justify-position" 
   style="padding-top: 0px;">
   <div class="main-content">
     <article class="post post-detail">
@@ -661,16 +661,16 @@
   <div class="post-nav-prev post-nav-item">
     <div class="post-nav-img" style="background-size: cover; 
       background-position: center center;">
-      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/73.jpg" alt="">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/140.jpg" alt="">
     </div>
-    <a href="/2022/05/12/go%E4%B8%A4%E4%B8%AAstruct%E5%AE%9E%E4%BE%8B%E8%83%BD%E5%90%A6%E6%AF%94%E8%BE%83/" class="post-nav-link">
+    <a href="/2022/05/12/go_channel%E7%AE%80%E4%BB%8B/" class="post-nav-link">
       <div class="title">
         <i class="fas fa-angle-left"></i> Prev:
-        <div class="title-text">go两个struct实例能否比较</div>
+        <div class="title-text">go_channel简介</div>
       </div>
       
       <!-- <div class="content">
-        同一个struct的2个实例能不能用==  或者 !=比较可以比较的情况：1。结构体当中没有不可比较的类型，比如slic
+        channel 简介goroutine 是 Go 中实现并发的重要机制，channel 是 goroutine 之间进行
       </div> -->
     </a>
   </div>
@@ -764,7 +764,7 @@
     $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
     $(".toc-content").css({'width': 0});
     $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
-    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+    $(".main-content").css({'width': '75%', 'margin-left': 'auto', 'margin-right': 'auto',});
   };
   function openToc() {
     $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
@@ -937,7 +937,8 @@
     <!-- 页脚 -->
     
   
-  <!-- 底部鱼儿跳动效果，依赖于jquery-->
+  
+    <!-- 底部鱼儿跳动效果，依赖于jquery-->
 <div id="j-fish-skip" style=" position: relative;height: 153px;width: auto;"></div>
 <script>
   var RENDERER = {
@@ -1094,6 +1095,7 @@
     })
   });
 </script>
+  
   <div class="footer bg-color">
     <div class="footer-main">
       
@@ -1645,7 +1647,7 @@
 
 <div class="pjax-animate">
   
-    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.min.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
     <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
     <script>
       window.ShowLoading = function() {

@@ -596,7 +596,7 @@
 
 
 
-<div class="row justify-position" 
+<div class="post-detail-content row justify-position" 
   style="padding-top: 0px;">
   <div class="main-content">
     <article class="post post-detail">
@@ -766,7 +766,7 @@
     $(".toc-aside").css({'width': 0, 'padding': 0, 'transition': init ?  'noe' : 'width 0.3s' });
     $(".toc-content").css({'width': 0});
     $(".toc-aside-title span, .toc-aside-title i").css({'display': 'none'});
-    $(".main-content").css({'width': '75%', 'margin': '10px auto'});
+    $(".main-content").css({'width': '75%', 'margin-left': 'auto', 'margin-right': 'auto',});
   };
   function openToc() {
     $(".main-content").css({'width': '65%', 'margin-right': '10px', 'margin-left': 'calc(35% - 350px)'});
@@ -939,7 +939,8 @@
     <!-- 页脚 -->
     
   
-  <!-- 底部鱼儿跳动效果，依赖于jquery-->
+  
+    <!-- 底部鱼儿跳动效果，依赖于jquery-->
 <div id="j-fish-skip" style=" position: relative;height: 153px;width: auto;"></div>
 <script>
   var RENDERER = {
@@ -1096,6 +1097,7 @@
     })
   });
 </script>
+  
   <div class="footer bg-color">
     <div class="footer-main">
       
@@ -1647,7 +1649,7 @@
 
 <div class="pjax-animate">
   
-    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.min.js"></script>
+    <script src="https://unpkg.com/nprogress@0.2.0/nprogress.js"></script>
     <div id="loading-bar-wrapper"><script>NProgress.configure({parent:"#loading-bar-wrapper",trickleSpeed: 100})</script></div>
     <script>
       window.ShowLoading = function() {
