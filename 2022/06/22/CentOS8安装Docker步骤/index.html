@@ -574,7 +574,7 @@
       
         <div class="post-detail-header_wordcount">
           <span class="totalcount">
-            <i class="fas fa-file-text-o"></i> Words: 228 |
+            <i class="fas fa-file-text-o"></i> Words: 221 |
           </span>
   
           <span class="min2read">
@@ -601,13 +601,13 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <h2 id="CentOS8安装Docker步骤"><a href="#CentOS8安装Docker步骤" class="headerlink" title="CentOS8安装Docker步骤"></a>CentOS8安装Docker步骤</h2><h3 id="1-验证Linux内核，Docker-要求-CentOS-系统的内核版本高于-3-10"><a href="#1-验证Linux内核，Docker-要求-CentOS-系统的内核版本高于-3-10" class="headerlink" title="1.验证Linux内核，Docker 要求 CentOS 系统的内核版本高于 3.10"></a>1.验证Linux内核，Docker 要求 <strong>CentOS</strong> 系统的内核版本高于 <strong>3.10</strong></h3><p>uname -r<br><img src="http://106.12.125.218/medias/medias/CentOS8%E5%AE%89%E8%A3%85Docker%E6%AD%A5%E9%AA%A4/0.png"></p>
-<h3 id="2-更新yum"><a href="#2-更新yum" class="headerlink" title="2.更新yum"></a>2.更新yum</h3><p>sudo yum update </p>
-<h3 id="3-安装yum需要的工具"><a href="#3-安装yum需要的工具" class="headerlink" title="3.安装yum需要的工具"></a>3.安装yum需要的工具</h3><p>sudo yum install -y yum-utils device-mapper-persistent-data lvm2 1</p>
-<h3 id="4-设置yum源为阿里镜像"><a href="#4-设置yum源为阿里镜像" class="headerlink" title="4.设置yum源为阿里镜像"></a>4.设置yum源为阿里镜像</h3><p>sudo yum-config-manager –add-repo <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a><br><img src="http://106.12.125.218/medias/medias/CentOS8%E5%AE%89%E8%A3%85Docker%E6%AD%A5%E9%AA%A4/1.png"></p>
-<h3 id="5-安装Docker"><a href="#5-安装Docker" class="headerlink" title="5.安装Docker"></a>5.安装Docker</h3><p>CentOS8默认使用podman代替docker。直接安装docker会出现以下错误。<br><img src="http://106.12.125.218/medias/medias/CentOS8%E5%AE%89%E8%A3%85Docker%E6%AD%A5%E9%AA%A4/2.png"><br>解决办法，命令后追加 –allowerasing<br>sudo yum install docker-ce docker-ce-cli containerd.io –allowerasing<br>或者先卸载podman，然后在安装docker<br>/** 下载podeman命令 <strong>/ yum erase podman buildah /</strong> 安装docker命令 <strong>/ sudo yum install docker-ce docker-ce-cli containerd.io<br>安装指定版本的docker<br>/</strong>  查看docker-ce-cli版本 <strong>/ yum list docker-ce-cli –showduplicates|sort -r<br><img src="http://106.12.125.218/medias/medias/CentOS8%E5%AE%89%E8%A3%85Docker%E6%AD%A5%E9%AA%A4/3.png"><br>/</strong>  安装指定版本的docker **/  sudo yum install -y docker-ce-19.03.13 docker-ce-cli-19.03.13 containerd.io </p>
-<h3 id="5-启动并设置开机自启动"><a href="#5-启动并设置开机自启动" class="headerlink" title="5.启动并设置开机自启动"></a>5.启动并设置开机自启动</h3><p>systemctl start docker systemctl enable docker </p>
-<h3 id="6-测试是否成功"><a href="#6-测试是否成功" class="headerlink" title="6.测试是否成功"></a>6.测试是否成功</h3><p>docker version</p>
+        <h2 id="CentOS8安装Docker步骤"><a href="#CentOS8安装Docker步骤" class="headerlink" title="CentOS8安装Docker步骤"></a>CentOS8安装Docker步骤</h2><h3 id="验证Linux内核，Docker-要求-CentOS-系统的内核版本高于-3-10"><a href="#验证Linux内核，Docker-要求-CentOS-系统的内核版本高于-3-10" class="headerlink" title="验证Linux内核，Docker 要求 CentOS 系统的内核版本高于 3.10"></a>验证Linux内核，Docker 要求 <strong>CentOS</strong> 系统的内核版本高于 <strong>3.10</strong></h3><p>uname -r<br><img src="http://106.12.125.218/medias/medias/CentOS8%E5%AE%89%E8%A3%85Docker%E6%AD%A5%E9%AA%A4/0.png"></p>
+<h3 id="更新yum"><a href="#更新yum" class="headerlink" title="更新yum"></a>更新yum</h3><p>sudo yum update </p>
+<h3 id="安装yum需要的工具"><a href="#安装yum需要的工具" class="headerlink" title="安装yum需要的工具"></a>安装yum需要的工具</h3><p>sudo yum install -y yum-utils device-mapper-persistent-data lvm2 1</p>
+<h3 id="设置yum源为阿里镜像"><a href="#设置yum源为阿里镜像" class="headerlink" title="设置yum源为阿里镜像"></a>设置yum源为阿里镜像</h3><p>sudo yum-config-manager –add-repo <a target="_blank" rel="noopener" href="http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo">http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</a><br><img src="http://106.12.125.218/medias/medias/CentOS8%E5%AE%89%E8%A3%85Docker%E6%AD%A5%E9%AA%A4/1.png"></p>
+<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><p>CentOS8默认使用podman代替docker。直接安装docker会出现以下错误。<br><img src="http://106.12.125.218/medias/medias/CentOS8%E5%AE%89%E8%A3%85Docker%E6%AD%A5%E9%AA%A4/2.png"><br>解决办法，命令后追加 –allowerasing<br>sudo yum install docker-ce docker-ce-cli containerd.io –allowerasing<br>或者先卸载podman，然后在安装docker<br>/** 下载podeman命令 <strong>/ yum erase podman buildah /</strong> 安装docker命令 <strong>/ sudo yum install docker-ce docker-ce-cli containerd.io<br>安装指定版本的docker<br>/</strong>  查看docker-ce-cli版本 <strong>/ yum list docker-ce-cli –showduplicates|sort -r<br><img src="http://106.12.125.218/medias/medias/CentOS8%E5%AE%89%E8%A3%85Docker%E6%AD%A5%E9%AA%A4/3.png"><br>/</strong>  安装指定版本的docker **/  sudo yum install -y docker-ce-19.03.13 docker-ce-cli-19.03.13 containerd.io </p>
+<h3 id="启动并设置开机自启动"><a href="#启动并设置开机自启动" class="headerlink" title="启动并设置开机自启动"></a>启动并设置开机自启动</h3><p>systemctl start docker systemctl enable docker </p>
+<h3 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h3><p>docker version</p>
 
       </div>
       <div class="post-tags-categories">
@@ -646,6 +646,24 @@
 <div class="post-nav">
 
 
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img" style="background-size: cover; 
+      background-position: center center;">
+      <img class="lazyload" src="http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/mangojuice/pic/203.jpg" alt="">
+    </div>
+    <a href="/2022/06/22/CPU%E4%BD%BF%E7%94%A8%E7%8E%87%E4%BB%A5%E5%8F%8A%E5%BC%82%E5%B8%B8%E6%8E%92%E6%9F%A5%E7%AD%96%E7%95%A5/" class="post-nav-link">
+      <div class="title">
+        <i class="fas fa-angle-left"></i> Prev:
+        <div class="title-text">CPU使用率以及异常排查策略</div>
+      </div>
+      
+      <!-- <div class="content">
+        CPU和任务统计信息为了维护 CPU 时间，Linux 通过事先定义的节拍率（内核中表示为 HZ），触发时间中断，并使用
+      </div> -->
+    </a>
+  </div>
 
 
 
