@@ -95,13 +95,13 @@ html,
 *[cursor-default] {
   background-color: #f2f2f2;
   font-size: 16px;
-  cursor: url(""), auto;
+  cursor: url("http://106.12.125.218/cur/c1.cur#http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/keqing_cu/%E5%88%BB%E6%99%B4/Arrow.cur"), auto;
 }
 a:hover,
 .swiper-pagination-bullet,
 .danmuBtn,
 *[pointer] {
-  cursor: url(""), pointer !important;
+  cursor: url("http://106.12.125.218/cur/c2.cur#http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/keqing_cu/%E5%88%BB%E6%99%B4/Button.cur"), pointer !important;
 }
 p,
 input,
@@ -3720,7 +3720,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   padding: 0 15px;
   height: 100%;
   line-height: 60px;
-  cursor: url(""), pointer;
+  cursor: url("http://106.12.125.218/cur/c2.cur#http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/keqing_cu/%E5%88%BB%E6%99%B4/Button.cur"), pointer;
   transition: background-color 0.3s;
 }
 .search:hover {
@@ -4210,7 +4210,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   text-align: center;
   box-shadow: -2px 2px 2px 2px rgba(255,255,255,0.5);
   font-size: 14px;
-  cursor: url(""), pointer;
+  cursor: url("http://106.12.125.218/cur/c2.cur#http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/keqing_cu/%E5%88%BB%E6%99%B4/Button.cur"), pointer;
   transition: background-color 0.3s;
   z-index: 999;
 }
@@ -4312,7 +4312,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   line-height: 50px;
   text-align: center;
   box-shadow: -2px 2px 2px 2px rgba(255,255,255,0.5);
-  cursor: url(""), pointer;
+  cursor: url("http://106.12.125.218/cur/c2.cur#http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/keqing_cu/%E5%88%BB%E6%99%B4/Button.cur"), pointer;
   transition: background-color 0.3s;
   z-index: 999;
   box-sizing: border-box;
