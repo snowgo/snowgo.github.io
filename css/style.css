@@ -108,7 +108,7 @@ input,
 pre code,
 textarea,
 *[text] {
-  cursor: url(""), text;
+  cursor: url("http://106.12.125.218/cur/c1.cur#http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/keqing_cu/%E5%88%BB%E6%99%B4/Arrow.cur"), text;
 }
 .fancybox-container .fancybox-stage {
   cursor: url(""), zoom-out !important;
@@ -1446,7 +1446,7 @@ pre:hover::-webkit-scrollbar-thumb:hover,
   margin-bottom: 1rem;
   font-weight: bold;
   line-height: 1.4;
-  cursor: url(""), text;
+  cursor: url("http://106.12.125.218/cur/c1.cur#http://106.12.125.218/medias/%E7%AB%99%E7%82%B9%E5%A3%81%E7%BA%B8%E5%92%8C%E8%A7%86%E9%A2%91/keqing_cu/%E5%88%BB%E6%99%B4/Arrow.cur"), text;
   color: #273849;
 }
 .post-detail h1:focus,
