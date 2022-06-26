@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>怎么理解Linux软中断？</title>
+      <link href="/2022/06/26/%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3Linux%E8%BD%AF%E4%B8%AD%E6%96%AD%EF%BC%9F/"/>
+      <url>/2022/06/26/%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3Linux%E8%BD%AF%E4%B8%AD%E6%96%AD%EF%BC%9F/</url>
+      
+        <content type="html"><![CDATA[<h2 id="什么是中断"><a href="#什么是中断" class="headerlink" title="什么是中断"></a>什么是中断</h2><p>中断是系统用来响应硬件设备请求的一种机制，它会打断进程的正常调度和执行，然后调用内核中的中断处理程序来响应设备的请求。</p><h3 id="为什么有中断"><a href="#为什么有中断" class="headerlink" title="为什么有中断"></a>为什么有中断</h3><p>比如说你订了一份外卖，但是不确定外卖什么时候送到，也没有别的方法了解外卖的进度，但是，配送员送外卖是不等人的，到了你这儿没人取的话，就直接走人了。所以你只能苦苦等着，时不时去门口看看外卖送到没，而不能干其他事情。<br>不过呢，如果在订外卖的时候，你就跟配送员约定好，让他送到后给你打个电话，那你就不用苦苦等待了，就可以去忙别的事情，直到电话一响，接电话、取外卖就可以了。<br>这里的“打电话”，其实就是一个中断。没接到电话的时候，你可以做其他的事情；只有接到了电话（也就是发生中断），你才要进行另一个动作：取外卖。<br>这个例子你就可以发现，<strong>中断其实是一种异步的事件处理机制，可以提高系统的并发处理能力</strong>。<br>由于中断处理程序会打断其他进程的运行，所以，<strong>为了减少对正常进程运行调度的影响，中断处理程序就需要尽可能快地运行</strong>。如果中断本身要做的事情不多，那么处理起来也不会有太大问题；但如果中断要处理的事情很多，中断服务程序就有可能要运行很长时间。<br>特别是，中断处理程序在响应中断时，还会临时关闭中断。这就会导致上一次中断处理完成之前，其他中断都不能响应，也就是说中断有可能会丢失。</p><h2 id="软中断"><a href="#软中断" class="headerlink" title="软中断"></a>软中断</h2><p>为了解决中断处理程序执行过长和中断丢失的问题，Linux 将中断处理过程分成了两个阶段，也就是<strong>上半部和下半部</strong>：</p><ul><li><strong>上半部用来快速处理中断</strong>，它在中断禁止模式下运行，主要处理跟硬件紧密相关的或时间敏感的工作。</li><li><strong>下半部用来延迟处理上半部未完成的工作，通常以内核线程的方式运行</strong>。</li></ul><p>这两个阶段你也可以这样理解：</p><ul><li>上半部直接处理硬件请求，也就是我们常说的硬中断，特点是快速执行；</li><li>而下半部则是由内核触发，也就是我们常说的软中断，特点是延迟执行。</li></ul><p>上半部会打断 CPU 正在执行的任务，然后立即执行中断处理程序。而下半部以内核线程的方式执行，并且每个 CPU 都对应一个软中断内核线程。</p><h2 id="查看软中断和内核线程"><a href="#查看软中断和内核线程" class="headerlink" title="查看软中断和内核线程"></a>查看软中断和内核线程</h2><p>不知道你还记不记得，前面提到过的 proc 文件系统。它是一种内核空间和用户空间进行通信的机制，可以用来查看内核的数据结构，或者用来动态修改内核的配置。其中：</p><ul><li>/proc/softirqs 提供了软中断的运行情况；</li><li>/proc/interrupts 提供了硬中断的运行情况。</li></ul><p>运行下面的命令，查看 /proc/softirqs 文件的内容，你就可以看到各种类型软中断在不同 CPU 上的累积运行次数：<br><img src="http://106.12.125.218/medias/medias/%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3Linux%E8%BD%AF%E4%B8%AD%E6%96%AD%EF%BC%9F/0.png"><br>要特别注意以下这两点：</p><ul><li>第一，要注意软中断的类型，也就是这个界面中第一列的内容。从第一列你可以看到，软中断包括了 10 个类别，分别对应不同的工作类型。比如 NET_RX 表示网络接收中断，而 NET_TX 表示网络发送中断。</li><li>第二，要注意同一种软中断在不同 CPU 上的分布情况，也就是同一行的内容。正常情况下，同一种中断在不同 CPU 上的累积次数应该差不多。比如这个界面中，NET_RX 在 CPU0 和 CPU1 上的中断次数基本是同一个数量级，相差不大。</li></ul><p>软中断实际上是以内核线程的方式运行的，每个 CPU 都对应一个软中断内核线程，这个软中断内核线程就叫做 ksoftirqd/CPU 编号。用ps查看这些线程的运行状况：<br><img src="http://106.12.125.218/medias/medias/%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3Linux%E8%BD%AF%E4%B8%AD%E6%96%AD%EF%BC%9F/1.png"><br>注意，这些线程的名字外面都有中括号，这说明 ps 无法获取它们的命令行参数（cmline）。一般来说，ps 的输出中，名字括在中括号里的，一般都是内核线程。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>用户级线程和内核级线程的区别</title>
+      <link href="/2022/06/26/%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+      <url>/2022/06/26/%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%86%85%E6%A0%B8%E7%BA%A7%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ol><li>内核支持线程是OS内核可感知的，而用户级线程是OS内核不可感知的。</li><li>用户级线程的创建、撤消和调度不需要OS内核的支持，是在语言（如Java）这一级处理的；而内核支持线程的创建、撤消和调度都需OS内核提供支持。</li><li>用户级线程执行系统调用指令时将导致其所属进程被中断，而内核线程执行系统调用指令时，只导致该线程被中断。</li><li>在只有用户级线程的系统内，CPU调度还是以进程为单位，处于运行状态的进程中的多个线程，由用户程序控制线程的轮换运行；在有内核支持线程的系统内，CPU调度则以线程为单位，由OS的线程调度程序负责线程的调度。</li><li>用户级线程的程序实体是运行在用户态下的程序，而内核支持线程的程序实体则是可以运行在任何状态下的程序。</li></ol><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><h3 id="内核线程的优点："><a href="#内核线程的优点：" class="headerlink" title="内核线程的优点："></a>内核线程的优点：</h3><p>当有多个处理机时，一个进程的多个线程可以同时执行。 </p><h3 id="内核线程的缺点："><a href="#内核线程的缺点：" class="headerlink" title="内核线程的缺点："></a>内核线程的缺点：</h3><p>由内核进行调度。 </p><h3 id="用户线程的优点"><a href="#用户线程的优点" class="headerlink" title="用户线程的优点"></a>用户线程的优点</h3><ol><li>线程的调度不需要内核直接参与，控制简单。 </li><li>可以在不支持线程的操作系统中实现。</li><li>创建和销毁线程、线程切换代价等线程管理的代价比内核线程少得多。 </li><li>允许每个进程定制自己的调度算法，线程管理比较灵活。这就是必须自己写管理程序，与内核线程的区别 </li><li>线程能够利用的表空间和堆栈空间比内核级线程多。 </li><li>同一进程中只能同时有一个线程在运行，如果有一个线程使用了系统调用而阻塞，那么整个进程都会被挂起。<h3 id="用户线程的缺点"><a href="#用户线程的缺点" class="headerlink" title="用户线程的缺点"></a>用户线程的缺点</h3>同一个进程中的线程只能在同一个处理器下分时复用。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>系统中出现大量不可中断进程和僵尸进程怎么办</title>
       <link href="/2022/06/25/%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F%E4%B8%8D%E5%8F%AF%E4%B8%AD%E6%96%AD%E8%BF%9B%E7%A8%8B%E5%92%8C%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E6%80%8E%E4%B9%88%E5%8A%9E/"/>
       <url>/2022/06/25/%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F%E4%B8%8D%E5%8F%AF%E4%B8%AD%E6%96%AD%E8%BF%9B%E7%A8%8B%E5%92%8C%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%E6%80%8E%E4%B9%88%E5%8A%9E/</url>
@@ -2613,9 +2663,9 @@
       
         <tags>
             
-            <tag> dl </tag>
-            
             <tag> tools </tag>
+            
+            <tag> dl </tag>
             
         </tags>
       
@@ -2924,33 +2974,6 @@
     
     
     <entry>
-      <title>Beta分布详解</title>
-      <link href="/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/"/>
-      <url>/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/</url>
-      
-        <content type="html"><![CDATA[<iframe src="//player.bilibili.com/player.html?bvid=BV1a54y1z7a8&cid=257887173&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>]]></content>
-      
-      
-      <categories>
-          
-          <category> MATH </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> dl </tag>
-            
-            <tag> math </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>数据增广：mixup详解</title>
       <link href="/2021/06/14/mixup__BEYOND_EMPIRICAL_RISK_MINIMIZATION_(1)/"/>
       <url>/2021/06/14/mixup__BEYOND_EMPIRICAL_RISK_MINIMIZATION_(1)/</url>
@@ -3032,6 +3055,33 @@
     
     
     <entry>
+      <title>Beta分布详解</title>
+      <link href="/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/"/>
+      <url>/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/</url>
+      
+        <content type="html"><![CDATA[<iframe src="//player.bilibili.com/player.html?bvid=BV1a54y1z7a8&cid=257887173&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>]]></content>
+      
+      
+      <categories>
+          
+          <category> MATH </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> dl </tag>
+            
+            <tag> math </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>第10章 内部类</title>
       <link href="/2021/06/13/%E7%AC%AC10%E7%AB%A0_%E5%86%85%E9%83%A8%E7%B1%BB/"/>
       <url>/2021/06/13/%E7%AC%AC10%E7%AB%A0_%E5%86%85%E9%83%A8%E7%B1%BB/</url>
@@ -3082,11 +3132,11 @@
     
     
     <entry>
-      <title>第7章 复用类</title>
-      <link href="/2021/06/11/%E7%AC%AC7%E7%AB%A0_%E5%A4%8D%E7%94%A8%E7%B1%BB/"/>
-      <url>/2021/06/11/%E7%AC%AC7%E7%AB%A0_%E5%A4%8D%E7%94%A8%E7%B1%BB/</url>
+      <title>第8章 多态</title>
+      <link href="/2021/06/11/%E7%AC%AC8%E7%AB%A0_%E5%A4%9A%E6%80%81/"/>
+      <url>/2021/06/11/%E7%AC%AC8%E7%AB%A0_%E5%A4%9A%E6%80%81/</url>
       
-        <content type="html"><![CDATA[<h2 id="7-1-当需要String时，编译器会自动调用toString"><a href="#7-1-当需要String时，编译器会自动调用toString" class="headerlink" title="7.1 当需要String时，编译器会自动调用toString()"></a>7.1 <strong>当需要String时，编译器会自动调用toString()</strong></h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg"></p><h2 id="7-2-导出类构造器和基类构造器"><a href="#7-2-导出类构造器和基类构造器" class="headerlink" title="7.2 导出类构造器和基类构造器"></a>7.2 导出类构造器和基类构造器</h2><p><strong>所有的类都可以含有main方法，无需删除，方便单元测试。</strong></p><ul><li><strong>创建从基类继承的类的对象会先执行基类构造器，然后再执行继承类的构造器<strong><strong>，所以导出类构造器中必须带有基类构造器</strong></strong>。</strong><ul><li><strong>若想要在继承类中调用基类的带参数的构造器，需要使用super关键字****。</strong></li><li><img src="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg"><h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><img src="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg"><h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2></li></ul></li></ul><p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg"></strong><br>**</p><h3 id="7-7-2-再论继承与组合"><a href="#7-7-2-再论继承与组合" class="headerlink" title="7.7.2 再论继承与组合"></a>7.7.2 再论继承与组合</h3><p><strong>使用继承还是组合最清晰的办法就是要不要向上转型。如果要向上转型，那继承是必要的。如果不需要，再好好考虑</strong> <strong>。</strong></p><h2 id="7-8-final关键字"><a href="#7-8-final关键字" class="headerlink" title="7.8 final关键字"></a>7.8 final关键字</h2><h3 id="7-8-1-final-数据"><a href="#7-8-1-final-数据" class="headerlink" title="7.8.1 final 数据"></a>7.8.1 final 数据</h3><ul><li><p><strong>若是基本数据类型则值不变</strong> 。</p></li><li><p><strong>若是对象引用则引用不变，一旦被初始化，则无法再指向另一个对象，对象自身可以修改</strong> <strong>。</strong></p></li><li><p><strong>既是static又是final的变量用大写表示。</strong></p><h3 id="final-参数"><a href="#final-参数" class="headerlink" title="final 参数"></a>final 参数</h3></li><li><p><strong>方法的参数列表指定为final。基本数据类型值不能修改，引用对象不能更换指向。</strong></p><h3 id="7-8-2-final-方法"><a href="#7-8-2-final-方法" class="headerlink" title="7.8.2 final 方法"></a>7.8.2 final 方法</h3></li><li><p><strong>final方法不能重写</strong> <strong>。</strong></p></li><li><p><strong>private方法已经隐式的指定为final，不能重写。</strong></p></li><li><p>final方法可以关闭动态绑定 。</p><h3 id="7-8-3-final-类"><a href="#7-8-3-final-类" class="headerlink" title="7.8.3 final 类"></a>7.8.3 final 类</h3></li><li><p><strong>final类不能继承</strong> <strong>。</strong></p></li><li><p>final类中的变量可以选择final或者不final，但是方法不能重写 。</p></li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="8-2-绑定"><a href="#8-2-绑定" class="headerlink" title="8.2 绑定"></a>8.2 绑定</h2><p><strong>静态绑定和动态绑定</strong></p><ul><li><strong>绑定：一个方法的调用与方法所在的类关联起来。</strong></li><li><strong>静态绑定：在编译过程中就已经知道这个方法到底是哪个类中的方法。</strong></li><li><strong>动态绑定：运行时根据对象的类进行绑定。</strong></li></ul><p><strong>java中除了static和final方法（包括private），其他方法都是动态绑定</strong> <strong>。</strong></p><h3 id="8-2-1-向上转型"><a href="#8-2-1-向上转型" class="headerlink" title="8.2.1 向上转型"></a>8.2.1 向上转型</h3><p><img src="https://img11.360buyimg.com/ddimg/jfs/t1/185948/12/9082/119939/60c7597dE1e65c954/7e73954f040131b6.jpg"> <br>  <strong>s.draw()调用的是circle的draw()</strong></p><ul><li><strong>多态 = 向上转型 = 动态绑定 。</strong><ul><li><strong>静态方法不具有多态性</strong> 。<img src="https://img14.360buyimg.com/ddimg/jfs/t1/137541/24/19032/220254/60c759bbE03940af0/571a93e46206a98c.jpg"></li></ul></li></ul><h2 id="8-3-带main方法的类构造器继承调用顺序"><a href="#8-3-带main方法的类构造器继承调用顺序" class="headerlink" title="8.3 带main方法的类构造器继承调用顺序"></a>8.3 带main方法的类构造器继承调用顺序</h2><p><img src="https://img13.360buyimg.com/ddimg/jfs/t1/189817/35/8121/74886/60c75a10E93f2cc8c/dc80047544e3a2fb.jpg"><br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/180763/28/9192/151689/60c75a29E195d704b/2c878cc1a1720461.jpg"></p>]]></content>
       
       
       <categories>
@@ -3107,11 +3157,11 @@
     
     
     <entry>
-      <title>第8章 多态</title>
-      <link href="/2021/06/11/%E7%AC%AC8%E7%AB%A0_%E5%A4%9A%E6%80%81/"/>
-      <url>/2021/06/11/%E7%AC%AC8%E7%AB%A0_%E5%A4%9A%E6%80%81/</url>
+      <title>第7章 复用类</title>
+      <link href="/2021/06/11/%E7%AC%AC7%E7%AB%A0_%E5%A4%8D%E7%94%A8%E7%B1%BB/"/>
+      <url>/2021/06/11/%E7%AC%AC7%E7%AB%A0_%E5%A4%8D%E7%94%A8%E7%B1%BB/</url>
       
-        <content type="html"><![CDATA[<h2 id="8-2-绑定"><a href="#8-2-绑定" class="headerlink" title="8.2 绑定"></a>8.2 绑定</h2><p><strong>静态绑定和动态绑定</strong></p><ul><li><strong>绑定：一个方法的调用与方法所在的类关联起来。</strong></li><li><strong>静态绑定：在编译过程中就已经知道这个方法到底是哪个类中的方法。</strong></li><li><strong>动态绑定：运行时根据对象的类进行绑定。</strong></li></ul><p><strong>java中除了static和final方法（包括private），其他方法都是动态绑定</strong> <strong>。</strong></p><h3 id="8-2-1-向上转型"><a href="#8-2-1-向上转型" class="headerlink" title="8.2.1 向上转型"></a>8.2.1 向上转型</h3><p><img src="https://img11.360buyimg.com/ddimg/jfs/t1/185948/12/9082/119939/60c7597dE1e65c954/7e73954f040131b6.jpg"> <br>  <strong>s.draw()调用的是circle的draw()</strong></p><ul><li><strong>多态 = 向上转型 = 动态绑定 。</strong><ul><li><strong>静态方法不具有多态性</strong> 。<img src="https://img14.360buyimg.com/ddimg/jfs/t1/137541/24/19032/220254/60c759bbE03940af0/571a93e46206a98c.jpg"></li></ul></li></ul><h2 id="8-3-带main方法的类构造器继承调用顺序"><a href="#8-3-带main方法的类构造器继承调用顺序" class="headerlink" title="8.3 带main方法的类构造器继承调用顺序"></a>8.3 带main方法的类构造器继承调用顺序</h2><p><img src="https://img13.360buyimg.com/ddimg/jfs/t1/189817/35/8121/74886/60c75a10E93f2cc8c/dc80047544e3a2fb.jpg"><br><img src="https://img13.360buyimg.com/ddimg/jfs/t1/180763/28/9192/151689/60c75a29E195d704b/2c878cc1a1720461.jpg"></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="7-1-当需要String时，编译器会自动调用toString"><a href="#7-1-当需要String时，编译器会自动调用toString" class="headerlink" title="7.1 当需要String时，编译器会自动调用toString()"></a>7.1 <strong>当需要String时，编译器会自动调用toString()</strong></h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/187768/8/8156/173809/60c758caE0235709d/c47a625b496f5f12.jpg"></p><h2 id="7-2-导出类构造器和基类构造器"><a href="#7-2-导出类构造器和基类构造器" class="headerlink" title="7.2 导出类构造器和基类构造器"></a>7.2 导出类构造器和基类构造器</h2><p><strong>所有的类都可以含有main方法，无需删除，方便单元测试。</strong></p><ul><li><strong>创建从基类继承的类的对象会先执行基类构造器，然后再执行继承类的构造器<strong><strong>，所以导出类构造器中必须带有基类构造器</strong></strong>。</strong><ul><li><strong>若想要在继承类中调用基类的带参数的构造器，需要使用super关键字****。</strong></li><li><img src="https://img14.360buyimg.com/ddimg/jfs/t1/193139/8/8169/55490/60c758e4E6a6e76af/a9bf8344bb31fa8d.jpg"><h2 id="7-6-protected-关键字"><a href="#7-6-protected-关键字" class="headerlink" title="7.6 protected 关键字"></a>7.6 protected 关键字</h2><img src="https://img11.360buyimg.com/ddimg/jfs/t1/187016/1/8186/58893/60c7591bEee00236c/a0654b60d7f66a72.jpg"><h2 id="7-7-向上转型"><a href="#7-7-向上转型" class="headerlink" title="7.7 向上转型"></a>7.7 向上转型</h2></li></ul></li></ul><p><strong>导出类对象自动提升到基类对象，向上转型是安全的，只会丢失方法。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/184299/24/9164/118703/60c75937E35962a8e/609ac1042d2790ce.jpg"></strong><br>**</p><h3 id="7-7-2-再论继承与组合"><a href="#7-7-2-再论继承与组合" class="headerlink" title="7.7.2 再论继承与组合"></a>7.7.2 再论继承与组合</h3><p><strong>使用继承还是组合最清晰的办法就是要不要向上转型。如果要向上转型，那继承是必要的。如果不需要，再好好考虑</strong> <strong>。</strong></p><h2 id="7-8-final关键字"><a href="#7-8-final关键字" class="headerlink" title="7.8 final关键字"></a>7.8 final关键字</h2><h3 id="7-8-1-final-数据"><a href="#7-8-1-final-数据" class="headerlink" title="7.8.1 final 数据"></a>7.8.1 final 数据</h3><ul><li><p><strong>若是基本数据类型则值不变</strong> 。</p></li><li><p><strong>若是对象引用则引用不变，一旦被初始化，则无法再指向另一个对象，对象自身可以修改</strong> <strong>。</strong></p></li><li><p><strong>既是static又是final的变量用大写表示。</strong></p><h3 id="final-参数"><a href="#final-参数" class="headerlink" title="final 参数"></a>final 参数</h3></li><li><p><strong>方法的参数列表指定为final。基本数据类型值不能修改，引用对象不能更换指向。</strong></p><h3 id="7-8-2-final-方法"><a href="#7-8-2-final-方法" class="headerlink" title="7.8.2 final 方法"></a>7.8.2 final 方法</h3></li><li><p><strong>final方法不能重写</strong> <strong>。</strong></p></li><li><p><strong>private方法已经隐式的指定为final，不能重写。</strong></p></li><li><p>final方法可以关闭动态绑定 。</p><h3 id="7-8-3-final-类"><a href="#7-8-3-final-类" class="headerlink" title="7.8.3 final 类"></a>7.8.3 final 类</h3></li><li><p><strong>final类不能继承</strong> <strong>。</strong></p></li><li><p>final类中的变量可以选择final或者不final，但是方法不能重写 。</p></li></ul>]]></content>
       
       
       <categories>
