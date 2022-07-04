@@ -607,17 +607,17 @@
 <h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><h3 id="方法（1）"><a href="#方法（1）" class="headerlink" title="方法（1）"></a>方法（1）</h3><ul>
 <li> wc -[clw]分别代表字节数，行数，字数</li>
 </ul>
-<p>wc -l 是用来查看文件的newline的数量的。<br>在linux系统中，newline字符就是 \n 字符。<br><code>wc -l ./nowcoder.txt</code><br>8 ./nowcoder.txt<br>输出中包含了文件名，因此再做一下处理：<br><code>wc-l ./nowcoder.txt | awk&#39;&#123;print $1&#125;&#39;</code></p>
+<p>wc -l 是用来查看文件的newline的数量的。<br>在Linux系统中，newline字符就是 \n 字符。<br><code>wc -l ./nowcoder.txt</code><br>8 ./nowcoder.txt<br>输出中包含了文件名，因此再做一下处理：<br><code>wc-l ./nowcoder.txt | awk&#39;&#123;print $1&#125;&#39;</code></p>
 <h3 id="方法（2）"><a href="#方法（2）" class="headerlink" title="方法（2）"></a>方法（2）</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-awk.html">https://www.runoob.com/linux/linux-comm-awk.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/Linux/Linux-comm-awk.html">https://www.runoob.com/Linux/Linux-comm-awk.html</a></li>
 </ul>
 <p><code>#!/bin/bash</code><br><code>awk &#39;&#123;print NR&#125;&#39; ./nowcoder.txt |tail -n 1</code><br>awk 可以打印所有行的行号<br><code>awk &#39;&#123;print NR&#125;&#39; ./nowcoder.txt</code><br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>该输出的最后一行就是文件的行数，结合 tail 就可以获取到文件的行数<br><code>awk &#39;&#123;print NR&#125;&#39; ./nowcoder.txt |tail -n 1</code><br>8</p>
 <h3 id="方法（3）"><a href="#方法（3）" class="headerlink" title="方法（3）"></a>方法（3）</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-awk.html">https://www.runoob.com/linux/linux-comm-awk.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/Linux/Linux-comm-awk.html">https://www.runoob.com/Linux/Linux-comm-awk.html</a></li>
 </ul>
 <p>awk 本身就可以只打印最后一行，因此一个 awk 脚本也可以搞定<br><code>awk &#39;END&#123;print NR&#125;&#39; ./nowcoder.txt</code></p>
 <h3 id="方法（4）"><a href="#方法（4）" class="headerlink" title="方法（4）"></a>方法（4）</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-grep.html">https://www.runoob.com/linux/linux-comm-grep.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/Linux/Linux-comm-grep.html">https://www.runoob.com/Linux/Linux-comm-grep.html</a></li>
 </ul>
 <p>使用 grep 搜索 “”，然后利用 grep 自带的功能统计行<br><code>grep -c &quot;&quot; ./nowcoder.txt </code><br>或<br><code>grep -n &quot;&quot; ./nowcoder.txt  | awk -F &quot;:&quot; &#39;&#123;print $1 &#125;&#39; | tail -n 1</code></p>
 <h3 id="方法（5）"><a href="#方法（5）" class="headerlink" title="方法（5）"></a>方法（5）</h3><p>sed 统计行<br><code>sed -n &#39;$=&#39; ./nowcoder.txt</code></p>
@@ -1114,7 +1114,7 @@ ngin
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" style="display: inline-block;  vertical-align: middle;">鲁ICP备2022021620号-1</a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">鲁ICP备2022021620号-1</a> </p>
 
           </div>
         

@@ -911,9 +911,9 @@
 <p><strong>（5）在Linux系统下的opt目录中查看软件包是否导入成功</strong></p>
 <p>[atguigu@hadoop102 software]## ls /opt/software/</p>
 <p>看到如下结果：</p>
-<p>jdk-8u212-linux-x64.tar.gz</p>
+<p>jdk-8u212-Linux-x64.tar.gz</p>
 <p><strong>（6）解压JDK到/opt/module目录下</strong></p>
-<p>[atguigu@hadoop102 software]## tar -zxvf jdk-8u212-linux-x64.tar.gz -C<br>/opt/module/</p>
+<p>[atguigu@hadoop102 software]## tar -zxvf jdk-8u212-Linux-x64.tar.gz -C<br>/opt/module/</p>
 <p><strong>（7）配置JDK环境变量</strong></p>
 <p>（1）新建/etc/profile.d/my_env.sh文件</p>
 <p>[atguigu@hadoop102 module]## sudo vim /etc/profile.d/my_env.sh</p>
@@ -1052,7 +1052,7 @@
 <p>done</p>
 <p>注：</p>
 <p>/opt/module/applog/为jar包及配置文件所在路径</p>
-<p>/dev/null代表linux的空设备文件，所有往这个文件里面写入的内容都会丢失，俗称“黑洞”。</p>
+<p>/dev/null代表Linux的空设备文件，所有往这个文件里面写入的内容都会丢失，俗称“黑洞”。</p>
 <p>标准输入0：从键盘获得输入 /proc/self/fd/0</p>
 <p>标准输出1：输出到屏幕（即控制台） /proc/self/fd/1</p>
 <p>错误输出2：输出到屏幕（即控制台） /proc/self/fd/2</p>
@@ -1127,7 +1127,7 @@
 <p>dfs.namenode.handler.count=，比如集群规模为8台时，此参数设置为41。可通过简单的python代码计算该值，代码如下。</p>
 <p>[atguigu@hadoop102 ~]$ python</p>
 <p>Python 2.7.5 (default, Apr 11 2018, 07:36:10)</p>
-<p>[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux2</p>
+<p>[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on Linux2</p>
 <p>Type “help”, “copyright”, “credits” or “license” for more information.</p>
 <p>&gt;&gt;&gt; import math</p>
 <p>&gt;&gt;&gt; print int(20*math.log(8))</p>
@@ -2041,7 +2041,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" style="display: inline-block;  vertical-align: middle;">鲁ICP备2022021620号-1</a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">鲁ICP备2022021620号-1</a> </p>
 
           </div>
         

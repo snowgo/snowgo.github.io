@@ -603,11 +603,11 @@
       <div class="post-content">
         <p><strong>同一个进程中的线程共享数据空间可以直接通信，但是进程间是无法直接进行通信的。</strong><br>进程间通信：</p>
 <ol>
-<li>管道模型：比如cat xx.txt | grep -n ‘xxx’ 这个’|’可以看作一个单向的匿名管道，使得前后两个进程之间进行通信，前一个命名的输出作为后一个命令的输入，该管道使用结束则立即销毁。命名管道在linux中以文件的形式存在，只要访问该文件就可以实现任意两个进程间的通信，命名管道可以看作是是硬盘上存在的设备文件，所以打开需要使用open。</li>
+<li>管道模型：比如cat xx.txt | grep -n ‘xxx’ 这个’|’可以看作一个单向的匿名管道，使得前后两个进程之间进行通信，前一个命名的输出作为后一个命令的输入，该管道使用结束则立即销毁。命名管道在Linux中以文件的形式存在，只要访问该文件就可以实现任意两个进程间的通信，命名管道可以看作是是硬盘上存在的设备文件，所以打开需要使用open。</li>
 <li>消息队列模型：比如生产者消费者模式，一端生产一端消费数据。遵循严格的先进先出。</li>
 <li>共享内存：多用于传输一些大文件，如果采用管道或者消息队列传输大文件，涉及到重复拷贝，比较消耗性能，因此模拟多线程，在内存中开辟一块特殊的内存用于多个进程共享访问。<strong>也是进程间最高效的通信方式</strong>。一般要搭配信号量机制。</li>
 <li>信号量机制：信号量可以看作一种数据操作锁，通过对临界资源的控制访问以管理进程之间的通信，PV原语操作。</li>
-<li>socket：用于多个进程之间的网络传输。可以是单机多进程也可以是不同机器上的多进程通信。打开的socket在linux下也是以文件描述符fd存在。服务端创建套接字，绑定ip端口，监听端口号，等待客户端调用，客户端创建之后与服务端TCP三次握手建立连接完成，双方就可以发送和接收数据，使用频率少。</li>
+<li>socket：用于多个进程之间的网络传输。可以是单机多进程也可以是不同机器上的多进程通信。打开的socket在Linux下也是以文件描述符fd存在。服务端创建套接字，绑定ip端口，监听端口号，等待客户端调用，客户端创建之后与服务端TCP三次握手建立连接完成，双方就可以发送和接收数据，使用频率少。</li>
 </ol>
 
       </div>
@@ -1103,7 +1103,7 @@ HTTP 请
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" style="display: inline-block;  vertical-align: middle;">鲁ICP备2022021620号-1</a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">鲁ICP备2022021620号-1</a> </p>
 
           </div>
         

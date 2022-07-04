@@ -2745,7 +2745,7 @@
 <p><strong>4）检查同步结果</strong></p>
 <p>观察HDFS上是否重新出现增量表数据。</p>
 <h4 id="增量表同步总结"><a href="#增量表同步总结" class="headerlink" title="增量表同步总结"></a>增量表同步总结</h4><p>增量表同步，需要在首日进行一次全量同步，后续每日才是增量同步。首日进行全量同步时，需先启动数据通道，包括Maxwell、Kafka、Flume，然后执行增量表首日同步脚本mysql_to_kafka_inc_init.sh进行同步。后续每日只需保证采集通道正常运行即可，Maxwell便会实时将变动数据发往Kafka。</p>
-<h2 id="第4章-数仓环境准备"><a href="#第4章-数仓环境准备" class="headerlink" title="第4章 数仓环境准备"></a>第4章 数仓环境准备</h2><h3 id="Hive安装部署"><a href="#Hive安装部署" class="headerlink" title="Hive安装部署"></a>Hive安装部署</h3><p><strong>1）把apache-hive-3.1.2-bin.tar.gz上传到linux的/opt/software目录下</strong></p>
+<h2 id="第4章-数仓环境准备"><a href="#第4章-数仓环境准备" class="headerlink" title="第4章 数仓环境准备"></a>第4章 数仓环境准备</h2><h3 id="Hive安装部署"><a href="#Hive安装部署" class="headerlink" title="Hive安装部署"></a>Hive安装部署</h3><p><strong>1）把apache-hive-3.1.2-bin.tar.gz上传到Linux的/opt/software目录下</strong></p>
 <p><strong>2）解压apache-hive-3.1.2-bin.tar.gz到/opt/module/目录下面</strong></p>
 <p>[atguigu@hadoop102 software]$ tar -zxvf<br>/opt/software/apache-hive-3.1.2-bin.tar.gz -C /opt/module/</p>
 <p><strong>3）修改apache-hive-3.1.2-bin.tar.gz的名称为hive</strong></p>
@@ -3332,7 +3332,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" style="display: inline-block;  vertical-align: middle;">鲁ICP备2022021620号-1</a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">鲁ICP备2022021620号-1</a> </p>
 
           </div>
         

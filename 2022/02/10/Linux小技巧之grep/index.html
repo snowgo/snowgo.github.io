@@ -601,7 +601,7 @@
   <div class="main-content">
     <article class="post post-detail">
       <div class="post-content">
-        <p><strong>作为linux中最为常用的三大文本（awk，sed，grep）处理工具之一，掌握好其用法是很有必要的。</strong><br><strong>首先谈一下grep命令的常用格式为：grep  [选项]  ‘模式’  [文件]</strong><br><strong>grep家族总共有三个：grep，egrep，fgrep。</strong></p>
+        <p><strong>作为Linux中最为常用的三大文本（awk，sed，grep）处理工具之一，掌握好其用法是很有必要的。</strong><br><strong>首先谈一下grep命令的常用格式为：grep  [选项]  ‘模式’  [文件]</strong><br><strong>grep家族总共有三个：grep，egrep，fgrep。</strong></p>
 <h2 id="常用选项："><a href="#常用选项：" class="headerlink" title="常用选项："></a>常用选项：</h2><p><strong>-E ：开启扩展（Extend）的正则表达式。</strong><br><strong>-i ：忽略大小写（ignore case）。</strong><br><strong>-v ：反过来（invert），只打印没有匹配的，而匹配的反而不打印。</strong><br><strong>-n ：显示行号</strong><br><strong>-w ：被匹配的文本只能是单词，而不能是单词中的某一部分，如文本中有liker，而我搜寻的只是like，就可以使用-w选项来避免匹配liker</strong><br><strong>-c ：显示总共有多少行被匹配到了，而不是显示被匹配到的内容，注意如果同时使用-cv选项是显示有多少行没有被匹配到。</strong><br><strong>-o ：只显示被模式匹配到的字符串。</strong><br><strong>–color :将匹配到的内容以颜色高亮显示。</strong><br><strong>-A  n：显示匹配到的字符串所在的行及其后n行，after</strong><br><strong>-B  n：显示匹配到的字符串所在的行及其前n行，before</strong><br><strong>-C  n：显示匹配到的字符串所在的行及其前后各n行，context</strong><br><strong>​</strong><img src="https://snowgo.top/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/0.png"><br><strong>​</strong><img src="https://snowgo.top/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/1.png"><br><strong>​</strong></p>
 <p><strong>​</strong></p>
 <h2 id="模式部分："><a href="#模式部分：" class="headerlink" title="模式部分："></a>模式部分：</h2><p><strong>1、直接输入要匹配的字符串，这个可以用fgrep（fast grep）代替来提高查找速度，比如我要匹配一下hello.c文件中printf的个数：fgrep  -c  “printf”  hello.c</strong><br><strong>2、使用基本正则表达式，下面谈关于基本正则表达式的使用：</strong><br><strong>匹配字符：</strong><br><strong>. ：任意一个字符。</strong><br><strong>[abc] ：表示匹配一个字符，这个字符必须是abc中的一个。</strong><br><strong>[a-zA-Z] ：表示匹配一个字符，这个字符必须是a-z或A-Z这52个字母中的一个。</strong><br><strong>[^123] ：匹配一个字符，这个字符是除了1、2、3以外的所有字符。</strong><br><strong>对于一些常用的字符集，系统做了定义：</strong><br><strong>[A-Za-z] 等价于 [[:alpha:]]</strong><br><strong>[0-9] 等价于 [[:digit:]]</strong><br><strong>[A-Za-z0-9] 等价于 [[:alnum:]]</strong><br><strong>tab,space 等空白字符 [[:space:]]</strong><br><strong>[A-Z] 等价于 [[:upper:]]</strong><br><strong>[a-z] 等价于 [[:lower:]]</strong><br><strong>标点符号 [[:punct:]]</strong><br><img src="https://snowgo.top/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/2.png"><br><strong>​</strong></p>
@@ -626,7 +626,7 @@
 <p><strong>下面用一个练习来结束本次grep的学习：</strong><br><strong>在网络配置文件 /etc/sysconfig/network-scripts/ifcfg-ens33 中检索出所有的 IP</strong><br><strong>1、检索出 0-255的范围</strong><br><img src="https://snowgo.top/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/7.png"><br><strong>2、由0-255的数字组合成IP</strong><br><img src="https://snowgo.top/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/8.png"><br><strong>3、简化</strong><br><img src="https://snowgo.top/medias/medias/Linux%E5%B0%8F%E6%8A%80%E5%B7%A7%E4%B9%8Bgrep/9.png"></p>
 <h2 id="附：配合ls使用"><a href="#附：配合ls使用" class="headerlink" title="附：配合ls使用"></a>附：配合ls使用</h2><p>只列出子目录</p>
 <ol>
-<li>ls -F | grep /$ 或者 alias sub = “ls -F | grep /$”(linux)</li>
+<li>ls -F | grep /$ 或者 alias sub = “ls -F | grep /$”(Linux)</li>
 <li>ls -l | grep “^d” 或者 ls -lL | grep “^d” (Solaris)<br>计算当前目录下的文件数和目录数<br>下面命令可以分别计算当前目录下的文件和目录个数：<h1 id="ls-l-grep-“-“-wc-l-—-to-count-files"><a href="#ls-l-grep-“-“-wc-l-—-to-count-files" class="headerlink" title="ls -l * |grep “^-“|wc -l —- to count files"></a>ls -l * |grep “^-“|wc -l —- to count files</h1><h1 id="ls-l-grep-“-d”-wc-l-—–-to-count-dir"><a href="#ls-l-grep-“-d”-wc-l-—–-to-count-dir" class="headerlink" title="ls -l * |grep “^d”|wc -l —– to count dir"></a>ls -l * |grep “^d”|wc -l —– to count dir</h1><blockquote>
 <p>参考资料：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/flyor/p/6411140.html">https://www.cnblogs.com/flyor/p/6411140.html</a></p>
 </blockquote>
@@ -1122,7 +1122,7 @@
       
         
           <div class="footer-copyright">
-            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" style="display: inline-block;  vertical-align: middle;">鲁ICP备2022021620号-1</a></p>
+            <p>Copyright © 2020 - 2022 <a target="_blank" rel="noopener" href="https://github.com/snowgo">snowgo</a> | Powered by <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo</a> | Theme <a target="_blank" rel="noopener" href="https://github.com/yuang01/theme">Bamboo</a> | <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/">鲁ICP备2022021620号-1</a> </p>
 
           </div>
         
