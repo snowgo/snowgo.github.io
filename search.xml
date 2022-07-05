@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>怎么理解内存中的Buffer和Cache？</title>
+      <link href="/2022/07/05/%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84Buffer%E5%92%8CCache%EF%BC%9F/"/>
+      <url>/2022/07/05/%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84Buffer%E5%92%8CCache%EF%BC%9F/</url>
+      
+        <content type="html"><![CDATA[<h2 id="读写磁盘和读写文件"><a href="#读写磁盘和读写文件" class="headerlink" title="读写磁盘和读写文件"></a>读写磁盘和读写文件</h2><p>磁盘是一个块设备，可以划分为不同的分区；在分区之上再创建文件系统，挂载到某个目录，之后才可以在这个目录中读写文件。 其实 Linux 中“一切皆文件”，而文章中提到的“文件”是普通文件，磁盘是块设备文件，这些大家可以执行 “ls -l &lt;路径&gt;” 查看它们的区别（输出的含义如果不懂请 man ls 查询）。 在读写普通文件时，会经过文件系统，由文件系统负责与磁盘交互；而读写磁盘或者分区时，就会跳过文件系统，也就是所谓的“裸I/O“。</p><h2 id="内存数据来源"><a href="#内存数据来源" class="headerlink" title="内存数据来源"></a>内存数据来源</h2><p>来自 /proc/meminfo，/proc 是 Linux 内核提供的一种特殊文件系统，是用户跟内核交互的接口。比方说，用户可以从 /proc 中查询内核的运行状态和配置选项，查询进程的运行状态、统计数据等，当然，你也可以通过 /proc 来修改内核的配置。<br>vmstat 的结果更加直观。<br><img src="https://snowgo.top/medias/medias/%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84Buffer%E5%92%8CCache%EF%BC%9F/0.png"></p><ul><li>buff 和 cache 就是我们前面看到的 Buffers 和 Cache，单位是 KB。</li><li>bi 和 bo 则分别表示块设备读取和写入的大小，单位为块 / 秒。因为 Linux 中块的大小是 1KB，所以这个单位也就等价于 KB/s。</li></ul><h2 id="Buffer和Cache"><a href="#Buffer和Cache" class="headerlink" title="Buffer和Cache"></a>Buffer和Cache</h2><ul><li>Buffer 既可以用作“将要写入磁盘数据的缓存”，也可以用作“从磁盘读取数据的缓存”。</li><li>Cache 既可以用作“从文件读取数据的页缓存”，也可以用作“写文件的页缓存”。</li></ul><p>简单来说，<strong>Buffer 是对磁盘数据的缓存，而 Cache 是文件数据的缓存，它们既会用在读请求中，也会用在写请求中</strong>。</p><h2 id="缓存的作用"><a href="#缓存的作用" class="headerlink" title="缓存的作用"></a>缓存的作用</h2><ul><li>从写的角度来说，不仅可以优化磁盘和文件的写入，对应用程序也有好处，应用程序可以在数据真正落盘前，就返回去做其他工作。</li><li>从读的角度来说，既可以加速读取那些需要频繁访问的数据，也降低了频繁 I/O 对磁盘的压力。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux内存是怎么工作的？</title>
       <link href="/2022/07/04/Linux%E5%86%85%E5%AD%98%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84%EF%BC%9F/"/>
       <url>/2022/07/04/Linux%E5%86%85%E5%AD%98%E6%98%AF%E6%80%8E%E4%B9%88%E5%B7%A5%E4%BD%9C%E7%9A%84%EF%BC%9F/</url>
@@ -431,11 +456,11 @@
     
     
     <entry>
-      <title>Linux安装性能工具sysstat</title>
-      <link href="/2022/06/20/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/"/>
-      <url>/2022/06/20/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/</url>
+      <title>Linux安装压测工具stress</title>
+      <link href="/2022/06/20/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/"/>
+      <url>/2022/06/20/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/</url>
       
-        <content type="html"><![CDATA[<h2 id="简介及安装"><a href="#简介及安装" class="headerlink" title="简介及安装"></a>简介及安装</h2><p>sysstat 包含了常用的 Linux 性能工具，用来监控和分析系统的性能。</p><ul><li>mpstat 是一个常用的多核 CPU 性能分析工具，用来实时查看每个 CPU 的性能指标，以及所有 CPU 的平均指标。</li><li>pidstat 是一个常用的进程性能分析工具，用来实时查看进程的 CPU、内存、I/O 以及上下文切换等性能指标。</li></ul><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>yum install sysstat</code></p><h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><h3 id="场景一：CPU-密集型进程"><a href="#场景一：CPU-密集型进程" class="headerlink" title="场景一：CPU 密集型进程"></a>场景一：CPU 密集型进程</h3><p>首先，我们在第一个终端运行 stress 命令，模拟一个 CPU 使用率 100% 的场景：<br><code>stress --cpu 1 --timeout 600</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/0.png"><br>接着，在第二个终端运行 uptime 查看平均负载的变化情况：<br><code>watch -d uptime</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/1.png"><br>最后，在第三个终端运行 mpstat 查看 CPU 使用率的变化情况：<br><code>mpstat -P ALL 5</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/2.png"><br>那么，到底是哪个进程导致了 CPU 使用率为 100% 呢？你可以使用 pidstat 来查询：<br><code>pidstat -u 5 1000</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/3.png"><br>从这里可以明显看到，stress 进程的 CPU 使用率为 100%。</p><h3 id="模拟其他场景"><a href="#模拟其他场景" class="headerlink" title="模拟其他场景"></a>模拟其他场景</h3><h4 id="I-O-密集型进程"><a href="#I-O-密集型进程" class="headerlink" title="I/O 密集型进程"></a>I/O 密集型进程</h4><p>模拟 I/O 压力，即不停地执行 sync：<br><code>stress -i 1 --timeout 600</code></p><h4 id="大量进程的场景"><a href="#大量进程的场景" class="headerlink" title="大量进程的场景"></a>大量进程的场景</h4><p>当系统中运行进程超出 CPU 运行能力时，就会出现等待 CPU 的进程。<br>比如，我们还是使用 stress，但这次模拟的是 8 个进程：<br><code>stress -c 8 --timeout 600</code></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="stress简介"><a href="#stress简介" class="headerlink" title="stress简介"></a>stress简介</h2><p>stress是一个Linux下的<a href="https://so.csdn.net/so/search?q=%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95&spm=1001.2101.3001.7020">压力测试</a>工具，专门为那些想要测试自己的系统，完全高负荷和监督这些设备运行的用户。<br>但是在centos的yum源中并未找到此包，所以需要手动下载安装。</p><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="http://archlinux.mirror.beocat.ksu.edu/other/community/stress/stress-1.0.4.tar.gz">点击下载</a><br>依次执行</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf stress<span class="number">-1.0</span><span class="number">.4</span>.tar.gz</span><br><span class="line">cd stress<span class="number">-1.0</span><span class="number">.4</span>/</span><br><span class="line">./configure</span><br><span class="line"><span class="built_in">make</span></span><br><span class="line"><span class="built_in">make</span> check</span><br><span class="line"><span class="built_in">make</span> install #用root权限</span><br></pre></td></tr></table></figure><p>之后输入stress，安装成功会显示如图stress说明及使用帮助<br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/0.png"></p>]]></content>
       
       
       <categories>
@@ -456,11 +481,11 @@
     
     
     <entry>
-      <title>Linux安装压测工具stress</title>
-      <link href="/2022/06/20/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/"/>
-      <url>/2022/06/20/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/</url>
+      <title>Linux安装性能工具sysstat</title>
+      <link href="/2022/06/20/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/"/>
+      <url>/2022/06/20/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/</url>
       
-        <content type="html"><![CDATA[<h2 id="stress简介"><a href="#stress简介" class="headerlink" title="stress简介"></a>stress简介</h2><p>stress是一个Linux下的<a href="https://so.csdn.net/so/search?q=%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95&spm=1001.2101.3001.7020">压力测试</a>工具，专门为那些想要测试自己的系统，完全高负荷和监督这些设备运行的用户。<br>但是在centos的yum源中并未找到此包，所以需要手动下载安装。</p><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="http://archlinux.mirror.beocat.ksu.edu/other/community/stress/stress-1.0.4.tar.gz">点击下载</a><br>依次执行</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf stress<span class="number">-1.0</span><span class="number">.4</span>.tar.gz</span><br><span class="line">cd stress<span class="number">-1.0</span><span class="number">.4</span>/</span><br><span class="line">./configure</span><br><span class="line"><span class="built_in">make</span></span><br><span class="line"><span class="built_in">make</span> check</span><br><span class="line"><span class="built_in">make</span> install #用root权限</span><br></pre></td></tr></table></figure><p>之后输入stress，安装成功会显示如图stress说明及使用帮助<br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/0.png"></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="简介及安装"><a href="#简介及安装" class="headerlink" title="简介及安装"></a>简介及安装</h2><p>sysstat 包含了常用的 Linux 性能工具，用来监控和分析系统的性能。</p><ul><li>mpstat 是一个常用的多核 CPU 性能分析工具，用来实时查看每个 CPU 的性能指标，以及所有 CPU 的平均指标。</li><li>pidstat 是一个常用的进程性能分析工具，用来实时查看进程的 CPU、内存、I/O 以及上下文切换等性能指标。</li></ul><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>yum install sysstat</code></p><h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><h3 id="场景一：CPU-密集型进程"><a href="#场景一：CPU-密集型进程" class="headerlink" title="场景一：CPU 密集型进程"></a>场景一：CPU 密集型进程</h3><p>首先，我们在第一个终端运行 stress 命令，模拟一个 CPU 使用率 100% 的场景：<br><code>stress --cpu 1 --timeout 600</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/0.png"><br>接着，在第二个终端运行 uptime 查看平均负载的变化情况：<br><code>watch -d uptime</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/1.png"><br>最后，在第三个终端运行 mpstat 查看 CPU 使用率的变化情况：<br><code>mpstat -P ALL 5</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/2.png"><br>那么，到底是哪个进程导致了 CPU 使用率为 100% 呢？你可以使用 pidstat 来查询：<br><code>pidstat -u 5 1000</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/3.png"><br>从这里可以明显看到，stress 进程的 CPU 使用率为 100%。</p><h3 id="模拟其他场景"><a href="#模拟其他场景" class="headerlink" title="模拟其他场景"></a>模拟其他场景</h3><h4 id="I-O-密集型进程"><a href="#I-O-密集型进程" class="headerlink" title="I/O 密集型进程"></a>I/O 密集型进程</h4><p>模拟 I/O 压力，即不停地执行 sync：<br><code>stress -i 1 --timeout 600</code></p><h4 id="大量进程的场景"><a href="#大量进程的场景" class="headerlink" title="大量进程的场景"></a>大量进程的场景</h4><p>当系统中运行进程超出 CPU 运行能力时，就会出现等待 CPU 的进程。<br>比如，我们还是使用 stress，但这次模拟的是 8 个进程：<br><code>stress -c 8 --timeout 600</code></p>]]></content>
       
       
       <categories>
