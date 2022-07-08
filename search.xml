@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>为什么系统的Swap变高了（上）</title>
+      <link href="/2022/07/08/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%88%E4%B8%8A%EF%BC%89/"/>
+      <url>/2022/07/08/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Swap-机制"><a href="#Swap-机制" class="headerlink" title="Swap 机制"></a>Swap 机制</h2><p>当发生了内存泄漏时，或者运行了大内存的应用程序，导致系统的内存资源紧张时，系统又会如何应对呢？<br>会导致两种可能结果：</p><ol><li>内存回收</li><li>OOM 杀死进程</li></ol><p>内存资源紧张导致的 OOM（Out Of Memory）指的是系统杀死占用大量内存的进程，释放这些内存，再分配给其他更需要的进程。<br>内存回收也就是系统释放掉可以回收的内存，比如缓存和缓冲区，就属于可回收内存。它们在内存管理中，通常被叫做<strong>文件页（</strong>File-backed Page）。<br>大部分文件页，都可以直接回收，以后有需要时，再从磁盘重新读取就可以了。而那些被应用程序修改过，并且暂时还没写入磁盘的数据（也就是脏页），就得先写入磁盘，然后才能进行内存释放。<br>这些脏页，一般可以通过两种方式写入磁盘。</p><ul><li>可以在应用程序中，通过系统调用 fsync ，把脏页同步到磁盘中；</li><li>也可以交给系统，由内核线程 pdflush 负责这些脏页的刷新。</li></ul><p>除了缓存和缓冲区，通过内存映射获取的文件映射页，也是一种常见的文件页。它也可以被释放掉，下次再访问的时候，从文件重新读取。<br>应用程序动态分配的堆内存，也就是我们在内存管理中说到的<strong>匿名页</strong>（Anonymous Page），是不是也可以回收呢？<br>它们很可能还要再次被访问啊，不能直接回收，但是可以把它们暂时先存在磁盘里，释放内存给其他更需要的进程。<br>这正是 Linux 的 Swap 机制。Swap 把这些不常访问的内存先写到磁盘中，然后释放这些内存，给其他更需要的进程使用。再次访问这些内存时，重新从磁盘读入内存就可以了。</p><h2 id="Swap-原理"><a href="#Swap-原理" class="headerlink" title="Swap 原理"></a>Swap 原理</h2><p>Swap 说白了就是把一块磁盘空间或者一个本地文件（以下讲解以磁盘为例），当成内存来使用。它包括换出和换入两个过程。</p><ul><li>所谓换出，就是把进程暂时不用的内存数据存储到磁盘中，并释放这些数据占用的内存。</li><li>而换入，则是在进程再次访问这些内存的时候，把它们从磁盘读到内存中来。</li></ul><p> Linux 到底在什么时候需要回收内存呢？<br>有新的大块内存分配请求，但是剩余内存不足。这个时候系统就需要回收一部分内存（比如前面提到的缓存），进而尽可能地满足新内存请求。这个过程通常被称为<strong>直接内存回收</strong>。<br>除了直接内存回收，还有一个专门的内核线程用来定期回收内存，也就是<strong>kswapd0</strong>。为了衡量内存的使用情况，kswapd0 定义了三个内存阈值（watermark，也称为水位），分别是<br>页最小阈值（pages_min）、页低阈值（pages_low）和页高阈值（pages_high）。剩余内存，则使用 pages_free 表示。<br><img src="https://snowgo.top/medias/medias/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%88%E4%B8%8A%EF%BC%89/0.png"><br>kswapd0 定期扫描内存的使用情况，并根据剩余内存落在这三个阈值的空间位置，进行内存的回收操作。</p><ul><li>剩余内存小于<strong>页最小阈值</strong>，说明进程可用内存都耗尽了，只有内核才可以分配内存。</li><li>剩余内存落在<strong>页最小阈值</strong>和<strong>页低阈值</strong>中间，说明内存压力比较大，剩余内存不多了。这时 kswapd0 会执行内存回收，直到剩余内存大于高阈值为止。</li><li>剩余内存落在<strong>页低阈值</strong>和<strong>页高阈值</strong>中间，说明内存有一定压力，但还可以满足新内存请求。</li><li>剩余内存大于<strong>页高阈值</strong>，说明剩余内存比较多，没有内存压力。</li></ul><p>一旦剩余内存小于页低阈值，就会触发内存的回收。</p><h2 id="NUMA-与-Swap"><a href="#NUMA-与-Swap" class="headerlink" title="NUMA 与 Swap"></a>NUMA 与 Swap</h2><p>处理器的 NUMA （Non-Uniform Memory Access）架构会导致在内存还有很多的情况下发生swap。<br>在 NUMA 架构下，多个处理器被划分到不同 Node 上，且每个 Node 都拥有自己的本地内存空间。<br><img src="https://snowgo.top/medias/medias/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%88%E4%B8%8A%EF%BC%89/1.png"><br>某个 Node 内存不足时，系统可以从其他 Node 寻找空闲内存，也可以从本地内存中回收内存。具体选哪种模式，可以通过 /proc/sys/vm/zone_reclaim_mode 来调整。它支持以下几个选项：</p><ul><li>默认的 0 ，也就是刚刚提到的模式，表示既可以从其他 Node 寻找空闲内存，也可以从本地回收内存。</li><li>1、2、4 都表示只回收本地内存，2 表示可以回写脏数据回收内存，4 表示可以用 Swap 方式回收内存。</li></ul><h2 id="swappiness"><a href="#swappiness" class="headerlink" title="swappiness"></a>swappiness</h2><p>这些回收的内存既包括了文件页，又包括了匿名页。</p><ul><li>对文件页的回收，当然就是直接回收缓存，或者把脏页写回磁盘后再回收。</li><li>而对匿名页的回收，其实就是通过 Swap 机制，把它们写入磁盘后再释放内存。</li></ul><p>Linux 提供了一个 /proc/sys/vm/swappiness 选项，用来调整使用 Swap 的积极程度。<br>swappiness 的范围是 0-100，数值越大，越积极使用 Swap，也就是更倾向于回收匿名页；数值越小，越消极使用 Swap，也就是更倾向于回收文件页。<br>虽然 swappiness 的范围是 0-100，不过要注意，这并不是内存的百分比，而是调整 Swap 积极程度的权重，即使你把它设置成 0，当<a href="https://www.kernel.org/doc/Documentation/sysctl/vm.txt">剩余内存 + 文件页小于页高阈值</a>时，还是会发生 Swap。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在内存资源紧张时，Linux 通过直接内存回收和定期扫描的方式，来释放文件页和匿名页，以便把内存分配给更需要的进程使用。</p><ul><li>文件页的回收比较容易理解，直接清空，或者把脏数据写回磁盘后再释放。</li><li>而对匿名页的回收，需要通过 Swap 换出到磁盘中，下次访问时，再从磁盘换入到内存中。</li></ul><p>可以设置 /proc/sys/vm/min_free_kbytes，来调整系统定期回收内存的阈值（也就是页低阈值），还可以设置 /proc/sys/vm/swappiness，来调整文件页和匿名页的回收倾向。<br>在 NUMA 架构下，每个 Node 都有自己的本地内存空间，而当本地内存不足时，默认既可以从其他 Node 寻找空闲内存，也可以从本地内存回收。<br>可以设置 /proc/sys/vm/zone_reclaim_mode ，来调整 NUMA 本地内存的回收策略。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>内存泄漏了，我该如何定位和处理？</title>
       <link href="/2022/07/07/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E4%BA%86%EF%BC%8C%E6%88%91%E8%AF%A5%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%92%8C%E5%A4%84%E7%90%86%EF%BC%9F/"/>
       <url>/2022/07/07/%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E4%BA%86%EF%BC%8C%E6%88%91%E8%AF%A5%E5%A6%82%E4%BD%95%E5%AE%9A%E4%BD%8D%E5%92%8C%E5%A4%84%E7%90%86%EF%BC%9F/</url>
@@ -956,11 +981,11 @@
     
     
     <entry>
-      <title>go函数返回局部变量的指针是否安全</title>
-      <link href="/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/"/>
-      <url>/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/</url>
+      <title>go有哪些关键字</title>
+      <link href="/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+      <url>/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/</url>
       
-        <content type="html"><![CDATA[<p>一般来说，局部变量会在函数返回后被销毁，因此被返回的引用就成为了”无所指”的引用，程序会进入未知状态。<br><strong>但这在 Go 中是安全的，Go 编译器将会对每个局部变量进行逃逸分析。如果发现局部变量的作用域超出该函数，则不会将内存分配在栈上，而是分配在堆上，因为他们不在栈区，即使释放函数，其内容也不会受影响。</strong><br>编译时可以借助选项 -gcflags=-m，查看变量逃逸的情况。<br><img src="https://snowgo.top/medias/medias/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/0.png"></p>]]></content>
+        <content type="html"><![CDATA[<p>go中有25个关键字<br><img src="https://snowgo.top/medias/medias/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/1.png"><br>注：fallthrough是用于打破switch中默认break的限制</p>]]></content>
       
       
       <categories>
@@ -981,11 +1006,11 @@
     
     
     <entry>
-      <title>go有哪些关键字</title>
-      <link href="/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/"/>
-      <url>/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+      <title>go函数返回局部变量的指针是否安全</title>
+      <link href="/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/"/>
+      <url>/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/</url>
       
-        <content type="html"><![CDATA[<p>go中有25个关键字<br><img src="https://snowgo.top/medias/medias/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/1.png"><br>注：fallthrough是用于打破switch中默认break的限制</p>]]></content>
+        <content type="html"><![CDATA[<p>一般来说，局部变量会在函数返回后被销毁，因此被返回的引用就成为了”无所指”的引用，程序会进入未知状态。<br><strong>但这在 Go 中是安全的，Go 编译器将会对每个局部变量进行逃逸分析。如果发现局部变量的作用域超出该函数，则不会将内存分配在栈上，而是分配在堆上，因为他们不在栈区，即使释放函数，其内容也不会受影响。</strong><br>编译时可以借助选项 -gcflags=-m，查看变量逃逸的情况。<br><img src="https://snowgo.top/medias/medias/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/0.png"></p>]]></content>
       
       
       <categories>
@@ -2938,9 +2963,9 @@
       
         <tags>
             
-            <tag> dl </tag>
-            
             <tag> tools </tag>
+            
+            <tag> dl </tag>
             
         </tags>
       
@@ -3199,31 +3224,6 @@
     
     
     <entry>
-      <title>第12章 异常</title>
-      <link href="/2021/06/15/%E7%AC%AC12%E7%AB%A0_%E5%BC%82%E5%B8%B8/"/>
-      <url>/2021/06/15/%E7%AC%AC12%E7%AB%A0_%E5%BC%82%E5%B8%B8/</url>
-      
-        <content type="html"><![CDATA[<h2 id="异常类型："><a href="#异常类型：" class="headerlink" title="异常类型："></a>异常类型：</h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/193416/23/8345/103204/60c85e4cEf4c28547/920bb04309c42c67.jpg"></p><hr><h2 id="12-4-创建自定义异常"><a href="#12-4-创建自定义异常" class="headerlink" title="12.4 创建自定义异常"></a>12.4 创建自定义异常</h2><blockquote><p><strong>创建自定义异常类并继承Throwable类或其子类</strong></p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">newException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">newException</span><span class="params">()</span></span>&#123;&#125; <span class="comment">//无参构造器 会自动产生最方便</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">newException</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="12-6-printStackTrace-："><a href="#12-6-printStackTrace-：" class="headerlink" title="12.6 printStackTrace()："></a>12.6 printStackTrace()：</h2><blockquote><p><strong>将打印“从方法调用处直到异常抛出处”的方法调用序列</strong><br><strong>printStackTrace（）信息可由getStackTrace（）直接访问</strong></p><ul><li><strong>返回一个栈数组，栈顶是最后一个调用的方法，栈底是第一个调用的方法</strong></li></ul></blockquote><h3 id="12-6-3-异常链"><a href="#12-6-3-异常链" class="headerlink" title="12.6.3 异常链"></a>12.6.3 异常链</h3><blockquote><p><strong>在捕获一个异常后抛出另一个异常，把原始异常信息保存起来，为异常链</strong><br><strong>异常链写法：</strong></p><ol><li><strong>将catch到的异常对象作为cause参数放入构造器传递给下一个异常</strong></li><li><strong>创建异常对象实例化后用initCause（原始异常对象）</strong></li></ol></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testOne</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">&quot;第一个异常&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testTwo</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">testOne();</span><br><span class="line">&#125;<span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">&quot;第二个异常&quot;</span>,e);</span><br><span class="line">        <span class="comment">/*    写法二：</span></span><br><span class="line"><span class="comment">        Exception e1 = new IOException(&quot;第二个异常&quot;);</span></span><br><span class="line"><span class="comment">        e1.initCause(e);</span></span><br><span class="line"><span class="comment">        throw e1;</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">testTwo();</span><br><span class="line">&#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><h2 id="12-8-finally"><a href="#12-8-finally" class="headerlink" title="12.8 finally"></a>12.8 finally</h2><p><strong>除了System.exit(1)以外，其他任何情况都会执行finally，甚至跳过break，continue，return等语句。</strong></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> java编程思想 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> java </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>第11章 持有对象</title>
       <link href="/2021/06/15/%E7%AC%AC11%E7%AB%A0_%E6%8C%81%E6%9C%89%E5%AF%B9%E8%B1%A1/"/>
       <url>/2021/06/15/%E7%AC%AC11%E7%AB%A0_%E6%8C%81%E6%9C%89%E5%AF%B9%E8%B1%A1/</url>
@@ -3249,25 +3249,23 @@
     
     
     <entry>
-      <title>Beta分布详解</title>
-      <link href="/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/"/>
-      <url>/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/</url>
+      <title>第12章 异常</title>
+      <link href="/2021/06/15/%E7%AC%AC12%E7%AB%A0_%E5%BC%82%E5%B8%B8/"/>
+      <url>/2021/06/15/%E7%AC%AC12%E7%AB%A0_%E5%BC%82%E5%B8%B8/</url>
       
-        <content type="html"><![CDATA[<iframe src="//player.bilibili.com/player.html?bvid=BV1a54y1z7a8&cid=257887173&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>]]></content>
+        <content type="html"><![CDATA[<h2 id="异常类型："><a href="#异常类型：" class="headerlink" title="异常类型："></a>异常类型：</h2><p><img src="https://img12.360buyimg.com/ddimg/jfs/t1/193416/23/8345/103204/60c85e4cEf4c28547/920bb04309c42c67.jpg"></p><hr><h2 id="12-4-创建自定义异常"><a href="#12-4-创建自定义异常" class="headerlink" title="12.4 创建自定义异常"></a>12.4 创建自定义异常</h2><blockquote><p><strong>创建自定义异常类并继承Throwable类或其子类</strong></p></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">newException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">newException</span><span class="params">()</span></span>&#123;&#125; <span class="comment">//无参构造器 会自动产生最方便</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">newException</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="12-6-printStackTrace-："><a href="#12-6-printStackTrace-：" class="headerlink" title="12.6 printStackTrace()："></a>12.6 printStackTrace()：</h2><blockquote><p><strong>将打印“从方法调用处直到异常抛出处”的方法调用序列</strong><br><strong>printStackTrace（）信息可由getStackTrace（）直接访问</strong></p><ul><li><strong>返回一个栈数组，栈顶是最后一个调用的方法，栈底是第一个调用的方法</strong></li></ul></blockquote><h3 id="12-6-3-异常链"><a href="#12-6-3-异常链" class="headerlink" title="12.6.3 异常链"></a>12.6.3 异常链</h3><blockquote><p><strong>在捕获一个异常后抛出另一个异常，把原始异常信息保存起来，为异常链</strong><br><strong>异常链写法：</strong></p><ol><li><strong>将catch到的异常对象作为cause参数放入构造器传递给下一个异常</strong></li><li><strong>创建异常对象实例化后用initCause（原始异常对象）</strong></li></ol></blockquote><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testOne</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">&quot;第一个异常&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testTwo</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">testOne();</span><br><span class="line">&#125;<span class="keyword">catch</span> (IOException e)&#123;</span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> IOException(<span class="string">&quot;第二个异常&quot;</span>,e);</span><br><span class="line">        <span class="comment">/*    写法二：</span></span><br><span class="line"><span class="comment">        Exception e1 = new IOException(&quot;第二个异常&quot;);</span></span><br><span class="line"><span class="comment">        e1.initCause(e);</span></span><br><span class="line"><span class="comment">        throw e1;</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">testTwo();</span><br><span class="line">&#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><hr><h2 id="12-8-finally"><a href="#12-8-finally" class="headerlink" title="12.8 finally"></a>12.8 finally</h2><p><strong>除了System.exit(1)以外，其他任何情况都会执行finally，甚至跳过break，continue，return等语句。</strong></p>]]></content>
       
       
       <categories>
           
-          <category> MATH </category>
+          <category> java编程思想 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> dl </tag>
-            
-            <tag> math </tag>
+            <tag> java </tag>
             
         </tags>
       
@@ -3335,6 +3333,33 @@
       <url>/2021/06/14/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86%EF%BC%8C%E4%BD%BF%E6%A6%82%E7%8E%87%E8%AE%BA%E7%9B%B4%E8%A7%89%E5%8C%96/</url>
       
         <content type="html"><![CDATA[<iframe src="//player.bilibili.com/player.html?bvid=BV1R7411a76r&cid=145676762&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe><a name="znVDE"></a># 简洁证明<iframe src="//player.bilibili.com/player.html?bvid=BV1o7411a76m&cid=145676706&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>]]></content>
+      
+      
+      <categories>
+          
+          <category> MATH </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> dl </tag>
+            
+            <tag> math </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Beta分布详解</title>
+      <link href="/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/"/>
+      <url>/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/</url>
+      
+        <content type="html"><![CDATA[<iframe src="//player.bilibili.com/player.html?bvid=BV1a54y1z7a8&cid=257887173&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>]]></content>
       
       
       <categories>
@@ -3557,11 +3582,11 @@
     
     
     <entry>
-      <title>第2章 对象</title>
-      <link href="/2021/06/05/%E7%AC%AC2%E7%AB%A0_%E5%AF%B9%E8%B1%A1/"/>
-      <url>/2021/06/05/%E7%AC%AC2%E7%AB%A0_%E5%AF%B9%E8%B1%A1/</url>
+      <title>第1章 导论</title>
+      <link href="/2021/06/05/%E7%AC%AC1%E7%AB%A0_%E5%AF%BC%E8%AE%BA/"/>
+      <url>/2021/06/05/%E7%AC%AC1%E7%AB%A0_%E5%AF%BC%E8%AE%BA/</url>
       
-        <content type="html"><![CDATA[<h2 id="2-2-基本数据类型"><a href="#2-2-基本数据类型" class="headerlink" title="2.2 基本数据类型"></a>2.2 基本数据类型</h2><p><strong>string不是基本数据类型。</strong><img src="https://img13.360buyimg.com/ddimg/jfs/t1/195661/8/8079/206780/60c755f6E54758dcd/ffdb69980ac7b6c1.jpg"></p><h3 id="2-2-2-高精度数字"><a href="#2-2-2-高精度数字" class="headerlink" title="2.2.2 高精度数字"></a>2.2.2 高精度数字</h3><ul><li><strong>高精度数字：BigInteger、BigDecimal</strong><ul><li><strong>BigInteger：支持任意精度的整数。</strong></li><li><strong>BigDecimal：支持任意精度的定点数。</strong></li></ul></li></ul><h3 id="2-2-3-创建数组对象就是创建一个引用数组。"><a href="#2-2-3-创建数组对象就是创建一个引用数组。" class="headerlink" title="2.2.3 创建数组对象就是创建一个引用数组。"></a>2.2.3 创建数组对象就是创建一个引用数组。</h3><h2 id="2-3-生命周期"><a href="#2-3-生命周期" class="headerlink" title="2.3 生命周期"></a>2.3 生命周期</h2><p><strong>java对象生命周期和基本类型不一样。用new创建的对象可以存活于作用域之外。</strong><br><strong>java垃圾回收器会监视new的对象，辨别不会再被引用的对象并释放内存空间。</strong></p><h2 id="2-4-初始值"><a href="#2-4-初始值" class="headerlink" title="2.4 初始值"></a>2.4 初始值</h2><p><strong>变量作为类的成员或全局变量会有初始默认值，局部变量没有初始值。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/182601/20/9214/90450/60c756c2E31138148/e3d464be6e09303d.jpg"></strong></p><h2 id="2-5-java函数可以返回数组，c-c-不能"><a href="#2-5-java函数可以返回数组，c-c-不能" class="headerlink" title="2.5 java函数可以返回数组，c/c++不能"></a>2.5 java函数可以返回数组，c/c++不能</h2><h2 id="2-6-java库函数-java-util"><a href="#2-6-java库函数-java-util" class="headerlink" title="2.6 java库函数 java.util.*"></a>2.6 java库函数 <code>java.util.*</code></h2><h3 id="2-6-3-static-关键字"><a href="#2-6-3-static-关键字" class="headerlink" title="2.6.3 static 关键字"></a>2.6.3 static 关键字</h3><ul><li><strong>static适用于两种情况</strong><ul><li><strong>分配单一存储空间，不考虑创建多少对象或者不创建对象。</strong></li><li><strong>创建的方法不与包含它的类的对象关联起来</strong></li></ul></li><li><strong>创建static事物后，即使没有创建对象也可以调用static方法或static域。</strong></li></ul><p><strong><img src="https://img14.360buyimg.com/ddimg/jfs/t1/185967/29/9177/76016/60c756eeE4ec4eae5/e3b719fb7e5add2e.jpg"></strong></p><ul><li><strong>static变量或static方法可以通过类名直接引用，而且是首选方式</strong> <strong>。</strong></li><li><strong>static方法内部不能调用非static方法，非static方法可以调用static方法</strong> 。</li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h2><p><strong>每一个对象在内存中都有一个唯一的地址，new的对象在堆中。</strong></p><h2 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h2><p><strong>高内聚、低耦合：模块之间紧密联系，并且保持独立性。</strong></p><h2 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h2><ul><li><strong>public、private、protected</strong><ul><li><strong>private: 除类型创建者和类型的内部方法之外的任何人都不能访问。</strong></li><li><strong>protected：与 private作用相当，差别仅在于继承的类可以访问 protected成员，但是不能访问private成员。</strong></li></ul></li></ul><h2 id="1-5-组合"><a href="#1-5-组合" class="headerlink" title="1.5 组合"></a>1.5 组合</h2><ul><li><strong>组合：由类的对象组合成新类</strong>。<ul><li><strong>has-a（拥有）关系的时候用组合</strong> <strong>。</strong></li><li><strong>新类的成员对象通常都被声明为 private，使得可以在不干扰现有客户端代码的情况下，修改这些成员，也可以在运行时修改这些成员对象，以实现动态修改程序的行为。</strong></li><li><strong>通常用于在新类中使用现有类的功能而非接口的情况，即在新类中嵌入现有类的private对象</strong> <strong>。</strong></li></ul></li></ul><h2 id="1-6-继承"><a href="#1-6-继承" class="headerlink" title="1.6 继承"></a>1.6 继承</h2><p><strong>is-a（是一个）或者like-a（像是一个）的时候用继承</strong> <strong>。</strong><br><strong>有两种方法可以使基类与导出类产生差异：extends关键字、覆盖基类的方法。</strong><br><strong>判断用组合还是继承，先看看要不要向上转型</strong> 。</p><h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2><p><strong>所有类继承于Object。</strong><br><strong>所有对象都在堆上创建（new）。</strong></p><h2 id="1-10-生命周期"><a href="#1-10-生命周期" class="headerlink" title="1.10 生命周期"></a>1.10 生命周期</h2><ul><li><strong>java完全采用动态内存分配方式。</strong><ul><li><strong>在堆栈上创建对象，编译器可以确定对象存活时间，自动销毁。但是在堆上创建对象，编译器对其生命周期一无所知</strong>。</li></ul></li></ul>]]></content>
       
       
       <categories>
@@ -3582,11 +3607,11 @@
     
     
     <entry>
-      <title>第1章 导论</title>
-      <link href="/2021/06/05/%E7%AC%AC1%E7%AB%A0_%E5%AF%BC%E8%AE%BA/"/>
-      <url>/2021/06/05/%E7%AC%AC1%E7%AB%A0_%E5%AF%BC%E8%AE%BA/</url>
+      <title>第2章 对象</title>
+      <link href="/2021/06/05/%E7%AC%AC2%E7%AB%A0_%E5%AF%B9%E8%B1%A1/"/>
+      <url>/2021/06/05/%E7%AC%AC2%E7%AB%A0_%E5%AF%B9%E8%B1%A1/</url>
       
-        <content type="html"><![CDATA[<h2 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h2><p><strong>每一个对象在内存中都有一个唯一的地址，new的对象在堆中。</strong></p><h2 id="1-3"><a href="#1-3" class="headerlink" title="1.3"></a>1.3</h2><p><strong>高内聚、低耦合：模块之间紧密联系，并且保持独立性。</strong></p><h2 id="1-4"><a href="#1-4" class="headerlink" title="1.4"></a>1.4</h2><ul><li><strong>public、private、protected</strong><ul><li><strong>private: 除类型创建者和类型的内部方法之外的任何人都不能访问。</strong></li><li><strong>protected：与 private作用相当，差别仅在于继承的类可以访问 protected成员，但是不能访问private成员。</strong></li></ul></li></ul><h2 id="1-5-组合"><a href="#1-5-组合" class="headerlink" title="1.5 组合"></a>1.5 组合</h2><ul><li><strong>组合：由类的对象组合成新类</strong>。<ul><li><strong>has-a（拥有）关系的时候用组合</strong> <strong>。</strong></li><li><strong>新类的成员对象通常都被声明为 private，使得可以在不干扰现有客户端代码的情况下，修改这些成员，也可以在运行时修改这些成员对象，以实现动态修改程序的行为。</strong></li><li><strong>通常用于在新类中使用现有类的功能而非接口的情况，即在新类中嵌入现有类的private对象</strong> <strong>。</strong></li></ul></li></ul><h2 id="1-6-继承"><a href="#1-6-继承" class="headerlink" title="1.6 继承"></a>1.6 继承</h2><p><strong>is-a（是一个）或者like-a（像是一个）的时候用继承</strong> <strong>。</strong><br><strong>有两种方法可以使基类与导出类产生差异：extends关键字、覆盖基类的方法。</strong><br><strong>判断用组合还是继承，先看看要不要向上转型</strong> 。</p><h2 id="1-8"><a href="#1-8" class="headerlink" title="1.8"></a>1.8</h2><p><strong>所有类继承于Object。</strong><br><strong>所有对象都在堆上创建（new）。</strong></p><h2 id="1-10-生命周期"><a href="#1-10-生命周期" class="headerlink" title="1.10 生命周期"></a>1.10 生命周期</h2><ul><li><strong>java完全采用动态内存分配方式。</strong><ul><li><strong>在堆栈上创建对象，编译器可以确定对象存活时间，自动销毁。但是在堆上创建对象，编译器对其生命周期一无所知</strong>。</li></ul></li></ul>]]></content>
+        <content type="html"><![CDATA[<h2 id="2-2-基本数据类型"><a href="#2-2-基本数据类型" class="headerlink" title="2.2 基本数据类型"></a>2.2 基本数据类型</h2><p><strong>string不是基本数据类型。</strong><img src="https://img13.360buyimg.com/ddimg/jfs/t1/195661/8/8079/206780/60c755f6E54758dcd/ffdb69980ac7b6c1.jpg"></p><h3 id="2-2-2-高精度数字"><a href="#2-2-2-高精度数字" class="headerlink" title="2.2.2 高精度数字"></a>2.2.2 高精度数字</h3><ul><li><strong>高精度数字：BigInteger、BigDecimal</strong><ul><li><strong>BigInteger：支持任意精度的整数。</strong></li><li><strong>BigDecimal：支持任意精度的定点数。</strong></li></ul></li></ul><h3 id="2-2-3-创建数组对象就是创建一个引用数组。"><a href="#2-2-3-创建数组对象就是创建一个引用数组。" class="headerlink" title="2.2.3 创建数组对象就是创建一个引用数组。"></a>2.2.3 创建数组对象就是创建一个引用数组。</h3><h2 id="2-3-生命周期"><a href="#2-3-生命周期" class="headerlink" title="2.3 生命周期"></a>2.3 生命周期</h2><p><strong>java对象生命周期和基本类型不一样。用new创建的对象可以存活于作用域之外。</strong><br><strong>java垃圾回收器会监视new的对象，辨别不会再被引用的对象并释放内存空间。</strong></p><h2 id="2-4-初始值"><a href="#2-4-初始值" class="headerlink" title="2.4 初始值"></a>2.4 初始值</h2><p><strong>变量作为类的成员或全局变量会有初始默认值，局部变量没有初始值。</strong><br><strong><img src="https://img10.360buyimg.com/ddimg/jfs/t1/182601/20/9214/90450/60c756c2E31138148/e3d464be6e09303d.jpg"></strong></p><h2 id="2-5-java函数可以返回数组，c-c-不能"><a href="#2-5-java函数可以返回数组，c-c-不能" class="headerlink" title="2.5 java函数可以返回数组，c/c++不能"></a>2.5 java函数可以返回数组，c/c++不能</h2><h2 id="2-6-java库函数-java-util"><a href="#2-6-java库函数-java-util" class="headerlink" title="2.6 java库函数 java.util.*"></a>2.6 java库函数 <code>java.util.*</code></h2><h3 id="2-6-3-static-关键字"><a href="#2-6-3-static-关键字" class="headerlink" title="2.6.3 static 关键字"></a>2.6.3 static 关键字</h3><ul><li><strong>static适用于两种情况</strong><ul><li><strong>分配单一存储空间，不考虑创建多少对象或者不创建对象。</strong></li><li><strong>创建的方法不与包含它的类的对象关联起来</strong></li></ul></li><li><strong>创建static事物后，即使没有创建对象也可以调用static方法或static域。</strong></li></ul><p><strong><img src="https://img14.360buyimg.com/ddimg/jfs/t1/185967/29/9177/76016/60c756eeE4ec4eae5/e3b719fb7e5add2e.jpg"></strong></p><ul><li><strong>static变量或static方法可以通过类名直接引用，而且是首选方式</strong> <strong>。</strong></li><li><strong>static方法内部不能调用非static方法，非static方法可以调用static方法</strong> 。</li></ul>]]></content>
       
       
       <categories>
