@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>为什么系统的Swap变高了？（下）</title>
+      <link href="/2022/07/09/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%9F%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
+      <url>/2022/07/09/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%9F%EF%BC%88%E4%B8%8B%EF%BC%89/</url>
+      
+        <content type="html"><![CDATA[<h2 id="上节回顾"><a href="#上节回顾" class="headerlink" title="上节回顾"></a>上节回顾</h2><p>便把内存分配给更需要的进程使用。</p><ul><li>文件页的回收比较容易理解，直接清空缓存，或者把脏数据写回磁盘后，再释放缓存就可以了。</li><li>而对不常访问的匿名页，则需要通过 Swap 换出到磁盘中，这样在下次访问的时候，再次从磁盘换入到内存中就可以了。</li></ul><p>当 Swap 使用升高时，要如何定位和分析呢？</p><h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><p>在终端中运行 free 命令，查看 Swap 的使用情况。<br><img src="https://snowgo.top/medias/medias/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%9F%EF%BC%88%E4%B8%8B%EF%BC%89/0.png"><br>没有配置 Swap。<br>需要先配置、开启 Swap。<br>Linux 本身支持两种类型的 Swap，即 Swap 分区和 Swap 文件。以 Swap 文件为例:</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 创建 Swap 文件</span><br><span class="line">$ fallocate -l <span class="number">8</span>G /mnt/swapfile</span><br><span class="line"># 修改权限只有根用户可以访问</span><br><span class="line">$ chmod <span class="number">600</span> /mnt/swapfile</span><br><span class="line"># 配置 Swap 文件</span><br><span class="line">$ mkswap /mnt/swapfile</span><br><span class="line"># 开启 Swap</span><br><span class="line">$ swapon /mnt/swapfile</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>配置成功<br><img src="https://snowgo.top/medias/medias/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%9F%EF%BC%88%E4%B8%8B%EF%BC%89/1.png"><br>在第一个终端中，运行下面的 dd 命令，模拟大文件的读取：<br><img src="https://snowgo.top/medias/medias/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%9F%EF%BC%88%E4%B8%8B%EF%BC%89/2.png"><br>在第二个终端中运行 sar 命令，查看内存各个指标的变化情况。</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"># 间隔 <span class="number">1</span> 秒输出一组数据</span><br><span class="line"># -r 表示显示内存使用情况，-S 表示显示 Swap 使用情况</span><br><span class="line">$ sar -r -S <span class="number">1</span></span><br><span class="line"><span class="number">04</span>:<span class="number">39</span>:<span class="number">56</span>    kbmemfree   kbavail kbmemused  %memused kbbuffers  kbcached  kbcommit   %commit  kbactive   kbinact   kbdirty</span><br><span class="line"><span class="number">04</span>:<span class="number">39</span>:<span class="number">57</span>      <span class="number">6249676</span>   <span class="number">6839824</span>   <span class="number">1919632</span>     <span class="number">23.50</span>    <span class="number">740512</span>     <span class="number">67316</span>   <span class="number">1691736</span>     <span class="number">10.22</span>    <span class="number">815156</span>    <span class="number">841868</span>         <span class="number">4</span></span><br><span class="line"> </span><br><span class="line"><span class="number">04</span>:<span class="number">39</span>:<span class="number">56</span>    kbswpfree kbswpused  %swpused  kbswpcad   %swpcad</span><br><span class="line"><span class="number">04</span>:<span class="number">39</span>:<span class="number">57</span>      <span class="number">8388604</span>         <span class="number">0</span>      <span class="number">0.00</span>         <span class="number">0</span>      <span class="number">0.00</span></span><br><span class="line"> </span><br><span class="line"><span class="number">04</span>:<span class="number">39</span>:<span class="number">57</span>    kbmemfree   kbavail kbmemused  %memused kbbuffers  kbcached  kbcommit   %commit  kbactive   kbinact   kbdirty</span><br><span class="line"><span class="number">04</span>:<span class="number">39</span>:<span class="number">58</span>      <span class="number">6184472</span>   <span class="number">6807064</span>   <span class="number">1984836</span>     <span class="number">24.30</span>    <span class="number">772768</span>     <span class="number">67380</span>   <span class="number">1691736</span>     <span class="number">10.22</span>    <span class="number">847932</span>    <span class="number">874224</span>        <span class="number">20</span></span><br><span class="line"> </span><br><span class="line"><span class="number">04</span>:<span class="number">39</span>:<span class="number">57</span>    kbswpfree kbswpused  %swpused  kbswpcad   %swpcad</span><br><span class="line"><span class="number">04</span>:<span class="number">39</span>:<span class="number">58</span>      <span class="number">8388604</span>         <span class="number">0</span>      <span class="number">0.00</span>         <span class="number">0</span>      <span class="number">0.00</span></span><br><span class="line"> </span><br><span class="line">…</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="number">04</span>:<span class="number">44</span>:<span class="number">06</span>    kbmemfree   kbavail kbmemused  %memused kbbuffers  kbcached  kbcommit   %commit  kbactive   kbinact   kbdirty</span><br><span class="line"><span class="number">04</span>:<span class="number">44</span>:<span class="number">07</span>       <span class="number">152780</span>   <span class="number">6525716</span>   <span class="number">8016528</span>     <span class="number">98.13</span>   <span class="number">6530440</span>     <span class="number">51316</span>   <span class="number">1691736</span>     <span class="number">10.22</span>    <span class="number">867124</span>   <span class="number">6869332</span>         <span class="number">0</span></span><br><span class="line"> </span><br><span class="line"><span class="number">04</span>:<span class="number">44</span>:<span class="number">06</span>    kbswpfree kbswpused  %swpused  kbswpcad   %swpcad</span><br><span class="line"><span class="number">04</span>:<span class="number">44</span>:<span class="number">07</span>      <span class="number">8384508</span>      <span class="number">4096</span>      <span class="number">0.05</span>        <span class="number">52</span>      <span class="number">1.27</span></span><br></pre></td></tr></table></figure><p>sar 的输出结果是两个表格，第一个表格表示内存的使用情况，第二个表格表示 Swap 的使用情况。其中，各个指标名称前面的 kb 前缀，表示这些指标的单位是 KB。</p><ul><li>kbcommit，表示当前系统负载需要的内存。它实际上是为了保证系统内存不溢出，对需要内存的估计值。%commit，就是这个值相对总内存的百分比。kbcommit就是进程申请的内存之和，kbmemused还包括了buffer和cache。</li><li>kbactive，表示活跃内存，也就是最近使用过的内存，一般不会被系统回收。</li><li>kbinact，表示非活跃内存，也就是不常访问的内存，有可能会被系统回收。</li></ul><p>现象：总的内存使用率（%memused）在不断增长，从开始的 23% 一直长到了 98%，并且主要内存都被缓冲区（kbbuffers）占用。具体来说：</p><ul><li>刚开始，剩余内存（kbmemfree）不断减少，而缓冲区（kbbuffers）则不断增大，由此可知，剩余内存不断分配给了缓冲区。</li><li>一段时间后，剩余内存已经很小，而缓冲区占用了大部分内存。这时候，Swap 的使用开始逐渐增大，缓冲区和剩余内存则只在小范围内波动。</li></ul><p>运行下面的 cachetop 命令，观察进程缓存的使用情况：</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ cachetop <span class="number">5</span></span><br><span class="line"><span class="number">12</span>:<span class="number">28</span>:<span class="number">28</span> Buffers MB: <span class="number">6349</span> / Cached MB: <span class="number">87</span> / Sort: HITS / Order: ascending</span><br><span class="line">PID      UID      CMD              HITS     MISSES   DIRTIES  READ_HIT%  WRITE_HIT%</span><br><span class="line">   <span class="number">18280</span> root     python                 <span class="number">22</span>        <span class="number">0</span>        <span class="number">0</span>     <span class="number">100.0</span>%       <span class="number">0.0</span>%</span><br><span class="line">   <span class="number">18279</span> root     dd                  <span class="number">41088</span>    <span class="number">41022</span>        <span class="number">0</span>      <span class="number">50.0</span>%      <span class="number">50.0</span>%</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>dd 进程的读写请求只有 50% 的命中率，并且未命中的缓存页数（MISSES）为 41022（单位是页）。这说明，正是案例开始时运行的 dd，导致了缓冲区使用升高。<br>直观来说，缓冲区占了系统绝大部分内存，还属于可回收内存，内存不够用时，不应该先回收缓冲区吗？为什么Swap也升高了。<br>这种情况，我们还得进一步通过 /proc/zoneinfo ，观察剩余内存、内存阈值以及匿名页和文件页的活跃情况。</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># -d 表示高亮变化的字段</span><br><span class="line"># -A 表示仅显示 Normal 行以及之后的 <span class="number">15</span> 行输出</span><br><span class="line">$ watch -d grep -A <span class="number">15</span> <span class="string">&#x27;Normal&#x27;</span> /proc/zoneinfo</span><br><span class="line">Node <span class="number">0</span>, zone   Normal</span><br><span class="line">  pages free     <span class="number">21328</span></span><br><span class="line">        min      <span class="number">14896</span></span><br><span class="line">        low      <span class="number">18620</span></span><br><span class="line">        high     <span class="number">22344</span></span><br><span class="line">        spanned  <span class="number">1835008</span></span><br><span class="line">        present  <span class="number">1835008</span></span><br><span class="line">        managed  <span class="number">1796710</span></span><br><span class="line">        protection: (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">      nr_free_pages <span class="number">21328</span></span><br><span class="line">      nr_zone_inactive_anon <span class="number">79776</span></span><br><span class="line">      nr_zone_active_anon <span class="number">206854</span></span><br><span class="line">      nr_zone_inactive_file <span class="number">918561</span></span><br><span class="line">      nr_zone_active_file <span class="number">496695</span></span><br><span class="line">      nr_zone_unevictable <span class="number">2251</span></span><br><span class="line">      nr_zone_write_pending <span class="number">0</span></span><br></pre></td></tr></table></figure><p>剩余内存（pages_free）在一个小范围内不停地波动。当它小于页低阈值（pages_low) 时，又会突然增大到一个大于页高阈值（pages_high）的值。<br>再结合刚刚用 sar 看到的剩余内存和缓冲区的变化情况，我们可以推导出，剩余内存和缓冲区的波动变化，正是由于内存回收和缓存再次分配的循环往复。</p><ul><li>当剩余内存小于页低阈值时，系统会回收一些缓存和匿名内存，使剩余内存增大。其中，缓存的回收导致 sar 中的缓冲区减小，而匿名内存的回收导致了 Swap 的使用增大。</li><li>紧接着，由于 dd 还在继续，剩余内存又会重新分配给缓存，导致剩余内存减少，缓冲区增大。</li></ul><p>说明系统回收内存时，有时候会回收更多的文件页，有时候又回收了更多的匿名页。<br>swappiness，正是调整不同类型内存回收的配置选项。<br>查看 swappiness 的配置：<br><img src="https://snowgo.top/medias/medias/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%9F%EF%BC%88%E4%B8%8B%EF%BC%89/3.png"><br>swappiness 显示的是默认值 60，这是一个相对中和的配置，所以系统会根据实际运行情况，选择合适的回收类型，比如回收不活跃的匿名页，或者不活跃的文件页。<br>Swap 换出的是哪些进程的内存？<br>用 proc 文件系统来查看进程 Swap 换出的虚拟内存大小，它保存在 /proc/pid/status 中的 VmSwap 中。</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 按 VmSwap 使用量对进程排序，输出进程名称、进程 ID 以及 SWAP 用量</span><br><span class="line">$ <span class="keyword">for</span> file in /proc<span class="comment">/*/status ; do awk &#x27;/VmSwap|Name|^Pid/&#123;printf $2 &quot; &quot; $3&#125;END&#123; print &quot;&quot;&#125;&#x27; $file; done | sort -k 3 -n -r | head</span></span><br><span class="line"><span class="comment">dockerd 2226 10728 kB</span></span><br><span class="line"><span class="comment">docker-containe 2251 8516 kB</span></span><br><span class="line"><span class="comment">snapd 936 4020 kB</span></span><br><span class="line"><span class="comment">networkd-dispat 911 836 kB</span></span><br><span class="line"><span class="comment">polkitd 1004 44 kB</span></span><br></pre></td></tr></table></figure><p>使用 Swap 比较多的是 dockerd 和 docker-containe 进程，所以，当 dockerd 再次访问这些换出到磁盘的内存时，也会比较慢。<br>说明虽然缓存属于可回收内存，但在类似大文件拷贝这类场景下，系统还是会用 Swap 机制来回收匿名内存，而不仅仅是回收占用绝大部分内存的文件页。<br>关闭 Swap：</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ swapoff -a</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>关闭 Swap 后再重新打开，也是一种常用的 Swap 空间清理方法，比如：</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ swapoff -a &amp;&amp; swapon -a </span><br></pre></td></tr></table></figure><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在内存资源紧张时，Linux 会通过 Swap ，把不常访问的匿名页换出到磁盘中，下次访问的时候再从磁盘换入到内存中来。你可以设置 /proc/sys/vm/min_free_kbytes，来调整系统定期回收内存的阈值；也可以设置 /proc/sys/vm/swappiness，来调整文件页和匿名页的回收倾向。<br>当 Swap 变高时，你可以用 sar 、cachetop、/proc/zoneinfo、/proc/pid/status 等方法，查看系统和进程的内存使用情况，进而找出 Swap 升高的根源和受影响的进程。用<code>smem --sort swap</code>命令可以直接将进程按照swap使用量排序显示<br>通常，降低 Swap 的使用，可以提高系统的整体性能。<br>几种常见的降低方法：</p><ul><li>禁止 Swap，现在服务器的内存足够大，所以除非有必要，禁用 Swap 就可以了。随着云计算的普及，大部分云平台中的虚拟机都默认禁止 Swap。</li><li>如果实在需要用到 Swap，可以尝试降低 swappiness 的值，减少内存回收时 Swap 的使用倾向。</li><li>响应延迟敏感的应用，如果它们可能在开启 Swap 的服务器中运行，你还可以用库函数 mlock() 或者 mlockall() 锁定内存，阻止它们的内存换出。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 问题和技巧 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>为什么系统的Swap变高了（上）</title>
       <link href="/2022/07/08/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%88%E4%B8%8A%EF%BC%89/"/>
       <url>/2022/07/08/%E4%B8%BA%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E7%9A%84Swap%E5%8F%98%E9%AB%98%E4%BA%86%EF%BC%88%E4%B8%8A%EF%BC%89/</url>
@@ -531,11 +556,11 @@
     
     
     <entry>
-      <title>Linux安装压测工具stress</title>
-      <link href="/2022/06/20/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/"/>
-      <url>/2022/06/20/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/</url>
+      <title>Linux安装性能工具sysstat</title>
+      <link href="/2022/06/20/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/"/>
+      <url>/2022/06/20/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/</url>
       
-        <content type="html"><![CDATA[<h2 id="stress简介"><a href="#stress简介" class="headerlink" title="stress简介"></a>stress简介</h2><p>stress是一个Linux下的<a href="https://so.csdn.net/so/search?q=%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95&spm=1001.2101.3001.7020">压力测试</a>工具，专门为那些想要测试自己的系统，完全高负荷和监督这些设备运行的用户。<br>但是在centos的yum源中并未找到此包，所以需要手动下载安装。</p><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="http://archlinux.mirror.beocat.ksu.edu/other/community/stress/stress-1.0.4.tar.gz">点击下载</a><br>依次执行</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf stress<span class="number">-1.0</span><span class="number">.4</span>.tar.gz</span><br><span class="line">cd stress<span class="number">-1.0</span><span class="number">.4</span>/</span><br><span class="line">./configure</span><br><span class="line"><span class="built_in">make</span></span><br><span class="line"><span class="built_in">make</span> check</span><br><span class="line"><span class="built_in">make</span> install #用root权限</span><br></pre></td></tr></table></figure><p>之后输入stress，安装成功会显示如图stress说明及使用帮助<br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/0.png"></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="简介及安装"><a href="#简介及安装" class="headerlink" title="简介及安装"></a>简介及安装</h2><p>sysstat 包含了常用的 Linux 性能工具，用来监控和分析系统的性能。</p><ul><li>mpstat 是一个常用的多核 CPU 性能分析工具，用来实时查看每个 CPU 的性能指标，以及所有 CPU 的平均指标。</li><li>pidstat 是一个常用的进程性能分析工具，用来实时查看进程的 CPU、内存、I/O 以及上下文切换等性能指标。</li></ul><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>yum install sysstat</code></p><h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><h3 id="场景一：CPU-密集型进程"><a href="#场景一：CPU-密集型进程" class="headerlink" title="场景一：CPU 密集型进程"></a>场景一：CPU 密集型进程</h3><p>首先，我们在第一个终端运行 stress 命令，模拟一个 CPU 使用率 100% 的场景：<br><code>stress --cpu 1 --timeout 600</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/0.png"><br>接着，在第二个终端运行 uptime 查看平均负载的变化情况：<br><code>watch -d uptime</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/1.png"><br>最后，在第三个终端运行 mpstat 查看 CPU 使用率的变化情况：<br><code>mpstat -P ALL 5</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/2.png"><br>那么，到底是哪个进程导致了 CPU 使用率为 100% 呢？你可以使用 pidstat 来查询：<br><code>pidstat -u 5 1000</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/3.png"><br>从这里可以明显看到，stress 进程的 CPU 使用率为 100%。</p><h3 id="模拟其他场景"><a href="#模拟其他场景" class="headerlink" title="模拟其他场景"></a>模拟其他场景</h3><h4 id="I-O-密集型进程"><a href="#I-O-密集型进程" class="headerlink" title="I/O 密集型进程"></a>I/O 密集型进程</h4><p>模拟 I/O 压力，即不停地执行 sync：<br><code>stress -i 1 --timeout 600</code></p><h4 id="大量进程的场景"><a href="#大量进程的场景" class="headerlink" title="大量进程的场景"></a>大量进程的场景</h4><p>当系统中运行进程超出 CPU 运行能力时，就会出现等待 CPU 的进程。<br>比如，我们还是使用 stress，但这次模拟的是 8 个进程：<br><code>stress -c 8 --timeout 600</code></p>]]></content>
       
       
       <categories>
@@ -556,11 +581,11 @@
     
     
     <entry>
-      <title>Linux安装性能工具sysstat</title>
-      <link href="/2022/06/20/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/"/>
-      <url>/2022/06/20/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/</url>
+      <title>Linux安装压测工具stress</title>
+      <link href="/2022/06/20/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/"/>
+      <url>/2022/06/20/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/</url>
       
-        <content type="html"><![CDATA[<h2 id="简介及安装"><a href="#简介及安装" class="headerlink" title="简介及安装"></a>简介及安装</h2><p>sysstat 包含了常用的 Linux 性能工具，用来监控和分析系统的性能。</p><ul><li>mpstat 是一个常用的多核 CPU 性能分析工具，用来实时查看每个 CPU 的性能指标，以及所有 CPU 的平均指标。</li><li>pidstat 是一个常用的进程性能分析工具，用来实时查看进程的 CPU、内存、I/O 以及上下文切换等性能指标。</li></ul><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>yum install sysstat</code></p><h2 id="案例分析"><a href="#案例分析" class="headerlink" title="案例分析"></a>案例分析</h2><h3 id="场景一：CPU-密集型进程"><a href="#场景一：CPU-密集型进程" class="headerlink" title="场景一：CPU 密集型进程"></a>场景一：CPU 密集型进程</h3><p>首先，我们在第一个终端运行 stress 命令，模拟一个 CPU 使用率 100% 的场景：<br><code>stress --cpu 1 --timeout 600</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/0.png"><br>接着，在第二个终端运行 uptime 查看平均负载的变化情况：<br><code>watch -d uptime</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/1.png"><br>最后，在第三个终端运行 mpstat 查看 CPU 使用率的变化情况：<br><code>mpstat -P ALL 5</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/2.png"><br>那么，到底是哪个进程导致了 CPU 使用率为 100% 呢？你可以使用 pidstat 来查询：<br><code>pidstat -u 5 1000</code><br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E6%80%A7%E8%83%BD%E5%B7%A5%E5%85%B7sysstat/3.png"><br>从这里可以明显看到，stress 进程的 CPU 使用率为 100%。</p><h3 id="模拟其他场景"><a href="#模拟其他场景" class="headerlink" title="模拟其他场景"></a>模拟其他场景</h3><h4 id="I-O-密集型进程"><a href="#I-O-密集型进程" class="headerlink" title="I/O 密集型进程"></a>I/O 密集型进程</h4><p>模拟 I/O 压力，即不停地执行 sync：<br><code>stress -i 1 --timeout 600</code></p><h4 id="大量进程的场景"><a href="#大量进程的场景" class="headerlink" title="大量进程的场景"></a>大量进程的场景</h4><p>当系统中运行进程超出 CPU 运行能力时，就会出现等待 CPU 的进程。<br>比如，我们还是使用 stress，但这次模拟的是 8 个进程：<br><code>stress -c 8 --timeout 600</code></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="stress简介"><a href="#stress简介" class="headerlink" title="stress简介"></a>stress简介</h2><p>stress是一个Linux下的<a href="https://so.csdn.net/so/search?q=%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95&spm=1001.2101.3001.7020">压力测试</a>工具，专门为那些想要测试自己的系统，完全高负荷和监督这些设备运行的用户。<br>但是在centos的yum源中并未找到此包，所以需要手动下载安装。</p><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a href="http://archlinux.mirror.beocat.ksu.edu/other/community/stress/stress-1.0.4.tar.gz">点击下载</a><br>依次执行</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf stress<span class="number">-1.0</span><span class="number">.4</span>.tar.gz</span><br><span class="line">cd stress<span class="number">-1.0</span><span class="number">.4</span>/</span><br><span class="line">./configure</span><br><span class="line"><span class="built_in">make</span></span><br><span class="line"><span class="built_in">make</span> check</span><br><span class="line"><span class="built_in">make</span> install #用root权限</span><br></pre></td></tr></table></figure><p>之后输入stress，安装成功会显示如图stress说明及使用帮助<br><img src="https://snowgo.top/medias/medias/Linux%E5%AE%89%E8%A3%85%E5%8E%8B%E6%B5%8B%E5%B7%A5%E5%85%B7stress/0.png"></p>]]></content>
       
       
       <categories>
@@ -981,11 +1006,11 @@
     
     
     <entry>
-      <title>go有哪些关键字</title>
-      <link href="/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/"/>
-      <url>/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/</url>
+      <title>go函数返回局部变量的指针是否安全</title>
+      <link href="/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/"/>
+      <url>/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/</url>
       
-        <content type="html"><![CDATA[<p>go中有25个关键字<br><img src="https://snowgo.top/medias/medias/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/1.png"><br>注：fallthrough是用于打破switch中默认break的限制</p>]]></content>
+        <content type="html"><![CDATA[<p>一般来说，局部变量会在函数返回后被销毁，因此被返回的引用就成为了”无所指”的引用，程序会进入未知状态。<br><strong>但这在 Go 中是安全的，Go 编译器将会对每个局部变量进行逃逸分析。如果发现局部变量的作用域超出该函数，则不会将内存分配在栈上，而是分配在堆上，因为他们不在栈区，即使释放函数，其内容也不会受影响。</strong><br>编译时可以借助选项 -gcflags=-m，查看变量逃逸的情况。<br><img src="https://snowgo.top/medias/medias/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/0.png"></p>]]></content>
       
       
       <categories>
@@ -1006,11 +1031,11 @@
     
     
     <entry>
-      <title>go函数返回局部变量的指针是否安全</title>
-      <link href="/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/"/>
-      <url>/2022/05/13/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/</url>
+      <title>go有哪些关键字</title>
+      <link href="/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+      <url>/2022/05/13/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/</url>
       
-        <content type="html"><![CDATA[<p>一般来说，局部变量会在函数返回后被销毁，因此被返回的引用就成为了”无所指”的引用，程序会进入未知状态。<br><strong>但这在 Go 中是安全的，Go 编译器将会对每个局部变量进行逃逸分析。如果发现局部变量的作用域超出该函数，则不会将内存分配在栈上，而是分配在堆上，因为他们不在栈区，即使释放函数，其内容也不会受影响。</strong><br>编译时可以借助选项 -gcflags=-m，查看变量逃逸的情况。<br><img src="https://snowgo.top/medias/medias/go%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E6%8C%87%E9%92%88%E6%98%AF%E5%90%A6%E5%AE%89%E5%85%A8/0.png"></p>]]></content>
+        <content type="html"><![CDATA[<p>go中有25个关键字<br><img src="https://snowgo.top/medias/medias/go%E6%9C%89%E5%93%AA%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97/1.png"><br>注：fallthrough是用于打破switch中默认break的限制</p>]]></content>
       
       
       <categories>
@@ -2963,9 +2988,9 @@
       
         <tags>
             
-            <tag> tools </tag>
-            
             <tag> dl </tag>
+            
+            <tag> tools </tag>
             
         </tags>
       
@@ -3274,6 +3299,33 @@
     
     
     <entry>
+      <title>Beta分布详解</title>
+      <link href="/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/"/>
+      <url>/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/</url>
+      
+        <content type="html"><![CDATA[<iframe src="//player.bilibili.com/player.html?bvid=BV1a54y1z7a8&cid=257887173&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>]]></content>
+      
+      
+      <categories>
+          
+          <category> MATH </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> dl </tag>
+            
+            <tag> math </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数据增广：mixup详解</title>
       <link href="/2021/06/14/mixup__BEYOND_EMPIRICAL_RISK_MINIMIZATION_(1)/"/>
       <url>/2021/06/14/mixup__BEYOND_EMPIRICAL_RISK_MINIMIZATION_(1)/</url>
@@ -3333,33 +3385,6 @@
       <url>/2021/06/14/%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86%EF%BC%8C%E4%BD%BF%E6%A6%82%E7%8E%87%E8%AE%BA%E7%9B%B4%E8%A7%89%E5%8C%96/</url>
       
         <content type="html"><![CDATA[<iframe src="//player.bilibili.com/player.html?bvid=BV1R7411a76r&cid=145676762&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe><a name="znVDE"></a># 简洁证明<iframe src="//player.bilibili.com/player.html?bvid=BV1o7411a76m&cid=145676706&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>]]></content>
-      
-      
-      <categories>
-          
-          <category> MATH </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> dl </tag>
-            
-            <tag> math </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Beta分布详解</title>
-      <link href="/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/"/>
-      <url>/2021/06/14/Beta%E5%88%86%E5%B8%83_(4)/</url>
-      
-        <content type="html"><![CDATA[<iframe src="//player.bilibili.com/player.html?bvid=BV1a54y1z7a8&cid=257887173&page=1&high_quality=1" allowfullscreen="allowfullscreen" width="100%" height="700" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts"> </iframe>]]></content>
       
       
       <categories>
